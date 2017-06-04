@@ -1,0 +1,383 @@
+\documentclass[12pt]{article}
+
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{subfigure}
+\usepackage{wrapfig}
+\usepackage{textcomp}
+\usepackage[square, comma, numbers, sort&compress]{natbib}
+\usepackage[hang,small,bf]{caption}
+\usepackage{parskip}
+\usepackage[margin=1in,footskip=0.5in]{geometry}
+\usepackage{amsmath}
+\usepackage{mdwlist}
+\usepackage{epstopdf}
+
+\newcommand{\para}{\vspace{5mm} \noindent}
+\newcommand{\parafig}{\vspace{4mm} \noindent}
+\newcommand{\paraeq}{\vspace{1mm} \noindent}
+\newcommand{\negparafig}{\vspace{-4mm} \noindent}
+\newcommand{\negparaeq}{\vspace{-1mm} \noindent}
+
+\addtolength{\parskip}{1\parskip}
+
+%\renewcommand{\textfraction}{0.07}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+\ 
+\vspace{7cm}\begin{center}
+   {\bf\LARGE A Polyhedral Finite Element Approach to Subject-Specific Modeling and Simulation in Biomechanics}
+\end{center}
+
+
+
+\vspace{1cm}
+\begin{center} 
+
+{\large Ph.D. Thesis }
+
+\vspace{1.3cm}
+{\bf\large Omar Hafez}\\%[0.3cm]
+
+%\vspace{5mm}
+{Civil \& Environmental Engineering}\\
+{University of California, Davis}\end{center}
+
+\end{titlepage}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{abstract}
+%Text text text
+%Something else important
+%\end{abstract}
+%\thispagestyle{empty} 
+%\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty} 
+\setcounter{tocdepth}{2} %2=no subsubsections
+
+\tableofcontents
+%\listoffigures
+%\listoftables
+
+\newpage
+\setcounter{page}{1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Overview}
+\label{Overview}
+~\cite{heartmech}~\cite{newheartpaper}~\cite{vorocrust,simpleware,persson}
+
+Other software:\\
+SOFA\\
+Simvascular, Allison Marsden\\
+Shadden Lab Berkeley\\
+knee (Tammy Donahue) \\
+hip (Dave Fhyrie) \\
+heart \\
+orthodontic \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Medical Imaging}
+\label{Medical Imaging}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Magnetic Resonance Imaging}
+\label{Magnetic Resonance Imaging}
+
+MRI is ideal for visually distinguishing soft tissues, but objects MUST contain hydrogen molecules (e.g. water). However it is possible to get around this problem and scan “dry” objects made of plastic, for example, by immersing them in jelly. The negative of the object is then visible in the MRI data. Segmentation can be threshold based in some cases. Unfortunately it is quite common for different objects to be easily distinguishable visually, by texture, but not by greyscale. In these cases some level of manual segmentation may be required. MRI images often suffer from signal attenuation and/or noise on the borders of the region of interest.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Diffusion Tensor MRI}
+\label{Diffusion Tensor MRI}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Other Imaging Technologies}
+\label{Other Imaging Technologies}
+Elastography, etc.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Image Segmentation}
+\label{Image Segmentation}
+~\cite{morel} -- Mumford-Shah model\\
+~\cite{mitiche}
+threshold based segmentation
+edge based
+region based
+clustering
+matching
+
+future - neural networks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Review of Image Segmentation Techniques}
+\label{Review of Image Segmentation Techniques}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Level Sets}
+\label{Level Sets}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Flood Fill}
+\label{Flood Fill}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Color Space Voronoi Partitioning}
+\label{Color Space Voronoi Partitioning}
+~\cite{lcevt}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Adaptive Template-Moderated}
+\label{Adaptive Template-Moderated}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Manual Approaches}
+\label{Manual Approaches}
+Seg3D, Simpleware, ITK-Snap
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Mesh Generation}
+\label{Mesh Generation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Review of Mesh Generation Techniques}
+\label{Review of Mesh Generation Techniques}
+
+- downsampling - poisson disk sampling\\
+- smooth normals\\
+- filtering\\
+
+- watertight surface reconstruction\\
+	- vorocrust\\
+	- powercrust\\
+	- ball pivoting\\
+	- poisson surface reconstruction\\
+	- tight cocone\\
+	
+- meshing from CAD\\
+    - tetgen\\
+    - cubit/bolt\\
+    
+- direct meshing\\
+	- simpleware\\
+
+- smoothing after the fact\\
+	- laplacian smooth\\
+
+mesh simplification/decimation\\
+cut cell approach\\
+smoothing papers\\
+
+noisy, oversampled point cloud\\
+
+
+Simpleware webinar
+
+- simpleware does not do CAD-based modeling, goes directly to the mesh
+- contact regarding technical work/papers for meshing
+export as STL, mesh, or NURBS
+- TWO BOTTLENECKS
+  - image segmentation time
+  - generating watertight and error free meshes
+    - no gaps or overlaps 
+    - no inverted elements 
+    - no negative jacobian
+- segmentation -> stl -> smoothing -> nurbs -> meshing -  cad geometry medical device -> export final model -> poor elements, gaps and overlap, non convergence, not watertight
+- manual corrections of stl, curbs, meshes
+
+- generation of watertight STL
+- aspect ratio/mesh quality
+- image-based meshing
+
+- BLENDR - graphics, STL
+- Rhino - STL generation, NURBS
+
+Email Kerim, k.genc@simpleware.com
+
+see you at WCCM
+Ross Cotton’s recently published paper
+Ross Cotton, r.cotton@simpleware.com
+
+Simpleware paper:
+1. marching cubes for surface mesh
+2. Advancing front or Delaunay techniques for tet meshing --> produces slivers though
+3. Extended EVoMacs
+
+hex meshers:
+
+truegrid\\
+cubit
+
+mask to mesh:
+dual contouring
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Voronoi Partitioning}
+\label{Voronoi Partitioning}
+Voro++
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Tolerance-Aware Voronoi Partitioning}
+\label{Tolerance-Aware Voronoi Partitioning}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Voronoi-Based Mesh Generation}
+\label{Voronoi-Based Mesh Generation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Boundary Representation (B-rep) Generation}
+\label{Boundary Representation (B-rep) Generation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Robust Polyhedral Mesh Generation from B-reps}
+\label{Robust Polyhedral Mesh Generation from B-reps}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Approximation Methodology}
+\label{Approximation Methodology}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Continuum Mechanics}
+\label{Continuum Mechanics}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Finite Element Method}
+\label{The Finite Element Method}
+(refer also to Jeremic and Felippa lecture notes, and Tom Hughes book)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Incremental Kinematics}
+\label{Incremental Kinematics}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Hyperelastic Materials}
+\label{Hyperelastic Materials}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Partitioned Element Method}
+\label{The Partitioned Element Method}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Clinical Study}
+\label{Clinical Study}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Description of Cardioid}
+\label{Description of Cardioid}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Material Property Characterization}
+\label{Material Property Characterization}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fiber Generation}
+\label{Simulation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Boundary Conditions}
+\label{Boundary Conditions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Simulation/Results}
+\label{Simulation/Results}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Conclusions}
+\label{Conclusions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Discussion}
+\label{Discussion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Future Work}
+\label{Future Work}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Towards Automating the Image-to-Analysis Pipeline}
+\label{Towards Automating the Image-to-Analysis Pipeline}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Multiple Materials and Inhomogeneous Materials}
+\label{Multiple Materials and Inhomogeneous Materials}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Uncertainty Quantification, Verification, and Validation}
+\label{Uncertainty Quantification, Verification, and Validation}
+Material properties, boundary conditions
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{High Performance Computing}
+\label{High Performance Computing}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Clinical Implications}
+\label{Clinical Implications}
+(haptics, Simpleware stuff)\\
+Center for Cardiovascular simulation (Texas)
+Heartflow, Inc., Charles Taylor
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\renewcommand{\theequation}{A.\arabic{equation}}
+\setcounter{equation}{0}
+\section{Appendix: Glossary of terms}
+\label{Appendix}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\thispagestyle{empty}
+\noindent
+{\bf\Large Acknowledgments}
+\vspace{4mm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+ 
+\newpage
+\pagestyle{empty} 
+
+\bibliographystyle{ieeetr}
+\bibliography{PhD_Thesis}
+
+
+\end{document}

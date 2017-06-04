@@ -1,0 +1,42 @@
+% This file was created with JabRef 2.10b2.
+% Encoding: Cp1252
+
+
+@Article{heartmech,
+  Title                    = {A high-resolution computational model of the deforming human heart},
+  Pages                    = {289-294},
+  Volume                   = {174},
+
+  Owner                    = {Omar},
+  Timestamp                = {2010.08.23}
+}
+
+@Article{newheartpaper,
+  Title                    = {Anatomically accurate high resolution modeling of human whole heart electromechanics: A strongly scalable algebraic multigrid solver method for nonlinear deformation},
+
+  Owner                    = {omar},
+  Timestamp                = {2016.01.31}
+}
+
+@Article{simpleware,
+  Title                    = {An efficient approach to converting three-dimensional image data into highly accurate computational models},
+
+  Owner                    = {omar},
+  Timestamp                = {2016.01.31}
+}
+
+@Article{vorocrust,
+  Title                    = {Uniform Random Voronoi Meshes},
+
+  Owner                    = {omar},
+  Timestamp                = {2016.01.31}
+}
+
+@comment{jabref-meta: selector_publisher:}
+
+@comment{jabref-meta: selector_author:}
+
+@comment{jabref-meta: selector_journal:}
+
+@comment{jabref-meta: selector_keywords:}
+
