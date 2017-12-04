@@ -1,3 +1,4 @@
+*.log
 thesis.pdf
 *.lot
 *.lof
