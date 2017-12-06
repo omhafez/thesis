@@ -1,37 +1,38 @@
 \chapter{Future Work}
 
-\begin{figure}[ht]
+\begin{sidewaysfigure}[ht]
 \centering
 		\includegraphics[width=1.0\textwidth]{media/7-polyknee/fullmesh.png}
 %
 \caption{Polyhedral mesh of human knee from input surfaces generated from OpenKnee image masks}
 \label{fig:polyknee}
-\end{figure}
+\end{sidewaysfigure}
 
-\begin{figure}[ht]
+\begin{sidewaysfigure}[ht]
 \centering
 		\includegraphics[width=1.0\textwidth]{media/6-3dprint/3dprint.jpg}
 %
 \caption{Suite of 3D-printed organs using surface meshes generated from novel image-based meshing tools}
 \label{fig:3dprint}
-\end{figure}
+\end{sidewaysfigure}
 
-\begin{figure}[ht!]
+
+\begin{sidewaysfigure}[ht!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.15]{media/3-celeris/8-celeris.png}
+		\includegraphics[scale=0.3]{media/3-celeris/8-celeris.png}
 \label{fig:comp-1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.15]{media/3-celeris/9-cardioid.png}		
+		\includegraphics[scale=0.3]{media/3-celeris/9-cardioid.png}		
 \label{fig:comp-2}}	
 \subfigure[]{%
-		\includegraphics[scale=0.15]{media/3-celeris/10-simpleware.png}
+		\includegraphics[scale=0.3]{media/3-celeris/10-simpleware.png}
 \label{fig:comp-3}}			
 	
 %
 \caption{Comparison of meshes: (a) linear polyhedral mesh from Celeris, (b) quadratic tetrahedral mesh from Tetgen, (c) and quadratic tetrahedral mesh from Simpleware.}
 \label{fig:comp}
-\end{figure}
+\end{sidewaysfigure}
 
 
 Active stress as function of eulerian fiber direction, not lagrangian \\
@@ -80,24 +81,6 @@ tolerance-aware voronoi-partitioning \\
 multiple material interfaces (see paper) \\
 
 Abaqus: ability to deal with initial over-closures? A strain-free adjustment perhaps? Like if you were to mesh the femur and the femoral cartilage separately, say, and there is a tiny bit of overlap between them..are you able to fix this without going back to the meshing software?  
-
-\begin{figure}[tbh]
-\centering
-\includegraphics{media/sequence.png}
-% where an .eps filename suffix will be assumed under latex,
-% and a .pdf suffix will be assumed for pdflatex
-\caption[sequence]{Polyhedral meshing sequence performed on knee mesh.}
-\label{fig.sequence}
-\end{figure}
-
-\begin{sidewaysfigure}[tbh]
-\centering
-\includegraphics[scale=0.82]{media/fullmesh.png}
-% where an .eps filename suffix will be assumed under latex,
-% and a .pdf suffix will be assumed for pdflatex
-\caption[polyhedral knee]{Resulting polyhedral mesh of knee.}
-\label{fig.sample_1}
-\end{sidewaysfigure}
 
 Future Work
 
