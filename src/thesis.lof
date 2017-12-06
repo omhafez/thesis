@@ -86,17 +86,17 @@
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{20}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{20}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{20}
-\contentsline {figure}{\numberline {6.11}{\ignorespaces Results for Land P3 verification problem: (a) Deformed position of middle of the ventricle wall, with (b) details at the inflection point (top right) and the apical region (bottom right).}}{21}
+\contentsline {figure}{\numberline {6.11}{\ignorespaces Results for Land P3 verification problem: (a) Deformed position of middle of the ventricle wall, with (b) details at the inflection point (top right) and the apical region (bottom right).}}{20}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{20}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{20}
+\contentsline {figure}{\numberline {6.12}{\ignorespaces Results for Land P3 verification problem: (a) The same deformed position of middle of the ventricle wall, shown in the $x-y$ plane, with (b) details at the inflection point. Panel (c) shows the deformed position of the apex at the endo- and epicardium for each of the simulation codes.}}{21}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{21}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{21}
-\contentsline {figure}{\numberline {6.12}{\ignorespaces Results for Land P3 verification problem: (a) The same deformed position of middle of the ventricle wall, shown in the $x-y$ plane, with (b) details at the inflection point. Panel (c) shows the deformed position of the apex at the endo- and epicardium for each of the simulation codes.}}{22}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{22}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{22}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{22}
-\contentsline {figure}{\numberline {6.13}{\ignorespaces Comparison of meshes: (a) linear polyhedral mesh from Celeris, (b) quadratic tetrahedral mesh from Tetgen, (c) and quadratic tetrahedral mesh from Simpleware.}}{22}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{22}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{22}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{22}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{21}
+\contentsline {figure}{\numberline {6.13}{\ignorespaces Comparison of meshes: (a) linear polyhedral mesh from Celeris, (b) quadratic tetrahedral mesh from Tetgen, (c) and quadratic tetrahedral mesh from Simpleware.}}{21}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{21}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{21}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{21}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {7.1}{\ignorespaces Polyhedral mesh of human knee from input surfaces generated from OpenKnee image masks}}{23}
 \contentsline {figure}{\numberline {7.2}{\ignorespaces Suite of 3D-printed organs using surface meshes generated from novel image-based meshing tools}}{24}
