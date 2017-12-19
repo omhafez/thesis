@@ -214,18 +214,24 @@ papers Mark mentions in SOW
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Description of Cardioid}
-\label{Description of Cardioid}
+\section{Problem Description}
+\label{Problem Description}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Material Property Characterization}
-\label{Material Property Characterization}
+\section{Material Model}
+\label{Material Model}
+
+\subsection{Passive Stress}
+\label{Passive Stress}
+
+\subsection{Active Stress}
+\label{Active Stress}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Fiber Generation}
-\label{Simulation}
+\label{Fiber Generation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -234,131 +240,10 @@ papers Mark mentions in SOW
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Simulation/Results}
-\label{Simulation/Results}
+\section{Solver}
+\label{Solver}
 
-
-Questions to ask with available model
-Effect of smoothing/trabeculae
-Do trabeculae affect the solution
-How sensitive are the results from paraview smoothing?
-Effect of resolution – make multiple meshes of same geometry
-Number of iterations – do they depend on mesh resolution? Would like it not to 
-Does V cycle work for my geometry?
-Fiber generation vs fibers from raw data + interp + smoothing
-Verification/validation
-Stress/strain plots
-Initial cycle is faster than others: first frame but also first cycle all together is faster
-Mesh quality/aspect ratio
-Potential plots:	
-Volumetric strain
-Deviatoric strain
-C11, c22, c33
-Maximal principal eigenvalue
-C11 from fiber orientation
-Hysteresis plot of position
-
-structure/trabeculae
-fibergen vs DTI
-Jeremy drug studies, a lot didn’t match
-whole range of sensitivity studies
-
-
-
-­Preliminary Ideas
-
-How does fiber orientation impact lengthening of heart
-How does mesh resolution affect solution
-Explore exotic solvers
-Complete tool chain
-How does constitutive and active properties of heart affect solution
-
-
-Nearly incompressible material leads to poor condition number in stiffness matrix
-Want to study how large scale, iterative solvers can be formulated to deal with poor condition number, as well as interact with element shape and mesh quality
-Want to couple electrophysiology model with mechanics model
-Want to understand the impact of mesh quality on solver performance, and help tune mesh generation procedures to generate meshes that are free of features that cause problems for the solver
-Why is full model not performing as well? Active tension, anisotropy, geometry. Which is the one that makes it hard?
-
-
-Solver may struggle due to a few elements that have a weird shape (Mesquite), meshing is a problem
-Activation model
-Coupling of electrophysiological and mechanical model (feedback may not be important)
-Electrophysiology model scales much larger than mechanical model, and can be solved almost real time
-Couple electrophysiology to ECG code – finite element locations fed into ECG (same code base as FEM code)
-What parameters are affecting the result?
-Develop tool chain – sensitivity analysis
-
-
-
-
-
-What does it mean exactly to have an active component of stress? basically just a body force
-The ventricles are coupled to a lumped circulatory model? Volume as a function of time
-Direct solvers used because of active force component (?)
-Direct solvers limit number of DOF
-This method suggested is a Krylov subpace iterative solver, increases number of DOF, much larger scale problem
- Why quasi-static?? Elastic portion reacts very quickly
-Any reason why quadratic elements chosen as opposed to linear elements? Avoid volumetric locking
-“The main reason why the mixed displacement-pressure formulation for incompressible large deformation problems is often avoided is the difficulty in solving such saddle-point linear systems, and this difficulty is increased by the presence of active stress.”
-“problems with pyramid element” – why problems? Even after 15 node element introduced?
-
-
-winslow canine diffusion tensor segmentation
-
-
-Mark Rashid meeting
-
-~ important to have every day workhorse stable analysis tool available
-
-~ may be getting oscillations in pressure field that are hard to avoid in current formulation
-
-~ oscillations in displacement from bending in beam is concerning - issue with constitutive model
-
-~ near-incompressibility instead of fully incompressible
-
-instead of pressure formulation, all displacement, only nearly enforce incompressibility
-element-wide average of element dilatation, essentially reduced-integration, a remedy for locking
-enhanced assumed strain / enhanced kinematics
-much more common to do all displacement, enhance kinematics instead of pressure formulation
-
-~ BCs: projecting out rigid body translations and rotations
-
-~ before today, the three options were fully tet, fully hex, and mixed. can we reiterate why you wouldn’t recommend any of those three and why you would instead recommend polyhedral FEM laid out today
-
-~ in the same way you have biological and electrophysiology experts, only makes sense to have an expert in computational solid mechanics
-
----------------------------------------
-
-~ tets not okay - too many DOFs, accuracy potentially worse, even for higher order
-~ full hex mesh nearly impossible
-~ mixed element: somewhere in between. prisms and pyramids are algorithmically difficult. Also, issues with convergence
-
-
-
-Prof Rashid’s suggestions
-
-direct solver instead of iterative solver
-is fiber discontinuity interacting with incompressibility constraint?
-1 for experimentation, play with compressible passive formulation
-2 take incompressibility off the table
-three main differences: geometry, continuous fiber orientations, purely tet
-mixture of elements could cause problems with convergence
-
-WHAT CAN WE BE SLOPPY ABOUT? WHICH PARAMETERS MOST IMPORTANTLY AFFECT THE RESULT?
-
-
----
-
-Natalia Trayanova is not the only one simulating beating hearts.
-
-Some other profs that simulate beating hearts ...
-
-Andrew McCulloch:
-http://cmrg.ucsd.edu/AndrewMcCulloch
-
-Steve Niederer
-kclpure.kcl.ac.uk/portal/steven.niederer.html
-
-Blanca Rodriguez
-www.cs.ox.ac.uk/people/blanca.rodriguez
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Simulation Results}
+\label{Simulation Results}

@@ -1,38 +1,54 @@
-\contentsline {section}{List of Figures}{v}
-\contentsline {section}{List of Tables}{viii}
-\contentsline {section}{Abstract}{ix}
-\contentsline {section}{Acknowledgments}{x}
+\contentsline {section}{List of Figures}{vi}
+\contentsline {section}{List of Tables}{ix}
+\contentsline {section}{Abstract}{x}
+\contentsline {section}{Acknowledgments}{xi}
 \contentsline {chapter}{\numberline {1}Overview}{1}
 \contentsline {chapter}{\numberline {2}Medical Imaging and Image Segmentation}{2}
-\contentsline {section}{\numberline {2.1}Review of Imaging Techniques}{2}
-\contentsline {subsection}{\numberline {2.1.1}Magnetic Resonance Imaging}{2}
-\contentsline {subsection}{\numberline {2.1.2}X-Ray Computed Tomography}{2}
-\contentsline {subsection}{\numberline {2.1.3}Other Imaging Modalities}{2}
-\contentsline {section}{\numberline {2.2}Review of Image Segmentation Techniques}{2}
-\contentsline {chapter}{\numberline {3}Surface Generation}{3}
-\contentsline {chapter}{\numberline {4}Mesh Generation}{6}
-\contentsline {section}{\numberline {4.1}Review of Mesh Generation Techniques}{6}
-\contentsline {section}{\numberline {4.2}Voronoi Partitioning}{9}
-\contentsline {section}{\numberline {4.3}Tolerance-Aware Voronoi Partitioning}{9}
-\contentsline {section}{\numberline {4.4}Voronoi-Based Mesh Generation}{9}
-\contentsline {section}{\numberline {4.5}Boundary Representation (B-rep) Generation}{9}
-\contentsline {section}{\numberline {4.6}Robust Polyhedral Mesh Generation from B-reps}{9}
-\contentsline {chapter}{\numberline {5}Numerical Methods}{12}
-\contentsline {section}{\numberline {5.1}Continuum Mechanics}{12}
-\contentsline {section}{\numberline {5.2}The Finite Element Method}{12}
-\contentsline {section}{\numberline {5.3}Incremental Kinematics}{12}
-\contentsline {section}{\numberline {5.4}Hyperelastic Materials}{12}
-\contentsline {section}{\numberline {5.5}The Partitioned Element Method}{12}
-\contentsline {chapter}{\numberline {6}Application: Cardiac Mechanics}{13}
-\contentsline {section}{\numberline {6.1}Description of Cardioid}{14}
-\contentsline {section}{\numberline {6.2}Material Property Characterization}{14}
-\contentsline {section}{\numberline {6.3}Fiber Generation}{14}
-\contentsline {section}{\numberline {6.4}Boundary Conditions}{14}
-\contentsline {section}{\numberline {6.5}Simulation/Results}{14}
-\contentsline {chapter}{\numberline {7}Future Work}{23}
-\contentsline {section}{\numberline {7.1}Towards Automating the Image-to-Analysis Pipeline}{24}
-\contentsline {subsection}{\numberline {7.1.1}Multiple Materials and Inhomogeneous Materials}{24}
-\contentsline {subsection}{\numberline {7.1.2}Uncertainty Quantification, Verification, and Validation}{24}
-\contentsline {subsection}{\numberline {7.1.3}High Performance Computing}{24}
-\contentsline {section}{\numberline {7.2}Clinical Implications}{24}
-\contentsline {chapter}{\numberline {8}Conclusions}{26}
+\contentsline {section}{\numberline {2.1}Imaging Approaches}{2}
+\contentsline {subsection}{\numberline {2.1.1}Magnetic Resonance Imaging}{3}
+\contentsline {subsection}{\numberline {2.1.2}X-Ray Computed Tomography}{3}
+\contentsline {subsection}{\numberline {2.1.3}Additional Imaging Modalities}{3}
+\contentsline {subsection}{\numberline {2.1.4}Data Format}{3}
+\contentsline {section}{\numberline {2.2}Image Segmentation Approaches}{3}
+\contentsline {subsection}{\numberline {2.2.1}Thresholding Methods}{3}
+\contentsline {subsection}{\numberline {2.2.2}Region-Growing Methods}{3}
+\contentsline {subsection}{\numberline {2.2.3}Neural Networks}{3}
+\contentsline {subsection}{\numberline {2.2.4}Manual Methods}{3}
+\contentsline {chapter}{\numberline {3}Surface Generation}{4}
+\contentsline {section}{\numberline {3.1}Surface Generation Approaches}{4}
+\contentsline {section}{\numberline {3.2}Point Cloud Generation}{4}
+\contentsline {section}{\numberline {3.3}Surface Reconstruction}{4}
+\contentsline {subsection}{\numberline {3.3.1}Surface Reconstruction Approaches}{4}
+\contentsline {subsection}{\numberline {3.3.2}Voronoi-Based Surface Reconstruction}{4}
+\contentsline {section}{\numberline {3.4}Data Format}{4}
+\contentsline {chapter}{\numberline {4}Mesh Generation}{8}
+\contentsline {section}{\numberline {4.1}Hexahedral and Hex-Dominant Meshing}{8}
+\contentsline {section}{\numberline {4.2}Tetrahedral Meshing}{8}
+\contentsline {section}{\numberline {4.3}Polyhedral Meshing}{8}
+\contentsline {section}{\numberline {4.4}Data Format}{8}
+\contentsline {chapter}{\numberline {5}Physics-Based Modeling and Simulation}{11}
+\contentsline {section}{\numberline {5.1}Continuum Mechanics}{11}
+\contentsline {section}{\numberline {5.2}The Finite Element Method}{11}
+\contentsline {section}{\numberline {5.3}The Partitioned Element Method}{11}
+\contentsline {section}{\numberline {5.4}Incremental Kinematics}{11}
+\contentsline {section}{\numberline {5.5}Hyperelastic Materials}{11}
+\contentsline {chapter}{\numberline {6}Application: Cardiac Mechanics}{12}
+\contentsline {section}{\numberline {6.1}Problem Description}{13}
+\contentsline {section}{\numberline {6.2}Material Model}{13}
+\contentsline {subsection}{\numberline {6.2.1}Passive Stress}{13}
+\contentsline {subsection}{\numberline {6.2.2}Active Stress}{13}
+\contentsline {section}{\numberline {6.3}Fiber Generation}{13}
+\contentsline {section}{\numberline {6.4}Boundary Conditions}{13}
+\contentsline {section}{\numberline {6.5}Solver}{13}
+\contentsline {section}{\numberline {6.6}Simulation Results}{13}
+\contentsline {chapter}{\numberline {7}Future Work}{20}
+\contentsline {section}{\numberline {7.1}Short Term}{21}
+\contentsline {subsection}{\numberline {7.1.1}A Polyhedral Finite Element Demonstration in Cardiac Mechanics}{21}
+\contentsline {subsection}{\numberline {7.1.2}A Machine Learning System to Guide Clinical Procedures in Real-Time}{21}
+\contentsline {subsection}{\numberline {7.1.3}Improvements to Image-Based Meshing Code}{21}
+\contentsline {subsection}{\numberline {7.1.4}Improvements to Cardiac Mechanics Code}{21}
+\contentsline {section}{\numberline {7.2}Long Term}{21}
+\contentsline {subsection}{\numberline {7.2.1}Applications in Additive Manufacturing and Rapid Prototyping}{21}
+\contentsline {subsection}{\numberline {7.2.2}\textit {In Silico} Modeling}{21}
+\contentsline {subsection}{\numberline {7.2.3}Simulation of Clinical Trials}{21}
+\contentsline {chapter}{\numberline {8}Conclusions}{22}

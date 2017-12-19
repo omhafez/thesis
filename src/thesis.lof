@@ -1,103 +1,103 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces (a) MRI of \textit {ex-vivo} human heart, and (b) resulting segmented image mask}}{2}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{2}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{2}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces (a) MRI of \textit {ex-vivo} human heart, and (b) resulting segmented image mask}}{3}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{3}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{3}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces (a) Sample window of segmented image, (b) interface approximation, (c) point/normal placement, and d) Voronoi site placement}}{3}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{3}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{3}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{3}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{3}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Clean-up of undesirable ``cross-talk'' facets for a surface patch: (a) initial surface following Voronoi-based surface reconstruction, (b) identification of ``cross-talk'' facets, (c) identification of edges to be collapsed, (d) final cleaned surface.}}{3}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{3}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{3}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{3}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{3}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Clean-up of undesirable ``cross-talk'' facets for surface of \textit {ex-vivo} human heart: (a) initial surface following Voronoi-based surface reconstruction, (b) identification of ``cross-talk'' facets, (c) identification of edges to be collapsed, (d) final cleaned surface.}}{4}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces (a) Sample window of segmented image, (b) interface approximation, (c) point/normal placement, and d) Voronoi site placement}}{4}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{4}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{4}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{4}
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{4}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces (a) Segmented image, (b) point/normal placement, (c) oriented point cloud (normals not shown), c) cleaned surface mesh generated from Voronoi partition (edges not shown), and d) final decimated surface}}{4}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{4}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{4}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{4}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{4}
-\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {}}}{4}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Suite of example surfaces generated from image data.}}{5}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Screenshot of Github repo}}{5}
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Bi-ventricular mesh: (a) surface mesh, and (b) clipped view of quadratic tetrahedral mesh used in Cardioid simulations}}{6}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Clean-up of undesirable ``cross-talk'' facets for a surface patch: (a) initial surface following Voronoi-based surface reconstruction, (b) identification of ``cross-talk'' facets, (c) identification of edges to be collapsed, (d) final cleaned surface.}}{5}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{5}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{5}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{5}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{5}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Clean-up of undesirable ``cross-talk'' facets for surface of \textit {ex-vivo} human heart: (a) initial surface following Voronoi-based surface reconstruction, (b) identification of ``cross-talk'' facets, (c) identification of edges to be collapsed, (d) final cleaned surface.}}{5}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{5}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{5}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{5}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{5}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces (a) Segmented image, (b) point/normal placement, (c) oriented point cloud (normals not shown), c) cleaned surface mesh generated from Voronoi partition (edges not shown), and d) final decimated surface}}{6}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{6}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{6}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Generation of polyhedral mesh: (a) input surface mesh, (b) bounding hex mesh, (c) resulting polyhedral mesh, (d) clipped mesh, and (e) highlight of elements with cuboidal vs. general polyhedral shape.}}{10}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{6}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{6}
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {}}}{6}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Suite of example surfaces generated from image data.}}{6}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Screenshot of Github repo}}{7}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Bi-ventricular mesh: (a) surface mesh, and (b) clipped view of quadratic tetrahedral mesh used in Cardioid simulations}}{8}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{8}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{8}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Generation of polyhedral mesh: (a) input surface mesh, (b) bounding hex mesh, (c) resulting polyhedral mesh, (d) clipped mesh, and (e) highlight of elements with cuboidal vs. general polyhedral shape.}}{9}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{9}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{9}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{9}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{9}
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {}}}{9}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Three example arbitrary polyhedral elements presented at different angles}}{10}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{10}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{10}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{10}
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{10}
 \contentsline {subfigure}{\numberline {(e)}{\ignorespaces {}}}{10}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Three example arbitrary polyhedral elements presented at different angles}}{11}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{11}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{11}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{11}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{11}
-\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {}}}{11}
-\contentsline {subfigure}{\numberline {(f)}{\ignorespaces {}}}{11}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Suite of polyhedral finite element meshes generated from image data \vspace {1cm}}}{11}
+\contentsline {subfigure}{\numberline {(f)}{\ignorespaces {}}}{10}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Suite of polyhedral finite element meshes generated from image data \vspace {1cm}}}{10}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Mechanics modeling considerations: (a) muscle fiber orientations, (b) electrical activation times, and c) surface tagging and prescription of corresponding boundary conditions.}}{13}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Mechanics modeling considerations: (a) muscle fiber orientations, (b) electrical activation times, and c) surface tagging and prescription of corresponding boundary conditions.}}{12}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{12}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{12}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{12}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Results from Cardioid simulation: (a) P-V loop of left ventricle, (b) pressure time history in left and right ventricles.}}{13}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{13}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{13}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Deformed mesh from Cardioid simulation at different stages of cardiac cycle. Panels (a), (b), (c), and (d) correspond to the stages in the P-V loop denoted in FIGREF ???.}}{13}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{13}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{13}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{13}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Results from Cardioid simulation: (a) P-V loop of left ventricle, (b) pressure time history in left and right ventricles.}}{14}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{14}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{14}
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Deformed mesh from Cardioid simulation at different stages of cardiac cycle. Panels (a), (b), (c), and (d) correspond to the stages in the P-V loop denoted in FIGREF ???.}}{14}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{13}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Undeformed (bottom) and deformed (top) configurations for cantilever beam verification problems: (a) Gurev P2: bending, (b) Gurev P3: torsion, c) Gurev P4: active contraction, and (d) Land P1: bending. The red curve denotes the curve over which displacements and positions are recorded for comparison of results.}}{14}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{14}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{14}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{14}
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{14}
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Undeformed (bottom) and deformed (top) configurations for cantilever beam verification problems: (a) Gurev P2: bending, (b) Gurev P3: torsion, c) Gurev P4: active contraction, and (d) Land P1: bending. The red curve denotes the curve over which displacements and positions are recorded for comparison of results.}}{15}
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Undeformed (left) and deformed (right) configurations for single ventricle verification problems: (a,b) Land P2: inflation, and (c,d) Land P3: inflation and active contraction. The red curve denotes the curve over which displacements and positions are recorded for comparison of results.}}{15}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{15}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{15}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{15}
 \contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{15}
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Undeformed (left) and deformed (right) configurations for single ventricle verification problems: (a,b) Land P2: inflation, and (c,d) Land P3: inflation and active contraction. The red curve denotes the curve over which displacements and positions are recorded for comparison of results.}}{16}
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Results for Gurev P2 verification problem: (a) Displacement magnitude along diagonal axis, with (b) details for the free end of the beam}}{15}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{15}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{15}
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Results for Gurev P3 verification problem: (a) Displacement magnitude along diagonal axis, with (b) details for the fixed end of the beam. The results for imitor and Celeris are indistinguishable in these plots.}}{16}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{16}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{16}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{16}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {}}}{16}
-\contentsline {figure}{\numberline {6.6}{\ignorespaces Results for Gurev P2 verification problem: (a) Displacement magnitude along diagonal axis, with (b) details for the free end of the beam}}{17}
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Results for Gurev P4 verification problem: (a) Displacement magnitude along diagonal axis, with (b) details for the free end of the beam. The results for imitor and Celeris are indistinguishable in these plots.}}{16}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{16}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{16}
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Results for Land P1 verification problem: (a) Deformed position of midline, with (b) details for the free end of the beam. Panel (c) shows the deformed position of the point $\mathbf {X} = (10, 0.5, 1)$ for each of the simulation codes.}}{17}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{17}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{17}
-\contentsline {figure}{\numberline {6.7}{\ignorespaces Results for Gurev P3 verification problem: (a) Displacement magnitude along diagonal axis, with (b) details for the fixed end of the beam. The results for imitor and Celeris are indistinguishable in these plots.}}{17}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{17}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{17}
-\contentsline {figure}{\numberline {6.8}{\ignorespaces Results for Gurev P4 verification problem: (a) Displacement magnitude along diagonal axis, with (b) details for the free end of the beam. The results for imitor and Celeris are indistinguishable in these plots.}}{18}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{17}
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Results for Land P2 verification problem: (a) Deformed position of middle of the ventricle wall, with (b) details at the inflection point (top right) and the apical region (bottom right). Panel (c) shows the deformed position of the apex at the endo- and epicardium for each of the simulation codes.}}{18}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{18}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{18}
-\contentsline {figure}{\numberline {6.9}{\ignorespaces Results for Land P1 verification problem: (a) Deformed position of midline, with (b) details for the free end of the beam. Panel (c) shows the deformed position of the point $\mathbf {X} = (10, 0.5, 1)$ for each of the simulation codes.}}{19}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{18}
+\contentsline {figure}{\numberline {6.11}{\ignorespaces Results for Land P3 verification problem: (a) Deformed position of middle of the ventricle wall, with (b) details at the inflection point (top right) and the apical region (bottom right).}}{18}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{18}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{18}
+\contentsline {figure}{\numberline {6.12}{\ignorespaces Results for Land P3 verification problem: (a) The same deformed position of middle of the ventricle wall, shown in the $x-y$ plane, with (b) details at the inflection point. Panel (c) shows the deformed position of the apex at the endo- and epicardium for each of the simulation codes.}}{19}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{19}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{19}
 \contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{19}
-\contentsline {figure}{\numberline {6.10}{\ignorespaces Results for Land P2 verification problem: (a) Deformed position of middle of the ventricle wall, with (b) details at the inflection point (top right) and the apical region (bottom right). Panel (c) shows the deformed position of the apex at the endo- and epicardium for each of the simulation codes.}}{20}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{20}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{20}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{20}
-\contentsline {figure}{\numberline {6.11}{\ignorespaces Results for Land P3 verification problem: (a) Deformed position of middle of the ventricle wall, with (b) details at the inflection point (top right) and the apical region (bottom right).}}{20}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{20}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{20}
-\contentsline {figure}{\numberline {6.12}{\ignorespaces Results for Land P3 verification problem: (a) The same deformed position of middle of the ventricle wall, shown in the $x-y$ plane, with (b) details at the inflection point. Panel (c) shows the deformed position of the apex at the endo- and epicardium for each of the simulation codes.}}{21}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{21}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{21}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{21}
-\contentsline {figure}{\numberline {6.13}{\ignorespaces Comparison of meshes: (a) linear polyhedral mesh from Celeris, (b) quadratic tetrahedral mesh from Tetgen, (c) and quadratic tetrahedral mesh from Simpleware.}}{21}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{21}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{21}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{21}
+\contentsline {figure}{\numberline {6.13}{\ignorespaces Comparison of meshes: (a) linear polyhedral mesh from Celeris, (b) quadratic tetrahedral mesh from Tetgen, (c) and quadratic tetrahedral mesh from Simpleware.}}{19}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{19}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{19}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{19}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Polyhedral mesh of human knee from input surfaces generated from OpenKnee image masks}}{23}
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Suite of 3D-printed organs using surface meshes generated from novel image-based meshing tools}}{24}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Polyhedral mesh of human knee from input surfaces generated from OpenKnee image masks}}{20}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Suite of 3D-printed organs using surface meshes generated from novel image-based meshing tools}}{21}
 \addvspace {10\p@ }
