@@ -4,4 +4,17 @@
 M.~Larobina and L.~Murino, ``Medical image file formats,'' {\em Journal of
   Digital Imaging}, vol.~27, p.~200–206, Apr 2014.
 
+\bibitem{MATLAB}
+MATLAB, {\em version 9.2.0 (R2017a)}.
+\newblock Natick, Massachusetts: The MathWorks Inc., 2017.
+
+\bibitem{nrrd}
+``nrrd.''
+
+\bibitem{nifti}
+``Nifti: — neuroimaging informatics technology initiative.''
+
+\bibitem{analyzedirect}
+``3d medical image analysis software for research.''
+
 \end{thebibliography}
