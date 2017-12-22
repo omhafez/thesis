@@ -1,8 +1,41 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{larobina_murino_2014}
 M.~Larobina and L.~Murino, ``Medical image file formats,'' {\em Journal of
   Digital Imaging}, vol.~27, p.~200–206, Apr 2014.
+
+\bibitem{NMR}
+``Nuclear magnetic resonance,'' Dec 2017.
+
+\bibitem{waldman_campbell}
+S.~D. Waldman and R.~S. D. S.~D. Campbell, {\em Imaging of Pain: Expert
+  Consult}.
+\newblock Elsevier Health Sciences, 2010.
+
+\bibitem{jacobs_2007}
+M.~A. Jacobs, T.~S. Ibrahim, and R.~Ouwerkerk, ``Mr imaging: Brief overview and
+  emerging applications,'' {\em RadioGraphics}, vol.~27, no.~4, p.~1213–1229,
+  2007.
+
+\bibitem{hendrick_1994}
+R.~E. Hendrick, ``The aapm/rsna physics tutorial for residents. basic physics
+  of mr imaging: an introduction.,'' {\em RadioGraphics}, vol.~14, no.~4,
+  p.~829–846, 1994.
+
+\bibitem{nishimura_2010}
+D.~G. Nishimura, {\em Principles of magnetic resonance imaging}.
+\newblock Stanford University, 2010.
+
+\bibitem{brown_semelka_2003}
+M.~A. Brown and R.~C. Semelka, {\em MRI: basic principles and applications}.
+\newblock Wiley-Liss, 2003.
+
+\bibitem{webb_2003}
+A.~G. Webb, {\em Introduction to Biomedical Imaging}.
+\newblock John Wiley \& Sons, Incorporated, 2003.
+
+\bibitem{imaios}
+``Mri image formation - objectives.''
 
 \bibitem{MATLAB}
 MATLAB, {\em version 9.2.0 (R2017a)}.
