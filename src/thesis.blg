@@ -2,18 +2,11 @@ This is BibTeX, Version 0.99d (TeX Live 2016)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: thesis.aux
 The style file: ieeetr.bst
-A level-1 auxiliary file: chap1-overview.aux
 A level-1 auxiliary file: chap2-medical-imaging-and-image-segmentation.aux
-A level-1 auxiliary file: chap3-surface-generation.aux
-A level-1 auxiliary file: chap4-mesh-generation.aux
-A level-1 auxiliary file: chap5-numerical-methods.aux
-A level-1 auxiliary file: chap6-application-cardiac-mechanics.aux
-A level-1 auxiliary file: chap7-future-work.aux
-A level-1 auxiliary file: chap8-conclusions.aux
 Database file #1: references.bib
 You've used 13 entries,
             1876 wiz_defined-function locations,
-            547 strings with 4945 characters,
+            540 strings with 4766 characters,
 and the built_in function-call counts, 2356 in all, are:
 = -- 239
 > -- 56
