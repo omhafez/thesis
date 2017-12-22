@@ -5,3 +5,5 @@ thesis.pdf
 *.toc
 *.aux
 *.synctex.gz
+thesis.aux
+thesis.bbl
