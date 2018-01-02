@@ -8,14 +8,14 @@ The first steps in image-based modeling and simulation involve \textit{image acq
 \section{Imaging Approaches}
 \label{Imaging Approaches}
 
-Medical imaging is the process of generating discrete image representations of biological tissues. Of the many imaging modalities found in clinical and research settings, the most prevalent are \textit{magnetic resonance imaging} (MRI) and \textit{x-ray computed tomography} (CT). Both approaches are \textit{tomographic} in that they produce a series of two-dimensional images representing thin slices through the region, that are subsequently combined to produce a three-dimensional volume representation \cite{larobina_murino_2014}. The data measured during acquisition are different for each modality, and thus the use case typically governs which technique is most appropriate. Several other imaging techniques exist - some of which provide more information than do MRI and CT - and are briefly presented in this section as well. Finally, typical data storage and file formats are discussed.
+Medical imaging is the process of generating discrete image representations of biological tissues. Of the many imaging modalities found in clinical and research settings, the most prevalent are \textit{magnetic resonance imaging} (MRI) and \textit{x-ray computed tomography} (CT). Both approaches are \textit{tomographic} in that they produce a series of two-dimensional images representing thin slices through the region, that are subsequently combined to produce a three-dimensional volume representation \cite{larobina_murino_2014}. The data measured during acquisition are different for each modality, and thus the use case typically governs which technique is most appropriate. Images typically have resolutions on the order of millimeter or sub-millimeter resolution. Several other imaging techniques exist - some of which provide more information than do MRI and CT - and are briefly presented in this section as well. Finally, typical data storage and file formats are discussed.
 
 \subsection{Magnetic Resonance Imaging}
 \label{Magnetic Resonance Imaging}
 
 Magnetic resonance imaging (MRI) is the process of generating images via the physical phenomenon of nuclear magnetic resonance (NMR), in which nuclei in a magnetic field absorb and re-emit electromagnetic radiation at their \textit{resonant frequency}~\cite{NMR}. Gradients in the magnetic field are used to encode the response at different locations in the region. MRI provides excellent soft tissue contrast, for tissues such as articular cartilage, bone marrow, muscle, ligaments, and gray and white matter in the brain. Unlike CT, it does not use any harmful ionizing radiation~\cite{waldman_campbell}. A brief description of the basic physics in acquiring an MRI follows.
 
-A strong external magnet generates a magnetic field $B_0\bm{e}_z$ that is constant in time and space, within which the patient or object is placed. For most clinical applications, the strength of this field is 1.5 Tesla or 3 Tesla. The $z$ direction corresponds to the image slice direction. Shim coils are used to correct or "shim" the magnetic field so as to ensure good field homogeneity, which results in a high-quality signal~\cite{jacobs_2007}. Dipole moments in the nuclei of certain elements align either in parallel or anti-parallel to the direction of the applied magnetic field, similarly to how a bar magnet orients itself in the presence of an external magnetic field~\cite{hendrick_1994}. The parallel orientation provides a slightly lower energy state than that for the anti-parallel orientation, and thus the dipole moments prefer to align with the direction of the applied magnetic field. Prior to applying the external magnetic field, the random orientation of the nuclear magnetic dipoles in the tissue produce a zero net magnetization. Following the imposition of a static magnetic field, a net magnetization of tissue $M_0\bm{e}_z$ is produced from the preferential alignment of dipoles. See \figref{mr1}.
+A strong external magnet generates a magnetic field $B_0\bm{e}_z$ that is constant in time and space, within which the patient or object is placed. For most clinical applications, the strength of this field is 1.5 Tesla or 3 Tesla. The $z$ direction corresponds to the image slice thickness direction. Shim coils are used to correct or "shim" the magnetic field so as to ensure good field homogeneity, which results in a high-quality signal~\cite{jacobs_2007}. Dipole moments in the nuclei of certain elements align either in parallel or anti-parallel to the direction of the applied magnetic field, similarly to how a bar magnet orients itself in the presence of an external magnetic field~\cite{hendrick_1994}. The parallel orientation provides a slightly lower energy state than that for the anti-parallel orientation, and thus the dipole moments prefer to align with the direction of the applied magnetic field. Prior to applying the external magnetic field, the random orientation of the nuclear magnetic dipoles in the tissue produce a zero net magnetization. Following the imposition of a static magnetic field, a net magnetization of tissue $M_0\bm{e}_z$ is produced from the preferential alignment of dipoles. See \figref{mr1}.
 
 Due to the prevalence of hydrogen in biological tissues - most notably in water and fat - MR imaging is typically based on the behavior of the nuclear magnetic dipole of hydrogen.
 
@@ -95,15 +95,70 @@ The \textit{spin-lattice}, \textit{longitudinal}, or \textit{T1 recovery time} c
 
 Tissue contrasts are created based on the strength and timing of the RF pulse; this is known as the \textit{MR sequence}. The parameters in MR pulse sequences weight the influence of proton density, T1, and T2 differently in the final MR signal. The most basic MR sequences are \textit{proton density} (PD), \textit{T1-weighted} (T1W), and \textit{T2-weighted} (T2W), each of which provide different tissue contrasts. The choice of an MR sequence will depend on the tissues and applications of interest of the scan. A number of references are available  \cite{nishimura_2010, brown_semelka_2003, webb_2003} for a more detailed description of T1, T2, the parameters of an MR sequence, and their relationship in creating tissue contrast.
 
-For each voxel in a slice, the amplitude, phase, and frequency of the time-varying MR signal is recorded by the receiver coil in the \textit{frequency domain}, or what is known as \textit{k-space}. For each slice, the frequency domain is converted to the spatial domain (i.e., the two-dimensional image for a particular slice) via 2D inverse Fourier transform. The k-space of an image can be modified to identify artifacts, remove noise, and enhance contrast~\cite{imaios}. Please refer to the references in this section for more detail on k-space and its manipulations. Finally, each 2D image is combined to form a 3D grayscale image corresponding to the object scanned. The intensity at each voxel in the three-dimensional rectilinear grid is a weighted proton density.
+For each voxel in a slice, the amplitude, phase, and frequency of the time-varying MR signal is recorded by the receiver coil in the \textit{frequency domain}, or what is known as \textit{k-space}. For each slice, the frequency domain is converted to the spatial domain (i.e., the two-dimensional image for a particular slice) via 2D inverse Fourier transform. The k-space of an image can be modified to identify artifacts, remove noise, and enhance contrast~\cite{imaios}. Please refer to the references in this section for more detail on k-space and its manipulations. Finally, each 2D image is combined to form a 3D grayscale image corresponding to the object scanned. The intensity at each voxel in the three-dimensional rectilinear grid is a weighted proton density. The value at each voxel can represent many different units of measure depending on the pulse sequence~\cite{beek_hoffman_2008}.
 
 \subsection{X-Ray Computed Tomography}
 \label{X-Ray Computed Tomography}
 
-Houndsfield units
+X-ray computed tomography (CT) is the process of generating images via the emission an x-ray beam source, and subsequently detecting the \textit{attenuation} of the x-ray beam through the various tissues in the patient or object. CT provides excellent contrast for bone, but is less suitable in measuring soft tissue contrast compared to MRI. Acquisition times are typically less than those for MRI, image resolutions are typically higher~\cite{pomeranz_2007}, and ionizing radiation from the x-ray beam must be carefully considered. The basic principles of image acquisition via CT technology ensues.
+
+In CT, an x-ray beam source is emitted through the plane of a finite thickness cross section of the object~\cite{mahesh_2002}. The mean attenuation of the x-ray beam through each voxel within the slice is measured by a detector on the other side of the object. The attenuation data is reconstructed into a digital two-dimensional image. Once again, the set of 2D images is stacked together to form a 3D image representation of the region being scanned.
+
+Attenuation measures the amount by which x-ray radiation is reduced in passing through material. For an inhomogeneous material, the attenuation along a particular ray line is expressed in the following relationship:
+\begin{equation}
+I= I_0e^{-\int\limits_{0}^{L}f(x,y) ds}
+\label{eqn:init}
+\end{equation}
+where $I_0$ is the x-ray intensity emitted in front of the object, $I$ is the x-ray intensity received behind the object, $f(x,y)$ is the linear attenuation coefficient for the material at location $(x,y)$, and $L$ is the length over which the beam travels though the material, and $ds$ is the length of a differential cut along the ray. The variable $s$ is parameterized as a function of $x$ and $y$. In first generation CT machines, for a particular slice, the x-ray tube and detector were rigidly translated together across the subject as x-ray beams were emitted and recorded~(\figref{ct1}).
+
+\begin{figure}[ht]
+\centering
+		\includegraphics[scale=0.3]{media/0-imaging/ct1.png}
+%
+\caption{CT arrangement for linear transverse scanning motion of x-ray tube and detector. ~\cite{goldman_2007}}
+\label{fig:ct1}
+\end{figure}
+
+The x-ray beam path is referred to as a \textit{ray}. The set of rays and measurements made during the the translation is known as a \textit{view}. Several hundred rays are measured in a particular view. The assembly is then rotated about the axis perpendicular to the slice plane by a small increment and a new view is captured. Over a 1000 views are captured as the assembly is rotated through 360$^{\circ}$. Thus, the total number of measurements for a particular slice is the number of rays per view multiplied by the number of views, and is on the order of a million measurement per slice in modern CT machines. See \figref{ct2}.
+
+\begin{figure}[ht]
+\centering
+		\includegraphics[scale=0.3]{media/0-imaging/ct2.png}
+%
+\caption{Measurement procedure for first-generation CT. Rays are emitted from the x-ray tube and the attenuated radiation is measured by the detector. The assembly is translated in increments to cover the span of the slice. The process is repeated as the assembly is rotated in increments through 360$^{\circ}$, in this example in 1$^{\circ}$ degree increments~\cite{goldman_2007}}
+\label{fig:ct2}
+\end{figure}
+
+\textit{Image reconstruction} is the process of deriving the average attenuation coefficient values $f$ for each voxel in a slice from the attenuation measurements made by the x-ray detector. Attenuation increases with the density and atomic number of the tissues in the voxel. Rearranging~\eqnref{init} yields:
+\begin{equation}
+p(\xi, \theta) = -\ln(I/I_0) = \int\limits_{0}^{L}f(x,y) ds
+\end{equation}
+The function $p(\xi,\theta)$ is known as the \textit{Radon transform} of the attenuation function $f(x,y)$. The angle $\theta$ corresponds to the angle of rotation of the view, and $\xi$ corresponds to the position along the measured x-ray projection~(\figref{ct3}).
+
+\begin{figure}[ht]
+\centering
+		\includegraphics[scale=0.3]{media/0-imaging/ct3.png}
+%
+\caption{Linear attenuation function $f(x,y)$ for a particular slice, and corresponding projection $p(\xi,\theta)$}
+\label{fig:ct3}
+\end{figure}
+
+The function $p$ for each $\theta$ view is known as a \textit{projection} of the image $f$. The most popular image reconstruction technique is \textit{backprojection}, in which the function $f$ is backprojected from the projections $p$. Backprojection leads to a blurring of the original image, so the projected images are first filtered prior to backprojection. The technique is known as \textit{filtered backprojection}. It involves computing the Fourier transform of $p$, applying a ramp filter to avoid blurring, computing the inverse Fourier transform of the resulting function, and finally the inverse Radon transform to approximate $f(x,y)$. Filtered backprojection performs best in the presence of a large number of projections, which is the case in modern CT scanners. Please refer to \cite{chetih_2015} for a more detailed description of the procedure.
+
+Finally, the value computed at each voxel is rescaled to produce the \textit{CT number} = $K (f_i - f_w)/f_w$, measured in \textit{Hounsfield units}. The value $f_i$ is the attenuation at a particular voxel, and the value $f_w$ is the attenuation of water. The attenuation coefficient of water is obtained during calibration of the machine. The scaling parameter $K$ is typically a value of 1000 in modern machines.
+
+Improvements in acquisition times, spatial resolution, and image reconstruction times have been made in the last 45 years since the first-generation CT machine was introduced. These improvements mostly involve and increase in x-ray detectors, and more clever arrangements and motions of the x-ray beam and associated detector(s). Detailed descriptions of these improvements can be found in the references cited in this section.
 
 \subsection{Additional Imaging Modalities}
 \label{Other Imaging Modalities}
+
+Several other popular imaging modalities exist. The discussion here will be restricted to a brief overview of \textit{ultrasound} (US), as well as some quantitative variations of MRI, CT, and US.
+
+Ultrasound uses high-frequency sound pulses that are emitted from a hand-held ultrasound transducer~\cite{waldman_campbell}. The transducer is applied to the patient's skin through a coupling gel, and sound pulses are reflected back to the transducer from structures within the patient. The magnitude of the reflected sound, or \textit{echo} is converted into a 2D grayscale image. Images are acquired in real-time, and do not require any ionizing radiation. Ultrasound is most commonly used for imaging the abdominal and pelvic regions, as well as imaging the musculoskeletal system. When used to image the heart, ultrasound is referred to as \textit{echocardiography}. Three-dimensional ultrasound techniques have been gaining traction in recent decades, of which there are two varieties for 3D reconstruction: random or \textit{freehand scanning} which is based on free motion of the ultrasound transducer; and \textit{sequential scanning} where the ultrasound motion is predetermined in linear, fan-like or rotational patterns~\cite{valocik_2005, bruining_2000}.
+
+Quantitative versions of the modalities discussed typically attempt to extract material property information in addition to only contrasting different tissues. \textit{Diffusion-tensor imaging} (DTMRI) is used to measure the anisotropy of tissues. Additional magnetic field gradients are applied repeatedly to create images that are sensitized to the diffusion of water in specific directions~\cite{o’donnell_westin_2011}. Least squares is employed to estimate the diffusivity tensor at each voxel. The diffusivity tensor may be used to visualize irregularities in the microstructure of the brain~\cite{alexander_lee_lazar_field_2007}, or to approximate cardiac muscle fiber orientations. \textit{Elastography} is the process of quantitatively imaging the mechanical properties of soft tissues \textit{in vivo}, and is performed using magnetic resonance and ultrasound techniques~\cite{zaleska_2014}. The process involves applying a stress or source of motion that deforms the tissue, imaging the tissue response, and finally processing the data to generate images (\textit{elastograms}) of tissue mechanical properties.~\cite{glaser_manduca_ehman_2012}.\textit{Quantitative computed tomography} (QCT) estimates bone mineral density from CT attenuation data by using a calibration phantom during image acquisition. This information can be used to inform heterogeneous material definitions in computational models of bone~\cite{knowles_2016}.
+
+A more complete review of medical imaging technologies can be found in a number of texts~\cite{suetens_2017, webb_2003}.
 
 \subsection{File Formats}
 \label{Data Format-IMG}
@@ -116,7 +171,7 @@ Medical images are typically stored as a combination of a short \textit{header} 
 \section{Image Segmentation Approaches}
 \label{Image Segmentation Approaches}
 
-Arguably the most challenging task in the workflow is the subsequent image processing and \textit{segmenting} of the image of interest.
+Arguably the most challenging task in the workflow is the subsequent image processing and \textit{segmenting} of the image of interest. \textit{Image segmentation} is the process of ... \figref{seg}. Contrast differences between neighboring tissues can be difficult to identify. \textit{Image processing} involves applying filters to the image to alter voxel intensity values, which can remove noise and emphasize features of the image so as to improve the performance of image segmentation algorithms.
 
 \begin{figure}[ht]
 \centering
@@ -131,8 +186,14 @@ Arguably the most challenging task in the workflow is the subsequent image proce
 \label{fig:seg}
 \end{figure}
 
-Talk about image processing/filtering here. Gaussian blur, mean filter, median filter.
-Intravenous or intra-articular contrast agents may be administered to the patient to further enhance contrast in the original image. Image segmentation techniques may well take advantage of the image modality and image acquisition parameters. 
+The first step in preparing the image data for segmentation is \textit{resampling}. Images most often 
+
+RESAMPLING: for isotropic resolution
+
+Gaussian blur, mean filter, median filter.
+
+\subsection{Review of Image Segmentation Approaches}
+\label{Review of Image Segmentation Approaches}
 
 \subsection{Thresholding Methods}
 \label{Thresholding Methods}

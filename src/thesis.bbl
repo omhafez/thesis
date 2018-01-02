@@ -5,6 +5,10 @@ R.~E. Hendrick, ``The aapm/rsna physics tutorial for residents. basic physics
   of mr imaging: an introduction.,'' {\em RadioGraphics}, vol.~14, no.~4,
   p.~829–846, 1994.
 
+\bibitem{goldman_2007}
+L.~W. Goldman, ``Principles of ct and ct technology,'' {\em Journal of Nuclear
+  Medicine Technology}, vol.~35, p.~115–128, Jan 2007.
+
 \bibitem{larobina_murino_2014}
 M.~Larobina and L.~Murino, ``Medical image file formats,'' {\em Journal of
   Digital Imaging}, vol.~27, p.~200–206, Apr 2014.
@@ -36,6 +40,65 @@ A.~G. Webb, {\em Introduction to Biomedical Imaging}.
 
 \bibitem{imaios}
 ``Mri image formation - objectives.''
+
+\bibitem{beek_hoffman_2008}
+E.~J.~V. Beek and E.~A. Hoffman, ``Functional imaging: Ct and mri,'' {\em
+  Clinics in Chest Medicine}, vol.~29, no.~1, p.~195–216, 2008.
+
+\bibitem{pomeranz_2007}
+S.~J. Pomeranz and R.~Taranto, ``Imaging on trial: Mri versus ct,'' {\em
+  Imaging technologies}, Jan 2007.
+
+\bibitem{mahesh_2002}
+M.~Mahesh, ``The aapm/rsna physics tutorial for residents,'' {\em
+  RadioGraphics}, vol.~22, no.~4, p.~949–962, 2002.
+
+\bibitem{chetih_2015}
+N.~Chetih and Z.~Messali, ``Tomographic image reconstruction using filtered
+  back projection (fbp) and algebraic reconstruction technique (art),'' {\em
+  2015 3rd International Conference on Control, Engineering \& Information
+  Technology (CEIT)}, 2015.
+
+\bibitem{valocik_2005}
+G.~Valocik, O.~Kamp, and C.~Visser, ``Three-dimensional echocardiography in
+  mitral valve disease,'' {\em European Journal of Echocardiography}, vol.~6,
+  no.~6, p.~443–454, 2005.
+
+\bibitem{bruining_2000}
+N.~Bruining, C.~Lancée, J.~R. Roelandt, and N.~Bom, ``Three-dimensional
+  echocardiography paves the way toward virtual reality,'' {\em Ultrasound in
+  Medicine \& Biology}, vol.~26, no.~7, p.~1065–1074, 2000.
+
+\bibitem{o’donnell_westin_2011}
+L.~J. O’Donnell and C.-F. Westin, ``An introduction to diffusion tensor image
+  analysis,'' {\em Neurosurgery Clinics of North America}, vol.~22, no.~2,
+  p.~185–196, 2011.
+
+\bibitem{alexander_lee_lazar_field_2007}
+A.~L. Alexander, J.~E. Lee, M.~Lazar, and A.~S. Field, ``Diffusion tensor
+  imaging of the brain,'' {\em Neurotherapeutics}, vol.~4, no.~3, p.~316–329,
+  2007.
+
+\bibitem{zaleska_2014}
+U.~Zaleska-Dorobisz, K.~Kaczorowski, A.~Pawluś, A.~Puchalska, and M.~Inglot,
+  ``Ultrasound elastography – review of techniques and its clinical
+  applications,'' {\em Advances in Clinical and Experimental Medicine},
+  vol.~23, p.~645–655, 2014.
+
+\bibitem{glaser_manduca_ehman_2012}
+K.~J. Glaser, A.~Manduca, and R.~L. Ehman, ``Review of mr elastography
+  applications and recent developments,'' {\em Journal of Magnetic Resonance
+  Imaging}, vol.~36, no.~4, p.~757–774, 2012.
+
+\bibitem{knowles_2016}
+N.~K. Knowles, J.~M. Reeves, and L.~M. Ferreira, ``Quantitative computed
+  tomography (qct) derived bone mineral density (bmd) in finite element
+  studies: a review of the literature,'' {\em Journal of Experimental
+  Orthopaedics}, vol.~3, no.~1, 2016.
+
+\bibitem{suetens_2017}
+P.~Suetens, {\em Fundamentals of medical imaging}.
+\newblock Cambridge University Press, 2017.
 
 \bibitem{MATLAB}
 MATLAB, {\em version 9.2.0 (R2017a)}.
