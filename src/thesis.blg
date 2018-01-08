@@ -2,46 +2,47 @@ This is BibTeX, Version 0.99d (TeX Live 2016)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: thesis.aux
 The style file: ieeetr.bst
+A level-1 auxiliary file: chap1-overview.aux
 A level-1 auxiliary file: chap2-medical-imaging-and-image-segmentation.aux
 Database file #1: references.bib
-You've used 26 entries,
+You've used 25 entries,
             1876 wiz_defined-function locations,
-            617 strings with 6945 characters,
-and the built_in function-call counts, 6254 in all, are:
-= -- 671
-> -- 178
+            624 strings with 7539 characters,
+and the built_in function-call counts, 6746 in all, are:
+= -- 683
+> -- 228
 < -- 0
-+ -- 72
-- -- 46
-* -- 284
-:= -- 752
-add.period$ -- 28
-call.type$ -- 26
-change.case$ -- 20
++ -- 87
+- -- 62
+* -- 459
+:= -- 939
+add.period$ -- 31
+call.type$ -- 25
+change.case$ -- 19
 chr.to.int$ -- 0
-cite$ -- 26
-duplicate$ -- 430
-empty$ -- 584
-format.name$ -- 46
-if$ -- 1658
+cite$ -- 25
+duplicate$ -- 349
+empty$ -- 647
+format.name$ -- 62
+if$ -- 1696
 int.to.chr$ -- 0
-int.to.str$ -- 26
-missing$ -- 27
-newline$ -- 87
-num.names$ -- 21
-pop$ -- 102
+int.to.str$ -- 25
+missing$ -- 29
+newline$ -- 84
+num.names$ -- 25
+pop$ -- 63
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 402
+skip$ -- 250
 stack$ -- 0
-substring$ -- 224
-swap$ -- 245
+substring$ -- 464
+swap$ -- 156
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 33
-width$ -- 28
-write$ -- 237
+while$ -- 57
+width$ -- 27
+write$ -- 253

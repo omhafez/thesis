@@ -1,18 +1,19 @@
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Net magnetization $M_0$ in a voxel of tissue (a) prior to, and (b) following the application of a static external magnetic field $B_0$\nobreakspace {}\cite {hendrick_1994}}}{3}{figure.1.1}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{3}{figure.1.1}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{3}{figure.1.1}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Basic premise of MRI: (a) An external magnetic field $B_0$ causes net magnetization $M_0$ of a voxel of tissue pointing in the same direction as the applied field, (b) an RF pulse applied at the precessional frequency of hydrogen causes the magnetization vector to tilt from a longitudinal direction into the transverse plane, and (c) the amplitude, frequency, and phase of the time-varying signal from the transverse magnetization $M_{xy}$ is recorded\nobreakspace {}\cite {hendrick_1994}}}{4}{figure.1.2}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{4}{figure.1.2}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{4}{figure.1.2}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{4}{figure.1.2}
-\contentsline {figure}{\numberline {1.3}{\ignorespaces Visual representation of the process of spatial localization based on successive application of magnetic gradients: (a) slice-selection gradient, (b) phase-encoding gradient, and (c) frequency-encoding gradient\nobreakspace {}\cite {hendrick_1994}}}{5}{figure.1.3}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{5}{figure.1.3}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{5}{figure.1.3}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{5}{figure.1.3}
-\contentsline {figure}{\numberline {1.4}{\ignorespaces CT arrangement for linear transverse scanning motion of x-ray tube and detector. \nobreakspace {}\cite {goldman_2007}}}{8}{figure.1.4}
-\contentsline {figure}{\numberline {1.5}{\ignorespaces Measurement procedure for first-generation CT. Rays are emitted from the x-ray tube and the attenuated radiation is measured by the detector. The assembly is translated in increments to cover the span of the slice. The process is repeated as the assembly is rotated in increments through 360$^{\circ }$, in this example in 1$^{\circ }$ degree increments\nobreakspace {}\cite {goldman_2007}}}{9}{figure.1.5}
-\contentsline {figure}{\numberline {1.6}{\ignorespaces Linear attenuation function $f(x,y)$ for a particular slice, and corresponding projection $p(\xi ,\theta )$}}{9}{figure.1.6}
-\contentsline {figure}{\numberline {1.7}{\ignorespaces (a) MRI of \textit {ex-vivo} human heart, and (b) resulting segmented image mask}}{12}{figure.1.7}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{12}{figure.1.7}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{12}{figure.1.7}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Net magnetization $M_0$ in a voxel of tissue (a) prior to, and (b) following the application of a static external magnetic field $B_0$\nobreakspace {}\cite {hendrick_1994}}}{4}{figure.2.1}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{4}{figure.2.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{4}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Basic premise of MRI: (a) An external magnetic field $B_0$ causes a net magnetization $M_0$ of a voxel of tissue pointing in the same direction as the applied field, (b) an RF pulse applied at the precessional frequency of hydrogen causes the magnetization vector to tilt from a longitudinal direction into the transverse plane, and (c) the amplitude, frequency, and phase of the time-varying signal from the transverse magnetization $M_{xy}$ is recorded\nobreakspace {}\cite {hendrick_1994}}}{5}{figure.2.2}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{5}{figure.2.2}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{5}{figure.2.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{5}{figure.2.2}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Visual representation of the process of spatial localization based on successive application of magnetic gradients: (a) slice-selection gradient, (b) phase-encoding gradient, and (c) frequency-encoding gradient\nobreakspace {}\cite {hendrick_1994}}}{6}{figure.2.3}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{6}{figure.2.3}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{6}{figure.2.3}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {}}}{6}{figure.2.3}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces CT arrangement for linear transverse scanning motion of x-ray tube and detector. \nobreakspace {}\cite {goldman_2007}}}{9}{figure.2.4}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Measurement procedure for first-generation CT. Rays are emitted from the x-ray tube and the attenuated radiation is measured by the detector. The assembly is translated in increments to cover the span of the slice. The process is repeated as the assembly is rotated in increments through 360$^{\circ }$, in this example in 1$^{\circ }$ degree increments\nobreakspace {}\cite {goldman_2007}}}{10}{figure.2.5}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Linear attenuation function $f(x,y)$ for a particular slice, and corresponding projection $p(\xi ,\theta )$}}{10}{figure.2.6}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces (a) MRI of \textit {ex-vivo} human heart, and (b) resulting segmented image mask}}{15}{figure.2.7}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{15}{figure.2.7}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{15}{figure.2.7}
