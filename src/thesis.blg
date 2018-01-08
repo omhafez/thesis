@@ -4,10 +4,15 @@ The top-level auxiliary file: thesis.aux
 The style file: ieeetr.bst
 A level-1 auxiliary file: chap1-overview.aux
 A level-1 auxiliary file: chap2-medical-imaging-and-image-segmentation.aux
+A level-1 auxiliary file: chap3-image-based-meshing.aux
+A level-1 auxiliary file: chap4-numerical-methods.aux
+A level-1 auxiliary file: chap5-application-cardiac-mechanics.aux
+A level-1 auxiliary file: chap6-future-work.aux
+A level-1 auxiliary file: chap7-conclusions.aux
 Database file #1: references.bib
 You've used 25 entries,
             1876 wiz_defined-function locations,
-            624 strings with 7539 characters,
+            629 strings with 7676 characters,
 and the built_in function-call counts, 6746 in all, are:
 = -- 683
 > -- 228
