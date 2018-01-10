@@ -14,45 +14,58 @@ Warning--empty author in committee
 Warning--empty journal in committee
 Warning--empty year in committee
 Warning--empty journal in Morrison2017
-You've used 29 entries,
+Warning--empty author in NMR
+Warning--empty year in NMR
+Warning--empty author in imaios
+Warning--empty year in imaios
+Warning--empty author in nrrd
+Warning--empty journal in nrrd
+Warning--empty year in nrrd
+Warning--empty author in nifti
+Warning--empty journal in nifti
+Warning--empty year in nifti
+Warning--empty author in analyze
+Warning--empty journal in analyze
+Warning--empty year in analyze
+You've used 36 entries,
             1876 wiz_defined-function locations,
-            650 strings with 8725 characters,
-and the built_in function-call counts, 7607 in all, are:
-= -- 758
-> -- 276
+            680 strings with 9586 characters,
+and the built_in function-call counts, 8702 in all, are:
+= -- 864
+> -- 299
 < -- 0
-+ -- 105
-- -- 76
-* -- 532
-:= -- 1071
-add.period$ -- 37
-call.type$ -- 29
-change.case$ -- 23
++ -- 117
+- -- 81
+* -- 613
+:= -- 1202
+add.period$ -- 47
+call.type$ -- 36
+change.case$ -- 29
 chr.to.int$ -- 0
-cite$ -- 33
-duplicate$ -- 391
-empty$ -- 724
-format.name$ -- 76
-if$ -- 1895
+cite$ -- 53
+duplicate$ -- 465
+empty$ -- 851
+format.name$ -- 81
+if$ -- 2167
 int.to.chr$ -- 0
-int.to.str$ -- 29
-missing$ -- 33
-newline$ -- 99
-num.names$ -- 28
-pop$ -- 77
+int.to.str$ -- 36
+missing$ -- 41
+newline$ -- 126
+num.names$ -- 30
+pop$ -- 116
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 269
+skip$ -- 295
 stack$ -- 0
-substring$ -- 492
-swap$ -- 166
+substring$ -- 504
+swap$ -- 182
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 4
-while$ -- 62
-width$ -- 31
-write$ -- 290
-(There were 4 warnings)
+warning$ -- 17
+while$ -- 65
+width$ -- 38
+write$ -- 346
+(There were 17 warnings)

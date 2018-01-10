@@ -25,9 +25,19 @@ T.~Morrison, L.~Angelone, M.~Myers, J.~Soneson, Q.~Wang, J.~Weaver,
 \newblock
   \url{https://www.fda.gov/downloads/MedicalDevices/DeviceRegulationandGuidance/GuidanceDocuments/UCM381813.pdf}.
 
+\bibitem{pathmanathan_2017}
+P.~Pathmanathan, R.~A. Gray, V.~J. Romero, and T.~M. Morrison, ``Applicability
+  analysis of validation evidence for biomedical computational models,'' {\em
+  Journal of Verification, Validation and Uncertainty Quantification}, vol.~2,
+  p.~021005, Jul 2017.
+
 \bibitem{larobina_murino_2014}
 M.~Larobina and L.~Murino, ``{Medical image file formats},'' {\em {Journal of
   Digital Imaging}}, vol.~27, pp.~200--206, Apr 2014.
+
+\bibitem{NMR}
+``{Nuclear magnetic resonance},'' {\em Wikipedia}.
+\newblock \url{https://en.wikipedia.org/wiki/Nuclear_magnetic_resonance}.
 
 \bibitem{waldman_campbell}
 S.~D. Waldman and R.~S. D. S.~D. Campbell, {\em {Imaging of pain: expert
@@ -55,6 +65,11 @@ M.~A. Brown and R.~C. Semelka, {\em {MRI: basic principles and applications}}.
 \bibitem{webb_2003}
 A.~G. Webb, {\em {Introduction to biomedical Imaging}}.
 \newblock John Wiley \& Sons, Incorporated, 2003.
+
+\bibitem{imaios}
+``{MRI image formation - objectives},'' {\em IMAIOS}.
+\newblock
+  \url{https://www.imaios.com/en/e-Courses/e-MRI/The-Physics-behind-it-all}.
 
 \bibitem{beek_hoffman_2008}
 E.~J.~V. Beek and E.~A. Hoffman, ``{Functional imaging: CT and MRI},'' {\em
@@ -119,10 +134,27 @@ N.~K. Knowles, J.~M. Reeves, and L.~M. Ferreira, ``{Quantitative computed
 P.~Suetens, {\em {Fundamentals of medical imaging}}.
 \newblock Cambridge University Press, 2017.
 
+\bibitem{MATLAB}
+MATLAB, {\em version 9.2.0 (R2017a)}.
+\newblock Natick, Massachusetts: The MathWorks Inc., 2017.
+
+\bibitem{nrrd}
+``{nrrd: Nearly Raw Raster Data},''
+\newblock \url{http://teem.sourceforge.net/nrrd/index.html}.
+
+\bibitem{nifti}
+``{NIfTI: - Neuroimaging Informatics Technology Initiative},''
+\newblock \url{https://nifti.nimh.nih.gov/}.
+
+\bibitem{analyze}
+``{AnalyzeDirect: 3D Medical Image Analysis Software for Research},''
+\newblock \url{https://analyzedirect.com/}.
+
 \bibitem{Seg3D}
 CIBC, 2016.
 \newblock Seg3D: Volumetric Image Segmentation and Visualization. Scientific
-  Computing and Imaging Institute (SCI), Download from: http://www.seg3d.org.
+  Computing and Imaging Institute (SCI), Download from:
+  \url{http://www.seg3d.org}.
 
 \bibitem{pham_2000}
 D.~L. Pham, C.~Xu, and J.~L. Prince, ``{Current methods in medical image
