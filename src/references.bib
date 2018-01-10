@@ -2,16 +2,28 @@
 % Encoding: Cp1252
 
 %%% CHAPTER 1 - OVERVIEW %%%
-@article{colquitt_2011, title={{In silico modelling of physiologic systems}}, volume={25}, DOI={10.1016/j.bpa.2011.08.006}, number={4}, journal={Best Practice \& Research Clinical Anaesthesiology}, author={Colquitt, Richard B. and Colquhoun, Douglas A. and Thiele, Robert H.}, year={2011}, pages={499–510}}
+@article{colquitt_2011, title={{In silico modelling of physiologic systems}}, volume={25}, DOI={10.1016/j.bpa.2011.08.006}, number={4}, journal={Best Practice \& Research Clinical Anaesthesiology}, author={Colquitt, Richard B. and Colquhoun, Douglas A. and Thiele, Robert H.}, year={2011}, pages={499-510}}
+
+@article{committee, note={\url{https://cstools.asme.org/csconnect/CommitteePages.cfm?Committee=100108782}}, title={{Committee Pages - V\&V 40 Verification and Validation in Computational Modeling of Medical Devices}}}
+
+@article{Morrison2017,
+author = "Tina Morrison and Leonardo Angelone and Matthew Myers and Joshua Soneson and Quanzeng Wang and Jason Weaver and Prasanna Hariharan and {ASME V\&V40} and Mehul Dharia and Markus Reiterer",
+title = "{{FDA Seminar on V\&V for Computational Modeling of Medical Devices}}",
+year = "2017",
+month = "Aug",
+note={\url {"https://figshare.com/articles/FDA_Seminar_on_Computational_Modeling_for_Medical_Devices/5018783"}},
+doi = "10.6084/m9.figshare.5018783.v3"
+}
+
+@article{fda1_2016, title={{Reporting of Computational Modeling Studies in Medical Device Submissions}}, note={\url{https://www.fda.gov/downloads/MedicalDevices/DeviceRegulationandGuidance/GuidanceDocuments/UCM381813.pdf}}, journal={Guidance for Industry and Food and Drug Administration Staff}, author={{U.S. Food and Drug Administration}}, year={2016}, month={Sep}}
+
+@article{fda2_2016, title={{Software as a Medical Device (SAMD): Clinical Evaluation}}, note={\url{https://www.fda.gov/downloads/MedicalDevices/DeviceRegulationandGuidance/GuidanceDocuments/UCM381813.pdf}}, journal={Guidance for Industry and Food and Drug Administration Staff}, author={{U.S. Food and Drug Administration}}, year={2017}, month={Dec}}
 
 %% CHAPTER 2 - IMAGING AND SEGMENTATION %%%
 
-@misc{nifti, title={{NIfTI: - Neuroimaging Informatics Technology Initiative}}, url={https://nifti.nimh.nih.gov/}, journal={{National Institute of Mental Health}}, publisher={{U.S. Department of Health and Human Services}}}
-
-@misc{nrrd, title={nrrd}, url={http://teem.sourceforge.net/nrrd/index.html}, journal={{Teem: nrrd}}}
-
-@misc{analyzedirect, title={3D Medical Image Analysis Software for Research}, url={https://analyzedirect.com/}, journal={AnalyzeDirect}}
-
+@article{nifti, title={{NIfTI: - Neuroimaging Informatics Technology Initiative}}, note={\url{https://nifti.nimh.nih.gov/}}}, title={{National Institute of Mental Health}}, publisher={{U.S. Department of Health and Human Services}}}
+@article{nrrd, title={{nrrd: Nearly Raw Raster Data}}, note={\url{http://teem.sourceforge.net/nrrd/index.html}}}
+@article{analyze, title={{AnalyzeDirect: 3D Medical Image Analysis Software for Research}}, note={\url={https://analyzedirect.com/}}}
 @book{MATLAB,
 year = {2017},
 author = {MATLAB},
@@ -19,10 +31,9 @@ title = {version 9.2.0 (R2017a)},
 publisher = {The MathWorks Inc.},
 address = {Natick, Massachusetts}
 }
+@misc{NMR, title={Nuclear magnetic resonance}, \note{\url{https://en.wikipedia.org/wiki/Nuclear_magnetic_resonance}}, journal={Wikipedia}, publisher={Wikimedia Foundation}, year={2017}, month={Dec}}
 
-@misc{NMR, title={Nuclear magnetic resonance}, url={https://en.wikipedia.org/wiki/Nuclear_magnetic_resonance}, journal={Wikipedia}, publisher={Wikimedia Foundation}, year={2017}, month={Dec}}
-
-@misc{imaios, title={MRI image formation - objectives}, url={https://www.imaios.com/en/e-Courses/e-MRI/The-Physics-behind-it-all}, journal={IMAIOS}}
+@misc{imaios, title={MRI image formation - objectives}, \note{\url{https://www.imaios.com/en/e-Courses/e-MRI/The-Physics-behind-it-all}}, journal={IMAIOS}}
 
 %%%
 
@@ -90,137 +101,31 @@ address = {Natick, Massachusetts}
 
 %% CHAPTER 3 - SURFACE GENERATION %%%
 
-@Book{morel,
-  Title                    = {Variational Methods in Image Segmentation},
-  Author                   = {Morel},
-  Owner                    = {omar},
-  Timestamp                = {2016.04.19}
-}
+%% CHAPTER 6 - FUTURE WORK %%%
+@article{fda3_2016, title={{Technical Considerations for Additive Manufactured Medical Devices}}, note={\url{https://www.fda.gov/downloads/MedicalDevices/DeviceRegulationandGuidance/GuidanceDocuments/UCM381813.pdf}}, journal={Guidance for Industry and Food and Drug Administration Staff}, author={{U.S. Food and Drug Administration}}, year={2017}, month={Dec}}
 
-@Article{strbac,
-  Title                    = {Analyzing the potential of GPGPUs for real-time explicit finite element analysis of soft tissue deformation using CUDA},
-  Author                   = {Strbac},
-  Owner                    = {omar},
-  Timestamp                = {2016.04.20}
-}
+%%%
+@article{strbac, Title = {Analyzing the potential of GPGPUs for real-time explicit finite element analysis of soft tissue deformation using CUDA}, Author = {Strbac}}
 
-@Article{tarjuelo,
-  Title                    = {Automatic Segmentation of Abdominal Aortic Aneurysm from Magnetic Resonance Images Based on Active Shape Models and Texture Models},
-  Author                   = {Tarjuelo-Gutierrez},
-  Owner                    = {omar},
-  Timestamp                = {2016.04.20}
-}
+@article{cotin, Title = {Deformation-based Augmented Reality for Hepatic Surgery}}
 
-@Article{cotin,
-  Title                    = {Deformation-based Augmented Reality for Hepatic Surgery},
-  Owner                    = {omar},
-  Timestamp                = {2016.04.20}
-}
+@article{h3d, Title  = {H3D. haptics}}
+@article{junwu, Title = {Real-time Haptic Cutting of High-resolution soft tissues}}
+@article{rasool, Title = {Image-driven Haptic Simulation of Arthroscopic Surgery}}
+%%%
 
-@Article{h3d,
-  Title                    = {H3D. haptics},
-  Owner                    = {omar},
-  Timestamp                = {2016.04.20}
-}
-
-@Article{heartmech,
-  Title                    = {A high-resolution computational model of the deforming human heart},
-  Pages                    = {124},
-  Volume                   = {14},
-  Owner                    = {Omar},
-  Timestamp                = {2010.08.23}
-}
-
-@Article{junwu,
-  Title                    = {Real-time Haptic Cutting of High-resolution soft tissues},
-  Owner                    = {omar},
-  Timestamp                = {2016.04.20}
-}
-
-@Article{kazhdan,
-  Title                    = {Poisson Surface Reconstruction},
-  Owner                    = {omar},
-  Timestamp                = {2016.04.20}
-}
-
-@Article{lcevt,
-  Title                    = {Image Segmentation Using Local Variation and Edge-Weighted Centroidal Voronoi Tessellations},
-  Owner                    = {omar},
-  Timestamp                = {2016.02.01}
-}
-
-@Book{mitiche,
-  Title                    = {Variational and Level Set Methods in Image Segmentation},
-  Owner                    = {omar},
-  Timestamp                = {2016.04.19}
-}
-
-@Article{newheartpaper,
-  Title                    = {Anatomically accurate high resolution modeling of human whole heart electromechanics: A strongly scalable algebraic multigrid solver method for nonlinear deformation},
-  Owner                    = {omar},
-  Timestamp                = {2016.01.31}
-}
-
-@Article{persson,
-  Title                    = {A simple mesh generator in MATLAB},
-  Owner                    = {omar},
-  Timestamp                = {2016.04.19}
-}
-
-@Article{rasool,
-  Title                    = {Image-driven Haptic Simulation of Arthroscopic Surgery},
-  Owner                    = {omar},
-  Timestamp                = {2016.04.20}
-}
-
-@Book{sethian,
-  Title                    = {Level Set Methods and Fast Marching Methods},
-  Owner                    = {omar},
-  Timestamp                = {2016.04.19}
-}
-
-@Article{simpleware,
-  Title                    = {An efficient approach to converting three-dimensional image data into highly accurate computational models},
-  Owner                    = {omar},
-  Timestamp                = {2016.01.31}
-}
-
-@Article{sofa,
-  Title                    = {SOFA software},
-  Owner                    = {omar},
-  Timestamp                = {2016.04.20}
-}
-
-@Article{vcell,
-  Title                    = {Vcell guys},
-  Owner                    = {omar},
-  Timestamp                = {2016.04.21}
-}
-
-@Article{vorocrust1,
-  Title                    = {Uniform Random Voronoi Meshes},
-  Owner                    = {omar},
-  Timestamp                = {2016.01.31}
-}
-
-@Article{vorocrust2,
-  Title                    = {VoroCrust: Simultaneous Surface Reconstruction and Volume Meshing with Voronoi cells},
-  Owner                    = {omar},
-  Timestamp                = {2016.04.20}
-}
-
-@Article{,
-  Title                    = {Linear tets are bad},
-  Owner                    = {omar},
-  Timestamp                = {2016.04.29}
-}
-
+@article{heartmech, Title = {A high-resolution computational model of the deforming human heart}}
+@article{kazhdan, Title  = {Poisson Surface Reconstruction}}
+@article{newheartpaper, Title  = {Anatomically accurate high resolution modeling of human whole heart electromechanics: A strongly scalable algebraic multigrid solver method for nonlinear deformation}}
+@article{persson, Title = {A simple mesh generator in MATLAB}}
+@article{simpleware, Title = {An efficient approach to converting three-dimensional image data into highly accurate computational models}}
+@article{sofa, Title = {SOFA software}}
+@article{vcell,  Title = {Vcell guys}}
+@article{vorocrust1, Title  = {Uniform Random Voronoi Meshes}}
+@article{vorocrust2, Title = {VoroCrust: Simultaneous Surface Reconstruction and Volume Meshing with Voronoi cells}}
+@article{lintetsbad, Title = {Linear tets are bad}}
 
 @comment{jabref-meta: selector_publisher:}
-
 @comment{jabref-meta: selector_author:}
-
 @comment{jabref-meta: selector_journal:}
-
 @comment{jabref-meta: selector_keywords:}
-

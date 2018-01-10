@@ -4,15 +4,25 @@
 \textit{Image-based modeling and simulation}, also known as \textit{patient-specific modeling and simulation} or \textit{in-silico modeling and simulation}, is the process of performing mathematical computations based on imaging data to analyze and predict the physical behavior of biological tissues. Imaging data directly provides the geometry and/or material properties of the biological structures of interest, in contrast to conventional engineering disciplines where the geometry and materials of a device or structure originate from man-made designs. Historically, studies of biological tissues or organisms have been limited to either \textit{in vivo} (``within the living'') experimentation or \textit{ex vivo} (``outside of the living'') experimentation. \textit{In vivo} studies raise ethical concerns about experimenting on live subjects (human or otherwise), can be costly, and conditions are inherently difficult to control. \textit{Ex vivo} studies, on the other hand, can never truly represent how an organism behaves after it has been removed from its native environment. \textit{In silico} (``in silicon'') studies provide the ability to model \textit(in vivo) behavior without the same concerns of ethics or cost, and with more control of desired detail than what \textit{ex vivo} affords~\cite{colquitt_2011}. That control allows \textit{in silico} approaches to be used in conjunction with \textit{in vivo} and \textit{ex vivo} to advance the medical sciences in a number of exciting ways.
 
 %%%%%
-FDA - guidelines, and VV40
 
-possibilities I mention in presentation
+Image-based modeling and simulation has played an important predictive and analytic role in several areas, including:  medical device design optimization~\cite{},  surgical planning~\cite{}, improved diagnosis and treatment~\cite{}, better understanding causes of pathology~\cite{}, computer-assisted surgery, even in real-time~\cite{}, and haptic technologies for improving surgeon training~\cite{}. These technologies have been applied to nearly every organ in the body: the heart~\cite{}, brain~\cite{}, knee~\cite{}, hip~\cite{}, spine~\cite{}, liver~\cite{}, kidney~\cite{}, jaw~\cite{}, and teeth~\cite{} are among the most prominent examples.
 
-cite everyone doing it
+cardiovascular
+knee orthopedics
+hip orthopedics
+spine orthopedics
+hepatology
+orthodontics
+dental
+
 
 %%%%%
 
-Image-based modeling and simulation covers a broad spectrum of fields, including image processing, computational geometry, numerical methods, and biomechanics. The workflow entails: medical imaging and image segmentation, image-based mesh generation, physics-based modeling and simulation, and medical application. Each of these steps are described in turn.
+Regulatory organizations and professional societies have identified the incredible potential of computational modeling in the medical device field. The American Society of Mechanical Engineers (ASME) and the U.S. Food and Drug Administration (FDA) formed a subcomittee in 2010 named ``V\&V 40: Verification and Validation in Computational Modeling of Medical Devices'', out of which a regulatory standard is expected to be published in January 2018~\cite{committee}. The Center for Devices and Radiological Health (CDRH) at the FDA identified Computational Modeling as a priority in FY2017~\cite{Morrison2017}. The FDA has published several guideline documents in last few years, including ``Reporting of Computational Modeling Studies in Medical Device Submissions''~\cite{fda1_2016} and ``Software as a Medical Device (SAMD): Clinical Evaluation''~\cite{fda1_2016}. The development of tools and regulations on \textit{software as a medical device} demonstrates the extent to which industry and regulatory bodies have invested in computational modeling to move health care forward. And, \textit{in silico} modeling and simulation lies at the heart of those development efforts.
+
+%%%%%
+
+The field of image-based modeling and simulation covers a broad spectrum of topics, including image processing, computational geometry, numerical methods, and biomechanics. The workflow entails: medical imaging and image segmentation, image-based mesh generation, physics-based modeling and simulation, and medical application. Each of these steps are described in turn.
 
 \chapref{2} describes the basic physics involved in acquiring medical images for a number of imaging modalities. Medical images will be assumed here to be three-dimensional rectilinear grids of \textit{voxels}, or 3D pixels. The chapter also presents a review of state-of-the-art image segmentation techniques, which demarcate the voxels in an image into the various objects and tissues of interest.
 

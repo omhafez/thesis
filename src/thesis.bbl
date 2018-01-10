@@ -3,7 +3,27 @@
 \bibitem{colquitt_2011}
 R.~B. Colquitt, D.~A. Colquhoun, and R.~H. Thiele, ``{In silico modelling of
   physiologic systems},'' {\em Best Practice \& Research Clinical
-  Anaesthesiology}, vol.~25, no.~4, p.~499–510, 2011.
+  Anaesthesiology}, vol.~25, no.~4, pp.~499--510, 2011.
+
+\bibitem{committee}
+``{Committee Pages - V\&V 40 Verification and Validation in Computational
+  Modeling of Medical Devices},''
+\newblock
+  \url{https://cstools.asme.org/csconnect/CommitteePages.cfm?Committee=100108782}.
+
+\bibitem{Morrison2017}
+T.~Morrison, L.~Angelone, M.~Myers, J.~Soneson, Q.~Wang, J.~Weaver,
+  P.~Hariharan, {ASME V\&V40}, M.~Dharia, and M.~Reiterer, ``{{FDA Seminar on
+  V\&V for Computational Modeling of Medical Devices}},'' Aug 2017.
+\newblock \url
+  {"https://figshare.com/articles/FDA_Seminar_on_Computational_Modeling_for_Medical_Devices/5018783"}.
+
+\bibitem{fda1_2016}
+{U.S. Food and Drug Administration}, ``{Reporting of Computational Modeling
+  Studies in Medical Device Submissions},'' {\em Guidance for Industry and Food
+  and Drug Administration Staff}, Sep 2016.
+\newblock
+  \url{https://www.fda.gov/downloads/MedicalDevices/DeviceRegulationandGuidance/GuidanceDocuments/UCM381813.pdf}.
 
 \bibitem{larobina_murino_2014}
 M.~Larobina and L.~Murino, ``{Medical image file formats},'' {\em {Journal of

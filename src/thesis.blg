@@ -10,44 +10,49 @@ A level-1 auxiliary file: chap5-application-cardiac-mechanics.aux
 A level-1 auxiliary file: chap6-future-work.aux
 A level-1 auxiliary file: chap7-conclusions.aux
 Database file #1: references.bib
-You've used 26 entries,
+Warning--empty author in committee
+Warning--empty journal in committee
+Warning--empty year in committee
+Warning--empty journal in Morrison2017
+You've used 29 entries,
             1876 wiz_defined-function locations,
-            635 strings with 7862 characters,
-and the built_in function-call counts, 7112 in all, are:
-= -- 725
-> -- 239
+            650 strings with 8725 characters,
+and the built_in function-call counts, 7607 in all, are:
+= -- 758
+> -- 276
 < -- 0
-+ -- 91
-- -- 65
-* -- 477
-:= -- 981
-add.period$ -- 32
-call.type$ -- 26
-change.case$ -- 20
++ -- 105
+- -- 76
+* -- 532
+:= -- 1071
+add.period$ -- 37
+call.type$ -- 29
+change.case$ -- 23
 chr.to.int$ -- 0
-cite$ -- 26
-duplicate$ -- 376
-empty$ -- 674
-format.name$ -- 65
-if$ -- 1794
+cite$ -- 33
+duplicate$ -- 391
+empty$ -- 724
+format.name$ -- 76
+if$ -- 1895
 int.to.chr$ -- 0
-int.to.str$ -- 26
-missing$ -- 30
-newline$ -- 87
-num.names$ -- 26
-pop$ -- 65
+int.to.str$ -- 29
+missing$ -- 33
+newline$ -- 99
+num.names$ -- 28
+pop$ -- 77
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 278
+skip$ -- 269
 stack$ -- 0
-substring$ -- 482
-swap$ -- 175
+substring$ -- 492
+swap$ -- 166
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 59
-width$ -- 28
-write$ -- 264
+warning$ -- 4
+while$ -- 62
+width$ -- 31
+write$ -- 290
+(There were 4 warnings)
