@@ -10,44 +10,44 @@ A level-1 auxiliary file: chap5-application-cardiac-mechanics.aux
 A level-1 auxiliary file: chap6-future-work.aux
 A level-1 auxiliary file: chap7-conclusions.aux
 Database file #1: references.bib
-You've used 25 entries,
+You've used 26 entries,
             1876 wiz_defined-function locations,
-            629 strings with 7676 characters,
-and the built_in function-call counts, 6746 in all, are:
-= -- 683
-> -- 228
+            635 strings with 7862 characters,
+and the built_in function-call counts, 7112 in all, are:
+= -- 725
+> -- 239
 < -- 0
-+ -- 87
-- -- 62
-* -- 459
-:= -- 939
-add.period$ -- 31
-call.type$ -- 25
-change.case$ -- 19
++ -- 91
+- -- 65
+* -- 477
+:= -- 981
+add.period$ -- 32
+call.type$ -- 26
+change.case$ -- 20
 chr.to.int$ -- 0
-cite$ -- 25
-duplicate$ -- 349
-empty$ -- 647
-format.name$ -- 62
-if$ -- 1696
+cite$ -- 26
+duplicate$ -- 376
+empty$ -- 674
+format.name$ -- 65
+if$ -- 1794
 int.to.chr$ -- 0
-int.to.str$ -- 25
-missing$ -- 29
-newline$ -- 84
-num.names$ -- 25
-pop$ -- 63
+int.to.str$ -- 26
+missing$ -- 30
+newline$ -- 87
+num.names$ -- 26
+pop$ -- 65
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 250
+skip$ -- 278
 stack$ -- 0
-substring$ -- 464
-swap$ -- 156
+substring$ -- 482
+swap$ -- 175
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 57
-width$ -- 27
-write$ -- 253
+while$ -- 59
+width$ -- 28
+write$ -- 264

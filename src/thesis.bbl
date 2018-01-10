@@ -1,13 +1,9 @@
 \begin{thebibliography}{10}
 
-\bibitem{hendrick_1994}
-R.~E. Hendrick, ``{The AAPM/RSNA physics tutorial for residents. Basic physics
-  of MR imaging: an introduction},'' {\em RadioGraphics}, vol.~14, no.~4,
-  pp.~829--846, 1994.
-
-\bibitem{goldman_2007}
-L.~W. Goldman, ``{Principles of CT and CT technology},'' {\em Journal of
-  Nuclear Medicine Technology}, vol.~35, pp.~115--128, Jan 2007.
+\bibitem{colquitt_2011}
+R.~B. Colquitt, D.~A. Colquhoun, and R.~H. Thiele, ``{In silico modelling of
+  physiologic systems},'' {\em Best Practice \& Research Clinical
+  Anaesthesiology}, vol.~25, no.~4, p.~499–510, 2011.
 
 \bibitem{larobina_murino_2014}
 M.~Larobina and L.~Murino, ``{Medical image file formats},'' {\em {Journal of
@@ -22,6 +18,11 @@ S.~D. Waldman and R.~S. D. S.~D. Campbell, {\em {Imaging of pain: expert
 M.~A. Jacobs, T.~S. Ibrahim, and R.~Ouwerkerk, ``{MR Imaging: Brief overview
   and emerging applications},'' {\em RadioGraphics}, vol.~27, no.~4,
   pp.~1213--1229, 2007.
+
+\bibitem{hendrick_1994}
+R.~E. Hendrick, ``{The AAPM/RSNA physics tutorial for residents. Basic physics
+  of MR imaging: an introduction},'' {\em RadioGraphics}, vol.~14, no.~4,
+  pp.~829--846, 1994.
 
 \bibitem{nishimura_2010}
 D.~G. Nishimura, {\em {Principles of magnetic resonance imaging}}.
@@ -46,6 +47,10 @@ S.~J. Pomeranz and R.~Taranto, ``{Imaging on trial: MRI versus CT},'' {\em
 \bibitem{mahesh_2002}
 M.~Mahesh, ``{The AAPM/RSNA physics tutorial for residents},'' {\em
   RadioGraphics}, vol.~22, no.~4, pp.~949--962, 2002.
+
+\bibitem{goldman_2007}
+L.~W. Goldman, ``{Principles of CT and CT technology},'' {\em Journal of
+  Nuclear Medicine Technology}, vol.~35, pp.~115--128, Jan 2007.
 
 \bibitem{chetih_2015}
 N.~Chetih and Z.~Messali, ``{Tomographic image reconstruction using filtered

@@ -1,5 +1,5 @@
 %\documentclass[12pt,draftcls]{ucdavisthesis}
-\documentclass[12pt]{ucdavisthesis}
+\documentclass[12pt, nofigureslist, notableslist]{ucdavisthesis}
 
 % PLEASE READ THE MANUAL - ucdavisthesis.pdf (in the package installation directory)
 
@@ -19,6 +19,12 @@
 \emergencystretch 3em
 \usepackage{hyperref}
 \usepackage{amsmath}
+\usepackage{caption}
+\captionsetup[figure]{list=no}
+\captionsetup[table]{list=no}
+	
+\usepackage{notoccite}
+
 \hypersetup{%
     pdfborder = {0 0 0}
 }
@@ -37,6 +43,16 @@
 \newcommand*{\eqnref}[2][]{%
   \hyperref[{eqn:#2}]{%
     {Equation~\ref*{eqn:#2}}%
+    \ifx\\#1\\%
+    \else
+      \,#1%
+    \fi
+  }%
+}
+
+\newcommand*{\chapref}[2][]{%
+  \hyperref[{chap:#2}]{%
+    {Chapter~\ref*{chap:#2}}%
     \ifx\\#1\\%
     \else
       \,#1%
@@ -113,7 +129,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\dedication{\textsl{To \ldots}}
+\dedication{\textsl{To Mama, Baba, and Asmaa}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -121,7 +137,44 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\acknowledgments{Acknowledgements to those who helped you get to this point. }
+\acknowledgments{\noindent
+Professor Mark Rashid \\
+Cardioid group David Richards, Robert Blake, Jean-Luc Fattebert \\
+Viatcheslav Gurev at IBM \\
+Andrew Baldwin and Alipasha Sadri at Celeris \\
+IBBM \\
+
+Krell Institute and CSGF \\
+Floyd and Mary Schwall \\
+Eugene Cota Robles \\
+Department of Civil and Environmental Engineering  \\
+Professor Sashi Kunnath and Professor Amit Kanvinde \\
+
+Professor John Bolander \\
+Professor Yannis Dafalias \\
+James Stolken and Ryan Vignes \\
+All of the instructors for which I took classes \\
+
+ENG 104 students and Bryan Zhao \\
+
+Steven Wopschall \\
+Brian Giffin \\
+Sam Mish \\
+Vince, Eric, Jit, Alex, CMWG \\
+Rose McCallen \\
+My father \\
+My mother \\
+My friends \\
+Zeeshan \\
+Serag \\
+Hadi and Tera \\
+Sabah \\
+Mo \\
+Farhan, Hassan, Sule, Dan \\
+Ameer \\
+Vipul, Arash, Sammi, Sabil \\
+Asmaa and her family \\
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
