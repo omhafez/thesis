@@ -5,6 +5,68 @@ R.~B. Colquitt, D.~A. Colquhoun, and R.~H. Thiele, ``{In silico modelling of
   physiologic systems},'' {\em Best Practice \& Research Clinical
   Anaesthesiology}, vol.~25, no.~4, pp.~499--510, 2011.
 
+\bibitem{strbac_2015}
+V.~Strbac, J.~V. Sloten, and N.~Famaey, ``Analyzing the potential of gpgpus for
+  real-time explicit finite element analysis of soft tissue deformation using
+  cuda,'' {\em Finite Elements in Analysis and Design}, vol.~105, p.~79–89,
+  2015.
+
+\bibitem{chen}
+P.~Chen, K.~Barner, and K.~Steiner, ``A displacement driven real-time
+  deformable model for haptic surgery simulation,'' {\em 2006 14th Symposium on
+  Haptic Interfaces for Virtual Environment and Teleoperator Systems}.
+
+\bibitem{pan_2015}
+J.~Pan, J.~Bai, X.~Zhao, A.~Hao, and H.~Qin, ``Real-time haptic manipulation
+  and cutting of hybrid soft tissue models by extended position-based
+  dynamics,'' {\em Computer Animation and Virtual Worlds}, vol.~26, no.~3-4,
+  p.~321–335, 2015.
+
+\bibitem{min_2015}
+J.~K. Min, C.~A. Taylor, S.~Achenbach, B.~K. Koo, J.~Leipsic, B.~L. Nørgaard,
+  N.~J. Pijls, and B.~D. Bruyne, ``Noninvasive fractional flow reserve derived
+  from coronary ct angiography,'' {\em JACC: Cardiovascular Imaging}, vol.~8,
+  no.~10, p.~1209–1222, 2015.
+
+\bibitem{updegrove_2016}
+A.~Updegrove, N.~M. Wilson, J.~Merkow, H.~Lan, A.~L. Marsden, and S.~C.
+  Shadden, ``Simvascular: An open source pipeline for cardiovascular
+  simulation,'' {\em Annals of Biomedical Engineering}, vol.~45, p.~525–541,
+  Aug 2016.
+
+\bibitem{weickenmeier_2016}
+J.~Weickenmeier, P.~Saez, C.~A.~M. Butler, P.~G. Young, A.~Goriely, and
+  E.~Kuhl, ``Bulging brains,'' {\em Journal of Elasticity}, vol.~129, no.~1-2,
+  p.~197–212, 2016.
+
+\bibitem{behnia_2008}
+S.~Behnia, A.~Jafari, F.~Ghalichi, and A.~Bonabi, ``Finite-element simulation
+  of ultrasound brain surgery: effects of frequency, focal pressure, and
+  scanning path in bone-heating reduction,'' {\em Open Physics}, vol.~6, Jan
+  2008.
+
+\bibitem{erdemir_2015}
+A.~Erdemir, ``Open knee: Open source modeling and simulation in knee
+  biomechanics,'' {\em Journal of Knee Surgery}, vol.~29, p.~107–116, Jul
+  2015.
+
+\bibitem{donahue_2002}
+T.~L.~H. Donahue, M.~L. Hull, M.~M. Rashid, and C.~R. Jacobs, ``A finite
+  element model of the human knee joint for the study of tibio-femoral
+  contact,'' {\em Journal of Biomechanical Engineering}, vol.~124, no.~3,
+  p.~273, 2002.
+
+\bibitem{anderson_2008}
+A.~E. Anderson, B.~J. Ellis, S.~A. Maas, C.~L. Peters, and J.~A. Weiss,
+  ``Validation of finite element predictions of cartilage contact pressure in
+  the human hip joint,'' {\em Journal of Biomechanical Engineering}, vol.~130,
+  no.~5, p.~051008, 2008.
+
+\bibitem{eloot_2002}
+S.~Eloot, D.~D. Wachter, I.~V. Tricht, and P.~Verdonck, ``Computational flow
+  modeling in hollow-fiber dialyzers,'' {\em Artificial Organs}, vol.~26,
+  no.~7, p.~590–599, 2002.
+
 \bibitem{committee}
 ``{Committee Pages - V\&V 40 Verification and Validation in Computational
   Modeling of Medical Devices},''

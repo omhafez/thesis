@@ -10,6 +10,8 @@ A level-1 auxiliary file: chap5-application-cardiac-mechanics.aux
 A level-1 auxiliary file: chap6-future-work.aux
 A level-1 auxiliary file: chap7-conclusions.aux
 Database file #1: references.bib
+Warning--I didn't find a database entry for ""
+Warning--empty year in chen
 Warning--empty author in committee
 Warning--empty journal in committee
 Warning--empty year in committee
@@ -27,45 +29,45 @@ Warning--empty year in nifti
 Warning--empty author in analyze
 Warning--empty journal in analyze
 Warning--empty year in analyze
-You've used 36 entries,
+You've used 47 entries,
             1876 wiz_defined-function locations,
-            680 strings with 9586 characters,
-and the built_in function-call counts, 8702 in all, are:
-= -- 864
-> -- 299
+            742 strings with 11931 characters,
+and the built_in function-call counts, 12325 in all, are:
+= -- 1235
+> -- 467
 < -- 0
-+ -- 117
-- -- 81
-* -- 613
-:= -- 1202
-add.period$ -- 47
-call.type$ -- 36
-change.case$ -- 29
++ -- 177
+- -- 130
+* -- 834
+:= -- 1672
+add.period$ -- 58
+call.type$ -- 47
+change.case$ -- 40
 chr.to.int$ -- 0
-cite$ -- 53
-duplicate$ -- 465
-empty$ -- 851
-format.name$ -- 81
-if$ -- 2167
+cite$ -- 65
+duplicate$ -- 705
+empty$ -- 1113
+format.name$ -- 130
+if$ -- 3090
 int.to.chr$ -- 0
-int.to.str$ -- 36
-missing$ -- 41
-newline$ -- 126
-num.names$ -- 30
-pop$ -- 116
+int.to.str$ -- 47
+missing$ -- 52
+newline$ -- 159
+num.names$ -- 41
+pop$ -- 142
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 295
+skip$ -- 525
 stack$ -- 0
-substring$ -- 504
-swap$ -- 182
+substring$ -- 648
+swap$ -- 337
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 17
-while$ -- 65
-width$ -- 38
-write$ -- 346
-(There were 17 warnings)
+warning$ -- 18
+while$ -- 85
+width$ -- 49
+write$ -- 458
+(There were 19 warnings)
