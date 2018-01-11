@@ -5,67 +5,109 @@ R.~B. Colquitt, D.~A. Colquhoun, and R.~H. Thiele, ``{In silico modelling of
   physiologic systems},'' {\em Best Practice \& Research Clinical
   Anaesthesiology}, vol.~25, no.~4, pp.~499--510, 2011.
 
-\bibitem{strbac_2015}
-V.~Strbac, J.~V. Sloten, and N.~Famaey, ``Analyzing the potential of gpgpus for
-  real-time explicit finite element analysis of soft tissue deformation using
-  cuda,'' {\em Finite Elements in Analysis and Design}, vol.~105, p.~79–89,
-  2015.
-
-\bibitem{chen}
-P.~Chen, K.~Barner, and K.~Steiner, ``A displacement driven real-time
-  deformable model for haptic surgery simulation,'' {\em 2006 14th Symposium on
-  Haptic Interfaces for Virtual Environment and Teleoperator Systems}.
-
-\bibitem{pan_2015}
-J.~Pan, J.~Bai, X.~Zhao, A.~Hao, and H.~Qin, ``Real-time haptic manipulation
-  and cutting of hybrid soft tissue models by extended position-based
-  dynamics,'' {\em Computer Animation and Virtual Worlds}, vol.~26, no.~3-4,
-  p.~321–335, 2015.
-
 \bibitem{min_2015}
-J.~K. Min, C.~A. Taylor, S.~Achenbach, B.~K. Koo, J.~Leipsic, B.~L. Nørgaard,
-  N.~J. Pijls, and B.~D. Bruyne, ``Noninvasive fractional flow reserve derived
-  from coronary ct angiography,'' {\em JACC: Cardiovascular Imaging}, vol.~8,
-  no.~10, p.~1209–1222, 2015.
+J.~K. Min, C.~A. Taylor, S.~Achenbach, B.~K. Koo, J.~Leipsic, B.~L.
+  N{\o}{rgaard}, N.~J. Pijls, and B.~D. Bruyne, ``{Noninvasive Fractional Flow
+  Reserve Derived From Coronary CT Angiography},'' {\em JACC: Cardiovascular
+  Imaging}, vol.~8, no.~10, pp.~1209--1222, 2015.
 
 \bibitem{updegrove_2016}
 A.~Updegrove, N.~M. Wilson, J.~Merkow, H.~Lan, A.~L. Marsden, and S.~C.
-  Shadden, ``Simvascular: An open source pipeline for cardiovascular
-  simulation,'' {\em Annals of Biomedical Engineering}, vol.~45, p.~525–541,
+  Shadden, ``{SimVascular: An Open Source Pipeline for Cardiovascular
+  Simulation},'' {\em Annals of Biomedical Engineering}, vol.~45, pp.~525--541,
   Aug 2016.
 
 \bibitem{weickenmeier_2016}
 J.~Weickenmeier, P.~Saez, C.~A.~M. Butler, P.~G. Young, A.~Goriely, and
-  E.~Kuhl, ``Bulging brains,'' {\em Journal of Elasticity}, vol.~129, no.~1-2,
-  p.~197–212, 2016.
+  E.~Kuhl, ``{Bulging Brains},'' {\em Journal of Elasticity}, vol.~129,
+  no.~1-2, pp.~197--212, 2016.
 
 \bibitem{behnia_2008}
-S.~Behnia, A.~Jafari, F.~Ghalichi, and A.~Bonabi, ``Finite-element simulation
+S.~Behnia, A.~Jafari, F.~Ghalichi, and A.~Bonabi, ``{Finite-element simulation
   of ultrasound brain surgery: effects of frequency, focal pressure, and
-  scanning path in bone-heating reduction,'' {\em Open Physics}, vol.~6, Jan
+  scanning path in bone-heating reduction},'' {\em Open Physics}, vol.~6, Jan
   2008.
 
 \bibitem{erdemir_2015}
-A.~Erdemir, ``Open knee: Open source modeling and simulation in knee
-  biomechanics,'' {\em Journal of Knee Surgery}, vol.~29, p.~107–116, Jul
+A.~Erdemir, ``{Open Knee: Open Source Modeling and Simulation in Knee
+  Biomechanics},'' {\em Journal of Knee Surgery}, vol.~29, pp.~107--116, Jul
   2015.
 
 \bibitem{donahue_2002}
-T.~L.~H. Donahue, M.~L. Hull, M.~M. Rashid, and C.~R. Jacobs, ``A finite
-  element model of the human knee joint for the study of tibio-femoral
-  contact,'' {\em Journal of Biomechanical Engineering}, vol.~124, no.~3,
+T.~L.~H. Donahue, M.~L. Hull, M.~M. Rashid, and C.~R. Jacobs, ``{A Finite
+  Element Model of the Human Knee Joint for the Study of Tibio-Femoral
+  Contact},'' {\em Journal of Biomechanical Engineering}, vol.~124, no.~3,
   p.~273, 2002.
 
 \bibitem{anderson_2008}
 A.~E. Anderson, B.~J. Ellis, S.~A. Maas, C.~L. Peters, and J.~A. Weiss,
-  ``Validation of finite element predictions of cartilage contact pressure in
-  the human hip joint,'' {\em Journal of Biomechanical Engineering}, vol.~130,
+  ``{Validation of Finite Element Predictions of Cartilage Contact Pressure in
+  the Human Hip Joint},'' {\em Journal of Biomechanical Engineering}, vol.~130,
   no.~5, p.~051008, 2008.
 
+\bibitem{el'sheikh_2003}
+H.~El'Sheikh, B.~Macdonald, and M.~Hashmi, ``{Finite element simulation of the
+  hip joint during stumbling: a comparison between static and dynamic
+  loading},'' {\em Journal of Materials Processing Technology}, vol.~143-144,
+  pp.~249--255, 2003.
+
+\bibitem{malandrino_2014}
+A.~Malandrino, D.~Lacroix, C.~Hellmich, K.~Ito, S.~Ferguson, and J.~Noailly,
+  ``{The role of endplate poromechanical properties on the nutrient
+  availability in the intervertebral disc},'' {\em Osteoarthritis and
+  Cartilage}, vol.~22, no.~7, pp.~1053--1060, 2014.
+
+\bibitem{dumas_2005}
+R.~Dumas, V.~Lafage, Y.~Lafon, J.-P. Steib, D.~Mitton, and W.~Skalli, ``{Finite
+  element simulation of spinal deformities correction byin situcontouring
+  technique},'' {\em Computer Methods in Biomechanics and Biomedical
+  Engineering}, vol.~8, no.~5, pp.~331--337, 2005.
+
+\bibitem{shi_2008}
+H.~Shi, A.~Farag, R.~Fahmi, and D.~Chen, ``{Validation of Finite Element Models
+  of Liver Tissue Using Micro-CT},'' {\em IEEE Transactions on Biomedical
+  Engineering}, vol.~55, no.~3, pp.~978--984, 2008.
+
+\bibitem{schwen_2014}
+L.~O. Schwen, M.~Krauss, C.~Niederalt, F.~Gremse, F.~Kiessling, A.~Schenk,
+  T.~Preusser, and L.~Kuepfer, ``{Spatio-Temporal Simulation of First Pass Drug
+  Perfusion in the Liver},'' {\em PLoS Computational Biology}, vol.~10, no.~3,
+  2014.
+
 \bibitem{eloot_2002}
-S.~Eloot, D.~D. Wachter, I.~V. Tricht, and P.~Verdonck, ``Computational flow
-  modeling in hollow-fiber dialyzers,'' {\em Artificial Organs}, vol.~26,
-  no.~7, p.~590–599, 2002.
+S.~Eloot, D.~D. Wachter, I.~V. Tricht, and P.~Verdonck, ``{Computational Flow
+  Modeling in Hollow-Fiber Dialyzers},'' {\em Artificial Organs}, vol.~26,
+  no.~7, pp.~590--599, 2002.
+
+\bibitem{snedeker_2005}
+J.~Snedeker, M.~Barbezat, P.~Niederer, F.~Schmidlin, and M.~Farshad, ``{Strain
+  energy density as a rupture criterion for the kidney: impact tests on porcine
+  organs, finite element simulation, and a baseline comparison between human
+  and porcine tissues},'' {\em Journal of Biomechanics}, vol.~38, no.~5,
+  pp.~993--1001, 2005.
+
+\bibitem{idrus_2017}
+A.~A. Idrus, ``{DePuy Synthes rolls out 3D-printed facial implants from
+  Materialise},'' {\em FierceBiotech}.
+\newblock
+  \url{https://www.fiercebiotech.com/medtech/depuy-synthes-rolls-out-3d-printed-facial-implants-from-materialise}.
+
+\bibitem{narra_2014}
+N.~Narra, J.~Val\'a{\v{s}}ek, M.~Hannula, P.~Marci\'an, G.~K. S\'andor,
+  J.~Hyttinen, and J.~Wolff, ``{Finite element analysis of customized
+  reconstruction plates for mandibular continuity defect therapy},'' {\em
+  Journal of Biomechanics}, vol.~47, no.~1, pp.~264--268, 2014.
+
+\bibitem{frisardi_2011}
+G.~Frisardi, G.~Chessa, S.~Barone, A.~Paoli, A.~Razionale, and F.~Frisardi,
+  ``{Integration of 3D anatomical data obtained by CT imaging and 3D optical
+  scanning for computer aided implant surgery},'' {\em BMC Medical Imaging},
+  vol.~11, no.~1, 2011.
+
+\bibitem{geng_2001}
+J.-P. Geng, K.~B. Tan, and G.-R. Liu, ``{Application of finite element analysis
+  in implant dentistry: A review of the literature},'' {\em The Journal of
+  Prosthetic Dentistry}, vol.~85, no.~6, pp.~585--598, 2001.
 
 \bibitem{committee}
 ``{Committee Pages - V\&V 40 Verification and Validation in Computational
@@ -88,8 +130,8 @@ T.~Morrison, L.~Angelone, M.~Myers, J.~Soneson, Q.~Wang, J.~Weaver,
   \url{https://www.fda.gov/downloads/MedicalDevices/DeviceRegulationandGuidance/GuidanceDocuments/UCM381813.pdf}.
 
 \bibitem{pathmanathan_2017}
-P.~Pathmanathan, R.~A. Gray, V.~J. Romero, and T.~M. Morrison, ``Applicability
-  analysis of validation evidence for biomedical computational models,'' {\em
+P.~Pathmanathan, R.~A. Gray, V.~J. Romero, and T.~M. Morrison, ``{Applicability
+  Analysis of Validation Evidence for Biomedical Computational Models},'' {\em
   Journal of Verification, Validation and Uncertainty Quantification}, vol.~2,
   p.~021005, Jul 2017.
 
