@@ -28,45 +28,56 @@ Warning--empty year in nifti
 Warning--empty author in analyze
 Warning--empty journal in analyze
 Warning--empty year in analyze
-You've used 54 entries,
+Warning--empty author in cvgg
+Warning--empty journal in cvgg
+Warning--empty year in cvgg
+Warning--empty journal in nlo
+Warning--empty year in nlo
+Warning--empty author in ply
+Warning--empty journal in ply
+Warning--empty year in ply
+Warning--empty author in vtk
+Warning--empty journal in vtk
+Warning--empty year in vtk
+You've used 80 entries,
             1876 wiz_defined-function locations,
-            780 strings with 13720 characters,
-and the built_in function-call counts, 14439 in all, are:
-= -- 1402
-> -- 594
+            907 strings with 18095 characters,
+and the built_in function-call counts, 20676 in all, are:
+= -- 1994
+> -- 846
 < -- 0
-+ -- 222
-- -- 168
-* -- 1078
-:= -- 2038
-add.period$ -- 66
-call.type$ -- 54
-change.case$ -- 47
++ -- 317
+- -- 237
+* -- 1538
+:= -- 2930
+add.period$ -- 93
+call.type$ -- 80
+change.case$ -- 72
 chr.to.int$ -- 0
-cite$ -- 72
-duplicate$ -- 742
-empty$ -- 1325
-format.name$ -- 168
-if$ -- 3559
+cite$ -- 109
+duplicate$ -- 1078
+empty$ -- 1926
+format.name$ -- 237
+if$ -- 5087
 int.to.chr$ -- 0
-int.to.str$ -- 54
-missing$ -- 59
-newline$ -- 181
-num.names$ -- 48
-pop$ -- 143
+int.to.str$ -- 80
+missing$ -- 84
+newline$ -- 264
+num.names$ -- 73
+pop$ -- 227
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 505
+skip$ -- 704
 stack$ -- 0
-substring$ -- 877
-swap$ -- 318
+substring$ -- 1214
+swap$ -- 440
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 18
-while$ -- 109
-width$ -- 56
-write$ -- 535
-(There were 18 warnings)
+warning$ -- 29
+while$ -- 158
+width$ -- 82
+write$ -- 776
+(There were 29 warnings)

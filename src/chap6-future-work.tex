@@ -28,10 +28,12 @@
 \subsection{Improvements to Image-Based Meshing Code}
 \label{Improvements to Image-Based Meshing Code}
 direct surface generation from image \\
-multiple materials \\
+multiple materials: although plenty of work is still performed for single object meshes from images, the state of the art tools available for meshing tend to have capability for multiple materials.  \\
+partial volume \\
 tolerance-aware voronoi partitioning \\
 use of soft segmentations/handling of partial volume effect  \\
-numerical validation of segmentation and of surface
+numerical validation of segmentation and of surface --> refer to simpleware paper about geometric accuracy
+inter-operator error. Assumes segmentation is perfect
 
 \subsection{Improvements to Cardiac Mechanics Code}
 \label{Improvements to Cardiac Mechanics Code}
@@ -45,6 +47,7 @@ BCs, etc.
 
 \subsection{Simulation of Clinical Trials}
 \label{Simulation of Clinical Trials}
+The problem of robust patient-specific modeling has more or less been solved, even for multi-material image masks. The next step is to combine simulation related to a particular patient with statistical and/or machine learning technologies. 
 A Machine Learning System to Guide Clinical Procedures in Real-Time
 
 \subsection[Applications in Rapid Prototyping and Additive Manufacturing]{\texorpdfstring{Applications in Rapid Prototyping and Additive \newline Manufacturing}{Applications in Rapid Prototyping and Additive \newline Manufacturing}}

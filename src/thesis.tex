@@ -3,7 +3,7 @@
 
 % PLEASE READ THE MANUAL - ucdavisthesis.pdf (in the package installation directory)
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                      %
 %               LATEX COMMANDS FOR DOCUMENT SETUP                      %
 %                                                                      %
@@ -20,15 +20,31 @@
 \usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{url}
+\usepackage{enumitem}
+\usepackage[capitalize]{cleveref}
+\usepackage{multirow}
+\usepackage{comment}
+\usepackage{amsfonts}
 
 \hypersetup{%
     pdfborder = {0 0 0}
 }
 \usepackage{bm}
 \usepackage[parfill]{parskip}
+
 \newcommand*{\figref}[2][]{%
   \hyperref[{fig:#2}]{%
     {Figure~\ref*{fig:#2}}%
+    \ifx\\#1\\%
+    \else
+      \,#1%
+    \fi
+  }%
+}
+
+\newcommand*{\tabref}[2][]{%
+  \hyperref[{tab:#2}]{%
+    {Table~\ref*{tab:#2}}%
     \ifx\\#1\\%
     \else
       \,#1%
@@ -178,7 +194,7 @@ Asmaa and her family \\
 % Then use the \includeonly command to speed compilation when working on a particular chapter.
 %%% \includeonly{chap1}
 
-\includeonly{chap3-image-based-meshing}
+%\includeonly{chap3-image-based-meshing}
 
 \begin{document}
 
