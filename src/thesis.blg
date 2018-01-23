@@ -10,6 +10,7 @@ A level-1 auxiliary file: chap5-application-cardiac-mechanics.aux
 A level-1 auxiliary file: chap6-future-work.aux
 A level-1 auxiliary file: chap7-conclusions.aux
 Database file #1: references.bib
+Warning--I didn't find a database entry for "Celeris"
 Warning--empty year in idrus_2017
 Warning--empty author in committee
 Warning--empty journal in committee
@@ -31,52 +32,58 @@ Warning--empty year in analyze
 Warning--empty author in cvgg
 Warning--empty journal in cvgg
 Warning--empty year in cvgg
-Warning--empty author in shab
-Warning--empty year in shab
 Warning--empty journal in nlo
 Warning--empty year in nlo
+Warning--empty author in ply
+Warning--empty journal in ply
+Warning--empty year in ply
+Warning--empty author in vtk
+Warning--empty journal in vtk
+Warning--empty year in vtk
+Warning--empty booktitle in wang_2004
+Warning--empty year in shab
 Warning--empty author in brew
 Warning--empty journal in brew
 Warning--empty year in brew
-You've used 64 entries,
+You've used 104 entries,
             1876 wiz_defined-function locations,
-            828 strings with 15068 characters,
-and the built_in function-call counts, 16623 in all, are:
-= -- 1611
-> -- 667
+            1022 strings with 21968 characters,
+and the built_in function-call counts, 26892 in all, are:
+= -- 2612
+> -- 1069
 < -- 0
-+ -- 251
-- -- 187
-* -- 1242
-:= -- 2335
-add.period$ -- 78
-call.type$ -- 64
-change.case$ -- 56
++ -- 402
+- -- 298
+* -- 1934
+:= -- 3774
+add.period$ -- 121
+call.type$ -- 104
+change.case$ -- 93
 chr.to.int$ -- 0
-cite$ -- 92
-duplicate$ -- 863
-empty$ -- 1550
-format.name$ -- 187
-if$ -- 4096
+cite$ -- 138
+duplicate$ -- 1447
+empty$ -- 2518
+format.name$ -- 298
+if$ -- 6651
 int.to.chr$ -- 0
-int.to.str$ -- 64
-missing$ -- 70
-newline$ -- 216
-num.names$ -- 57
-pop$ -- 185
+int.to.str$ -- 104
+missing$ -- 111
+newline$ -- 341
+num.names$ -- 98
+pop$ -- 312
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 569
+skip$ -- 961
 stack$ -- 0
-substring$ -- 984
-swap$ -- 355
+substring$ -- 1548
+swap$ -- 606
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 28
-while$ -- 125
-width$ -- 66
-write$ -- 624
-(There were 28 warnings)
+warning$ -- 34
+while$ -- 205
+width$ -- 107
+write$ -- 1005
+(There were 35 warnings)

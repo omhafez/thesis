@@ -1,4 +1,4 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{100}
 
 \bibitem{colquitt_2011}
 R.~B. Colquitt, D.~A. Colquhoun, and R.~H. Thiele, ``{In silico modelling of
@@ -281,17 +281,108 @@ J.~A. Sethian, ``{A fast marching level set method for monotonically advancing
 
 \bibitem{litjens_2017}
 G.~Litjens, T.~Kooi, B.~E. Bejnordi, A.~A.~A. Setio, F.~Ciompi, M.~Ghafoorian,
-  J.~A. V.~D. Laak, B.~V. Ginneken, and C.~I. Sánchez, ``{A survey on deep
+  J.~A. V.~D. Laak, B.~V. Ginneken, and C.~I. S\`{a}nchez, ``{A survey on deep
   learning in medical image analysis},'' {\em Medical Image Analysis}, vol.~42,
   pp.~60--88, 2017.
 
-\bibitem{shab}
-``{Shabaka: Image-Based Mesh Generation},'' {\em GitHub}.
-\newblock \url{https://github.com/omhafez/shabaka}.
+\bibitem{lorensen_1987}
+W.~E. Lorensen and H.~E. Cline, ``{Marching Cubes: A High Resolution 3D Surface
+  Construction Algorithm},'' {\em ACM SIGGRAPH Computer Graphics}, vol.~21,
+  pp.~163--169, Jan 1987.
+
+\bibitem{young_2008}
+P.~Young, T.~Beresford-West, S.~Coward, B.~Notarberardino, B.~Walker, and
+  A.~Abdul-Aziz, ``{An Efficient Approach to Converting Three-Dimensional Image
+  Data into Highly Accurate Computational Models},'' {\em Philosophical
+  Transactions of the Royal Society A: Mathematical, Physical and Engineering
+  Sciences}, vol.~366, no.~1878, pp.~3155--3173, 2008.
+
+\bibitem{egst}
+G.~Taubin, ``{Geometric Signal Processing on Polygonal Meshes},'' in {\em
+  Eurographics 2000 - STARs}, Eurographics Association, 2000.
+
+\bibitem{meyer_2008}
+M.~Meyer, R.~Whitaker, R.~Kirby, C.~Ledergerber, and H.~Pfister,
+  ``{Particle-Based Sampling and Meshing of Surfaces in Multimaterial
+  Volumes},'' {\em IEEE Transactions on Visualization and Computer Graphics},
+  vol.~14, no.~6, pp.~1539--1546, 2008.
+
+\bibitem{bronson_2014}
+J.~Bronson, J.~A. Levine, and R.~Whitaker, ``{Lattice Cleaving: A Multimaterial
+  Tetrahedral Meshing Algorithm with Guarantees},'' {\em IEEE Transactions on
+  Visualization and Computer Graphics}, vol.~20, no.~2, pp.~223--237, 2014.
+
+\bibitem{fang_2009}
+Q.~Fang and D.~A. Boas, ``{Tetrahedral Mesh Generation from Volumetric Binary
+  and Grayscale Images},'' {\em 2009 IEEE International Symposium on Biomedical
+  Imaging: From Nano to Macro}, 2009.
+
+\bibitem{boissonnat_2009}
+J.-D. Boissonnat, J.-P. Pons, and M.~Yvinec, ``{From Segmented Images to Good
+  Quality Meshes Using Delaunay Refinement},'' {\em Emerging Trends in Visual
+  Computing Lecture Notes in Computer Science}, pp.~13--37, 2009.
+
+\bibitem{zhao_2016}
+J.-X. Zhao, T.~Coupez, E.~Decenci\`{e}re, D.~Jeulin, D.~C\`{a}rdenas-Pe\~{n}a,
+  and L.~Silva, ``{Direct Multiphase Mesh Generation from 3D Images Using
+  Anisotropic Mesh Adaptation and a Redistancing Equation},'' {\em Computer
+  Methods in Applied Mechanics and Engineering}, vol.~309, pp.~288--306, 2016.
+
+\bibitem{vollmer_1999}
+J.~Vollmer, R.~Mencl, and H.~Muller, ``{Improved Laplacian Smoothing of Noisy
+  Surface Meshes},'' {\em Computer Graphics Forum}, vol.~18, no.~3,
+  pp.~131--138, 1999.
+
+\bibitem{taubin_1995}
+G.~Taubin, ``{Curve and Surface Smoothing Without Shrinkage},'' {\em
+  Proceedings of IEEE International Conference on Computer Vision}, 1995.
+
+\bibitem{labsik_2002}
+U.~Labsik, K.~Hormann, M.~Meister, and G.~Günther, ``{Hierarchical
+  Iso-Surface Extraction},'' {\em Journal of Computing and Information Science
+  in Engineering}, vol.~2, no.~4, p.~323, 2002.
+
+\bibitem{kobbelt_2001}
+L.~P. Kobbelt, M.~Botsch, U.~Schwanecke, and H.-P. Seidel, ``{Feature sensitive
+  surface extraction from volume data},'' {\em Proceedings of the 28th annual
+  conference on Computer graphics and interactive techniques - SIGGRAPH 01},
+  2001.
+
+\bibitem{lempitsky_2010}
+V.~Lempitsky, ``{Surface extraction from binary volumes with higher-order
+  smoothness},'' {\em 2010 IEEE Computer Society Conference on Computer Vision
+  and Pattern Recognition}, 2010.
+
+\bibitem{rowan}
+T.~Rowan, {\em {Functional Stability Analysis Of Numerical Algorithms}}.
+\newblock PhD thesis, University of Texas, Austin, 1990.
 
 \bibitem{nlo}
 S.~G. Johnson, ``{The NLopt Nonlinear Optimization Package},''
 \newblock \url{http://ab-initio.mit.edu/nlopt}.
+
+\bibitem{amenta_2001}
+N.~Amenta, S.~Choi, and R.~K. Kolluri, ``{The Power Crust},'' {\em Proceedings
+  of the sixth ACM symposium on Solid modeling and applications - SMA 01},
+  2001.
+
+\bibitem{kazhdan_2008}
+M.~Kazhdan, M.~Bolitho, and H.~Hoppe, ``{Poisson Surface Reconstruction},''
+  {\em Eurographics Symposium on Geometry Processing}, 2006.
+
+\bibitem{kazhdan_2013}
+M.~Kazhdan and H.~Hoppe, ``{Screened Poisson Surface Reconstruction},'' {\em
+  ACM Transactions on Graphics}, vol.~32, pp.~1--13, Jan 2013.
+
+\bibitem{berger}
+M.~Berger, A.~Tagliasacchi, L.~M. Seversky, P.~Alliez, J.~A. Levine, A.~Sharf,
+  and C.~T. Silva, ``{State of the Art in Surface Reconstruction from Point
+  Clouds},'' in {\em Eurographics 2014 - State of the Art Reports} (S.~Lefebvre
+  and M.~Spagnuolo, eds.), The Eurographics Association, 2014.
+
+\bibitem{aurenhammer_1991}
+F.~Aurenhammer, ``{Voronoi Diagrams - A Survey of a Fundamental Geometric Data
+  Structure},'' {\em ACM Computing Surveys}, vol.~23, pp.~345--405, Jan 1991.
 
 \bibitem{barber_1996}
 C.~B. Barber, D.~P. Dobkin, and H.~Huhdanpaa, ``{The Quickhull Algorithm for
@@ -302,6 +393,119 @@ C.~B. Barber, D.~P. Dobkin, and H.~Huhdanpaa, ``{The Quickhull Algorithm for
 S.~Valette and J.-M. Chassery, ``{Approximated Centroidal Voronoi Diagrams for
   Uniform Polygonal Mesh Coarsening},'' {\em Computer Graphics Forum}, vol.~23,
   no.~3, pp.~381--389, 2004.
+
+\bibitem{valette_2008}
+S.~Valette, J.-M. Chassery, and R.~Prost, ``{Generic Remeshing of 3D Triangular
+  Meshes with Metric-Dependent Discrete Voronoi Diagrams},'' {\em IEEE
+  Transactions on Visualization and Computer Graphics}, vol.~14, no.~2,
+  pp.~369--381, 2008.
+
+\bibitem{ply}
+``{PLY - Polygon File Format},''
+\newblock \url{http://paulbourke.net/dataformats/ply}.
+
+\bibitem{vtk}
+``{VTK File Format},''
+\newblock
+  \url{https://www.vtk.org/wp-content/uploads/2015/04/file-formats.pdf}.
+
+\bibitem{blacker_2001}
+T.~Blacker, ``{Automated Conformal Hexahedral Meshing Constraints, Challenges
+  and Opportunities},'' {\em Engineering With Computers}, vol.~17, no.~3,
+  pp.~201--210, 2001.
+
+\bibitem{tautges_2001}
+T.~J. Tautges, ``{The generation of hexahedral meshes for assembly geometry:
+  survey and progress},'' {\em International Journal for Numerical Methods in
+  Engineering}, vol.~50, no.~12, pp.~2617--2642, 2001.
+
+\bibitem{baudouin_2014}
+T.~Baudouin, J.-F. Remacle, E.~Marchandise, F.~Henrotte, and C.~Geuzaine, ``{A
+  Frontal Approach to Hex-Dominant Mesh Generation},'' {\em Advanced Modeling
+  and Simulation in Engineering Sciences}, vol.~1, no.~1, 2014.
+
+\bibitem{gao_2017}
+X.~Gao, W.~Jakob, M.~Tarini, and D.~Panozzo, ``{Robust Hex-Dominant Mesh
+  Generation Using Field-Guided Polyhedral Agglomeration},'' {\em ACM
+  Transactions on Graphics}, vol.~36, no.~4, pp.~1--13, 2017.
+
+\bibitem{lobos_2015}
+C.~Lobos and E.~Gonz\'{a}lez, ``{Mixed-element Octree: A Meshing Technique
+  Toward Fast and Real-Time Simulations in Biomedical Applications},'' {\em
+  International Journal for Numerical Methods in Biomedical Engineering},
+  vol.~31, no.~12, 2015.
+
+\bibitem{lohner_1997}
+R.~L\:{o}hner, ``{Automatic Unstructured Grid Generators},'' {\em Finite
+  Elements in Analysis and Design}, vol.~25, no.~1-2, pp.~111--134, 1997.
+
+\bibitem{jin_1993}
+H.~Jin and R.~I. Tanner, ``{Generation of Unstructured Tetrahedral Meshes by
+  Advancing Front Technique},'' {\em International Journal for Numerical
+  Methods in Engineering}, vol.~36, no.~11, pp.~1805--1823, 1993.
+
+\bibitem{lohner_1988}
+R.~L\:{o}hner and P.~Parikh, ``{Generation of Three-Dimensional Unstructured
+  Grids by the Advancing-Front Method},'' {\em International Journal for
+  Numerical Methods in Fluids}, vol.~8, no.~10, pp.~1135--1149, 1988.
+
+\bibitem{tetgen}
+H.~Si, ``{TetGen, a Delaunay-Based Quality Tetrahedral Mesh Generator},'' {\em
+  ACM Transactions on Mathematical Software}, vol.~41, pp.~1--36, Apr 2015.
+
+\bibitem{hughes_2007}
+T.~J.~R. Hughes, {\em {The Finite Element Method: Linear Static and Dynamic
+  Finite Element Analysis}}.
+\newblock Dover publication, Inc, 2007.
+
+\bibitem{wang_2004}
+E.~Wang, T.~Nelson, and R.~Rauch, ``{Back to Elements - Tetrahedra vs.
+  Hexahedra},'' 2004.
+
+\bibitem{benzley_1995}
+S.~E. Benzley, E.~Perry, K.~Merkley, B.~Clark, and G.~Sjaardama, ``A comparison
+  of all hexagonal and all tetrahedral finite element meshes for elastic and
+  elasto-plastic analysis,'' in {\em In Proceedings, 4th International Meshing
+  Roundtable}, pp.~179--191, 1995.
+
+\bibitem{maas_2016}
+S.~A. Maas, B.~J. Ellis, D.~S. Rawlins, and J.~A. Weiss, ``Finite element
+  simulation of articular contact mechanics with quadratic tetrahedral
+  elements,'' {\em Journal of Biomechanics}, vol.~49, no.~5, p.~659–667,
+  2016.
+
+\bibitem{garimella_2014}
+R.~V. Garimella, J.~Kim, and M.~Berndt, ``Polyhedral mesh generation and
+  optimization for non-manifold domains,'' {\em Proceedings of the 22nd
+  International Meshing Roundtable}, p.~313–330, 2014.
+
+\bibitem{lee_2015}
+S.~Y. Lee, ``Polyhedral mesh generation and a treatise on concave geometrical
+  edges,'' {\em Procedia Engineering}, vol.~124, p.~174–186, 2015.
+
+\bibitem{ebeida_2011}
+M.~S. Ebeida and S.~A. Mitchell, ``Uniform random voronoi meshes,'' {\em
+  Proceedings of the 20th International Meshing Roundtable}, p.~273–290,
+  2011.
+
+\bibitem{mitchell_2015}
+S.~A. Mitchell, A.~H. Mahmoud, A.~A. Rushdi, A.~A. Abdelrazak, C.~L. Bajaj,
+  J.~D. Owens, and M.~S. Ebeida, ``{VoroCrust: Simultaneous Surface
+  Reconstruction and Volume Meshing with Voronoi Cells},'' {\em Polytopal
+  Element Methods in Mathematics and Engineering Atlanta, Georgia}, 2015.
+
+\bibitem{rashid_2013}
+M.~Rashid, ``{Polyhedral FEM: Computational Geometry Aspects},'' {\em 13th U.S.
+  National Congress on Computational Mechanics}, 2013.
+
+\bibitem{abaqus}
+M.~Smith, {\em ABAQUS/Standard User's Manual, Version 6.9}.
+\newblock Simulia, 2009.
+
+\bibitem{shab}
+O.~Hafez and M.~Rashid, ``{Shabaka: Image-Based Mesh Generation},'' {\em
+  GitHub}.
+\newblock \url{https://github.com/omhafez/shabaka}.
 
 \bibitem{meshlab}
 P.~Cignoni, M.~Callieri, M.~Corsini, M.~Dellepiane, F.~Ganovelli, and
@@ -318,10 +522,6 @@ C.~Geuzaine and J.-F. Remacle, ``{Gmsh: A 3-D finite element mesh generator
 \bibitem{brew}
 ``{Homebrew: The Missing Package Manager for MacOS},''
 \newblock \url{https://brew.sh/}.
-
-\bibitem{tetgen}
-H.~Si, ``{TetGen, a Delaunay-Based Quality Tetrahedral Mesh Generator},'' {\em
-  ACM Transactions on Mathematical Software}, vol.~41, pp.~1--36, Apr 2015.
 
 \bibitem{paraview}
 U.~Ayachit, {\em The ParaView Guide: A Parallel Visualization Application}.

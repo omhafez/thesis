@@ -1,9 +1,7 @@
 \chapter{Image-Based Meshing}
 \label{chap:3}
 
-\begin{comment}
-
-\textit{Image-based meshing} is the process of generating explicitly defined volume meshes from imaging data for the purposes of visualization or scientific computing. The discussion will focus on generating meshes specifically from segmented image data. The term \textit{explicit} refers to defining the mesh in terms of vertex coordinates, polytopes, and the connectivity of those polytopes, as opposed to an \textit{implicit} definition in which the surface is defined as the zero-set of a 4D \textit{indicator function}. The image-based meshing process is typically separated into two major steps - 1) \textit{surface generation} and 2) \textit{CAD-based mesh generation}. Surface generation (also known as \textit{surface extraction}) is a matter of generating a watertight, manifold, polygonized surface mesh or computer-aided design (CAD) model from an image mask. CAD-based mesh generation is the task of generating a volume discretization based on the enclosing polygonized surface.
+\textit{Image-based meshing} is the process of generating explicitly defined volume meshes from imaging data for the purposes of visualization or scientific computing. The discussion will focus on generating meshes specifically from segmented image data. The term \textit{explicit} refers to defining the mesh in terms of vertex coordinates, polytopes, and the connectivity of those polytopes, as opposed to an \textit{implicit} definition in which the surface is defined as the zero-set of a 4D \textit{indicator function}. The image-based meshing process is typically separated into two major steps - 1) \textit{surface generation} and 2) \textit{CAD-based mesh generation}. Surface generation (also known as \textit{surface extraction}) is a matter of generating a watertight, manifold, polygonized surface mesh or computer-aided design (CAD) model from an image mask. CAD-based mesh generation is the task of generating a volume discretization based on the enclosing polygonized surface. In the spirit of seeking an automated workflow, user interaction is sought to be limited to specifying a target mesh density, and possibly spatial variation.
 
 Surface meshes may also be referred to as \textit{boundary representations (b-reps)}. The term \textit{b-rep} can be used more generally though to refer to any type of surface representation, including \textit{non-uniform rational basis splines (NURBS)}, which is not typically the end goal of surface generation. \textit{Watertight} is the property of a surface mesh being closed - namely, if the surface were filled with water, none of it would leak out. \textit{Manifold} refers to the property of a surface being mappable to a two-dimensional plane. A non-manifold surface in practice amounts to the unintentional existence or absence of surface polytopes and/or their connectivities. It is noted that multi-material interfaces result in non-manifold surfaces at junctions of three or more materials, but the requirement that hanging nodes and self-intersecting faces are not allowed still exists in those cases.
 
@@ -386,21 +384,32 @@ Once again, the raw data may be stored in ASCII or binary format. ASCII format f
 
 \section{Mesh Generation}
 %
-refer back to simpleware paper again
-linear tets are bad
+Provided an appropriate surface mesh, CAD-based meshing techniques seek to automatically generate an unstructured discretization of the enclosed volume. Under rare circumstances the topology of the object of interest may allow for a \textit{structured} mesh, in which there is a predictable repeated connectivity among neighboring elements, but to accommodate a surface of arbitrary form an \textit{unstructured} mesh is necessary. The challenge in automated meshing is to maximize the the element shape quality while minimizing computational cost or human intervention~\cite{blacker_2001}. The discussion will focus on generating meshes for simulations using the finite element method and its variants. For conventional finite element approaches, topological restrictions on the mesh elements make hexahedral and tetrahedral topologies the most popular choices. These approaches have had some success, but not without serious drawbacks. Polyhedral meshing is considered as an alternative, which would be used in conjunction with polyhedral finite element methods. Established meshing techniques are summarized, together with a demonstration of the advantages of the polyhedral approach.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Hexahedral and Hex-Dominant Meshing}
-\label{Hexahedral and Hex-Dominant Meshing}
+\subsection{Hexahedral Meshing}
+\label{Hexahedral Meshing}
+
+In general, hexahedral discretizations produce the most accurate solutions and more computationally efficient than its alternatives in finite element simulations~\cite{tautges_2001}, and thus hex elements are the preferred element of choice. To date, though, no algorithm exists that can perform automatic hexahedral meshing of surfaces having arbitrary geometry and topology. The difficulty lies in the strict nodal connectivity requirements that constrain the hex mesh structure to consist of either stacks of elements or closed loops~\cite{young_2008}. 
+
+Among the most popular classes of hexahedral meshing techniques are: \textit{primitives}, \textit{overlay grid}, and \textit{automated decomposition}~\cite{blacker_2001}. \textit{Primitives} typically involve producing a 2D unstructured quad mesh of a cross section, followed by \textit{sweeping} the constant topology cross section. This approach of course is limited to topologies involving a swept cross-section.\textit{Overlay grids} produce a structured background grid, and cut elements and/or modify vertices so that the hex elements conform to the original surface. This approach can lead to elements near the surface of potentially very poor quality, however. \textit{Automated decomposition} techniques attempt to decompose the volume into separate parts, usually in the form of primitive shapes or swept volumes. These approaches suffer from difficulty in matching meshes at part interfaces and requiring potentially significant de-featuring of the surface.
+
+Hexahedral meshing algorithms typically only apply to a limited set of geometries. In practice, human intervention is necessary to decompose the geometry according to the algorithms available, adjust the geometry as needed to accommodate those algorithms, and - much like image segmentation - potentially select between a suite tools to be employed as needed~\cite{blacker_2001}. These manual efforts can become impracticably time consuming or even impossible for surfaces of biological tissues, and thus hexahedral meshes tend to lose out to tetrahedral meshes for biomechanics applications.
+
+Mixed element approaches attempt to alleviate the difficulty of producing fully hexahedral meshes by only requiring the mesh to be \textit{hex dominant}. Namely, the majority of elements are hexahedra, tetrahedra exist where a hexahedral mesh is intractable, and pyramid elements are required in the transitional layers. These techniques tend to either: be \textit{indirect} in that their focus is on converting an already existing tetrahedral mesh to a hex-dominant mesh by combining hexahedral elements~\cite{baudouin_2014, gao_2017}; attempt to honor the surface with tetrahedral elements together with an octree hexahedral representation in the interior of the volume~\cite{young_2008, lobos_2015}; or exhibit tetrahedral elements toward the interior of the volume where frontal approaches of purely hex meshes fail~\cite{blacker_2001}. These approaches have shown promise in meshing arbitrary domains, but little work has been done in evaluating the accuracy and performance of such approaches in a finite element setting in comparison to fully hex or fully tet meshes~\cite{tautges_2001}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Tetrahedral Meshing}
 \label{Tetrahedral Meshing}
-simpleware paper --> AF and DR
 
-\begin{figure}[ht]
+The two most widely adopted approaches for automated unstructured tetrahedral mesh generation are \textit{advancing front} and \textit{Delaunay tetrahedralization}~\cite{lohner_1997}. In advancing front techniques~\cite{jin_1993, lohner_1988}, elements are inserted one at a time, starting from the initial triangular surface mesh and working toward the interior of the enclosed volume. Care must be taken to avoid poor element quality when the front collides from different directions. The success of the approach depends on the initial quality and size of the triangular surface mesh, which can be remedied by surface remeshing/decimation.
+
+Delaunay tetrahedralization is the dual of the previously described \textit{Voronoi diagram}. Namely, the Voronoi sites form the vertices of the Delaunay tetrahedralization, whose edges perpendicularly pass through the coresponding Voronoi facets. The set of tetrahedra satisfy the property that no other vertex is contained within the circumsphere formed by the vertices of each tetrahedron. The Delaunay tetrahedralization is typically constructed incrementally. A tetrahedralization is carried out on an initial point distribution. Additional points are introduced and tetrahedra encompassing the new point are removed. The void created by the deletion of these tetrahedra is then remeshed~\cite{young_2008}. The specification of the initial point distribution and subsequent insertion of points is dictates the resulting quality of the mesh elements. Constraining the Delaunay tetrahedralization to adhere to the input surface can also severely affect element quality and even produce sliver elements~\cite{lohner_1997}.
+
+A Delaunay meshing implementation from \textit{Tetgen}~\cite{tetgen} is utilized to interact with the Shabaka code to generate high quality tetrahedral meshes of linear or quadratic order. The Tetgen code is constrained to honor the surface mesh generated by Shabaka exactly. A tetrahedral mesh of only the ventricles of the \textit{ex vivo} heart example is shown in \figref{tetmesh}.
+\begin{figure}[htbp!]
 \centering
 \subfigure[]{%
 		\includegraphics[scale=0.14]{media/4-cardioid/0-ventriclesurf.png}
@@ -409,7 +418,7 @@ simpleware paper --> AF and DR
 		\includegraphics[scale=0.14]{media/4-cardioid/1-tet.png}
 \label{fig:tet2}}
 %
-\caption{Bi-ventricular mesh: (a) surface mesh, and (b) clipped view of quadratic tetrahedral mesh used in Cardioid simulations}
+\caption{Bi-ventricular mesh of \textit{ex vivo} human heart: (a) surface mesh, and (b) clipped view of quadratic tetrahedral mesh used in simulations}
 \label{fig:tetmesh}
 \end{figure}
 
@@ -418,7 +427,12 @@ simpleware paper --> AF and DR
 \subsection{Polyhedral Meshing}
 \label{Polyhedral Meshing}
 
-\begin{figure}[ht]
+Although hexahedral meshes are generally preferred for conventional finite element approaches, to date there are no techniques available that offer a robust automatic pipeline to generate hex meshes. Thus, tetrahedral mesh generation tools are typically the de facto choice for image-based meshing. Linear tet elements can only represent a constant strain, however, leading to inaccurate solution approximation unless impractically fine meshes are used. Genearlly speaking, linear tets are not to be used for solid mechanics problems involving near-incompressibility~\cite{hughes_2007}, tension, torsion, bending~\cite{wang_2004, benzley_1995}, or contact~\cite{maas_2016}. Quadratic tets, on the other hand, produce much more accurate results are generally the most popular element choice for biological applications. For problems involving complex geometries and/or requiring high fidelity solutions, the resulting problem size for quadratic tet meshes can be problematic. Polyhedral meshes, in conjunction with polyhedral finite element methods, attempt to compete with the robustness of tetrahedral meshes and the resulting accuracy and computational efficiency that result from hexahedral meshes.
+
+Polyhedral meshing approaches tend to fall under two categories: those that seek to produce a Voronoi partition of the domain, and those that seek a hex-dominant mesh. Meshing techniques that seek to generate Voronoi partitions~\cite{garimella_2014, lee_2015} enjoy the advantage of exclusively convex elements with desirable aspect ratio. However, this comes at the price of needing to remesh the surface, which re-opens the conversation regarding feature-preservation. Indeed, Ebeida \textit{et al.}~\cite{ebeida_2011, mitchell_2015} for example, strategically sample the input surface mesh before reconstructing it. Special care must be taken to sample regions of high curvature and sharp corners, and are not well preserved for some of the examples shown in their work. Additionally, for more general CAD-based meshing applications, even if all features honored exactly, it may still be desirable to the preserve the input surface mesh without modification when creating a volume mesh, for the purposes of applying boundary conditions or mating adjacent parts.
+
+Hex-dominant polyhedral meshing ``sculpts'' a background hex mesh with the input b-rep, producing hexahedra on the interior and arbitrary polyhedral shapes near the surface (see ~\figref{cel5} and~\figref{zoom}. These arbitrary polyhedra must be accommodated by an element formulation that deviates from the conventional FEM approach, to be discussed in~\chapref{4}.
+\begin{figure}[htbp!]
 \centering
 \subfigure[]{%
 		\includegraphics[scale=0.18]{media/3-celeris/1-brep.png}
@@ -435,12 +449,10 @@ simpleware paper --> AF and DR
 \subfigure[]{%
 		\includegraphics[scale=0.18]{media/3-celeris/5-color.png}
 \label{fig:cel5}}			
-
 \caption{Generation of polyhedral mesh: (a) input surface mesh, (b) bounding hex mesh,  (c) resulting polyhedral mesh, (d) clipped mesh, and (e) highlight of elements with cuboidal vs. general polyhedral shape.}
 \label{fig:cel}
 \end{figure}
-
-\begin{figure}[ht]
+\begin{figure}[htbp!]
 \centering
 \subfigure[]{%
 		\includegraphics[scale=0.125]{media/3-celeris/zoom/zoom1.png}
@@ -460,12 +472,37 @@ simpleware paper --> AF and DR
 \subfigure[]{%
 		\includegraphics[scale=0.125]{media/3-celeris/zoom/zoom6.png}
 \label{fig:zoom6}}	
-
 \caption{Three example arbitrary polyhedral elements presented at different angles}
 \label{fig:zoom}
 \end{figure}
 
-\begin{figure}[ht]
+This scuplting approach must handle geometric near-degeneracies in a robust way. An implementation of such an approach in the polyhedral FEM software ~\cite{Celeris} is used to generate polyhedral meshes from surfaces generated by Shabaka~\cite{rashid_2013}.
+DESCRIPTION OF RASHID APPROACH
+
+As it pertains to image-based modeling and simulation, the greatest benefit that polyhedral approaches offer is a separation between the \textit{simulation resolution} and the \textit{geometric resolution}. More detail will come in ~\chapref{4} regarding the polyhedral element formulation, but for this discussion the key is that nodal degrees of freedom are only defined at the points of the background mesh, independent of the input b-rep. Thus, one can simultaneously retain a high fidelity description of a surface while only running a simulation to the simulation resolution that is required. For the other meshing approaches described in this chapter, the volume mesh resolution is implicitly constrained by the input surface mesh resolution. For complex geometries found in biological tissues, the surface mesh resolution is almost always sacrificed to avoid a problematic number of degrees of freedom in the subsequent finite element solution.
+
+Given a bi-ventricular surface mesh of the \textit{ex vivo} human heart example generated by Shabaka, volume meshes are compared between linear polyhedral elements and quadratic tetrahedral elements (it will be shown in ~\chapref{4} that linear polyhedral elements behave and perform like linear hexahedra, and are sufficient for generating accurate solutions). The sculpt routine in Celeris, Delaunay tetrahedralization routine in Tetgen, and advancing front routine in Simpleware were applied to the same surface mesh resolution with 50k points, and the same desired maximum element volume of 2 $mm^3$. Indeed, ~\figref{comp} shows that the polyhedral approach reduces the system size by a factor of 2 or more. The reduction in system size stems first from the fact that the polyhedral elements are lower order compared to the tetrahedral elements, and second from not requiring an unnecessarily large number of nodes and elements near the surface to accommodate the large number of surface points. It should be emphasized that even at this surface resolution, a noticeable degree of geometric features are sacrificed. The greater the importance of geometric fidelity, the greater the value the polyhedral approach offers.
+
+\begin{figure}[ht!]
+\centering
+		\includegraphics[scale=0.2]{media/comparison.png}
+%\subfigure[]{%
+%		\includegraphics[scale=0.15]{media/3-celeris/8-celeris.png}
+%\label{fig:comp-1}}		
+%\subfigure[]{%
+%		\includegraphics[scale=0.15]{media/3-celeris/9-cardioid.png}		
+%\label{fig:comp-2}}	
+%\subfigure[]{%
+%		\includegraphics[scale=0.15]{media/3-celeris/10-simpleware.png}
+%\label{fig:comp-3}}				
+%
+\caption{Comparison of meshes between: linear polyhedral mesh from Celeris, quadratic tetrahedral mesh from Tetgen, and quadratic tetrahedral mesh from Simpleware. Note Simpleware focuses on generating high quality elements, hence the larger number of DOF compared to Tetgen.}
+\label{fig:comp}
+\end{figure}
+
+The entire workflow from image to image mask to b-rep to polyhedral mesh is demonstrated in ~\figref{celsuite} for \textit{ex vivo} canine and human hearts from the CardioVascular Research Grid~\cite{cvgg}.
+
+\begin{figure}[htbp!]
 \centering
 \includegraphics[width=1.0\textwidth]{media/3-celeris/7-suite.png}
 \caption{Suite of polyhedral finite element meshes generated from image data \vspace{1cm}}
@@ -476,13 +513,11 @@ simpleware paper --> AF and DR
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{File Formats}
 \label{File Formats-MESH}
-mesh
-
-\end{comment}
+File formats for volume meshes follow the same paradigm as for point clouds and surface meshes. Namely, spatial coordinates of points are listed, followed by a list of elements, defined based on connectivities of those points. The tetrahedral meshes generated by Shabaka are stored in VTK format or Abaqus~\cite{abaqus} INP format. Polyhedral meshes are stored in a similar manner, but each element additionally requires a listing of facet data to accommodate arbitrary polyhedral topology. For the purposes of running simulations, additional information may be included with the mesh, such as surface or point sets for the purposes of assigning boundary conditions.
 
 \section{Shabaka: A Free Image-Based Meshing Tool}
 
-The image-based meshing steps described in this chapter are assembled to form a novel image-based meshing tool \textit{Shabaka}~\cite{shab}, available on GitHub at~\url{github.com/omhafez/shabaka}. A screenshot is provided in~\figref{github}.
+The image-based meshing steps described in this chapter are assembled to form a novel image-based meshing tool \textit{Shabaka}~\cite{shab}, available on GitHub at~\url{github.com/omhafez/shabaka}. A screenshot of the repository on GitHub is shown in~\figref{github}.
 \begin{figure}[ht!]
 \centering
 \vspace{2.5mm}
@@ -490,22 +525,22 @@ The image-based meshing steps described in this chapter are assembled to form a 
 \caption{Screenshot of Github repo}
 \label{fig:github}
 \end{figure}
-Simple instructions are available to install the code on Linux, Mac, or Windows in about 15 minutes. A build script compiles the code and downloads library dependencies including: \textit{nrrd}~\cite{nrrd} for I/O of NRRD format image masks, \textit{NLopt}~\cite{nlo} for nonlinear optimization, \textit{Qhull}~\cite{barber_1996} for Voronoi partitioning, \textit{ACVD}~\cite{valette_2004} for surface decimation, and \textit{Meshlab}~\cite{meshlab} and \textit{Gmsh}~\cite{geuzaine_2009} for miscellaneous mesh tasks. Libraries are gathered from the standard APT package manager on Ubuntu and from \textit{Homebrew}~\cite{brew} on Mac. The Windows installation makes use the \textit{Windows Subsystem for Linux (WSL)}, so installation is treated in the same manner as for Ubuntu. Simple unit tests are made available to verify a successful installation and the utility of the different components of the code.
+Simple instructions are available to install the code on Linux, Mac, or Windows in about 15 minutes. A build script compiles the code and downloads library dependencies including: \textit{NRRD}~\cite{nrrd} for image mask I/O, \textit{NLopt}~\cite{nlo} for nonlinear optimization, \textit{Qhull}~\cite{barber_1996} for Voronoi partitioning, \textit{ACVD}~\cite{valette_2004} for surface decimation, and \textit{Meshlab}~\cite{meshlab} and \textit{Gmsh}~\cite{geuzaine_2009} for miscellaneous mesh tasks. Libraries are gathered from the standard APT package manager on Ubuntu and from \textit{Homebrew}~\cite{brew} on Mac. The Windows installation makes use the \textit{Windows Subsystem for Linux (WSL)}, so installation is treated in the same manner as for Ubuntu. Simple unit tests are made available to verify a successful installation and the utility of various components of the code.
 
 Additional free software packages are included in the build to provide an end-to-end image-based meshing pipeline. Namely, \textit{Seg3D}~\cite{Seg3D} is included for image processing and image segmentation functionality, \textit{Tetgen}~\cite{tetgen} for tetrahedral meshing, and \textit{ParaView}~\cite{paraview} for visualization. Following a full installation of the code, the user can: process and segment a medical image in Seg3D to produce an image mask, produce a high quality surface mesh with Shabaka, produce a tetrahedral mesh in VTK or Abaqus INP format using Tetgen, and visualize the resulting mesh in ParaView. Documentation on how to efficiently segment images in Seg3D has been written and included in the GitHub repo, along with essential publications related to steps in the workflow. The tool is catered toward users of simulation, rapid prototyping, or visualization software. No prior knowledge or understanding of image segmentation, mesh generation, or UNIX is required.
 
-The core code for Shabaka is written in C++ and Fortran, with Python driver scripts to facilitate interaction between different portions of the code and with external packages. After processing command-line inputs, the code reads the image mask in NRRD format. If it does not exhibit isotropic voxel spacing, it will automatically resample the image so as to enforce that. The point cloud generation task is easily parallelized since the interface approximation for each window is independent of one another. The oriented point cloud is exported in PLY format. Voronoi site locations are generated and are used as input to the Qhull call to generate a Voronoi partition. The surface mesh is extracted from the Qhull output, and is subsequently cleaned. The resulting surface is decimated and exported in PLY and STL formats.
+The core code for Shabaka is written in C++ and Fortran, along with Python driver scripts to facilitate the interaction between different portions of the code and with external packages. After processing command-line inputs, the code reads the input image mask in NRRD format. The code automatically resamples segmented images that do not exhibit isotropic voxel spacing, so that the point cloud generation step may assume every input image mask has equal spacing in all three directions. The point cloud generation step is easily parallelized since interfaces are approximated for each window independently of one another. The final oriented point cloud is exported in PLY format. Voronoi site locations are generated and are used to call Qhull to generate a Voronoi partition. The surface mesh is extracted from the Qhull output, and is subsequently cleaned and decimated. The final surface is exported in both PLY and STL formats.
 
-The code has a simple command-line interface in a UNIX environment that offers a number of command-line options. Some of the options include the ability to specify a desired mesh resolution, and whether to use Tetgen to produce a linear or quadratic tetrahedral mesh from the output surface from Shabaka. The option is also available to call the Meshlab implementation of screened Poisson surface reconstruction as an alternative to the default Voronoi-based surface reconstruction technique. Resulting surface meshes from screened Poisson surface reconstruction tend to be over-smoothed compared to those from the Voronoi-based approach, but the implementation in Meshlab performs impressively fast, and tends to be more robust for particularly challenging surfaces where in rare cases the Voronoi approach fails to produce a closed, manifold surface.
+The code has a simple command-line interface in a UNIX environment that offers a number of command-line options. Some of the options include the ability to specify a desired mesh resolution, and whether to automatically call Tetgen to produce a tetrahedral mesh from the surface generated from Shabaka. The option is also available to call the Meshlab implementation of screened Poisson surface reconstruction as an alternative to the default Voronoi-based surface reconstruction technique. Resulting surface meshes from screened Poisson surface reconstruction tend to be over-smoothed compared to those from the Voronoi-based approach, but the implementation in Meshlab performs impressively fast, and tends to be more robust for particularly challenging surfaces, where in rare cases Voronoi approach fails to produce a closed, manifold surface.
 
-Shabaka can mesh multiple disjoint objects within a single image, but is currently limited to meshing binary image masks. Each disjoint surface is watertight and manifold, and no manual correction of the mesh is required. It may be used as input to any software that accepts a surface mesh as input. As it pertains to the focus of this discussion, the surface mesh is inserted into a mesh generation tool, be it Tetgen to produce a tetrahedral mesh, or Celeris to produce a polyhedral one. The surface generation step typically takes less than 5 minutes for realistic input image masks using a 2.4 GHz Intel Core i7 processor with 16 GB RAM. In all, if the user has an image mask readily available, he or she can install Shabaka and generate a high quality surface mesh and subsequent volume mesh in less than half an hour on a typical laptop.
+Shabaka is currently limited to meshing binary image masks. It can mesh multiple disjoint objects in a single image, but cannot currently produce meshes from multi-label masks. Each surface is watertight and manifold, and no manual correction of the mesh is required. A surface produced from Shabaka may be used as input to any software that accepts a surface mesh as input. As it pertains to the focus of this discussion, the surface mesh is inserted into a mesh generation tool, be it Tetgen for creating a tetrahedral mesh, or Celeris for creating a polyhedral one. The surface generation step typically takes less than 5 minutes for realistic input image masks using a 2.4 GHz Intel Core i7 processor with 16 GB of RAM. In all, if the user has an image mask readily available, he or she can install Shabaka and generate a high quality surface mesh and subsequent volume mesh in less than half an hour on a typical laptop.
 
-Shabaka has been rigorously tested against a wide variety of input images. Image masks tested included those of the heart, brain, lungs, liver, skull, pelvis, vertebra, femur, and portions of the knee joint (see \figref{showcase}.
+Shabaka has been rigorously tested against a wide variety of input images. Image masks have been meshed for the heart, brain, lungs, liver, skull, pelvis, vertebra, femur, and portions of the knee joint (see \figref{showcase}).
 
 \begin{figure}[ht!]
 \centering
 \vspace{2.5mm}
 \includegraphics[width=1.0\textwidth]{media/2-shabaka/2-surf/6-showcase.png}
-\caption{Suite of example surfaces generated from image data.}
+\caption{Suite of example surfaces generated from image data}
 \label{fig:showcase}
 \end{figure}
