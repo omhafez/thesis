@@ -463,29 +463,29 @@ E.~Wang, T.~Nelson, and R.~Rauch, ``{Back to Elements - Tetrahedra vs.
   Hexahedra},'' 2004.
 
 \bibitem{benzley_1995}
-S.~E. Benzley, E.~Perry, K.~Merkley, B.~Clark, and G.~Sjaardama, ``A comparison
-  of all hexagonal and all tetrahedral finite element meshes for elastic and
-  elasto-plastic analysis,'' in {\em In Proceedings, 4th International Meshing
-  Roundtable}, pp.~179--191, 1995.
+S.~E. Benzley, E.~Perry, K.~Merkley, B.~Clark, and G.~Sjaardama, ``{A
+  Comparison of All Hexagonal and All Tetrahedral Finite Element Meshes for
+  Elastic and Elasto-Plastic Analysis},'' in {\em In Proceedings, 4th
+  International Meshing Roundtable}, pp.~179--191, 1995.
 
 \bibitem{maas_2016}
-S.~A. Maas, B.~J. Ellis, D.~S. Rawlins, and J.~A. Weiss, ``Finite element
-  simulation of articular contact mechanics with quadratic tetrahedral
-  elements,'' {\em Journal of Biomechanics}, vol.~49, no.~5, p.~659–667,
+S.~A. Maas, B.~J. Ellis, D.~S. Rawlins, and J.~A. Weiss, ``{Finite Element
+  Simulation of Articular Contact Mechanics with Quadratic Tetrahedral
+  Elements},'' {\em Journal of Biomechanics}, vol.~49, no.~5, pp.~659--667,
   2016.
 
 \bibitem{garimella_2014}
-R.~V. Garimella, J.~Kim, and M.~Berndt, ``Polyhedral mesh generation and
-  optimization for non-manifold domains,'' {\em Proceedings of the 22nd
-  International Meshing Roundtable}, p.~313–330, 2014.
+R.~V. Garimella, J.~Kim, and M.~Berndt, ``{Polyhedral Mesh Generation and
+  Optimization for Non-manifold Domains},'' {\em Proceedings of the 22nd
+  International Meshing Roundtable}, pp.~313--330, 2014.
 
 \bibitem{lee_2015}
-S.~Y. Lee, ``Polyhedral mesh generation and a treatise on concave geometrical
-  edges,'' {\em Procedia Engineering}, vol.~124, p.~174–186, 2015.
+S.~Y. Lee, ``{Polyhedral Mesh Generation and A Treatise on Concave Geometrical
+  Edges},'' {\em Procedia Engineering}, vol.~124, pp.~174--186, 2015.
 
 \bibitem{ebeida_2011}
-M.~S. Ebeida and S.~A. Mitchell, ``Uniform random voronoi meshes,'' {\em
-  Proceedings of the 20th International Meshing Roundtable}, p.~273–290,
+M.~S. Ebeida and S.~A. Mitchell, ``{Uniform Random Voronoi Meshes},'' {\em
+  Proceedings of the 20th International Meshing Roundtable}, pp.~273--290,
   2011.
 
 \bibitem{mitchell_2015}

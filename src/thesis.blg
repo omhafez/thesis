@@ -10,7 +10,6 @@ A level-1 auxiliary file: chap5-application-cardiac-mechanics.aux
 A level-1 auxiliary file: chap6-future-work.aux
 A level-1 auxiliary file: chap7-conclusions.aux
 Database file #1: references.bib
-Warning--I didn't find a database entry for "Celeris"
 Warning--empty year in idrus_2017
 Warning--empty author in committee
 Warning--empty journal in committee
@@ -47,43 +46,43 @@ Warning--empty journal in brew
 Warning--empty year in brew
 You've used 104 entries,
             1876 wiz_defined-function locations,
-            1022 strings with 21968 characters,
-and the built_in function-call counts, 26892 in all, are:
-= -- 2612
+            1020 strings with 21956 characters,
+and the built_in function-call counts, 26768 in all, are:
+= -- 2584
 > -- 1069
 < -- 0
 + -- 402
 - -- 298
-* -- 1934
-:= -- 3774
+* -- 1962
+:= -- 3786
 add.period$ -- 121
 call.type$ -- 104
 change.case$ -- 93
 chr.to.int$ -- 0
 cite$ -- 138
-duplicate$ -- 1447
-empty$ -- 2518
+duplicate$ -- 1407
+empty$ -- 2530
 format.name$ -- 298
-if$ -- 6651
+if$ -- 6599
 int.to.chr$ -- 0
 int.to.str$ -- 104
 missing$ -- 111
 newline$ -- 341
 num.names$ -- 98
-pop$ -- 312
+pop$ -- 308
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 961
+skip$ -- 905
 stack$ -- 0
-substring$ -- 1548
-swap$ -- 606
+substring$ -- 1588
+swap$ -- 566
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 34
-while$ -- 205
+while$ -- 209
 width$ -- 107
 write$ -- 1005
-(There were 35 warnings)
+(There were 34 warnings)
