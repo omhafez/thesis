@@ -10,7 +10,6 @@ A level-1 auxiliary file: chap5-application-cardiac-mechanics.aux
 A level-1 auxiliary file: chap6-future-work.aux
 A level-1 auxiliary file: chap7-conclusions.aux
 Database file #1: references.bib
-Warning--I didn't find a database entry for "schmid"
 Warning--empty year in idrus_2017
 Warning--empty author in committee
 Warning--empty journal in committee
@@ -48,45 +47,45 @@ Warning--empty year in brew
 Warning--empty author in guccione_2005
 Warning--empty journal in guccione_2005
 Warning--empty year in guccione_2005
-You've used 115 entries,
+You've used 116 entries,
             1876 wiz_defined-function locations,
-            1072 strings with 24097 characters,
-and the built_in function-call counts, 29673 in all, are:
-= -- 2849
-> -- 1215
+            1075 strings with 24529 characters,
+and the built_in function-call counts, 29939 in all, are:
+= -- 2861
+> -- 1250
 < -- 0
-+ -- 455
-- -- 340
-* -- 2184
-:= -- 4206
-add.period$ -- 134
-call.type$ -- 115
-change.case$ -- 101
++ -- 467
+- -- 351
+* -- 2212
+:= -- 4258
+add.period$ -- 135
+call.type$ -- 116
+change.case$ -- 102
 chr.to.int$ -- 0
-cite$ -- 152
-duplicate$ -- 1549
-empty$ -- 2795
-format.name$ -- 340
-if$ -- 7307
+cite$ -- 153
+duplicate$ -- 1558
+empty$ -- 2812
+format.name$ -- 351
+if$ -- 7360
 int.to.chr$ -- 0
-int.to.str$ -- 115
-missing$ -- 125
-newline$ -- 377
-num.names$ -- 108
-pop$ -- 344
+int.to.str$ -- 116
+missing$ -- 126
+newline$ -- 380
+num.names$ -- 109
+pop$ -- 348
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 997
+skip$ -- 998
 stack$ -- 0
 substring$ -- 1748
-swap$ -- 622
+swap$ -- 623
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 37
-while$ -- 231
-width$ -- 118
-write$ -- 1108
-(There were 38 warnings)
+while$ -- 232
+width$ -- 119
+write$ -- 1116
+(There were 37 warnings)

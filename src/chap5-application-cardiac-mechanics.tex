@@ -3,7 +3,7 @@
 %
 With the image-based meshing workflow in~\chapref{3} and finite element tools in~\chapref{4} both fully established, the entire image-based modeling and simulation pipeline can now be demonstrated. The application area to be discussed is the mechanical behavior of a beating human heart. Cardiac mechanics is a good testbed for the image-based modeling and simulation workflow described because 1) the application only involves binary image masks, 2) the exact geometry does not grossly affect results since contact modeling is not required, and 3) the use of simulation in this field arguably has the potential to save and improve more lives than any other biomechanics application area.
 
-The primary function of the heart is to pump blood throughout the body, delivering nutrients and removing waste from each organ~\cite{holzapfel_2009}. The cyclic pumping arises from the interaction of its electrical and mechanical function. The heart consists of four chambers: the left ventricle (LV), right ventricle (RV), left atria (LA), and right atria (RA) (See~\figref{anatomy}). The thinner-walled atria act as blood reservoirs for the ventricles, which are responsible for the predominant pumping function. The entire heart is encompassed by a fibrous sac known as the pericardium, which resists rapid increases in cardiac size. Myocardial tissue consists of discrete muscle fiber bundles that exhibit orthotropic material behavior. Refer to Holzapfel \textit{et al.} and Hunter~\cite{schmid} for a more detailed description of the macro and microstructural properties of the heart.
+The primary function of the heart is to pump blood throughout the body, delivering nutrients and removing waste from each organ~\cite{holzapfel_2009}. The cyclic pumping arises from the interaction of its electrical and mechanical function. The heart consists of four chambers: the left ventricle (LV), right ventricle (RV), left atria (LA), and right atria (RA) (See~\figref{anatomy}). The thinner-walled atria act as blood reservoirs for the ventricles, which are responsible for the predominant pumping function. The entire heart is encompassed by a fibrous sac known as the pericardium, which resists rapid increases in cardiac size. Myocardial tissue consists of discrete muscle fiber bundles that exhibit orthotropic material behavior. Refer to Holzapfel \textit{et al.} and Hunter~\cite{holzapfel_2009} for a more detailed description of the macro and microstructural properties of the heart.
 
 \begin{figure}[htbp!]
 \centering
@@ -18,40 +18,51 @@ Cardiac mechanics is one of the most mature fields in computational biomechanics
 
 Gurev \textit{et al.}~\cite{gurev_2015} performed mechanical simulations on a quadratic hex-dominant mixed element mesh of the human heart ventricles. The work from that group forms the basis for most of the cardiac mechanics explorations to be discussed in this chapter. The review article by Trayanova \textit{et al.}~\cite{trayanova_2011} provides an excellent summary of the components to ventricular electromechanical modeling utilized by the papers mentioned above.
 
-These essential components to computational cardiac mechanics are described in this chapter for an implementation using conventional finite elements, namely: mesh generation, material model characterization, muscle fiber orientation, boundary conditions, the solver. Simulation results are also presented. Finally, the details of implementing the same mechanics into the polyhedral code \textit{Celeris} are discussed, along with preliminary verification results.
+These essential components to computational cardiac mechanics are described in this chapter for an implementation using conventional finite elements. Simulation results are also presented. Finally, the details of implementing the same mechanics into the polyhedral code \textit{Celeris} are discussed, along with preliminary verification results.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
 \label{Methods}
 
-Description of Cardioid here
+The key features of a cardiac mechanics modeling implementation will be highlighted within the framework of \textit{Cardioid}~\cite{mirin_2012, gurev_2015}, a highly efficient and scalable code at Lawrence Livermore National Laboratory that utilizes high performance computing for modeling the electromechanics of cardiac arrhythmia.
+
+In Cardioid, quasi-static finite deformations are assumed, body forces are assumed negligible, and the stress measure of interest is the second Piola-Kirchoff stress $\bm{S}$. Thus, Equation PLACEHOLDER reduces to the following:
+\begin{equation}
+\frac{\partial}{\partial{X_j}}\left[F_{ik}S_{kj}\right] = 0
+\end{equation}
+
+In order to fully define and solve these equations, the following are specified: the mesh, material model characterization, muscle fiber orientation, solution-dependent pressure boundary conditions, and the finite element solver. Each consideration will be described in turn.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Mesh Generation}
 \label{Mesh Generation}
 
-Again quadratic tetrahedral elements are chosen as over linear elements to avoid volumetric locking and impracticably fine meshes to yield accurate results.
-
-Oomph
-Describe generation of segs and meshes: \\
-threshold \\
-level set \\
-connected components \\
-fill holes \\
-dilate-erode \\
-manual fine-tuning \\
-
-~\figref{tet2}
+A bi-ventricular mesh is generated using the procedure described in~\chapref{2} and \chapref{3}. Namely, an MRI of an \textit{ex vivo} human heart from the CardioVascular Research~\cite{cvgg} is segmented using the software Seg3D. A threshold segmentation is used as the initial seed to Seg3D's level set implementation. Additional tools to \textit{fill holes} or \textit{dilate-erode} are utilized before a final sweep of manual paintbrushing is employed. Following careful manual inspection, the final image mask is input to Shabaka to generate a high quality surface of the heart ventricles with a total of 50k points. Tetgen is invoked to produce a tetrahedral mesh that honors the input surface and attempts to produce high quality tetrahedra for the purposes of finite element simulations. A maximum element volume of 2 \textit{mm$^3$} was imposed. Again, quadratic tetrahedral elements are chosen over linear elements to avoid volumetric locking and/or impracticably fine meshes. The surface and mesh are shown in \figref{tetmesh} - the tetrahedral mesh has 374k elements and 595k nodes. This mesh is directly used in the Cardioid code for the purposes of finite element simulation, together with the material model and boundary conditions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Material Model}
 \label{Material Model}
 
+The cardiac tissue is assumed to exhibit an additive stress decomposition, such that $\bm{S} = \bm{S}_p + \bm{S}_a$ at any point in the model. The \textit{active stress} $\bm{S}_a$ represents the stress induced through active contraction of muscle fibers, and the \textit{passive stress} $\bm{S}_p$ the stress experienced by the underlying tissue matrix.
+
 \subsubsection{Passive Stress}
 \label{Passive Stress}
+
+The passive response of the cardiac tissue is characterized by an incompressible, transversely isotropic constitutive law by Usyk~\textit{et al.}~\cite{usyk_2002}. The strain energy density functional is given by:
+\begin{gather}
+W = \frac{C}{2}\left(e^Q -1\right) \\
+Q = b_{ff} E^2_{ff} + b_{ss} E^2_{ss} + b_{nn} E^2_{nn} + b_{fs}\left(E^2_{fs} + E^2_{sf}\right) + b_{fn}\left(E^2_{fn} + E^2_{nf}\right) + b_{ns}\left(E^2_{ns} + E^2_{sn}\right)
+\end{gather}
+where $\mathbf{E}$ is the Green-Lagrange strain tensor expressed in a local orthonormal coordinate system with axes parallel to the local fiber, sheet, and sheet-normal $(f,s,n)$ directions, and where $C$, $b_{ff}$, $b_{ss}$, $b_{nn}$, $b_{fs}$, $b_{fn}$, and $b_{ns}$ are material parameters.
+
+Incompressibility is fully enforced by solving for pressure unknowns as Lagrange multipliers in addition to nodal unknowns. The deviatoric and volumetric portions of the strain energy are separated within a framework enforcing full incompressibility. Rather than defining the passive stress as simply $\bm{S}_p = \frac{\partial W}{\partial \mathbf{E}}$, the passive stress becomes:
+\begin{equation}
+\bm{S}_p(C)= 2\frac{\partial{\tilde{W}(\tilde{C})}}{\partial{C}} - pJC^{-1}
+\end{equation}
+where $\tilde{W}(\tilde{C})$ is the deviatoric component of the strain energy functional, $J = \text{det}(F)$, and $\tilde{C} = J^{-2/3}C$. More details regarding the enforcement of incompressibility can be found in Gurev \textit{et al.}~\cite{gurev_2015}.
 
 \subsubsection{Active Stress}
 \label{Active Stress}
@@ -86,6 +97,11 @@ manual fine-tuning \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Solver}
 \label{Solver}
+Oomph
+iterative solver
+50 nodes, 16 processors per node for a total of 800 processes
+roughly one heartbeat per 24 hours
+using surface - figure out specs on that computer
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -129,6 +145,10 @@ manual fine-tuning \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Extension to Polyhedral Finite Elements}
 \label{Polyhedral Finite Elements}
+
+Near-incompressibility is enforced by an F-bar projection method, in which the deformation gradient is modified such that the dilatation at each integration point is replaced by an element-averaged value. The parameter $C_{compr}$ is a penalty parameter, such that the volumetric response of the material is significantly stiffer than the deviatoric response. It was found that a value of $C_{compr} \geq 200  C$ gives good results compared to those when enforcing full incompressibility through a mixed pressure-displacement formulation, without significantly making the system poorly conditioned. The value of $C_{compr}$ provided in Usyk and similar papers is actually not nearly large enough to produce results that are competitive with fully incompressible formulations.
+
+The passive material model has been implemented, and the computed stress and corresponding tangent modulus have been thoroughly verified for accurate and quickly converging solutions. The material model framework in Celeris only accepts material models based on strain rate and incremental rotation, which is addressed by storing the deformation gradient as a state variable that is updated and forward-rotated for each call to the constitutive update.
 
 \begin{figure}[ht]
 \centering
