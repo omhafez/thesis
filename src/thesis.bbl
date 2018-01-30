@@ -527,4 +527,61 @@ C.~Geuzaine and J.-F. Remacle, ``{Gmsh: A 3-D finite element mesh generator
 U.~Ayachit, {\em The ParaView Guide: A Parallel Visualization Application}.
 \newblock Kitware, 2015.
 
+\bibitem{holzapfel_2009}
+G.~A. Holzapfel and R.~W. Ogden, {\em Biomechanical Modelling at the Molecular,
+  Cellular and Tissue Levels}.
+\newblock Springer Vienna, 2009.
+
+\bibitem{katz_2015}
+A.~M. Katz, {\em {Physiology of the Heart}}.
+\newblock Wolters Kluwer Health, 2015.
+
+\bibitem{genet_2015}
+M.~Genet, L.~C. Lee, B.~Baillargeon, J.~M. Guccione, and E.~Kuhl, ``{Modeling
+  Pathologies of Diastolic and Systolic Heart Failure},'' {\em Annals of
+  Biomedical Engineering}, vol.~44, pp.~112--127, May 2015.
+
+\bibitem{mann_2015}
+D.~L. Mann, D.~P. Zipes, P.~Libby, R.~O. Bonow, and E.~Braunwald, {\em
+  {Braunwalds Heart Disease: A Textbook of Cardiovascular Medicine}}.
+\newblock Elsevier/Saunders, 2015.
+
+\bibitem{baillargeon_2014}
+B.~Baillargeon, N.~Rebelo, D.~D. Fox, R.~L. Taylor, and E.~Kuhl, ``{The Living
+  Heart Project: A Robust and Integrative Simulator for Human Heart
+  Function},'' {\em European Journal of Mechanics - A/Solids}, vol.~48,
+  pp.~38--47, 2014.
+
+\bibitem{augustin_2016}
+C.~M. Augustin, A.~Neic, M.~Liebmann, A.~J. Prassl, S.~A. Niederer, G.~Haase,
+  and G.~Plank, ``{Anatomically Accurate High Resolution Modeling of Human
+  Whole Heart Electromechanics: A Strongly Scalable Algebraic Multigrid Solver
+  Method for Nonlinear Deformation},'' {\em Journal of Computational Physics},
+  vol.~305, pp.~622--646, 2016.
+
+\bibitem{guccione_2005}
+``Mri-based finite-element analysis of left ventricular aneurysm,''
+
+\bibitem{sack_2016}
+K.~L. Sack, N.~H. Davies, J.~M. Guccione, and T.~Franz, ``{Personalised
+  Computational Cardiology: Patient-Specific Modelling in Cardiac Mechanics and
+  Biomaterial Injection Therapies for Myocardial Infarction},'' {\em Heart
+  Failure Reviews}, vol.~21, pp.~815--826, Jan 2016.
+
+\bibitem{mcculloch_2000}
+F.~J. Vetter and A.~D. Mcculloch, ``{Three-Dimensional Stress and Strain in
+  Passive Rabbit Left Ventricle: A Model Study},'' {\em Annals of Biomedical
+  Engineering}, vol.~28, no.~7, pp.~781--792, 2000.
+
+\bibitem{gurev_2015}
+V.~Gurev, P.~Pathmanathan, J.-L. Fattebert, H.-F. Wen, J.~Magerlein, R.~A.
+  Gray, D.~F. Richards, and J.~J. Rice, ``{A High-Resolution Computational
+  Model of the Deforming Human Heart},'' {\em Biomechanics and Modeling in
+  Mechanobiology}, vol.~14, pp.~829--849, Aug 2015.
+
+\bibitem{trayanova_2011}
+N.~A. Trayanova, J.~Constantino, and V.~Gurev, ``{Electromechanical Models of
+  the Ventricles},'' {\em American Journal of Physiology-Heart and Circulatory
+  Physiology}, vol.~301, no.~2, 2011.
+
 \end{thebibliography}

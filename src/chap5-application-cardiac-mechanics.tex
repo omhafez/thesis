@@ -1,10 +1,40 @@
 \chapter{Application: Cardiac Mechanics}
 \label{chap:5}
 %
+With the image-based meshing workflow in~\chapref{3} and finite element tools in~\chapref{4} both fully established, the entire image-based modeling and simulation pipeline can now be demonstrated. The application area to be discussed is the mechanical behavior of a beating human heart. Cardiac mechanics is a good testbed for the image-based modeling and simulation workflow described because 1) the application only involves binary image masks, 2) the exact geometry does not grossly affect results since contact modeling is not required, and 3) the use of simulation in this field arguably has the potential to save and improve more lives than any other biomechanics application area.
 
-REFER HEAVILY TO LIVERMORE FINAL REPORT \\
-%~\cite{heartmech} \\
-%~\cite{newheartpaper} \\
+The primary function of the heart is to pump blood throughout the body, delivering nutrients and removing waste from each organ~\cite{holzapfel_2009}. The cyclic pumping arises from the interaction of its electrical and mechanical function. The heart consists of four chambers: the left ventricle (LV), right ventricle (RV), left atria (LA), and right atria (RA) (See~\figref{anatomy}). The thinner-walled atria act as blood reservoirs for the ventricles, which are responsible for the predominant pumping function. The entire heart is encompassed by a fibrous sac known as the pericardium, which resists rapid increases in cardiac size. Myocardial tissue consists of discrete muscle fiber bundles that exhibit orthotropic material behavior. Refer to Holzapfel \textit{et al.} and Hunter~\cite{schmid} for a more detailed description of the macro and microstructural properties of the heart.
+
+\begin{figure}[htbp!]
+\centering
+\includegraphics[width=1.0\textwidth]{media/anatomy.png}
+\caption{Longitudinal cross-section of the human heart~\cite{katz_2015}}
+\label{fig:anatomy}
+\end{figure}
+
+Cardiovascular disease is the leading cause of death and disability, accounting for about 40$\%$ of all human mortality~\cite{genet_2015}. Heart failure is one of the most common, costly, and deadly medical conditions, affecting more than 25 million people worldwide~\cite{mann_2015}. Better understanding the nuanced electrical and mechanical behavior of normal and pathological hearts is an important step in improving treatment for heart disease. The complexity of the mechanisms of interest, time and cost savings offered by simulation, and the high sensitivity to various patient-specific parameters make \textit{in silico} modeling an important tool in addressing heart disease.
+
+Cardiac mechanics is one of the most mature fields in computational biomechanics. Several well-known groups have attempted to advance the field from a variety of approaches with respect to the geometry and meshing. \textit{The Living Heart Project}~\cite{baillargeon_2014, genet_2015} has arguably gained the most traction in advancing the understanding of whole-heart cardiac mechanics through simulation, albeit by using linear tetrahedra for a general 50th percentile male heart geometry (i.e., the model was not generated from medical imaging). Augustin \textit{et al.}~\cite{augustin_2016} also used linear tetrahedral finite elements, meshed from smoothed surfaces originating from MRI data. A good deal of informative research still relies on modeling simplified geometries of only the left ventricle~\cite{guccione_2005, sack_2016}, in conjunction even with cubic Hermite finite elements~\cite{mcculloch_2000}. Most modern approaches tend to generate bi-ventricular models (i.e., left and right ventricles) or whole heart models including the atria and potentially even more geometric structures.
+
+Gurev \textit{et al.}~\cite{gurev_2015} performed mechanical simulations on a quadratic hex-dominant mixed element mesh of the human heart ventricles. The work from that group forms the basis for most of the cardiac mechanics explorations to be discussed in this chapter. The review article by Trayanova \textit{et al.}~\cite{trayanova_2011} provides an excellent summary of the components to ventricular electromechanical modeling utilized by the papers mentioned above.
+
+These essential components to computational cardiac mechanics are described in this chapter for an implementation using conventional finite elements, namely: mesh generation, material model characterization, muscle fiber orientation, boundary conditions, the solver. Simulation results are also presented. Finally, the details of implementing the same mechanics into the polyhedral code \textit{Celeris} are discussed, along with preliminary verification results.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Methods}
+\label{Methods}
+
+Description of Cardioid here
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Mesh Generation}
+\label{Mesh Generation}
+
+Again quadratic tetrahedral elements are chosen as over linear elements to avoid volumetric locking and impracticably fine meshes to yield accurate results.
+
+Oomph
 Describe generation of segs and meshes: \\
 threshold \\
 level set \\
@@ -12,6 +42,24 @@ connected components \\
 fill holes \\
 dilate-erode \\
 manual fine-tuning \\
+
+~\figref{tet2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Material Model}
+\label{Material Model}
+
+\subsubsection{Passive Stress}
+\label{Passive Stress}
+
+\subsubsection{Active Stress}
+\label{Active Stress}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fiber Generation}
+\label{Fiber Generation}
 
 \begin{figure}[ht]
 \centering
@@ -28,6 +76,22 @@ manual fine-tuning \\
 \caption{Mechanics modeling considerations: (a) muscle fiber orientations, (b) electrical activation times, and c) surface tagging and prescription of corresponding boundary conditions.}
 \label{fig:supp}
 \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Boundary Conditions}
+\label{Boundary Conditions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Solver}
+\label{Solver}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results}
+\label{Results}
+
 
 \begin{figure}[ht]
 \centering
@@ -57,9 +121,14 @@ manual fine-tuning \\
 		\includegraphics[scale=0.057]{media/4-cardioid/6-vid/d.png}
 \label{fig:snaps4}}		
 %
-\caption{Deformed mesh from Cardioid simulation at different stages of cardiac cycle. Panels (a), (b), (c), and (d) correspond to the stages in the P-V loop denoted in FIGREF ???.}
+\caption{Deformed mesh from Cardioid simulation at different stages of cardiac cycle. Panels (a), (b), (c), and (d) correspond to the stages in the P-V loop denoted in~\figref{pv}.}
 \label{fig:snaps}
 \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Extension to Polyhedral Finite Elements}
+\label{Polyhedral Finite Elements}
 
 \begin{figure}[ht]
 \centering
@@ -200,45 +269,3 @@ manual fine-tuning \\
 \caption{Results for Land P3 verification problem: (a) The same deformed position of middle of the ventricle wall, shown in the $x-y$ plane, with (b) details at the inflection point. Panel (c) shows the deformed position of the apex at the endo- and epicardium for each of the simulation codes.}
 \label{fig:land3.2}
 \end{figure}
-
-{http://www.springer.com/us/book/9781441907295} \\
-Cardioid science on saturday Youtube
-$heart_papers$
-papers Mark mentions in SOW
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Problem Description}
-\label{Problem Description}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Material Model}
-\label{Material Model}
-
-\subsection{Passive Stress}
-\label{Passive Stress}
-
-\subsection{Active Stress}
-\label{Active Stress}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Fiber Generation}
-\label{Fiber Generation}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Boundary Conditions}
-\label{Boundary Conditions}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Solver}
-\label{Solver}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Simulation Results}
-\label{Simulation Results}
-

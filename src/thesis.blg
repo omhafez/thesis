@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2016)
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: thesis.aux
 The style file: ieeetr.bst
@@ -10,6 +10,7 @@ A level-1 auxiliary file: chap5-application-cardiac-mechanics.aux
 A level-1 auxiliary file: chap6-future-work.aux
 A level-1 auxiliary file: chap7-conclusions.aux
 Database file #1: references.bib
+Warning--I didn't find a database entry for "schmid"
 Warning--empty year in idrus_2017
 Warning--empty author in committee
 Warning--empty journal in committee
@@ -44,45 +45,48 @@ Warning--empty year in shab
 Warning--empty author in brew
 Warning--empty journal in brew
 Warning--empty year in brew
-You've used 104 entries,
+Warning--empty author in guccione_2005
+Warning--empty journal in guccione_2005
+Warning--empty year in guccione_2005
+You've used 115 entries,
             1876 wiz_defined-function locations,
-            1020 strings with 21956 characters,
-and the built_in function-call counts, 26768 in all, are:
-= -- 2584
-> -- 1069
+            1072 strings with 24097 characters,
+and the built_in function-call counts, 29673 in all, are:
+= -- 2849
+> -- 1215
 < -- 0
-+ -- 402
-- -- 298
-* -- 1962
-:= -- 3786
-add.period$ -- 121
-call.type$ -- 104
-change.case$ -- 93
++ -- 455
+- -- 340
+* -- 2184
+:= -- 4206
+add.period$ -- 134
+call.type$ -- 115
+change.case$ -- 101
 chr.to.int$ -- 0
-cite$ -- 138
-duplicate$ -- 1407
-empty$ -- 2530
-format.name$ -- 298
-if$ -- 6599
+cite$ -- 152
+duplicate$ -- 1549
+empty$ -- 2795
+format.name$ -- 340
+if$ -- 7307
 int.to.chr$ -- 0
-int.to.str$ -- 104
-missing$ -- 111
-newline$ -- 341
-num.names$ -- 98
-pop$ -- 308
+int.to.str$ -- 115
+missing$ -- 125
+newline$ -- 377
+num.names$ -- 108
+pop$ -- 344
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 905
+skip$ -- 997
 stack$ -- 0
-substring$ -- 1588
-swap$ -- 566
+substring$ -- 1748
+swap$ -- 622
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 34
-while$ -- 209
-width$ -- 107
-write$ -- 1005
-(There were 34 warnings)
+warning$ -- 37
+while$ -- 231
+width$ -- 118
+write$ -- 1108
+(There were 38 warnings)
