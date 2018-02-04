@@ -43,7 +43,7 @@ T.~L.~H. Donahue, M.~L. Hull, M.~M. Rashid, and C.~R. Jacobs, ``{A Finite
 A.~E. Anderson, B.~J. Ellis, S.~A. Maas, C.~L. Peters, and J.~A. Weiss,
   ``{Validation of Finite Element Predictions of Cartilage Contact Pressure in
   the Human Hip Joint},'' {\em Journal of Biomechanical Engineering}, vol.~130,
-  no.~5, p.~051008, 2008.
+  no.~5, 2008.
 
 \bibitem{el'sheikh_2003}
 H.~El'Sheikh, B.~Macdonald, and M.~Hashmi, ``{Finite element simulation of the
@@ -133,7 +133,7 @@ T.~Morrison, L.~Angelone, M.~Myers, J.~Soneson, Q.~Wang, J.~Weaver,
 P.~Pathmanathan, R.~A. Gray, V.~J. Romero, and T.~M. Morrison, ``{Applicability
   Analysis of Validation Evidence for Biomedical Computational Models},'' {\em
   Journal of Verification, Validation and Uncertainty Quantification}, vol.~2,
-  p.~021005, Jul 2017.
+  Jul 2017.
 
 \bibitem{larobina_murino_2014}
 M.~Larobina and L.~Murino, ``{Medical image file formats},'' {\em {Journal of
@@ -584,12 +584,45 @@ N.~A. Trayanova, J.~Constantino, and V.~Gurev, ``{Electromechanical Models of
   the Ventricles},'' {\em American Journal of Physiology-Heart and Circulatory
   Physiology}, vol.~301, no.~2, 2011.
 
-\bibitem{mirin_2012}
-A.~A. Mirin, D.~F. Richards, J.~N. Glosli, E.~W. Draeger, B.~Chan, J.-L.
-  Fattebert, W.~D. Krauss, T.~Oppelstrup, J.~J. Rice, J.~A. Gunnels, and
-  et~al., ``{Toward Real-Time Modeling of Human Heart Ventricles at Cellular
-  Resolution: Simulation of Drug-Induced Arrhythmias},'' {\em 2012
-  International Conference for High Performance Computing, Networking, Storage
-  and Analysis}, 2012.
+\bibitem{richards_2013}
+D.~F. Richards, J.~N. Glosli, E.~W. Draeger, A.~A. Mirin, B.~Chan, J.-L.
+  Fattebert, W.~D. Krauss, T.~Oppelstrup, C.~J. Butler, J.~A. Gunnels, and
+  et~al., ``{Towards Real-Time Simulation of Cardiac Electrophysiology in a
+  Human Heart at High Resolution},'' {\em Computer Methods in Biomechanics and
+  Biomedical Engineering}, vol.~16, no.~7, pp.~802--805, 2013.
+
+\bibitem{usyk_2002}
+T.~P. Usyk, I.~J. Legrice, and A.~D. Mcculloch, ``{Computational Model of
+  Three-Dimensional Cardiac Electromechanics},'' {\em Computing and
+  Visualization in Science}, vol.~4, no.~4, pp.~249--257, 2002.
+
+\bibitem{lumens_2009}
+J.~Lumens, T.~Delhaas, B.~Kirn, and T.~Arts, ``{Three-Wall Segment (TriSeg)
+  Model Describing Mechanics and Hemodynamics of Ventricular Interaction},''
+  {\em Annals of Biomedical Engineering}, vol.~37, no.~11, pp.~2234--2255,
+  2009.
+
+\bibitem{bayer_2012}
+J.~D. Bayer, R.~C. Blake, G.~Plank, and N.~A. Trayanova, ``{A Novel Rule-Based
+  Algorithm for Assigning Myocardial Fiber Orientation to Computational Heart
+  Models},'' {\em Annals of Biomedical Engineering}, vol.~40, no.~10,
+  pp.~2243--2254, 2012.
+
+\bibitem{mfem-library}
+``{MFEM}: Modular finite element methods.'' \url{mfem.org}.
+
+\bibitem{kerckhoffs_2006}
+R.~C.~P. Kerckhoffs, M.~L. Neal, Q.~Gu, J.~B. Bassingthwaighte, J.~H. Omens,
+  and A.~D. Mcculloch, ``{Coupling of a 3D Finite Element Model of Cardiac
+  Ventricular Mechanics to Lumped Systems Models of the Systemic and Pulmonic
+  Circulation},'' {\em Annals of Biomedical Engineering}, vol.~35, pp.~1--18,
+  Aug 2006.
+
+\bibitem{land_2015}
+S.~Land, V.~Gurev, S.~Arens, C.~M. Augustin, L.~Baron, R.~Blake, C.~Bradley,
+  S.~Castro, A.~Crozier, M.~Favino, and et~al., ``{Verification of Cardiac
+  Mechanics Software: Benchmark Problems and Solutions for Testing Active and
+  Passive Material Behaviour},'' {\em Proceedings of the Royal Society A:
+  Mathematical, Physical and Engineering Science}, vol.~471, Aug 2015.
 
 \end{thebibliography}
