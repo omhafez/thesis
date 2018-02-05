@@ -77,7 +77,7 @@ where $\bm{f}$ is the muscle fiber direction and ${\sigma_a}$ is the scalar acti
 The active tension model by Lumens \textit{et al.}~\cite{lumens_2009} is used to determine the active tension $\sigma_a$, in the following manner:
 \begin{align}
 \frac{d\bm{w}}{dt} = \bm{q}(\bm{w}; t_a, \lambda) \\
-\sigma_a \equiv \sigma_a(\bm(w); t_a, \lambda)
+\sigma_a \equiv \sigma_a(\bm{w}; t_a, \lambda)
 \end{align}
 The scalar active tension depends on state variables $\bm{w}$ involving the sarcomere length of the muscle cells, the time of electrical activation of those cells $t_a$, and the muscle fiber stretch $\lambda$ in the direction of $\bm{f}$. Namely, $\lambda = (\bm{f}\bm{C}\bm{f}^T)^{1/2}$. The state variables are updated explicitly within the constitutive update subroutine. Further details on the state variables $\bm{w}$ and the way in which they are updated via $\bm{q}$ can be found in the work by Lumens~\textit{et al.}~\cite{lumens_2009}.
 
@@ -131,6 +131,8 @@ where $\bm{w}_c$ is the vector of state variables for the circulatory model, $p_
 \label{fig:bcs}
 \end{figure}
 
+In order to avoid highly nonlinear solutions at the beginning of the simulation, initial pressures are applied linearly in the first 100 ms prior to ``turning on'' the active contraction. One may think of the first 100 ms as a period in which a residual stress is applied prior to imposing the loading and boundary conditions of interest for the remainder of the simulation.
+
 Displacement boundary conditions are enforced such that the base of the heart is not allowed to move out of plane, and that a strip of the epicardium near the base experiences zero displacements in all directions. In order to enforce these displacement and pressure BCs, the appropriate surfaces must be identified. Identification of the base, epicardium, left ventricle, and right ventricle is actually a necessary intermediate step in generating fiber directions, so those boundary condition tags are already available (see~\figref{supp3}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -138,19 +140,11 @@ Displacement boundary conditions are enforced such that the base of the heart is
 \subsubsection{Solver}
 \label{Solver}
 
-as mentioned, quadratic tets
+The quadratic tetrahedral mesh described previously is used together with the material model and boundary conditions to perform conventional finite element simulations using the freely available \textit{oomph-lib}~\cite{oomph}. 
 
-time step
+In the interest of solving problems with fine discretizations, Gurev \textit{et al.} avoid direct solvers of the linear system in Cardioid due to their poor scalability. Instead they employ a Krylov subspace iterative solver, which is more suitable for large scalable problems. The existence of active contraction creates saddle-points in the linear system that are addressed with a novel preconditioner. The details of the linear solver may be found in the publication by Gurev \textit{et al.}.
 
-other parameters I made use of
-
-Oomph
-iterative solver
-50 nodes, 16 processors per node for a total of 800 processes
-roughly one heartbeat per 24 hours
-using LLNL's surface - figure out specs on that computer
-nonlinearity of both pressure BCs and active stress makes it hard to converge. apply initial pressure first
-followed by 5 beats, first beat is thrown out to reach a dynamic steady state
+The simulation was performed on the \textit{Surface} computing platform at Lawrence Livermore National Laboratory. The Moab schedule manager was used to submit the job to be run on 50 nodes, with 16 cores per node, for a total of 800 processes. With an assumed beat duration of 1000 $ms$ for a healthy human heart (i.e., 60 beats per minute), the simulation is run from time 0 to 5100 ms with a time increment $\Delta t = 1 ms$. The simulation completed roughly one heartbeat per 24 hours of wall clock time. As mentioned previously, the first 100 ms are used to linearly apply the initial pressures for the simulation. The first beat is discarded as the heart reaches a dynamic steady state, and thus four full beats of a healthy human heart are extracted from the results.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -206,6 +200,9 @@ W = \frac{C}{2}\left(e^Q -1\right) + C_{compr} (J \cdot \ln J - J + 1) \\
 \end{equation}
 The parameter $C_{compr}$ is a penalty parameter, such that the volumetric response of the material is significantly stiffer than the deviatoric response. It was found that a value of $C_{compr} \geq 200  C$ gives good results compared to those when enforcing full incompressibility through a mixed pressure-displacement formulation, without significantly making the system poorly conditioned. Interestingly, the value of $C_{compr}$ provided by Usyk \textit{et al.} is actually not nearly large enough to produce results that are competitive with fully incompressible formulations.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 Near-incompressibility is enforced by an F-bar projection method, in which the deformation gradient is modified such that the dilatation $e = \text{tr}(\nabla{u})$ at each integration point is replaced by an element-averaged value. Specifically, the deformation gradient at each integration point is redefined as:
 \begin{align}
 \tilde{\bm{F}}_i = \alpha_i\bm{F}_i \\
@@ -214,30 +211,38 @@ Near-incompressibility is enforced by an F-bar projection method, in which the d
 where $\alpha_i$ is the coefficient that modifies the deformation gradient $\bm{F}_i$ at the $i$th integration point, such that the dilatation $e_i$ becomes the average over the $k$ integration points in the particular element, while the deviatoric portion of $\bm{F}_i$ is untouched. Specifically, the deviatoric portions of $\tilde{\bm{F}}$ remain $\bm{F}$ are equal.
 ~~~
 cite f-bar projection
-look at imitor code and emails
+look at imitor code and Mark notes
 ~~~
 
-The material model framework in Celeris currently accepts material model definitions in \textit{incremental form}, namely, the material model takes as input the material properties and other field parameters, the beginning step stress $\overline{\bm{T}}$, beginning step state variables $???$, and strain rate $\bm{D}$, and produces as output an end step stress $\bm{T}$, end step state variables $???$, and end step tangent modulus $\frac{\partial \bm{T}}{\partial \bm{D}}$. Hyperelastic materials are defined as functions of the deformation gradient $\bm{F}$, though, not of the strain rate $\bm{D}$. 
+The material model framework in Celeris currently accepts material model definitions in \textit{incremental form}, namely, the material model takes as input the material properties and other field parameters, the beginning step stress $\overline{\bm{T}}$, beginning step state variables $\overline{bm{q}}$, and strain rate $\bm{D}$, and produces as output an end step stress $\bm{T}$, end step state variables $\bm{q}$, and end step tangent modulus $\frac{\partial \bm{T}}{\partial \bm{D}}$. Hyperelastic materials are generally defined as functions of the deformation gradient $\bm{F}$, though, not of the strain rate $\bm{D}$. Thus, a deformation path from beginning step to end step is assumed in the following manner, as is done by Rashid~\cite{}:
+\begin{equation}
+blah
+\end{equation}
+whose solution is 
 
-explain what to do here
+The beginning step deformation gradient is stored as a state variable to accommodate the incremental material form, initialized as the identity tensor and updated within each call to the material model as $\bm{F} \leftarrow \hat{\bm{U}}\bm{F}$. Field parameters at each integration point include: the fiber transformation matrix $\bm{Q}$, activation time $t_a$. Finally the material model also admits the fixed beat duration, as well as the beginning and end step times - quantities used in the calculation of active tension. The fiber transformation matrix $\bm{Q}$ and activation time $t_a$ are computed via Cardioid \textit{a priori} and are imported into Celeris at the integration points.
 
-Material parameters in this case are:
+%%
+% DESCRIBE ENTIRE PROCESS
+%%
 
+%
+% COMMENTS ON ACTIVE PORTION
+%
+For this particular implementation, the fiber orientations in \eqnref{active} are taken to be in the \textit{current} configuration (AS AN IMPROVEMENT). The Fortran code for the model is produced by the LLNL tool \textit{Melodee}, a new language for expressing systems of ODEs that generates optimized code at runtime for different platforms. Melodee was tested and verified to generate working Fortran subroutines. The tangent modulus corresponding to the active portion of stress was computed and verified, although no rigorous verification of the model to produce expected active stress values has been performed yet.
 
-The passive material model has been implemented, and the computed stress and corresponding tangent modulus have been thoroughly verified for accurate and quickly converging solutions. The material model framework in Celeris only accepts material models based on strain rate and incremental rotation, which is addressed by storing the deformation gradient as a state variable that is updated and forward-rotated for each call to the constitutive update.
+Finally, as discussed in \chapref{4}, the end step stress is forward rotated via $\bm{R}^T \bm{T} \bm{R}$ and the state variable $\bm{F}$ is forward rotated simply via $\bm{R}\bm{F}$.
 
-fibers
-activation time
-boundary conditions p(t) in each ventricle
-active stress model
+The passive material model has been implemented, and the computed stress and corresponding tangent modulus have been thoroughly verified against finite difference approximations for accurate and quickly converging solutions.
 
-For this particular implementation, the fiber orientations in Equation~\ref*{eqn:active} are taken to be in the \textit{current} configuration (AS AN IMPROVEMENT). The Fortran code for the model is produced by the LLNL tool \textit{Melodee}, a new language for expressing systems of ODEs that generates optimized code at runtime for different platforms. Melodee was tested and verified to generate working Fortran subroutines. The tangent modulus corresponding to the active portion of stress was computed and verified, although no rigorous verification of the model to produce expected active stress values has been performed yet.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-For simplicity, the pressure time history from the Cardioid simulation is used directly for the imposition of boundary conditions in Celeris.
+The same Dirichlet boundary conditions applied in Cardioid are applied in Celeris using the same surface tags shown in \figref{supp3}. For simplicity, the ventricular pressure time histories from the Cardioid simulation is used directly for the imposition of ventricular boundary conditions in Celeris, rather than imposing volume constraints as described previously. Of course, in the future the volume constraint would be implemented as well so that the Celeris mechanics is completely independent of the Cardioid mechanics. The pressure time histories $p_{LV}(t)$ and $p_{RV}(t)$ are enough to demonstrate the workflow using polyhedral FEM and highlighting the advantages of PEM over conventional FEM.
 
 \subsection{Verification}
 
-Prior to running a complete cardiac simulation, the polyhedral workflow was tested for a suite of verification problems. Six verification problems were identified: three from Gurev \textit{et al.}~\cite{gurev_2015} and three from Land \textit{et al.}~\cite{land_2015}. The specifics of those problems can be found in the those papers. See \figref{beams} and \figref{ventricles} for the nomenclature used to identify the six verification problems, as well as the type of mechanics being tested for each problem.
+Prior to running a complete cardiac simulation, the polyhedral workflow was tested for a suite of verification problems. Six verification problems were identified: three from Gurev \textit{et al.}~\cite{gurev_2015} and three from Land \textit{et al.}~\cite{land_2015}. The specifics of those problems can be found in the those papers. See \figref{beams} and \figref{ventricles} for the nomenclature used to identify the problems, as well as the type of mechanics being tested for each one.
 
 \begin{figure}[ht]
 \centering
@@ -254,7 +259,7 @@ Prior to running a complete cardiac simulation, the polyhedral workflow was test
 		\includegraphics[scale=0.18]{media/5-verif/4-land1/land1.png}
 \label{fig:beams4}}		
 %
-\caption{Undeformed (bottom) and deformed (top) configurations for cantilever beam verification problems: (a) Gurev P2: bending, (b) Gurev P3: torsion, c) Gurev P4: active contraction, and (d) Land P1: bending. The red curve denotes the curve over which displacements and positions are recorded for comparison of results.}
+\caption{Undeformed (bottom) and deformed (top) configurations for cantilever beam verification problems: (a) Gurev P2: bending, (b) Gurev P3: torsion, c) Gurev P4: active contraction, and (d) Land P1: bending. The red curve denotes the curve over which displacements and positions are recorded and compared.}
 \label{fig:beams}
 \end{figure}
 
@@ -273,23 +278,27 @@ Prior to running a complete cardiac simulation, the polyhedral workflow was test
 		\includegraphics[scale=0.16]{media/5-verif/6-land3/land3-2.png}
 \label{fig:ventricles4}}		
 %
-\caption{Undeformed (left) and deformed (right) configurations for single ventricle verification problems: (a,b) Land P2: inflation, and (c,d) Land P3: inflation and active contraction. The red curve denotes the curve over which displacements and positions are recorded for comparison of results.}
+\caption{Undeformed (left) and deformed (right) configurations for single ventricle verification problems: (a,b) Land P2: inflation, and (c,d) Land P3: inflation and active contraction. The red curve denotes the curve over which displacements and positions are recorded and compared.}
 \label{fig:ventricles}
 \end{figure}
 
-Figures \ref*{fig:gurev2}-\ref*{fig:land3.2} show the results for the six verification problems, mimicking the format used in the papers from which they came. The results from an in-house finite element code \textit{Imitor} are also included. Imitor also enforces incompressibility in a near-incompressible sense, so it was useful to separate differences involving the finite element type vs. differences involving the enforcement of incompressibility.  The polyhedral code Celeris performs very well for the cantilever beam verification problems, with results nearly identically matching those from the conventional FEM codes. Interestingly, the near-incompressible approach appears to be slightly too stiff in bending, but slightly too compliant in purely volumetric deformations. The over-stiffness in bending is evidenced in Gurev P2, Land P1, and Land P2, whereas the over-compliance in volumetric deformation is evidenced in Gurev P4 and Land P3.
+Figures \ref*{fig:gurev2}-\ref*{fig:land3.2} show the results for the six verification problems, mimicking the format used in the papers from which they came. The results are presented using Cardioid, Celeris, and an in-house finite element code \textit{Imitor}. The implementation considerations are nearly identical for Imitor and Celeris. Thus, differences in results can be distinguished based on the finite element formulation vs. the implementation of material model, near incompressibility, and the like.
 
-Running Celeris for the single ventricular problems Land P2 and Land P3 is pending some fixes in the infrastructure of that code, unrelated to the scope of this project. It is the hope that once these fixes are made, the suite of verification problems can be completed for all three codes referenced.
+As the figures show, the polyhedral code Celeris performs very well for the cantilever beam verification problems involving bending, twist, and active contraction. The deformed meshes nearly identically match those from the conventional FEM codes. For those problems, hexahedral elements are employed for the conventional FEM codes, and cuboidal PEM elements are used in Celeris. Namely, the element shapes are the same, while the element formulations differ.
 
-A comparison of the number of degrees of freedom for Land P1 is already provided (\figref{land1-3}), but it is not particularly interesting because the meshes are already quite coarse, and automated linear hex meshing for a simple cantilever beam geometry is easily achievable. It is the hope that for Land P2 and Land P3, accurate results can be achieved using Celeris with a significant reduction in the number of DOF, as explained in \chapref{3}.
+Interestingly, the near-incompressible approach appears to be slightly too stiff in bending, but slightly too compliant in purely volumetric deformations based on the results exhibited using Imitor. The over-stiffness in bending is evidenced in Gurev P2, Land P1, and Land P2, whereas the over-compliance in volumetric deformation is evidenced in Gurev P4 and Land P3. Overall though, these results provide confidence that the codes are working correctly. 
+
+Running Celeris for the single ventricular problems Land P2 and Land P3 hinges on some fixes in the infrastructure of that code, unrelated to the scope of this project. It is the hope that once these fixes are made, the suite of verification problems can be completed for all three codes referenced. A comparison of the number of degrees of freedom for Land P1 is provided (\figref{land1-3}), but it is not particularly interesting because the meshes are already quite coarse, and automated linear hex meshing for a simple cantilever beam geometry is easily achievable. It is the hope that for Land P2 and Land P3, accurate results can be achieved using Celeris with a significant reduction in the number of DOF, as explained in \chapref{3}.
+
+Up to this point, the mechanics have been verified to be implemented correctly in Imitor and Celeris, and cuboidal polyhedral elements are performing well for the cantilever beam problems. Completing the verification process would involve running Land P2 and Land P3 in Celeris, as well as potentially running the cantilever beam problems again in Celeris with non-cuboidal polyhedral elements - after which point Celeris would be ready to perform the same cardiac simulations presented using Cardioid.
 
 \begin{figure}[ht]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/1-gurev2/gurev2-1.pdf}
+		\includegraphics[scale=0.46]{media/5-verif/1-gurev2/gurev2-1.pdf}
 \label{fig:gurev2-1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/1-gurev2/gurev2-2.pdf}
+		\includegraphics[scale=0.46]{media/5-verif/1-gurev2/gurev2-2.pdf}
 \label{fig:gurev2-2}}		
 %
 \caption{Results for Gurev P2 verification problem: (a) Displacement magnitude along diagonal axis, with (b) details for the free end of the beam}
@@ -299,10 +308,10 @@ A comparison of the number of degrees of freedom for Land P1 is already provided
 \begin{figure}[ht!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/2-gurev3/gurev3-1.pdf}
+		\includegraphics[scale=0.46]{media/5-verif/2-gurev3/gurev3-1.pdf}
 \label{fig:gurev3-1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/2-gurev3/gurev3-2.pdf}
+		\includegraphics[scale=0.46]{media/5-verif/2-gurev3/gurev3-2.pdf}
 \label{fig:gure3-2}}		
 %
 \caption{Results for Gurev P3 verification problem: (a) Displacement magnitude along diagonal axis, with (b) details for the fixed end of the beam. The results for imitor and Celeris are indistinguishable in these plots.}
@@ -312,10 +321,10 @@ A comparison of the number of degrees of freedom for Land P1 is already provided
 \begin{figure}[ht!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/3-gurev4/gurev4-1.pdf}
+		\includegraphics[scale=0.46]{media/5-verif/3-gurev4/gurev4-1.pdf}
 \label{fig:gurev4-1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/3-gurev4/gurev4-2.pdf}
+		\includegraphics[scale=0.46]{media/5-verif/3-gurev4/gurev4-2.pdf}
 \label{fig:gurev4-2}}		
 %
 \caption{Results for Gurev P4 verification problem: (a) Displacement magnitude along diagonal axis, with (b) details for the free end of the beam. The results for imitor and Celeris are indistinguishable in these plots.}
@@ -325,13 +334,13 @@ A comparison of the number of degrees of freedom for Land P1 is already provided
 \begin{figure}[ht!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/4-land1/land1-1.pdf}
+		\includegraphics[scale=0.46]{media/5-verif/4-land1/land1-1.pdf}
 \label{fig:land1-1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/4-land1/land1-2.pdf}
+		\includegraphics[scale=0.46]{media/5-verif/4-land1/land1-2.pdf}
 \label{fig:land1-2}}	
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/4-land1/land1-3.pdf}
+		\includegraphics[scale=0.46]{media/5-verif/4-land1/land1-3.pdf}
 \label{fig:land1-3}}			
 %
 \caption{Results for Land P1 verification problem: (a) Deformed position of midline, with (b) details for the free end of the beam. Panel (c) shows the deformed position of the point $\bm{X} = (10, 0.5, 1)$ for each of the simulation codes.}
@@ -342,13 +351,13 @@ A comparison of the number of degrees of freedom for Land P1 is already provided
 \begin{figure}[ht!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/5-land2/land2-1.pdf}
+		\includegraphics[scale=0.46]{media/5-verif/5-land2/land2-1.pdf}
 \label{fig:land2-1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/5-land2/land2-2.pdf}
+		\includegraphics[scale=0.46]{media/5-verif/5-land2/land2-2.pdf}
 \label{fig:land2-2}}	
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/5-land2/land2-3.pdf}
+		\includegraphics[scale=0.46]{media/5-verif/5-land2/land2-3.pdf}
 \label{fig:land2-3}}			
 %
 \caption{Results for Land P2 verification problem: (a) Deformed position of middle of the ventricle wall, with (b) details at the inflection point (top right) and the apical region (bottom right). Panel (c) shows the deformed position of the apex at the endo- and epicardium for each of the simulation codes.}
@@ -358,10 +367,10 @@ A comparison of the number of degrees of freedom for Land P1 is already provided
 \begin{figure}[ht!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/6-land3/land3-1.pdf}
+		\includegraphics[scale=0.46]{media/5-verif/6-land3/land3-1.pdf}
 \label{fig:land3-1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/6-land3/land3-2.pdf}
+		\includegraphics[scale=0.46]{media/5-verif/6-land3/land3-2.pdf}
 \label{fig:land3-2}}	
 %
 \caption{Results for Land P3 verification problem: (a) Deformed position of middle of the ventricle wall, with (b) details at the inflection point (top right) and the apical region (bottom right).}
@@ -371,13 +380,13 @@ A comparison of the number of degrees of freedom for Land P1 is already provided
 \begin{figure}[ht!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/6-land3/land3-3.pdf}
+		\includegraphics[scale=0.46]{media/5-verif/6-land3/land3-3.pdf}
 \label{fig:land3.2-1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/6-land3/land3-4.pdf}		
+		\includegraphics[scale=0.46]{media/5-verif/6-land3/land3-4.pdf}		
 \label{fig:land3.2-2}}	
 \subfigure[]{%
-		\includegraphics[scale=0.48]{media/5-verif/6-land3/land3-5.pdf}
+		\includegraphics[scale=0.46]{media/5-verif/6-land3/land3-5.pdf}
 \label{fig:land3.2-3}}			
 	
 %

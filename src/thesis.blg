@@ -47,36 +47,36 @@ Warning--empty year in brew
 Warning--empty author in guccione_2005
 Warning--empty journal in guccione_2005
 Warning--empty year in guccione_2005
-You've used 122 entries,
+You've used 123 entries,
             1876 wiz_defined-function locations,
-            1102 strings with 25748 characters,
-and the built_in function-call counts, 31619 in all, are:
-= -- 3008
-> -- 1345
+            1105 strings with 25901 characters,
+and the built_in function-call counts, 31720 in all, are:
+= -- 3017
+> -- 1346
 < -- 0
-+ -- 501
++ -- 502
 - -- 379
-* -- 2367
-:= -- 4514
-add.period$ -- 141
-call.type$ -- 122
-change.case$ -- 108
+* -- 2370
+:= -- 4523
+add.period$ -- 142
+call.type$ -- 123
+change.case$ -- 109
 chr.to.int$ -- 0
-cite$ -- 159
-duplicate$ -- 1621
-empty$ -- 2963
+cite$ -- 160
+duplicate$ -- 1625
+empty$ -- 2981
 format.name$ -- 379
-if$ -- 7756
+if$ -- 7785
 int.to.chr$ -- 0
-int.to.str$ -- 122
+int.to.str$ -- 123
 missing$ -- 131
-newline$ -- 398
+newline$ -- 401
 num.names$ -- 114
-pop$ -- 357
+pop$ -- 363
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 1040
+skip$ -- 1046
 stack$ -- 0
 substring$ -- 1867
 swap$ -- 644
@@ -86,6 +86,6 @@ top$ -- 0
 type$ -- 0
 warning$ -- 37
 while$ -- 245
-width$ -- 125
-write$ -- 1175
+width$ -- 126
+write$ -- 1181
 (There were 37 warnings)

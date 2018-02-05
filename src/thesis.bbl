@@ -618,6 +618,11 @@ R.~C.~P. Kerckhoffs, M.~L. Neal, Q.~Gu, J.~B. Bassingthwaighte, J.~H. Omens,
   Circulation},'' {\em Annals of Biomedical Engineering}, vol.~35, pp.~1--18,
   Aug 2006.
 
+\bibitem{oomph}
+``{Oomph-lib}: Object-oriented, open-source finite-element library for the
+  simulation of multi-physics problems.''
+  \url{http://oomph-lib.maths.man.ac.uk/}.
+
 \bibitem{land_2015}
 S.~Land, V.~Gurev, S.~Arens, C.~M. Augustin, L.~Baron, R.~Blake, C.~Bradley,
   S.~Castro, A.~Crozier, M.~Favino, and et~al., ``{Verification of Cardiac
