@@ -1,5 +1,5 @@
-\contentsline {section}{Abstract}{vi}{chapter*.1}
-\contentsline {section}{Acknowledgments}{vii}{chapter*.1}
+\contentsline {section}{Abstract}{v}{chapter*.1}
+\contentsline {section}{Acknowledgments}{vi}{chapter*.1}
 \contentsline {chapter}{\numberline {1}Overview}{1}{chapter.1}
 \contentsline {chapter}{\numberline {2}Medical Imaging and Image Segmentation}{4}{chapter.2}
 \contentsline {section}{\numberline {2.1}Medical Imaging Approaches}{4}{section.2.1}
@@ -30,31 +30,31 @@
 \contentsline {subsection}{\numberline {3.3.3}Polyhedral Meshing}{47}{subsection.3.3.3}
 \contentsline {subsection}{\numberline {3.3.4}File Formats}{51}{subsection.3.3.4}
 \contentsline {section}{\numberline {3.4}Shabaka: A Free Image-Based Meshing Tool}{51}{section.3.4}
-\contentsline {chapter}{\numberline {4}Physics-Based Modeling and Simulation}{53}{chapter.4}
-\contentsline {section}{\numberline {4.1}Continuum Mechanics}{53}{section.4.1}
-\contentsline {section}{\numberline {4.2}The Finite Element Method}{53}{section.4.2}
-\contentsline {section}{\numberline {4.3}The Partitioned Element Method}{53}{section.4.3}
-\contentsline {section}{\numberline {4.4}Incremental Kinematics}{53}{section.4.4}
-\contentsline {section}{\numberline {4.5}Hyperelastic Materials}{53}{section.4.5}
-\contentsline {chapter}{\numberline {5}Application: Cardiac Mechanics}{54}{chapter.5}
-\contentsline {section}{\numberline {5.1}Demonstration using Conventional Finite Elements}{56}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Methods}{56}{subsection.5.1.1}
-\contentsline {subsubsection}{\numberline {5.1.1.1}Mesh Generation}{57}{subsubsection.5.1.1.1}
-\contentsline {subsubsection}{\numberline {5.1.1.2}Material Model}{58}{subsubsection.5.1.1.2}
-\contentsline {subsubsection}{\numberline {5.1.1.3}Boundary Conditions}{62}{subsubsection.5.1.1.3}
-\contentsline {subsubsection}{\numberline {5.1.1.4}Solver}{63}{subsubsection.5.1.1.4}
-\contentsline {subsection}{\numberline {5.1.2}Results}{64}{subsection.5.1.2}
-\contentsline {section}{\numberline {5.2}Extension to Polyhedral Finite Elements}{67}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Implementation}{67}{subsection.5.2.1}
-\contentsline {subsubsection}{\numberline {5.2.1.1}Material Model}{67}{subsubsection.5.2.1.1}
-\contentsline {subsection}{\numberline {5.2.2}Verification}{71}{subsection.5.2.2}
-\contentsline {chapter}{\numberline {6}Future Work}{78}{chapter.6}
-\contentsline {section}{\numberline {6.1}Short Term}{78}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}A Polyhedral Finite Element Demonstration in Cardiac \newline Mechanics}{78}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}Improvements to Image-Based Meshing Code}{79}{subsection.6.1.2}
-\contentsline {subsection}{\numberline {6.1.3}Improvements to Cardiac Mechanics Code}{80}{subsection.6.1.3}
-\contentsline {section}{\numberline {6.2}Long Term}{80}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Simulation of Clinical Trials}{80}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Applications in Rapid Prototyping and Additive Manufacturing}{80}{subsection.6.2.2}
-\contentsline {chapter}{\numberline {7}Conclusions}{81}{chapter.7}
-\contentsline {chapter}{\hspace {6.5mm}References}{82}{section*.2}
+\contentsline {chapter}{\numberline {4}Physics-Based Modeling and Simulation}{57}{chapter.4}
+\contentsline {section}{\numberline {4.1}Continuum Mechanics}{57}{section.4.1}
+\contentsline {section}{\numberline {4.2}The Finite Element Method}{57}{section.4.2}
+\contentsline {section}{\numberline {4.3}The Partitioned Element Method}{57}{section.4.3}
+\contentsline {section}{\numberline {4.4}Incremental Kinematics}{57}{section.4.4}
+\contentsline {section}{\numberline {4.5}Hyperelastic Materials}{57}{section.4.5}
+\contentsline {chapter}{\numberline {5}Application: Cardiac Mechanics}{58}{chapter.5}
+\contentsline {section}{\numberline {5.1}Demonstration using Conventional Finite Elements}{60}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Methods}{60}{subsection.5.1.1}
+\contentsline {subsubsection}{\numberline {5.1.1.1}Mesh Generation}{61}{subsubsection.5.1.1.1}
+\contentsline {subsubsection}{\numberline {5.1.1.2}Material Model}{62}{subsubsection.5.1.1.2}
+\contentsline {subsubsection}{\numberline {5.1.1.3}Boundary Conditions}{66}{subsubsection.5.1.1.3}
+\contentsline {subsubsection}{\numberline {5.1.1.4}Solver}{67}{subsubsection.5.1.1.4}
+\contentsline {subsection}{\numberline {5.1.2}Results}{68}{subsection.5.1.2}
+\contentsline {section}{\numberline {5.2}Extension to Polyhedral Finite Elements}{71}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Implementation}{71}{subsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.1.1}Material Model}{71}{subsubsection.5.2.1.1}
+\contentsline {subsection}{\numberline {5.2.2}Verification}{75}{subsection.5.2.2}
+\contentsline {chapter}{\numberline {6}Future Work}{83}{chapter.6}
+\contentsline {section}{\numberline {6.1}Short Term}{83}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}A Polyhedral Finite Element Demonstration in Cardiac \newline Mechanics}{83}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Improvements to Image-Based Meshing Code}{83}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Improvements to Cardiac Mechanics Code}{86}{subsection.6.1.3}
+\contentsline {section}{\numberline {6.2}Long Term}{86}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Simulation of Clinical Trials}{86}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Applications in Rapid Prototyping and Additive Manufacturing}{86}{subsection.6.2.2}
+\contentsline {chapter}{\numberline {7}Conclusions}{87}{chapter.7}
+\contentsline {chapter}{\hspace {6.5mm}References}{88}{section*.2}

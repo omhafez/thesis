@@ -1,5 +1,5 @@
 %\documentclass[12pt,draftcls]{ucdavisthesis}
-\documentclass[12pt, nofigureslist, notableslist, twoside]{ucdavisthesis}
+\documentclass[12pt, nofigureslist, notableslist]{ucdavisthesis}
 
 % PLEASE READ THE MANUAL - ucdavisthesis.pdf (in the package installation directory)
 
@@ -28,6 +28,12 @@
 \usepackage{courier}
 \usepackage{amssymb}
 \usepackage{rotating}
+\usepackage{afterpage}
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
 
 \hypersetup{%
     pdfborder = {0 0 0}
@@ -142,7 +148,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \dedication{\textsl{To Mama, Baba, and Asmaa}}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \abstract{The abstract submitted as part of your dissertation, in the introductory pages, does not have a word limit. It should follow the same format as the rest of your dissertation (1.5 inch left margin, double-spaced, consecutive page numbering, etc.).}
