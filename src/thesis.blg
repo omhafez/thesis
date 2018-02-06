@@ -47,45 +47,48 @@ Warning--empty year in brew
 Warning--empty author in guccione_2005
 Warning--empty journal in guccione_2005
 Warning--empty year in guccione_2005
-You've used 123 entries,
+Warning--empty author in melodee
+Warning--empty journal in melodee
+Warning--empty year in melodee
+You've used 125 entries,
             1876 wiz_defined-function locations,
-            1105 strings with 25901 characters,
-and the built_in function-call counts, 31720 in all, are:
-= -- 3017
-> -- 1346
+            1113 strings with 26298 characters,
+and the built_in function-call counts, 32195 in all, are:
+= -- 3064
+> -- 1361
 < -- 0
-+ -- 502
-- -- 379
-* -- 2370
-:= -- 4523
-add.period$ -- 142
-call.type$ -- 123
-change.case$ -- 109
++ -- 508
+- -- 383
+* -- 2408
+:= -- 4584
+add.period$ -- 144
+call.type$ -- 125
+change.case$ -- 111
 chr.to.int$ -- 0
-cite$ -- 160
-duplicate$ -- 1625
-empty$ -- 2981
-format.name$ -- 379
-if$ -- 7785
+cite$ -- 165
+duplicate$ -- 1651
+empty$ -- 3028
+format.name$ -- 383
+if$ -- 7903
 int.to.chr$ -- 0
-int.to.str$ -- 123
-missing$ -- 131
-newline$ -- 401
-num.names$ -- 114
-pop$ -- 363
+int.to.str$ -- 125
+missing$ -- 133
+newline$ -- 408
+num.names$ -- 115
+pop$ -- 371
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 1046
+skip$ -- 1061
 stack$ -- 0
-substring$ -- 1867
-swap$ -- 644
+substring$ -- 1895
+swap$ -- 653
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 37
-while$ -- 245
-width$ -- 126
-write$ -- 1181
-(There were 37 warnings)
+warning$ -- 40
+while$ -- 248
+width$ -- 128
+write$ -- 1199
+(There were 40 warnings)

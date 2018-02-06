@@ -1,5 +1,5 @@
-\contentsline {section}{Abstract}{v}{chapter*.1}
-\contentsline {section}{Acknowledgments}{vi}{chapter*.1}
+\contentsline {section}{Abstract}{vi}{chapter*.1}
+\contentsline {section}{Acknowledgments}{vii}{chapter*.1}
 \contentsline {chapter}{\numberline {1}Overview}{1}{chapter.1}
 \contentsline {chapter}{\numberline {2}Medical Imaging and Image Segmentation}{4}{chapter.2}
 \contentsline {section}{\numberline {2.1}Medical Imaging Approaches}{4}{section.2.1}
@@ -11,25 +11,25 @@
 \contentsline {subsection}{\numberline {2.2.1}Image Processing}{15}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Review of Image Segmentation Approaches}{16}{subsection.2.2.2}
 \contentsline {subsection}{\numberline {2.2.3}File Formats}{19}{subsection.2.2.3}
-\contentsline {chapter}{\numberline {3}Image-Based Meshing}{20}{chapter.3}
-\contentsline {section}{\numberline {3.1}Image-Based Meshing Approaches}{21}{section.3.1}
-\contentsline {section}{\numberline {3.2}Surface Generation}{24}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Point Cloud Generation}{25}{subsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3.2.1.1}Window Selection}{26}{subsubsection.3.2.1.1}
-\contentsline {subsubsection}{\numberline {3.2.1.2}Interface Approximation}{26}{subsubsection.3.2.1.2}
-\contentsline {subsubsection}{\numberline {3.2.1.3}Interface Point and Normal Placement}{32}{subsubsection.3.2.1.3}
-\contentsline {subsection}{\numberline {3.2.2}Surface Reconstruction}{32}{subsection.3.2.2}
-\contentsline {subsubsection}{\numberline {3.2.2.1}Voronoi Site Generation and Voronoi Partitioning}{35}{subsubsection.3.2.2.1}
-\contentsline {subsubsection}{\numberline {3.2.2.2}Surface Extraction and Cleanup}{36}{subsubsection.3.2.2.2}
-\contentsline {subsubsection}{\numberline {3.2.2.3}Surface Decimation}{38}{subsubsection.3.2.2.3}
-\contentsline {subsubsection}{\numberline {3.2.2.4}Results}{38}{subsubsection.3.2.2.4}
-\contentsline {subsection}{\numberline {3.2.3}File Formats}{38}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Mesh Generation}{40}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Hexahedral Meshing}{41}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Tetrahedral Meshing}{42}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Polyhedral Meshing}{44}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}File Formats}{49}{subsection.3.3.4}
-\contentsline {section}{\numberline {3.4}Shabaka: A Free Image-Based Meshing Tool}{49}{section.3.4}
+\contentsline {chapter}{\numberline {3}Image-Based Meshing}{21}{chapter.3}
+\contentsline {section}{\numberline {3.1}Image-Based Meshing Approaches}{22}{section.3.1}
+\contentsline {section}{\numberline {3.2}Surface Generation}{25}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Point Cloud Generation}{26}{subsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.1.1}Window Selection}{27}{subsubsection.3.2.1.1}
+\contentsline {subsubsection}{\numberline {3.2.1.2}Interface Approximation}{27}{subsubsection.3.2.1.2}
+\contentsline {subsubsection}{\numberline {3.2.1.3}Interface Point and Normal Placement}{33}{subsubsection.3.2.1.3}
+\contentsline {subsection}{\numberline {3.2.2}Surface Reconstruction}{33}{subsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2.1}Voronoi Site Generation and Voronoi Partitioning}{36}{subsubsection.3.2.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2.2}Surface Extraction and Cleanup}{37}{subsubsection.3.2.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2.3}Surface Decimation}{39}{subsubsection.3.2.2.3}
+\contentsline {subsubsection}{\numberline {3.2.2.4}Results}{39}{subsubsection.3.2.2.4}
+\contentsline {subsection}{\numberline {3.2.3}File Formats}{41}{subsection.3.2.3}
+\contentsline {section}{\numberline {3.3}Mesh Generation}{43}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Hexahedral Meshing}{43}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Tetrahedral Meshing}{45}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Polyhedral Meshing}{47}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}File Formats}{51}{subsection.3.3.4}
+\contentsline {section}{\numberline {3.4}Shabaka: A Free Image-Based Meshing Tool}{51}{section.3.4}
 \contentsline {chapter}{\numberline {4}Physics-Based Modeling and Simulation}{53}{chapter.4}
 \contentsline {section}{\numberline {4.1}Continuum Mechanics}{53}{section.4.1}
 \contentsline {section}{\numberline {4.2}The Finite Element Method}{53}{section.4.2}
@@ -40,20 +40,21 @@
 \contentsline {section}{\numberline {5.1}Demonstration using Conventional Finite Elements}{56}{section.5.1}
 \contentsline {subsection}{\numberline {5.1.1}Methods}{56}{subsection.5.1.1}
 \contentsline {subsubsection}{\numberline {5.1.1.1}Mesh Generation}{57}{subsubsection.5.1.1.1}
-\contentsline {subsubsection}{\numberline {5.1.1.2}Material Model}{57}{subsubsection.5.1.1.2}
-\contentsline {subsubsection}{\numberline {5.1.1.3}Boundary Conditions}{61}{subsubsection.5.1.1.3}
+\contentsline {subsubsection}{\numberline {5.1.1.2}Material Model}{58}{subsubsection.5.1.1.2}
+\contentsline {subsubsection}{\numberline {5.1.1.3}Boundary Conditions}{62}{subsubsection.5.1.1.3}
 \contentsline {subsubsection}{\numberline {5.1.1.4}Solver}{63}{subsubsection.5.1.1.4}
-\contentsline {subsection}{\numberline {5.1.2}Results}{63}{subsection.5.1.2}
-\contentsline {section}{\numberline {5.2}Extension to Polyhedral Finite Elements}{65}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Implementation}{65}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Verification}{68}{subsection.5.2.2}
-\contentsline {chapter}{\numberline {6}Future Work}{75}{chapter.6}
-\contentsline {section}{\numberline {6.1}Short Term}{75}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}A Polyhedral Finite Element Demonstration in Cardiac \newline Mechanics}{75}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}Improvements to Image-Based Meshing Code}{76}{subsection.6.1.2}
-\contentsline {subsection}{\numberline {6.1.3}Improvements to Cardiac Mechanics Code}{77}{subsection.6.1.3}
-\contentsline {section}{\numberline {6.2}Long Term}{77}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Simulation of Clinical Trials}{77}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Applications in Rapid Prototyping and Additive Manufacturing}{77}{subsection.6.2.2}
-\contentsline {chapter}{\numberline {7}Conclusions}{78}{chapter.7}
-\contentsline {chapter}{\hspace {6.5mm}References}{79}{section*.2}
+\contentsline {subsection}{\numberline {5.1.2}Results}{64}{subsection.5.1.2}
+\contentsline {section}{\numberline {5.2}Extension to Polyhedral Finite Elements}{67}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Implementation}{67}{subsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.1.1}Material Model}{67}{subsubsection.5.2.1.1}
+\contentsline {subsection}{\numberline {5.2.2}Verification}{71}{subsection.5.2.2}
+\contentsline {chapter}{\numberline {6}Future Work}{78}{chapter.6}
+\contentsline {section}{\numberline {6.1}Short Term}{78}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}A Polyhedral Finite Element Demonstration in Cardiac \newline Mechanics}{78}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Improvements to Image-Based Meshing Code}{79}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Improvements to Cardiac Mechanics Code}{80}{subsection.6.1.3}
+\contentsline {section}{\numberline {6.2}Long Term}{80}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Simulation of Clinical Trials}{80}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Applications in Rapid Prototyping and Additive Manufacturing}{80}{subsection.6.2.2}
+\contentsline {chapter}{\numberline {7}Conclusions}{81}{chapter.7}
+\contentsline {chapter}{\hspace {6.5mm}References}{82}{section*.2}

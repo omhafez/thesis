@@ -623,6 +623,17 @@ R.~C.~P. Kerckhoffs, M.~L. Neal, Q.~Gu, J.~B. Bassingthwaighte, J.~H. Omens,
   simulation of multi-physics problems.''
   \url{http://oomph-lib.maths.man.ac.uk/}.
 
+\bibitem{doll_2000}
+S.~Doll, K.~Schweizerhof, R.~Hauptmann, and C.~Freischläger, ``{On Volumetric
+  Locking of Low‐Order Solid and Solid‐Shell Elements for Finite
+  Elastoviscoplastic Deformations and Selective Reduced Integration},'' {\em
+  Engineering Computations}, vol.~17, no.~7, pp.~874--902, 2000.
+
+\bibitem{melodee}
+``{MELODEE - Modular Expression Language for Ordinary Differential Equation
+  Editing},''
+\newblock \url{https://github.com/LLNL/melodee}.
+
 \bibitem{land_2015}
 S.~Land, V.~Gurev, S.~Arens, C.~M. Augustin, L.~Baron, R.~Blake, C.~Bradley,
   S.~Castro, A.~Crozier, M.~Favino, and et~al., ``{Verification of Cardiac

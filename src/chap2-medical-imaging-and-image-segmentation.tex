@@ -187,18 +187,18 @@ S_k \cap S_j &= \emptyset, \text{\ \ } k \neq j
 \end{align}
 where $K$ is the total number of classifications in the image. Often, the value of K is assumed to be known based on prior knowledge of the anatomy being considered~\cite{pham_2000}. Each voxel in the image is assigned a tag corresponding to the region to which it belongs, resulting in what is known as an \textit{image mask}. The image and resulting and image mask are shown in~\figref{seg} for an \textit{ex vivo} MRI of a human heart from the CardioVascular Research Grid~\cite{cvgg}. An enormous number of image segmentation techniques exist in the literature; a few popular techniques are mentioned here.
 
-\begin{figure}[ht]
+\begin{sidewaysfigure}[htbp!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.165]{media/1-seg3d/1-raw.png}
+		\includegraphics[scale=0.23]{media/1-seg3d/1-raw.png}
 \label{fig:seg1}}
 \subfigure[]{%
-		\includegraphics[scale=0.165]{media/1-seg3d/2-seg.png}
+		\includegraphics[scale=0.23]{media/1-seg3d/2-seg.png}
 \label{fig:seg2}}
 %
 \caption{(a) MRI of \textit{ex vivo} human heart, and (b) resulting segmented image mask}
 \label{fig:seg}
-\end{figure}
+\end{sidewaysfigure}
 
 \textit{Thresholding} delineates images based on voxel intensities alone. A thresholding procedure attempts to determine the intensity value - the threshold - that separates two different regions. A histogram of image intensities may have several modes depending on the number of regions $K$, though, so several thresholds are generally applied (known as \textit{multithresholding}). These threshold values are selected based on the local minima present in the intensity histogram. Thresholding is often performed interactively, based on the operator's visual assessment of the resulting segmentation. It does not take into account the spatial characteristics of an image, which causes it to be sensitive to noise and intensity inhomogeneities. \textit{Region-based segmentation} merges or splits regions of voxels based on whether they share homogeneity criteria. \textit{Edge detection techniques} determine the edges of distinct regions based on gradients of the image intensity. Edge detection is not on its own a segmentation technique, but rather must be used in conjunction with region-based approaches to generate a segmentation. For example, following edge detection, a seed of voxels may be grown until the edges are reached.
 

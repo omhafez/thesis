@@ -285,47 +285,47 @@ The b-rep is extracted from the Voronoi partition as the set of facets that shar
 
 The artifact is addressed as follows: ``Bad edges'' are identified as those edges that share two bad facets. Networks of connected bad edges are identified, and each network is collapsed to one point (see \figref{cross1}). In the simplest case, for a surface with a small amount of curvature, no bad edges are connected and each is independently collapsed. Any good facet that is connected to a network of bad edges is modified to connect to the new collapsed point. The good facets are triangulated to maintain planarity following the removal of bad facets. This increases the data required to define the surface mesh, but the decimation step described in the next section resolves this issue immediately. The sequence is demonstrated on the full \textit{ex vivo} heart example in~\figref{cross2}.
 
-\begin{figure}[ht]
+\begin{sidewaysfigure}[htbp!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.083]{media/2-shabaka/3-clean-zoom/1-init-zoom.png}
-\label{fig:cross1-1}}		
+		\includegraphics[scale=0.11]{media/2-shabaka/3-clean-zoom/1-init-zoom.png}
+\label{fig:cross1-1}}	
 \subfigure[]{%
-		\includegraphics[scale=0.083]{media/2-shabaka/3-clean-zoom/2-badfacets-zoom.png}
-\label{fig:cross1-2}}		
+		\includegraphics[scale=0.11]{media/2-shabaka/3-clean-zoom/2-badfacets-zoom.png}
+\label{fig:cross1-2}}
 \subfigure[]{%
-		\includegraphics[scale=0.083]{media/2-shabaka/3-clean-zoom/3-badsegs-zoom.png}		
-\label{fig:cross1-3}}					
+		\includegraphics[scale=0.11]{media/2-shabaka/3-clean-zoom/3-badsegs-zoom.png}		
+\label{fig:cross1-3}}
 \subfigure[]{%
-		\includegraphics[scale=0.083]{media/2-shabaka/3-clean-zoom/4-fine-zoom.png}
+		\includegraphics[scale=0.11]{media/2-shabaka/3-clean-zoom/4-fine-zoom.png}
 \label{fig:cross1-4}}				
 %
 \caption{Clean-up of undesirable ``cross-talk'' facets for a surface patch: (a) initial surface following Voronoi-based surface reconstruction, (b) identification of ``cross-talk'' facets, (c) identification of edges to be collapsed, (d) final cleaned surface.}
 \label{fig:cross1}
-\end{figure}
+\end{sidewaysfigure}
 
 For the vast majority of bad edge networks, the collapse technique results in a smoother surface that remains closed and manifold. For regions of high-curvature, there are a small set of cases in which the clean-up step may cause the surface to become non-manifold. The topology of particular networks of bad edges that cause this phenomenon are identified based on heuristics, and are not collapsed to preserve the manifold property. The current approach thus does not capture regions of high curvature well during the point cloud generation step, and furthermore is unable to alleviate the issue of ``cross-talk'' facets in regions of high curvature. Fortunately, these remaining artifacts are small enough that the ensuing decimation step removes them.
 
 Handling regions of curvature or even sharp corners and edges can certainly be handled, though. The technique would involve including additional templates in the interface approximation step that would allow more than two Voronoi sites to be generated for each sampling window. For example, three Voronoi sites can be used to produce an edge, and four sites can be used to produce a corner. This would significantly improve the point cloud approximation of the underlying surface, perhaps to a degree that the collapsing technique described would remove all cross-talk facets with no concern of losing manifoldness.
 
-\begin{figure}[ht]
+\begin{sidewaysfigure}[htbp!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.07]{media/2-shabaka/4-clean/1-init.png}
+		\includegraphics[scale=0.1]{media/2-shabaka/4-clean/1-init.png}
 \label{fig:cross2-1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.07]{media/2-shabaka/4-clean/2-badfacets.png}
+		\includegraphics[scale=0.1]{media/2-shabaka/4-clean/2-badfacets.png}
 \label{fig:cross2-2}}		
 \subfigure[]{%
-		\includegraphics[scale=0.07]{media/2-shabaka/4-clean/3-badsegs.png}	
+		\includegraphics[scale=0.1]{media/2-shabaka/4-clean/3-badsegs.png}	
 \label{fig:cross2-3}}						
 \subfigure[]{%
-		\includegraphics[scale=0.07]{media/2-shabaka/4-clean/4-fine.png}		
+		\includegraphics[scale=0.1]{media/2-shabaka/4-clean/4-fine.png}		
 \label{fig:cross2-4}}		
 %
 \caption{Clean-up of undesirable ``cross-talk'' facets for surface of \textit{ex vivo} human heart: (a) initial surface following Voronoi-based surface reconstruction, (b) identification of ``cross-talk'' facets, (c) identification of edges to be collapsed, (d) final cleaned surface.}
 \label{fig:cross2}
-\end{figure}
+\end{sidewaysfigure}
 
 \subsubsection{Surface Decimation}
 
@@ -355,27 +355,28 @@ Results of the entire surface generation procedure described in this chapter are
 \label{tab:Mod5}
 \end{table}
 
-\begin{figure}[ht!]
+\begin{sidewaysfigure}[htbp!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.092]{media/2-shabaka/2-surf/1-seg.png}
+		\includegraphics[scale=0.1]{media/2-shabaka/2-surf/1-seg.png}
 \label{fig:shabakaseq1}}
 \subfigure[]{%
-		\includegraphics[scale=0.092]{media/2-shabaka/2-surf/2-normals.png}
+		\includegraphics[scale=0.1]{media/2-shabaka/2-surf/2-normals.png}
 \label{fig:shabakaseq2}}
 \subfigure[]{%
-		\includegraphics[scale=0.092]{media/2-shabaka/2-surf/3-ptcloud.png}
+		\includegraphics[scale=0.1]{media/2-shabaka/2-surf/3-ptcloud.png}
 \label{fig:shabakaseq3}}
+\\
 \subfigure[]{%
-		\includegraphics[scale=0.092]{media/2-shabaka/2-surf/4-finesurf.png}
+		\includegraphics[scale=0.1]{media/2-shabaka/2-surf/4-finesurf.png}
 \label{fig:shabakaseq4}}
 \subfigure[]{%
-		\includegraphics[scale=0.092]{media/2-shabaka/2-surf/5-surf.png}
+		\includegraphics[scale=0.1]{media/2-shabaka/2-surf/5-surf.png}
 \label{fig:shabakaseq5}}
 %
 \caption{(a) Segmented image, (b) point/normal placement, (c) oriented point cloud (normals not shown), c) cleaned surface mesh generated from Voronoi partition (edges not shown), and d) final decimated surface}
 \label{fig:shabakaseq}
-\end{figure}
+\end{sidewaysfigure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -413,18 +414,18 @@ The two most widely adopted approaches for automated unstructured tetrahedral me
 Delaunay tetrahedralization is the dual of the previously described \textit{Voronoi diagram}. Namely, the Voronoi sites form the vertices of the Delaunay tetrahedralization, whose edges perpendicularly pass through the coresponding shared Voronoi facets. The set of tetrahedra satisfy the property that no other vertex is contained within the circumsphere formed by the vertices of each tetrahedron. The Delaunay tetrahedralization is typically constructed incrementally. A tetrahedralization is carried out on an initial point distribution. Additional points are introduced and tetrahedra encompassing the new point are removed. The void created by the deletion of these tetrahedra is then remeshed~\cite{young_2008}. The specification of the initial point distribution and subsequent insertion of points dictates the resulting quality of the mesh elements. Constraining the Delaunay tetrahedralization to adhere to the input surface can also severely affect element quality and even produce sliver elements~\cite{lohner_1997}.
 
 A Delaunay meshing implementation from \textit{Tetgen}~\cite{tetgen} is utilized to interact with the Shabaka code to generate high quality tetrahedral meshes of linear or quadratic order. The Tetgen code is constrained to exactly honor the surface mesh generated by Shabaka. A tetrahedral mesh of the ventricles of the \textit{ex vivo} heart example is shown in \figref{tetmesh}.
-\begin{figure}[htbp!]
+\begin{sidewaysfigure}[htbp!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.14]{media/4-cardioid/0-ventriclesurf.png}
+		\includegraphics[scale=0.16]{media/4-cardioid/0-ventriclesurf.png}
 \label{fig:tet1}}
 \subfigure[]{%
-		\includegraphics[scale=0.14]{media/4-cardioid/1-tet.png}
+		\includegraphics[scale=0.16]{media/4-cardioid/1-tet.png}
 \label{fig:tet2}}
 %
 \caption{Bi-ventricular mesh of \textit{ex vivo} human heart: (a) surface mesh, and (b) clipped view of quadratic tetrahedral mesh}
 \label{fig:tetmesh}
-\end{figure}
+\end{sidewaysfigure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -437,7 +438,7 @@ Polyhedral meshing approaches tend to fall under two categories: those that seek
 
 Hex-dominant polyhedral meshing ``sculpts'' a background hex mesh with the input b-rep, producing hexahedra on the interior and arbitrary polyhedral shapes near the surface. These arbitrary polyhedra are accommodated by an element formulation that deviates from the conventional FEM approach, to be discussed in~\chapref{4}. This scuplting approach must handle geometric near-degeneracies in a robust way. Indeed, topological correctness is the highest priority if one is to guarantee a simulation-ready mesh for any input surface. An implementation of such an approach in the polyhedral FEM software \textit{Celeris} is used to generate polyhedral meshes from input b-reps~\cite{rashid_2013}. To avoid undesirably small elements, the intersection calculation between the input b-rep and its corresponding bounding hex mesh is tolerance-driven. Each polytope of the b-rep and bounding hex mesh is stored via a recursive definition of lower dimensional polytopes, and thus intersections are calculated in stages from lower order polytopes to higher order. In this manner, intersections of dimension greater than zero only require integer logic, and floating point calculations are kept to a minimum~\cite{rashid_2013}. \figref{cel} illustrates the robust polyhedral meshing sequence, and~\figref{zoom} shows some example arbitrary polyhedral elements for which a novel element formulation is required.
 
-\begin{figure}[htbp!]
+\begin{sidewaysfigure}[htbp!]
 \centering
 \subfigure[]{%
 		\includegraphics[scale=0.18]{media/3-celeris/1-brep.png}
@@ -447,7 +448,8 @@ Hex-dominant polyhedral meshing ``sculpts'' a background hex mesh with the input
 \label{fig:cel2}}		
 \subfigure[]{%
 		\includegraphics[scale=0.18]{media/3-celeris/3-pmesh.png}
-\label{fig:cel3}}		
+\label{fig:cel3}}
+\\		
 \subfigure[]{%
 		\includegraphics[scale=0.18]{media/3-celeris/4-clip.png}
 \label{fig:cel4}}	
@@ -456,7 +458,8 @@ Hex-dominant polyhedral meshing ``sculpts'' a background hex mesh with the input
 \label{fig:cel5}}			
 \caption{Generation of polyhedral mesh: (a) input surface mesh, (b) bounding hex mesh,  (c) resulting polyhedral mesh, (d) clipped mesh, and (e) highlight of elements with cuboidal vs. general polyhedral shape.}
 \label{fig:cel}
-\end{figure}
+\end{sidewaysfigure}
+
 \begin{figure}[htbp!]
 \centering
 \subfigure[]{%
@@ -504,12 +507,12 @@ Given a bi-ventricular surface mesh of the \textit{ex vivo} human heart example 
 
 The final result of the workflow from image to image mask to b-rep to polyhedral mesh is demonstrated in ~\figref{celsuite} for \textit{ex vivo} canine and human hearts from the CardioVascular Research Grid~\cite{cvgg}.
 
-\begin{figure}[htbp!]
+\begin{sidewaysfigure}[htbp!]
 \centering
 \includegraphics[width=1.0\textwidth]{media/3-celeris/7-suite.png}
 \caption{Suite of polyhedral finite element meshes generated from image data \vspace{1cm}}
 \label{fig:celsuite}
-\end{figure}
+\end{sidewaysfigure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -539,10 +542,10 @@ Shabaka is currently limited to meshing binary image masks. It can mesh multiple
 
 Shabaka has been rigorously tested against a wide variety of input images. Image masks have been meshed for the heart, brain, lungs, liver, skull, pelvis, vertebra, femur, and portions of the knee joint (see \figref{showcase}).
 
-\begin{figure}[ht!]
+\begin{sidewaysfigure}[htbp!]
 \centering
 \vspace{2.5mm}
 \includegraphics[width=1.0\textwidth]{media/2-shabaka/2-surf/6-showcase.png}
 \caption{Suite of example meshes generated from image data using Shabaka}
 \label{fig:showcase}
-\end{figure}
+\end{sidewaysfigure}
