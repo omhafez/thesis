@@ -218,8 +218,8 @@ A.~L. Alexander, J.~E. Lee, M.~Lazar, and A.~S. Field, ``{Diffusion tensor
   pp.~316--329, 2007.
 
 \bibitem{zaleska_2014}
-U.~Zaleska-Dorobisz, K.~Kaczorowski, A.~Pawluś, A.~Puchalska, and M.~Inglot,
-  ``{Ultrasound elastography - review of techniques and its clinical
+U.~Zaleska-Dorobisz, K.~Kaczorowski, A.~Pawlu/'{s}, A.~Puchalska, and
+  M.~Inglot, ``{Ultrasound elastography - review of techniques and its clinical
   applications},'' {\em Advances in Clinical and Experimental Medicine},
   vol.~23, pp.~645--655, 2014.
 
@@ -596,6 +596,12 @@ T.~P. Usyk, I.~J. Legrice, and A.~D. Mcculloch, ``{Computational Model of
   Three-Dimensional Cardiac Electromechanics},'' {\em Computing and
   Visualization in Science}, vol.~4, no.~4, pp.~249--257, 2002.
 
+\bibitem{weiss_1996}
+J.~A. Weiss, B.~N. Maker, and S.~Govindjee, ``{Finite Element Implementation of
+  Incompressible, Transversely Isotropic Hyperelasticity},'' {\em Computer
+  Methods in Applied Mechanics and Engineering}, vol.~135, no.~1-2,
+  pp.~107--128, 1996.
+
 \bibitem{lumens_2009}
 J.~Lumens, T.~Delhaas, B.~Kirn, and T.~Arts, ``{Three-Wall Segment (TriSeg)
   Model Describing Mechanics and Hemodynamics of Ventricular Interaction},''
@@ -609,7 +615,7 @@ J.~D. Bayer, R.~C. Blake, G.~Plank, and N.~A. Trayanova, ``{A Novel Rule-Based
   pp.~2243--2254, 2012.
 
 \bibitem{mfem-library}
-``{MFEM}: Modular finite element methods.'' \url{mfem.org}.
+``{MFEM}: Modular finite element methods.'' \url{http://mfem.org}.
 
 \bibitem{kerckhoffs_2006}
 R.~C.~P. Kerckhoffs, M.~L. Neal, Q.~Gu, J.~B. Bassingthwaighte, J.~H. Omens,
@@ -624,8 +630,8 @@ R.~C.~P. Kerckhoffs, M.~L. Neal, Q.~Gu, J.~B. Bassingthwaighte, J.~H. Omens,
   \url{http://oomph-lib.maths.man.ac.uk/}.
 
 \bibitem{doll_2000}
-S.~Doll, K.~Schweizerhof, R.~Hauptmann, and C.~Freischläger, ``{On Volumetric
-  Locking of Low‐Order Solid and Solid‐Shell Elements for Finite
+S.~Doll, K.~Schweizerhof, R.~Hauptmann, and C.~Freischl\:{a}ger, ``{On
+  Volumetric Locking of Low-Order Solid and Solid-Shell Elements for Finite
   Elastoviscoplastic Deformations and Selective Reduced Integration},'' {\em
   Engineering Computations}, vol.~17, no.~7, pp.~874--902, 2000.
 

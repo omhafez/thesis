@@ -1,9 +1,16 @@
 \chapter{Application: Cardiac Mechanics}
 \label{chap:5}
 %
-With the image-based meshing workflow in~\chapref{3} and finite element tools in~\chapref{4} both fully established, the entire image-based modeling and simulation pipeline can now be demonstrated. The application area to be discussed is the mechanical behavior of a beating human heart. Cardiac mechanics is a good testbed for the image-based modeling and simulation workflow described because 1) the application only involves binary image masks, 2) the exact geometry does not grossly affect results since contact modeling is not required, and 3) the use of simulation in this field arguably has the potential to save and improve more lives than any other biomechanics application area.
+Provided the image-based meshing workflow fully developed in~\chapref{3}, together with the finite element approaches established in~\chapref{4}, the entire image-based modeling and simulation pipeline is demonstrated through modeling the mechanical behavior of a beating human heart. Cardiac mechanics is a good testbed for the particular image-based modeling and simulation workflow described because: 1) the application only involves binary image masks, 2) the exact geometry does not grossly affect results since contact modeling is not included, and 3) the use of simulation in this field arguably has the potential to save and improve more lives than any other biomechanics application area.
 
-The primary function of the heart is to pump blood throughout the body, delivering nutrients and removing waste from each organ~\cite{holzapfel_2009}. The cyclic pumping arises from the interaction of its electrical and mechanical function. Namely, the electrical activation of cardiac muscle fibers causes an excitation-contraction of tissue that drives the motion. The heart consists of four chambers: the \textit{left ventricle} (LV), \textit{right ventricle} (RV), \textit{left atria} (LA), and \textit{right atria} (RA) (See~\figref{anatomy}). The \textit{septum} is the tissue wall that separates the LV and RV. The thinner-walled atria act as blood reservoirs for the ventricles, which are responsible for the predominant pumping function. The entire heart is encompassed by a fibrous sac known as the pericardium, which resists rapid increases in cardiac size. Myocardial tissue consists of discrete muscle fiber bundles that exhibit orthotropic material behavior. Refer to Holzapfel \textit{et al.} and Hunter~\cite{holzapfel_2009} for a more detailed description of the macro and microstructural properties of the heart.
+This chapter introduces and motivates the task of modeling the human heart. The essential components to computational cardiac mechanics are described for an implementation using conventional finite elements, and  simulation results are presented. Finally, the details of implementing the same mechanics into the polyhedral code \textit{Celeris} are discussed, along with verification results.
+
+\section{Introduction}
+
+A brief overview of the anatomy and function of the heart will be presented, followed by a survey of approaches found in the literature.
+
+\subsection{Anatomy and Function of the Heart}
+The heart consists of four chambers: the \textit{left ventricle} (LV), \textit{right ventricle} (RV), \textit{left atria} (LA), and \textit{right atria} (RA) (See~\figref{anatomy}). The \textit{septum} is the tissue wall that separates the LV and RV. The thinner-walled atria act as blood reservoirs for the ventricles, which are predominantly responsible for the pumping function. The entire heart is encompassed by a fibrous sac known as the \textit{pericardium}, which resists rapid increases in cardiac size. The primary function of the heart is to pump blood throughout the body, delivering nutrients and removing waste from each organ~\cite{holzapfel_2009}. Cyclic pumping of the heart arises from the interaction of its electrical and mechanical function. Namely, the electrical activation of cardiac muscle fibers causes an excitation and contraction of tissue that drives the motion of the organ. Myocardial tissue consists of discrete muscle fiber bundles that exhibit orthotropic material behavior. For a more detailed description of the macro and microstructural properties of the heart, refer to Holzapfel \textit{et al.}~\cite{holzapfel_2009} and Hunter~\cite{holzapfel_2009} 
 
 \begin{figure}[htbp!]
 \centering
@@ -12,59 +19,57 @@ The primary function of the heart is to pump blood throughout the body, deliveri
 \label{fig:anatomy}
 \end{figure}
 
+\subsection{Related Work}
 Cardiovascular disease is the leading cause of death and disability, accounting for about 40$\%$ of all human mortality~\cite{genet_2015}. Heart failure is one of the most common, costly, and deadly medical conditions, affecting more than 25 million people worldwide~\cite{mann_2015}. Better understanding the nuanced electrical and mechanical behavior of normal and pathological hearts is an important step in improving treatment for heart disease. The complexity of the mechanisms of interest, time and cost savings offered by simulation, and the high sensitivity to various patient-specific parameters make \textit{in silico} modeling an important tool in addressing heart disease.
 
-Cardiac mechanics is one of the most mature fields in computational biomechanics. Several well-known groups have attempted to advance the field from a variety of approaches with respect to the geometry and meshing. \textit{The Living Heart Project}~\cite{baillargeon_2014, genet_2015} has arguably gained the most traction in advancing the understanding of whole-heart cardiac mechanics through simulation, albeit by using linear tetrahedra for a general 50th percentile male heart geometry (i.e., the model was not generated from medical imaging). Augustin \textit{et al.}~\cite{augustin_2016} also used linear tetrahedral finite elements, meshed from smoothed surfaces originating from MRI data. A good deal of informative research still relies on modeling simplified geometries of only the left ventricle~\cite{guccione_2005, sack_2016}, in conjunction even with cubic Hermite finite elements~\cite{mcculloch_2000}. Most modern approaches tend to generate bi-ventricular models (i.e., left and right ventricles) or whole heart models including the atria and potentially even more geometric structures.
+Indeed, cardiac mechanics is one of the most mature fields in computational biomechanics. Several well-known groups have advanced the field using a variety of approaches with respect to the geometry and meshing. \textit{The Living Heart Project}~\cite{genet_2015, baillargeon_2014} has arguably gained the most traction in advancing the understanding of whole-heart cardiac mechanics through simulation, albeit using linear tetrahedra for an artificial heart geometry not generated from medical imaging. Augustin \textit{et al.}~\cite{augustin_2016} also used linear tetrahedral finite elements, meshed from considerably smoothed surfaces originating from MRI data. Pleny of informative research still only models simplified geometries of the left ventricle~\cite{guccione_2005, sack_2016}, in conjunction even with cubic Hermite finite elements~\cite{mcculloch_2000}. Generally speaking, though, most modern approaches generate either bi-ventricular models (i.e., left and right ventricles) or whole heart models that include the atria and potentially other geometric structures.
 
-Gurev \textit{et al.}~\cite{gurev_2015} performed mechanical simulations on a quadratic hex-dominant mixed element mesh of the human heart ventricles. The work from that group forms the basis for most of the cardiac mechanics explorations to be discussed in this chapter. The review article by Trayanova \textit{et al.}~\cite{trayanova_2011} provides an excellent summary of the components to ventricular electromechanical modeling utilized by the papers mentioned above.
+Gurev \textit{et al.}~\cite{gurev_2015} performed mechanical simulations on a quadratic hex-dominant mixed element mesh of the human heart ventricles, whose work forms the basis for the cardiac mechanics explorations detailed in this chapter. The review article by Trayanova \textit{et al.}~\cite{trayanova_2011} provides an excellent summary of the various components involved in ventricular electromechanical modeling, many of which are discussed in this chapter.
 
-The essential components to computational cardiac mechanics are described in this chapter for an implementation using conventional finite elements. Simulation results are also presented. Finally, the details of implementing the same mechanics into the polyhedral code \textit{Celeris} are discussed, along with preliminary verification results.
+\section[Demonstration using Conventional Finite Elements]{Demonstration using Conventional Finite \\ Elements}
 
-\section{Demonstration using Conventional Finite Elements}
-
-The key features of a cardiac mechanics modeling implementation will be highlighted within the framework of \textit{Cardioid}~\cite{richards_2013, gurev_2015}, a highly efficient and scalable code at Lawrence Livermore National Laboratory that utilizes high performance computing for modeling the electromechanics of cardiac arrhythmia.
+The key features of \textit{Cardioid}~\cite{richards_2013, gurev_2015} will be highlighted, as is relevant to image-based cardiac mechanics modeling. Cardioid is a highly efficient and scalable code at Lawrence Livermore National Laboratory that utilizes high performance computing for modeling the electromechanics of cardiac arrhythmia. The code is used here to demonstrate the image-based modeling and simulation pipeline using conventional finite element methods.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Methods}
 \label{Methods}
 
-In Cardioid, quasi-static finite deformations are assumed, body forces are assumed negligible, and the stress measure of interest is the second Piola-Kirchoff stress $\bm{S}$. Thus, Equation PLACEHOLDER reduces to the following:
+In Cardioid, the body is assumed to undergo quasi-static finite deformations, body forces are assumed negligible, and the stress measure of interest is the second Piola-Kirchoff stress $\bm{S}$. Thus, balance of linear momentum reduces to the following equation:
 \begin{equation}
 (F_{ik}S_{kj}),_{j} = 0
 \end{equation}
-Note that in Cardioid, the second Piola-Kirchhoff stress is the stress measure of interest.
 
-In order to fully define and solve these equations, the following are specified: the mesh, material model characterization, muscle fiber orientation, solution-dependent pressure boundary conditions, and the finite element solver. Each consideration will be described in turn.
+In order to fully define and solve these equations, the following are specified: the mesh, constitutive update, muscle fiber orientation, solution-dependent pressure boundary conditions, and the finite element solver. Each consideration will be described in turn.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Mesh Generation}
 \label{Mesh Generation}
 
-A bi-ventricular mesh is generated using the procedure described in~\chapref{2} and \chapref{3}. Namely, an MRI of an \textit{ex vivo} human heart from the CardioVascular Research~\cite{cvgg} is segmented using the software Seg3D. Since the ventricles are most responsible for the pumping action, image segmentation is restricted to those the geometric structures. A threshold segmentation is used as the initial seed to Seg3D's level set implementation. Additional tools to \textit{fill holes} or \textit{dilate-erode} are utilized before a final sweep of manual paintbrushing is employed. Following careful manual inspection, the final image mask is input to Shabaka to generate a high quality surface of the heart ventricles with a total of 50k points. Tetgen is invoked to produce a tetrahedral mesh that honors the input surface and attempts to produce high quality tetrahedra for the purposes of finite element simulations. A maximum element volume of 2 \textit{mm$^3$} was imposed. Again, quadratic tetrahedral elements are chosen over linear elements to avoid volumetric locking and/or impracticably fine meshes. The surface and mesh are shown in \figref{tetmesh} - the tetrahedral mesh has 374k elements and 595k nodes. This mesh is directly used in the Cardioid code for the purposes of finite element simulation, together with the material model and boundary conditions.
+A bi-ventricular mesh is generated using the procedures described in~\chapref{2} and \chapref{3}. Namely, an MRI of an \textit{ex vivo} human heart from the CardioVascular Research~\cite{cvgg} is segmented using the software Seg3D. Since the ventricles are most responsible for the pumping action, image segmentation is restricted to those geometric structures. A threshold segmentation is used as the initial seed to Seg3D's level set segmentation tool. Additional tools to \textit{fill holes} and \textit{dilate-erode} the image mask are utilized before a final sweep of manual paintbrushing is employed. Following careful manual inspection, the final image mask is input to Shabaka to generate a high quality surface of the heart ventricles with a total of 50k points. Tetgen is invoked to produce a tetrahedral mesh that honors the input surface and attempts to produce high quality tetrahedra for the purposes of finite element simulations. A maximum element volume of 2 \textit{mm$^3$} was imposed. Again, quadratic tetrahedral elements are chosen in favor of linear elements to avoid volumetric locking and/or impracticably fine meshes. The surface and volume meshes are shown in \figref{tetmesh} - the final quadratc tetrahedral mesh has 374k elements and 595k nodes.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Material Model}
 \label{Material Model}
 
-The cardiac tissue is assumed to exhibit an additive stress decomposition, such that $\bm{S} = \bm{S}_p + \bm{S}_a$ at any point in the model. The \textit{active stress} $\bm{S}_a$ represents the stress induced through active contraction of muscle fibers, and the \textit{passive stress} $\bm{S}_p$ the stress experienced by the underlying tissue matrix.
+The cardiac tissue is assumed to exhibit an additive stress decomposition, such that $\bm{S} = \bm{S}_p + \bm{S}_a$ at any point in the model. The \textit{active stress} $\bm{S}_a$ represents the stress induced through active contraction of muscle fibers, and the \textit{passive stress} $\bm{S}_p$ is the stress experienced by the surrounding tissue.
 
 \textbf{Passive Stress}
 
 The passive response of the cardiac tissue is characterized by an incompressible, transversely isotropic constitutive law by Usyk~\textit{et al.}~\cite{usyk_2002}. The strain energy density functional is given by:
 \begin{gather}
-W = \frac{C}{2}\left(e^Q -1\right) \\
+W(\bm{C}) = \frac{C}{2}\left(e^Q -1\right) \\
 Q = b_{ff} E^2_{ff} + b_{ss} E^2_{ss} + b_{nn} E^2_{nn} + b_{fs}\left(E^2_{fs} + E^2_{sf}\right) + b_{fn}\left(E^2_{fn} + E^2_{nf}\right) + b_{ns}\left(E^2_{ns} + E^2_{sn}\right)
 \end{gather}
-where $\bm{E}$ is the Green-Lagrange strain tensor expressed in a local orthonormal coordinate system with axes parallel to the local fiber, sheet, and sheet-normal $(f,s,n)$ directions, and where $C$, $b_{ff}$, $b_{ss}$, $b_{nn}$, $b_{fs}$, $b_{fn}$, and $b_{ns}$ are material parameters.
+where $\bm{E}$ is the Green-Lagrange strain tensor expressed in a local orthonormal coordinate system with axes parallel to the local fiber, sheet, and sheet-normal $(f,s,n)$ directions, $\bm{E} = \frac{1}{2}(\bm{C} - \bm{I})$, and $C$, $b_{ff}$, $b_{ss}$, $b_{nn}$, $b_{fs}$, $b_{fn}$, and $b_{ns}$ are material parameters.
 
-Incompressibility is fully enforced by solving for pressure unknowns as Lagrange multipliers in addition to nodal unknowns. The deviatoric and volumetric portions of the strain energy are separated within a framework enforcing full incompressibility. Rather than defining the passive stress as simply $\bm{S}_p = \frac{\partial W}{\partial \bm{E}}$, the passive stress becomes:
+Incompressibility is fully enforced by solving for pressure unknowns as Lagrange multipliers in addition to nodal unknowns. In order to use the constitutive law in a fully incompressible context, the deviatoric and volumetric portions of the strain energy are separated as is done by Weiss~\textit{et al.}~\cite{weiss_1996}. Rather than defining the passive stress as simply $\bm{S}_p = \frac{\partial W}{\partial \bm{E}}$, the passive stress becomes:
 \begin{equation}
 \bm{S}_p= 2\frac{\partial{\tilde{W}(\tilde{\bm{C}})}}{\partial{\bm{C}}} - pJ\bm{C}^{-1}
 \end{equation}
-where $\tilde{W}(\tilde{\bm{C}})$ is the deviatoric component of the strain energy functional, $J = \text{det}(\bm{F})$, and $\tilde{\bm{C}} = J^{-2/3}\bm{C}$. More details regarding the enforcement of incompressibility can be found in Gurev \textit{et al.}~\cite{gurev_2015}.
+where $\tilde{W}(\tilde{\bm{C}})$ is the deviatoric component of the strain energy functional, $J = \text{det}(\bm{F})$, and $\tilde{\bm{C}} = J^{-2/3}\bm{C}$. More details regarding the enforcement of incompressibility can be found in Gurev \textit{et al.}~\cite{gurev_2015} and Weiss~\textit{et al.}~\cite{weiss_1996}.
 
 \textbf{Active Stress}
 
@@ -73,21 +78,21 @@ The active stress is defined as :
 \bm{S}_a = \sigma_a \bm{f} \bm{f}^{T}
 \label{eqn:active}
 \end{equation}
-where $\bm{f}$ is the muscle fiber direction and ${\sigma_a}$ is the scalar active tension induced in the fiber direction. The vector $\bm{f}$ here may refer to the fiber orientation either in the reference configuration or the current configuration - within the updated Cardioid framework it will refer to the direction in the reference configuration.
+where $\bm{f}$ is the muscle fiber direction and ${\sigma_a}$ is the scalar active tension induced in the fiber direction. The vector $\bm{f}$ here may refer to the fiber orientation either in the reference configuration or the current configuration - within Cardioid it refers to the direction in the reference configuration.
 
-The active tension model by Lumens \textit{et al.}~\cite{lumens_2009} is used to determine the active tension $\sigma_a$, in the following manner:
+The model by Lumens \textit{et al.}~\cite{lumens_2009} is used to determine the active tension $\sigma_a$ in the following manner:
 \begin{align}
 \frac{d\bm{w}}{dt} = \bm{q}(\bm{w}; t_a, \lambda) \\
 \sigma_a \equiv \sigma_a(\bm{w}; t_a, \lambda)
 \end{align}
-The scalar active tension depends on state variables $\bm{w}$ involving the sarcomere length of the muscle cells, the time of electrical activation of those cells $t_a$, and the muscle fiber stretch $\lambda$ in the direction of $\bm{f}$. Namely, $\lambda = (\bm{f}\bm{C}\bm{f}^T)^{1/2}$. The state variables are updated explicitly within the constitutive update subroutine. Further details on the state variables $\bm{w}$ and the way in which they are updated via $\bm{q}$ can be found in the work by Lumens~\textit{et al.}~\cite{lumens_2009}.
+The scalar active tension depends on the state variables $\bm{w}$ of the muscle cells, the time $t_a$ at which the muscle cells electrically activate, and the muscle fiber stretch $\lambda$ in the direction of $\bm{f}$. Specifically, the fiber stretch is defined as $\lambda = (\bm{f}\bm{C}\bm{f}^T)^{1/2}$. The state variables are updated using a forward Euler scheme within the constitutive update. Further details on the state variables $\bm{w}$ and the way in which they are updated via $\bm{q}$ can be found in the work by Lumens~\textit{et al.}~\cite{lumens_2009}.
 
-The activation time $t_a$ at each integration point is gathered from the results of the electrophysiology portion of the Cardioid code~\cite{richards_2013}. Specifically, an electrostatics problem is solved numerically for time-varying voltages, and the the activation time is determined based on when the voltage at each location passes a certain threshold. In this manner, a one-way coupling is imposed, in which the mechanics code depends on the electrophysiology results, but not vice versa. A fixed beat duration $t_b$ is assumed, such that the myofilament model excites and contracts for the $n$th beat at time $nt_b + t_a$. Activation times are read in to the mechanics code for each of the integration points of the mesh as a field variable (see \figref{supp1}).
+The activation time $t_a$ at each integration point is gathered from the results of the electrophysiology portion of the Cardioid code~\cite{richards_2013}. Specifically, an electrostatics problem is solved numerically for time-varying voltages, and the the activation time is determined based on when the voltage at each location passes a certain threshold. A one-way coupling is thus imposed, in which the mechanics code depends on the electrophysiology results, but not vice versa. A fixed beat duration $t_b$ is assumed, such that the myofilament model excites and contracts for the $n$th beat at time $nt_b + t_a$. Activation times are stored in the mechanics code as a field variable (see \figref{supp1}).
 
 \begin{sidewaysfigure}[htbp!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.11]{media/4-cardioid/2-activationtime.png}
+		\includegraphics[scale=0.11]{media/4-cardioid/22-activationtime.png}
 \label{fig:supp1}}
 \subfigure[]{%
 		\includegraphics[scale=0.11]{media/4-cardioid/3-fibers.png}
@@ -96,11 +101,13 @@ The activation time $t_a$ at each integration point is gathered from the results
 		\includegraphics[scale=0.11]{media/4-cardioid/4-tagged.png}
 \label{fig:supp3}}
 %
-\caption{Mechanics modeling considerations: (a) muscle fiber orientations, (b) electrical activation times, and c) surface tagging and prescription of corresponding boundary conditions.}
+\caption{Mechanics modeling considerations: (a) electrical activation times, (b) muscle fiber orientations, and c) surface tagging and prescription of corresponding boundary conditions.}
 \label{fig:supp}
 \end{sidewaysfigure}
 
-Both the passive and active portions of the constitutive model depend on muscle fiber orientation. Fiber orientations may be generated directly from DTMRI data, but require the difficult tasks of tensor denoising, smoothing, and interpolation in the presence of noisy data. Additionally, DTMRI data is more timely, more expensive, and may not always be available. The Cardioid implementation opts for the more popular \textit{rule-based approach}, in which fiber orientations are artificially generated based on the input mesh, to mimic the orientations exhibited in reality. The implementation utilizes the algorithm by Bayer \textit{et al.}~\cite{bayer_2012}, involving solving several elliptic boundary value problems in succession. Specifically, Laplace's equation $\nabla^2\phi = 0$ is solved four times, each with different Dirichlet boundary conditions (see~\figref{bayer}).
+\textbf{Fiber Generation}
+
+Both the passive and active portions of the constitutive model depend on the muscle fiber orientation. Fiber orientations may be generated directly from DTMRI data, but that process requires denoising, smoothing, and interpolating tensor datasets, which can lead to unsatisfactory results. Additionally, DTMRI data is more expensive to acquire, and may not always be available. The Cardioid fiber generation code opts for the more popular \textit{rule-based approach}, in which fiber orientations are artificially generated based on the input mesh to mimic the actual muscle fiber orientations. The code utilizes the algorithm by Bayer \textit{et al.}~\cite{bayer_2012}, which involves solving Laplace's equation $\nabla^2\phi = 0$ four times, each with different Dirichlet boundary conditions (see~\figref{bayer}).
 
 \begin{figure}[ht]
 \centering
@@ -109,7 +116,7 @@ Both the passive and active portions of the constitutive model depend on muscle 
 \label{fig:bayer}
 \end{figure}
 
-The gradients of these solutions inform the construction of orthotropic fiber orientations at each solution point. Finally, fiber orientations are interpolated at the junctions between the LV, RV, and septum to ensure that the fiber direction changes smoothly and continuously throughout the entire myocardium. The details by which the gradients are used to construct the fiber orientations and by which orientations are interpolated are explained in the work of Bayer~\textit{et al.}~\cite{bayer_2012}. The Laplace solves are performed using the highly parallelized finite element code \textit{MFEM}~\cite{mfem-library} on the same input quadratic tetrahedral mesh to be used for the mechanics simulation. The algorithm is robust for various geometries and compares well with fiber orientations generated directly from DTMRI data. The computed fiber orientations for the mesh of interest are shown in \figref{supp2}.
+The gradients of these solutions inform the construction of orthotropic fiber orientations at each solution point. Fiber orientations are then interpolated at the junctions between the LV, RV, and septum to ensure that the fiber direction changes smoothly and continuously throughout the entire myocardium. The details by which the gradients are used to construct the fiber orientations and by which orientations are interpolated are explained in Bayer~\textit{et al.}~\cite{bayer_2012}. The Laplace solves are performed using the highly parallelized finite element code \textit{MFEM}~\cite{mfem-library} on the same input quadratic tetrahedral mesh to be used for the mechanics simulation. The algorithm performs robustly for various geometries and compares well with fiber orientations generated directly from DTMRI data. The computed fiber orientations for the mesh of interest are shown in \figref{supp2}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
