@@ -1,13 +1,11 @@
 \BOOKMARK [1][-]{chapter*.1}{Abstract}{}% 1
 \BOOKMARK [1][-]{chapter*.1}{Acknowledgments}{}% 2
-\BOOKMARK [0][-]{chapter.5}{Application: Cardiac Mechanics}{}% 32
-\BOOKMARK [1][-]{section.5.1}{Introduction}{chapter.5}% 33
-\BOOKMARK [2][-]{subsection.5.1.1}{Anatomy and Function of the Heart}{section.5.1}% 34
-\BOOKMARK [2][-]{subsection.5.1.2}{Related Work}{section.5.1}% 35
-\BOOKMARK [1][-]{section.5.2}{Demonstration using Conventional Finite Elements}{chapter.5}% 36
-\BOOKMARK [2][-]{subsection.5.2.1}{Methods}{section.5.2}% 37
-\BOOKMARK [2][-]{subsection.5.2.2}{Results}{section.5.2}% 38
-\BOOKMARK [1][-]{section.5.3}{Extension to Polyhedral Finite Elements}{chapter.5}% 39
-\BOOKMARK [2][-]{subsection.5.3.1}{Implementation}{section.5.3}% 40
-\BOOKMARK [2][-]{subsection.5.3.2}{Verification}{section.5.3}% 41
+\BOOKMARK [0][-]{chapter.6}{Future Work}{}% 42
+\BOOKMARK [1][-]{section.6.1}{Short Term}{chapter.6}% 43
+\BOOKMARK [2][-]{subsection.6.1.1}{A Polyhedral Finite Element Demonstration in Cardiac \040Mechanics}{section.6.1}% 44
+\BOOKMARK [2][-]{subsection.6.1.2}{Improvements to Image-Based Meshing Code}{section.6.1}% 45
+\BOOKMARK [2][-]{subsection.6.1.3}{Improvements to Cardiac Mechanics Code}{section.6.1}% 46
+\BOOKMARK [1][-]{section.6.2}{Long Term}{chapter.6}% 47
+\BOOKMARK [2][-]{subsection.6.2.1}{Simulation of Clinical Trials}{section.6.2}% 48
+\BOOKMARK [2][-]{subsection.6.2.2}{Applications in Rapid Prototyping and Additive Manufacturing}{section.6.2}% 49
 \BOOKMARK [0][-]{section*.2}{ References}{}% 51

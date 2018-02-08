@@ -19,6 +19,10 @@ element quality
 \section{The Partitioned Element Method}
 \label{The Partitioned Element Method}
 
+Polyhedral finite element methods are an emerging class of finite-element-like methods within the general class of Galerkin approximation schemes, in which the individual elements need not conform to the topology of a fixed canonical (or “parent”) element. Polyhedral FEMs exhibit much of the same desirable properties of conventional finite elements, namely: they enjoy high quadrature efficiency, they interpolate the nodal data so that essential BCs are easy to enforce, and they support convenient equation assembly and modular code architecture. The specific implementation of polyhedral FEM in Celeris is known as the “Partitioned Element Method”. The Partitioned Element Method employs a geometric partition of each polyhedral element into quadrature cells. The shape functions are then formulated discretely, on the complex of quadrature cells, via an element-local quadratic optimization problem. Arbitrary polyhedral element shapes (including non-convex) are accommodated without deterioration in local solution accuracy, making the mesh in Figure 9(c) a perfectly adequate discretization for this method. Higher-order shape functions are possible with this approach, although for this demonstration only elements with first order interpolation will be used.
+
+To that end, the simulation resolution need only be refined to the extent that accurate solutions can be provided, rather than being constrained in some way by the number of points and polygons used to the describe the surface of the object.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Incremental Kinematics}

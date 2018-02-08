@@ -631,7 +631,6 @@ R.~C.~P. Kerckhoffs, M.~L. Neal, Q.~Gu, J.~B. Bassingthwaighte, J.~H. Omens,
 
 \bibitem{slideshare}
 C.~Richardson, ``{The Cardiac Cycle}.''
-  https://www.slideshare.net/cr8639/the-cardiac-cycle-13725004.
 
 \bibitem{doll_2000}
 S.~Doll, K.~Schweizerhof, R.~Hauptmann, and C.~Freischl\:{a}ger, ``{On
@@ -650,5 +649,31 @@ S.~Land, V.~Gurev, S.~Arens, C.~M. Augustin, L.~Baron, R.~Blake, C.~Bradley,
   Mechanics Software: Benchmark Problems and Solutions for Testing Active and
   Passive Material Behaviour},'' {\em Proceedings of the Royal Society A:
   Mathematical, Physical and Engineering Science}, vol.~471, Aug 2015.
+
+\bibitem{dyadechko_2008}
+V.~Dyadechko and M.~Shashkov, ``{Reconstruction of Multi-Material Interfaces
+  from Moment Data},'' {\em Journal of Computational Physics}, vol.~227,
+  no.~11, pp.~5361--5384, 2008.
+
+\bibitem{cmake}
+``{CMake}.''
+
+\bibitem{yang_2012}
+F.~Yang, Y.-M. Zhu, I.~E. Magnin, J.-H. Luo, P.~Croisille, and P.~B. Kingsley,
+  ``{Feature-Based Interpolation of Diffusion Tensor Fields and Application to
+  Human Cardiac DT-MRI},'' {\em Medical Image Analysis}, vol.~16, no.~2,
+  pp.~459--481, 2012.
+
+\bibitem{zhukov_2003}
+L.~Zhukov and A.~Barr, ``{Heart-Muscle Fiber Reconstruction from Diffusion
+  Tensor MRI},'' {\em IEEE Transactions on Ultrasonics, Ferroelectrics and
+  Frequency Control}, 2003.
+
+\bibitem{fda3_2016}
+{U.S. Food and Drug Administration}, ``{Technical Considerations for Additive
+  Manufactured Medical Devices},'' {\em Guidance for Industry and Food and Drug
+  Administration Staff}, Dec 2017.
+\newblock
+  \url{https://www.fda.gov/downloads/MedicalDevices/DeviceRegulationandGuidance/GuidanceDocuments/UCM381813.pdf}.
 
 \end{thebibliography}
