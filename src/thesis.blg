@@ -52,16 +52,16 @@ Warning--empty journal in melodee
 Warning--empty year in melodee
 You've used 133 entries,
             1876 wiz_defined-function locations,
-            1143 strings with 27382 characters,
-and the built_in function-call counts, 33961 in all, are:
-= -- 3227
+            1145 strings with 27472 characters,
+and the built_in function-call counts, 33989 in all, are:
+= -- 3237
 > -- 1437
 < -- 0
 + -- 537
 - -- 404
 * -- 2529
-:= -- 4836
-add.period$ -- 151
+:= -- 4840
+add.period$ -- 153
 call.type$ -- 133
 change.case$ -- 119
 chr.to.int$ -- 0
@@ -69,17 +69,17 @@ cite$ -- 173
 duplicate$ -- 1738
 empty$ -- 3206
 format.name$ -- 404
-if$ -- 8338
+if$ -- 8348
 int.to.chr$ -- 0
 int.to.str$ -- 133
 missing$ -- 139
-newline$ -- 433
+newline$ -- 435
 num.names$ -- 122
-pop$ -- 395
+pop$ -- 401
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 1128
+skip$ -- 1118
 stack$ -- 0
 substring$ -- 1987
 swap$ -- 685
@@ -90,5 +90,5 @@ type$ -- 0
 warning$ -- 40
 while$ -- 261
 width$ -- 136
-write$ -- 1269
+write$ -- 1273
 (There were 40 warnings)

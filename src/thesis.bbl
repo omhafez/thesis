@@ -631,6 +631,7 @@ R.~C.~P. Kerckhoffs, M.~L. Neal, Q.~Gu, J.~B. Bassingthwaighte, J.~H. Omens,
 
 \bibitem{slideshare}
 C.~Richardson, ``{The Cardiac Cycle}.''
+\newblock \url{https://www.slideshare.net/cr8639/the-cardiac-cycle-13725004}.
 
 \bibitem{doll_2000}
 S.~Doll, K.~Schweizerhof, R.~Hauptmann, and C.~Freischl\:{a}ger, ``{On
@@ -657,6 +658,7 @@ V.~Dyadechko and M.~Shashkov, ``{Reconstruction of Multi-Material Interfaces
 
 \bibitem{cmake}
 ``{CMake}.''
+\newblock \url{https://cmake.org/}.
 
 \bibitem{yang_2012}
 F.~Yang, Y.-M. Zhu, I.~E. Magnin, J.-H. Luo, P.~Croisille, and P.~B. Kingsley,
