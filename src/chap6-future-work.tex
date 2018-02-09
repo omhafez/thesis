@@ -54,7 +54,7 @@ The cardiac mechanics code Cardioid has room for improvement on several fronts n
 Other important improvements include the treatment of boundary conditions at the base and pericardium of the heart. As of now, the less-than-convincing BCs that displacements at the base be restricted in-plane, and that an arbitrary strip of the pericardium is restrained in all three directions, must be improved. A simple improvement to modeling the pericardium, for example, could involve modeling the heart inside a fixed elastic medium. Actual \textit{in vivo} behavior should of course guide those decisions. Although not urgent, providing the ability to generate muscle fiber orientations directly from DTMRI data would also make Cardioid more competitive. Although the process is certainly not perfected, other groups have been successful in moving away from model-based fiber generation~\cite{yang_2012, zhukov_2003}
 
 Even without the improvements suggested here, several studies may now be performed with the current model. Validation of results with experiments must be the highest priority as Cardioid moves toward answering clinical questions. Given a working model, a whole range of sensitivity studies may be performed to determine what meshing and modeling parameters are most influential. Some questions include:
-\begin{itemize}
+\begin{itemize}[noitemsep]
 \item How sensitive are the results to accurate depictions of the heart surface? Or even to removing inner structures in the ventricle altogether? Some preliminary work hints that papillary muscles, for example, do not play a significant role~\cite{korte_2019}.
 \item How does the accuracy of fiber orientation affect the solution? Do fibers generated from a rule-based approach produce different results compared to those generated from DTMRI data?
 \item How do different passive and active constitutive models affect the solution?
@@ -65,19 +65,25 @@ Even without the improvements suggested here, several studies may now be perform
 Lastly, much in the same way convergence to geometry should be guaranteed with Shabaka, a mesh convergence study should be performed to determine the desired resolution of cardiac meshes for converged results.
 
 %%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%\\
+%%%%%%%%%%%%%%%%%%%%%%
 \section{Long Term}
 \label{Long Term}
 
+A brief discussion ensues regarding the future of image-based modeling and simulation and how it might interact more with statistics, machine learning, and additive manufacturing in the coming years.
+
 \subsection{Simulation of Clinical Trials}
 \label{Simulation of Clinical Trials}
-The problem of robust patient-specific modeling has more or less been solved, even for multi-material image masks. The next step is to combine simulation related to a particular patient with statistical and/or machine learning technologies. 
-A Machine Learning System to Guide Clinical Procedures in Real-Time
+
+Although plenty of opportunities still exist to improve the tools involved, the problem of robust patient-specific modeling has more or less been solved, even for multi-material image masks. Patient-specific treatments and medical devices are already a reality. The important next step in the field is to combine simulations related to a single patient with statistical and/or machine learning technologies for large populations of patients. One may refer to this extension as \textit{simulation of clinical trials}. To properly perform such an ambitious task will involve several important considerations moving forward. Among the most important are: appropriate assignment of material properties for each patient, appropriate boundary conditions for each patient, performing rigorous verification, validation, and potentially even uncertainty quantification~\cite{NAP13395}, and heavy reliance on high performance computing to perform computations for large datasets in a timely manner.
+
+For example, the project ``A Machine Learning System to Guide Clinical Procedures in Real-Time'' currently funded by Lawrence Livermore National Laboratory will utilize the image-based modeling workflow that has been described, and will certainly need to attend to many of the considerations mentioned. That project aims to improve surgical treatment of ventricular fibrillation, the deadly form of cardiac arrhythmia. The research aims to produce a large virtual patient dataset based on imaging data, from which machine learning tools can determine optimal locations to ablate an arrhythmic heart. The virtual population of 10-40k will be based on a real patient population of roughly 100. As emphasized in this document, the quality of meshes must be ensured for accurate simulation. With that task at a working level, the focus will need to shift to ensuring accurate depictions of the material behavior, boundary conditions, and overall validation of results. Provided those tasks are accomplished, these sorts of simulations can guide real surgeries to save real lives.
 
 \subsection[Applications in Rapid Prototyping and Additive Manufacturing]{\texorpdfstring{Applications in Rapid Prototyping and Additive \newline Manufacturing}{Applications in Rapid Prototyping and Additive \newline Manufacturing}}
 \label{Applications in Rapid Prototyping and Additive Manufacturing}
 
-\cite{fda3_2016}
+Rapid prototyping and additive manufacturing have begun to revolutionize many factions of engineering, and biomechanics applications are no exception. Indeed, in 2017 the FDA issued a document titled ``Technical Considerations for Additive Manufactured Medical Devices''~\cite{fda3_2016}, signifying the degree to which the technology is beginning to play an important role in medical device design.
+
+The input requirements for a 3D printer are in fact identical to those of a CAD-based mesh generation tool: a closed, manifold surface mesh is required in both cases. STL files are by far the most popular surface mesh file format for 3D printing. Some of the surfaces generated using Shabaka were printed with a \textit{fused deposition modeling (FDM)} printer, in which melted material is extruded layer by layer to produce a three-dimensional object~\figref{3dprint}. A visual print of an object can be incredibly illuminating, even for a surgeon who is accustomed to 3D computer models.
 
 \begin{sidewaysfigure}[htbp!]
 \centering
@@ -87,3 +93,6 @@ A Machine Learning System to Guide Clinical Procedures in Real-Time
 \label{fig:3dprint}
 \end{sidewaysfigure}
 
+Of the many challenges of robustly producing 3D-printed objects using fused deposition modeling, some include: reliability, i.e., getting the same output for the same input, which is certainly not currently the case; optimizing the many print design parameters, such as: extruder temperature, layer thickness, support structure, and extruder outflow rate; cost; and confidently measuring the expected precision of a print. It was deemed that fused deposition modeling is better suited for simple prototyping applications. Other (more expensive) printing technologies will likely be more appropriate for production level prints, such as \textit{stereolithography (SLA)}, in which a laser cures liquid resin into hardened plastic via \textit{photopolymerization}, or \textit{selective laser sintering (SLS)}, which a high-powered laser fuses small particles of polymer or metal powde~\cite{3dprints}.
+
+Tack \textit{et al.}~\cite{tack_2016} outlined a comprehensive review of 3D printing in a medical setting. They covered various surgical domains in which 3D-printed surgical guides and implants have impacted the field. Of course, 3D printing may also be used for rapid prototyping or even educational material as it pertains to the biomedical field.

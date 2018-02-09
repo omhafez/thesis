@@ -243,7 +243,7 @@ MATLAB, {\em version 9.2.0 (R2017a)}.
 \newblock Natick, Massachusetts: The MathWorks Inc., 2017.
 
 \bibitem{nrrd}
-``{nrrd: Nearly Raw Raster Data},''
+``{NRRD: Nearly Raw Raster Data},''
 \newblock \url{http://teem.sourceforge.net/nrrd/index.html}.
 
 \bibitem{nifti}
@@ -560,7 +560,10 @@ C.~M. Augustin, A.~Neic, M.~Liebmann, A.~J. Prassl, S.~A. Niederer, G.~Haase,
   vol.~305, pp.~622--646, 2016.
 
 \bibitem{guccione_2005}
-``Mri-based finite-element analysis of left ventricular aneurysm,''
+J.~C. Walker, M.~B. Ratcliffe, P.~Zhang, A.~W. Wallace, B.~Fata, E.~W. Hsu,
+  D.~Saloner, and J.~M. Guccione, ``{MRI-Based Finite-Element Analysis of Left
+  Ventricular Aneurysm},'' {\em American Journal of Physiology-Heart and
+  Circulatory Physiology}, vol.~289, no.~2, 2005.
 
 \bibitem{sack_2016}
 K.~L. Sack, N.~H. Davies, J.~M. Guccione, and T.~Franz, ``{Personalised
@@ -676,11 +679,27 @@ V.~Gurev, J.~Korte, O.~Hafez, J.-L. Fattebert, D.~F. Richards, and J.~J. Rice,
   ``{Papillary Muscles Contraction does not Change Ventricular Wall
   Mechanics},'' {\em 2015 Computing in Cardiology Conference (CinC)}, 2015.
 
+\bibitem{NAP13395}
+N.~R. Council, {\em {Assessing the Reliability of Complex Models: Mathematical
+  and Statistical Foundations of Verification, Validation, and Uncertainty
+  Quantification}}.
+\newblock Washington, DC: The National Academies Press, 2012.
+
 \bibitem{fda3_2016}
 {U.S. Food and Drug Administration}, ``{Technical Considerations for Additive
   Manufactured Medical Devices},'' {\em Guidance for Industry and Food and Drug
   Administration Staff}, Dec 2017.
 \newblock
   \url{https://www.fda.gov/downloads/MedicalDevices/DeviceRegulationandGuidance/GuidanceDocuments/UCM381813.pdf}.
+
+\bibitem{3dprints}
+``{3D Printing Technology: FDM vs. SLA vs. SLS},''
+\newblock
+  \url{https://formlabs.com/blog/fdm-vs-sla-vs-sls-how-to-choose-the-right-3d-printing-technology/}.
+
+\bibitem{tack_2016}
+P.~Tack, J.~Victor, P.~Gemmel, and L.~Annemans, ``{3D-Printing Techniques in a
+  Medical Setting: A Systematic Literature Review},'' {\em BioMedical
+  Engineering OnLine}, vol.~15, no.~1, 2016.
 
 \end{thebibliography}
