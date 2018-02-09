@@ -49,11 +49,20 @@ Finally, a necessary step in proving the quality of results from Shabaka is a nu
 \subsection{Improvements to Cardiac Mechanics Code}
 \label{Improvements to Cardiac Mechanics Code}
 
-The cardiac mechanics code Cardioid has room for improvement and extension on several fronts as well now that a robust workflow for cardiac simulations has been established.
+The cardiac mechanics code Cardioid has room for improvement on several fronts now that a robust workflow for cardiac simulations has been established. Arguably the most interesting tasks from a numerical standpoint are moving towards a complete coupling between the mechanics, electrophysiology, and circulatory model codes. As mentioned before, only a one-way coupling currently exists between the electrophysiology and mechanics codes. In reality, of course, the large deformations experienced in the heart certainly affect the manner in which electrical waves propagate within the body. The current lumped circulatory model could be replaced by a complete fluid dynamics code modeling blood flow, such as the one developed by Gounley \textit{et al.}, which is also affiliated with Lawrence Livermore National Laboratory. In this case, the volume constraints would be replaced by fluid-structure interaction considerations.
 
-\cite{yang_2012, zhukov_2003}
+Other important improvements include the treatment of boundary conditions at the base and pericardium of the heart. As of now, the less-than-convincing BCs that displacements at the base be restricted in-plane, and that an arbitrary strip of the pericardium is restrained in all three directions, must be improved. A simple improvement to modeling the pericardium, for example, could involve modeling the heart inside a fixed elastic medium. Actual \textit{in vivo} behavior should of course guide those decisions. Although not urgent, providing the ability to generate muscle fiber orientations directly from DTMRI data would also make Cardioid more competitive. Although the process is certainly not perfected, other groups have been successful in moving away from model-based fiber generation~\cite{yang_2012, zhukov_2003}
 
-Even without the improvements outlined here, several studies may now be performed with the available model as Cardioid moves toward answering clinical questions.
+Even without the improvements suggested here, several studies may now be performed with the current model. Validation of results with experiments must be the highest priority as Cardioid moves toward answering clinical questions. Given a working model, a whole range of sensitivity studies may be performed to determine what meshing and modeling parameters are most influential. Some questions include:
+\begin{itemize}
+\item How sensitive are the results to accurate depictions of the heart surface? Or even to removing inner structures in the ventricle altogether? Some preliminary work hints that papillary muscles, for example, do not play a significant role~\cite{korte_2019}.
+\item How does the accuracy of fiber orientation affect the solution? Do fibers generated from a rule-based approach produce different results compared to those generated from DTMRI data?
+\item How do different passive and active constitutive models affect the solution?
+\item How does mesh quality affect the iterative solver performance?
+\item To what degree do the boundary conditions influence the solution?
+\item How important is it to include electromechanics coupling and/or fluid-structure interaction?
+\end{itemize} 
+Lastly, much in the same way convergence to geometry should be guaranteed with Shabaka, a mesh convergence study should be performed to determine the desired resolution of cardiac meshes for converged results.
 
 %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%\\
