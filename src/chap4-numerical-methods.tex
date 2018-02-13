@@ -1,37 +1,127 @@
 \chapter{Physics-Based Modeling and Simulation}
 \label{chap:4}
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Continuum Mechanics}
-\label{Continuum Mechanics}
-
-stress measures
+An explicit geometric description of the biological tissues of interest may be utilized to model a wide array of physical phenomena via several different numerical approaches. For these purposes, the discussion will be restricted to modeling quasistatic finite-deformation nonlinear solid mechanics behavior via finite element methods. Selected relevant topics in nonlinear solid mechanics and conventional finite element methods are presented, followed by a brief summary of a polyhedral finite element method that is to be explored as an alternative approach in modeling the mechanics of biological tissues.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The Finite Element Method}
-\label{The Finite Element Method}
+\section{Nonlinear Solid Mechanics}
+\label{Nonlinear Solid Mechanics}
 
-element quality
+Pertinent topics of nonlinear solid mechanics shall be discussed herein. Biological tissues can easily experience strains of 30$%$ or more, so naturally finite deformations of material bodies will be considered. Although dynamics are of critical importance for many biomechanical studies, the formulation will be restricted here to problems in which inertial terms are considered negligible.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Preliminaries}
+geometric and material nonlinearities both
+define configurations
+define ``finite deformations'', difference in configurations \\
+define deformation gradient \\
+determinant J \\
+
+polar decomposition = RU = VR
+
+rate quanttities, even in quasistatics, as the loading is applied incrementally
+also D, W, L \\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Stress Measures}
+
+Cauchy \\
+First Piola-Kirchhoff \\
+Second Piola-Kirchhoff
+
+symmetry
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Governing Equations}
+balance of linear momentum
+equations of motion for dynamics
+
++ constitutive model, relating stress to a displacement, to be discussed further in the next section
++ boundary conditions
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The Partitioned Element Method}
-\label{The Partitioned Element Method}
+\section{The Finite Element Method in Computational Solid Mechanics}
+\label{The Finite Element Method in Computational Solid Mechanics}
+
+\subsection{Weak Form of Governing Equations}
+total lagrangian formulation because integrals performed in reference configuration:
+
+Ultimately, this means that the derivatives of the basis functions used in the Galerkin approximation must be re-computed not only on every solution step, but also on every iteration within each solution step. Even worse, the current configuration is not only ever-changing, but also unknown as the equilibrium iteration proceeds, because it is a function of the (as-yet unknown) incremental displacements for the step. In consequence, the shape-function gradients, which appear in multiple places in the weak form, are actually functions of the solution variables. This in turn implies that any tangent stiffness that might be required will involve evaluation of extremely complicated expressions whose character depends on the details of the shape functions.
+
+\subsection{Galerkin Approximation}
+
+compact support \\
+partition of unity \\
+Kronecker Delta property \\
+
+mention time steps
+Residual equations/applying Newton-Raphson on each time step \\
+
+perhaps mention of elements and element residual and element contribution \\
+
+tangents
+
+
+
+\subsubsection{Isoparametric Mapping}
+
+\subsubsection{Gauss Quadrature}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Geometric Mesh}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Element Types}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Mesh Quality}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Constitutive Models}
+
+Jaumann rate
+
+\subsubsection{Incremental Kinematics}
+
+If only D and W appear as kinematic forcing functions, then the only information needed to advance the material state from an initial to a final state is the values of the material state variables at the initial state, and a description of the motion – via D and W – over the time interval.
+
+The task of the constitutive update module in a finite element code is to integrate such rate equations forward from the beginning of the solution step to the end of the step, given the D and W that correspond to the deformation increment for the step.
+
+Next comes a crucial observation: at a single integration point, the deformation increment for the step can be conceived, for the purposes of the constitutive update, as consisting of a stretch at constant stretch rate D with no accompanying spin, followed by an impulsive rotation with no further stretch.
+
+algorithm
+
+consistent tangent modulus
+
+provide example of linear hypoelastic material
+
+\subsubsection{Hyperelastic Materials}
+Mooney Rivlin document here
+
+\subsubsection{Incompressibility}
+need to fix part in chapter 5 that talks about it
+
+whenever there is a large mismatch between the material’s apparent stiffness in deviatoric deformation vs. volumetric deformation, locking will occur unless special measures are taken to prevent it.
+
+If this limiting case is of interest, then a more “exotic” method must be used in which both displacements and the pressure field are independently interpolated. Here we confine attention to displacement-only formulations (useful for nearly incompressible materials), and describe an effective strategy for obviating volumetric locking in this case.
+
+\subsection{Boundary Conditions}
+Boundary Condition document here
+
+\subsection{Additional Topics}
+solvers \\
+mesh refinement studies and error estimation \\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[A Polyhedral Finite Element Method in Computational Solid \\ Mechanics]{\texorpdfstring{A Polyhedral Finite Element Method in \\ Computational Solid Mechanics}{A Polyhedral Finite Element Method in Computational Solid \\ Mechanics}}
+\label{A Polyhedral Finite Element Method in Computational Solid Mechanics}
+refer to other people's dissertations
+
 
 Polyhedral finite element methods are an emerging class of finite-element-like methods within the general class of Galerkin approximation schemes, in which the individual elements need not conform to the topology of a fixed canonical (or “parent”) element. Polyhedral FEMs exhibit much of the same desirable properties of conventional finite elements, namely: they enjoy high quadrature efficiency, they interpolate the nodal data so that essential BCs are easy to enforce, and they support convenient equation assembly and modular code architecture. The specific implementation of polyhedral FEM in Celeris is known as the “Partitioned Element Method”. The Partitioned Element Method employs a geometric partition of each polyhedral element into quadrature cells. The shape functions are then formulated discretely, on the complex of quadrature cells, via an element-local quadratic optimization problem. Arbitrary polyhedral element shapes (including non-convex) are accommodated without deterioration in local solution accuracy, making the mesh in Figure 9(c) a perfectly adequate discretization for this method. Higher-order shape functions are possible with this approach, although for this demonstration only elements with first order interpolation will be used.
 
 To that end, the simulation resolution need only be refined to the extent that accurate solutions can be provided, rather than being constrained in some way by the number of points and polygons used to the describe the surface of the object.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Incremental Kinematics}
-\label{Incremental Kinematics}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Hyperelastic Materials}
-\label{Hyperelastic Materials}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
