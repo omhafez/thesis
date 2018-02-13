@@ -164,16 +164,16 @@ Simulation results are shown in \figref{pv} and~\figref{snaps}. \figref{pv1} is 
 
 In the process of performing simulations, the workflow for: generating the mesh, generating fiber orientations, running the electrophysiology code to produce activation times, running the mechanics code, and post-processing results was improved, simplified, and automated via Python scripts. A robust workflow for performing bi-ventricular cardiac mechanics simulations has thus been demonstrated. It will directly facilitate the current Cardioid research project involving machine learning, which requires a robust and timely generation of simulation results for large numbers of patient imaging data. Additional validation of the results, quantitiative metrics for solution quality, and sensitivity studies of the simulation parameters are still necessary before the tools may be used directly for clinical use.
 
-\begin{figure}[ht]
+\begin{figure}[htbp]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.5]{media/4-cardioid/5-pv/pressure_volume-1.pdf}
+		\includegraphics[scale=0.51]{media/4-cardioid/5-pv/pressure_volume-1.pdf}
 \label{fig:pv1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.5]{media/4-cardioid/5-pv/pressure_volume-2.pdf}
+		\includegraphics[scale=0.51]{media/4-cardioid/5-pv/pressure_volume-2.pdf}
 \label{fig:pv2}}		
 %
-\caption{Results from Cardioid simulation: (a) P-V loop of left ventricle, (b) pressure time history in left and right ventricles.}
+\caption{Results from Cardioid simulation: (a) P-V loop of left ventricle, (b) pressure time history in left and right ventricles. \vspace{5mm}}
 \label{fig:pv}
 \end{figure}
 
@@ -224,6 +224,7 @@ The material model framework in Celeris currently accepts material definitions i
 The beginning step deformation gradient $\overline{\bm{F}}$ is stored as a state variable to accommodate the incremental material form. Thus, the state variables $\bm{s}$ are comprised of $\overline{\bm{F}}$ and the active tension model state variables $\bm{w}$. Material parameters were previously defined in \eqnref{usyk}. The field parameters at each integration point are the fiber transformation matrix $\bm{Q}$ and activation time $t_a$. Both quantities are computed using Cardioid \textit{a priori} and are imported into Celeris at the integration points. It is important to distinguish between the \textit{transformation matrix} $\bm{Q}$ from the global to local fiber coordinate frames, and the \textit{rotation increment} $\hat{\bm{R}}$ that comprises the rotation portion of the incremental deformation gradient $\hat{\bm{F}}$. Lastly, the material model admits the beat duration $t_b$ and the beginning and end step times $t_n$ and $t_{n+1}$, which are used for the calculation of active stress.
 
 Because of the assumed additive stress decomposition $\tilde{\bm{T}} = \tilde{\bm{T}}_p + \tilde{\bm{T}}_a$, the passive and active stress are computed independently and then added together at the end of the constitutive update. The passive material update proceeds as follows: 1) the end step unrotated deformation gradient is calculated as $\tilde{\bm{F}} = \hat{\bm{U}}\bm{F}$, 2) the deformation gradient $\tilde{\bm{F}}$ is transformed into the local fiber coordinate system as $\tilde{\bm{F}}'$, 3) the end step unrotated Cauchy stress in the local fiber coordinate system $\tilde{\bm{T}}'$ is computed based on $\tilde{\bm{F}}'$, and finally 4) the stress is transformed back into the global coordinate frame as the desired quantity $\tilde{\bm{T}}$. The ``prime'' here corresponds to the tensor of interest being expressed as a matrix in the local fiber coordinate frame. The computations proceed in the following manner:
+\clearpage
 \begin{equation}
 \hat{\bm{U}} = \bm{I} + \bm{D}\Delta{t} + \frac{1}{2}(\bm{D}\Delta{t})^2 + \frac{1}{6}(\bm{D}\Delta{t})^3
 \end{equation}
@@ -276,6 +277,7 @@ Z_{pqkl} &\equiv \frac{1}{2}N_{pq}\left[F_{kq}\delta_{pl} + F_{kp}\delta_{ql}\ri
 &\frac{1}{2}\left[\delta_{il}\delta_{jk} + \frac{1}{2}\delta_{il}D_{kj} + \frac{1}{2}D_{il}\delta_{jk} + \frac{1}{6}\delta_{il}D_{kn}D_{nj} + \frac{1}{6}D_{il}D_{kj} + \frac{1}{6}D_{im}D_{ml}\delta_{jk}\right]
 \end{aligned}
 \end{equation}
+
 Again, the derivatives are then combined to produce the tangent modulus defined in \eqnref{tanmod}.
 
 The passive material model has been implemented, and the computed stress and corresponding tangent modulus have been thoroughly verified against finite difference approximations for accurate and quickly converging solutions.
@@ -290,7 +292,6 @@ Finally, the passive and active stress, along with their tangent moduli, are com
 \tilde{\bm{T}} &= \tilde{\bm{T}}_p + \tilde{\bm{T}}_a \\
 \frac{\partial \tilde{\bm{T}}}{\partial (\bm{D}\Delta{t})} &= \frac{\partial \tilde{\bm{T}}_p}{\partial (\bm{D}\Delta{t})}+ \frac{\partial \tilde{\bm{T}}_a}{\partial (\bm{D}\Delta{t})}
 \end{align}
-
 Following the constitutive update routine, the end step Cauchy stress and tangent modulus are forward rotated as discussed in \chapref{4}. Additionally, the state variable $\bm{F}$ is forward rotated simply via $\bm{F} =\hat{\bm{R}}\tilde{\bm{F}}$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -404,7 +405,6 @@ Up to this point, the mechanics implemented in Imitor and Celeris have been veri
 \caption{Results for Land P1 verification problem: (a) Deformed position of midline, with (b) details for the free end of the beam. Panel (c) shows the deformed position of the point $\bm{X} = (10, 0.5, 1)$ for each of the simulation codes.}
 \label{fig:land1}
 \end{figure}
-
 
 \begin{figure}[ht!]
 \centering
