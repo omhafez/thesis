@@ -8,8 +8,8 @@
 \BOOKMARK [1][-]{section.4.2}{The Finite Element Method in Computational Solid Mechanics}{chapter.4}% 31
 \BOOKMARK [2][-]{subsection.4.2.1}{Weak Form of Governing Equations}{section.4.2}% 32
 \BOOKMARK [2][-]{subsection.4.2.2}{Galerkin Approximation}{section.4.2}% 33
-\BOOKMARK [2][-]{subsection.4.2.3}{Geometric Mesh}{section.4.2}% 34
-\BOOKMARK [2][-]{subsection.4.2.4}{Constitutive Models}{section.4.2}% 35
+\BOOKMARK [2][-]{subsection.4.2.3}{Mesh Considerations}{section.4.2}% 34
+\BOOKMARK [2][-]{subsection.4.2.4}{Constitutive Model}{section.4.2}% 35
 \BOOKMARK [2][-]{subsection.4.2.5}{Boundary Conditions}{section.4.2}% 36
 \BOOKMARK [2][-]{subsection.4.2.6}{Additional Topics}{section.4.2}% 37
 \BOOKMARK [1][-]{section.4.3}{A Polyhedral Finite Element Method in Computational Solid \040Mechanics}{chapter.4}% 38
