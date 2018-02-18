@@ -211,11 +211,11 @@ The same surface mesh used to produce the quadratic tetrahedral mesh for Cardioi
 The remaining consideration to perform cardiac simulations using polyhedral FEM is the implementation of the constitutive update.
 
 \subsubsection{Material Model}
-The Usyk material model is implemented within the Celeris framework. Rather than full incompressibility via a mixed pressure-displacement formulation, \textit{near-incompressibility} is enforced via a penalty term in the strain energy for volumetric material response, together with an \textit{F-bar projection method}. Regarding the penalty term, the strain energy is defined in the following manner, as is done by Usyk \textit{et al.}~\cite{usyk_2002}:
+The Usyk material model is implemented within the Celeris framework. Rather than full incompressibility via a mixed pressure-displacement formulation, \textit{near-incompressibility} is enforced via a penalty term in the strain energy for volumetric material response, together with an \textit{F-bar method}. Regarding the penalty term, the strain energy is defined in the following manner, as is done by Usyk \textit{et al.}~\cite{usyk_2002}:
 \begin{equation}
 W = \frac{C}{2}\left(e^Q -1\right) + C_{compr} (J \cdot \ln J - J + 1) \\
 \end{equation}
-The parameter $C_{compr}$ is defined such that the volumetric response of the material is significantly stiffer than the deviatoric response. It was found that a value of $C_{compr} \geq 200  C$ gives good results (compared to simulations enforcing full incompressibility) without significantly making the system poorly conditioned. Near-incompressibility is then enforced by an F-bar projection method, in which the deformation gradient is modified such that the dilatation $\det(\bm{F})$ at each integration point is replaced by a constant element-averaged value, as explained in detail by Doll~\textit{et al.}~\cite{doll_2000}.
+The parameter $C_{compr}$ is defined such that the volumetric response of the material is significantly stiffer than the deviatoric response. It was found that a value of $C_{compr} \geq 200  C$ gives good results (compared to simulations enforcing full incompressibility) without significantly making the system poorly conditioned. Near-incompressibility is then enforced by an F-bar method, in which the deformation gradient is modified such that the dilatation $\det(\bm{F})$ at each integration point is replaced by an element-averaged value, as explained in \chapref{4}.
 
 \textbf{Passive stress}
 

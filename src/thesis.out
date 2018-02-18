@@ -2,12 +2,12 @@
 \BOOKMARK [1][-]{chapter*.1}{Acknowledgments}{}% 2
 \BOOKMARK [0][-]{chapter.4}{Physics-Based Modeling and Simulation}{}% 26
 \BOOKMARK [1][-]{section.4.1}{Nonlinear Solid Mechanics}{chapter.4}% 27
-\BOOKMARK [2][-]{subsection.4.1.1}{Preliminaries}{section.4.1}% 28
-\BOOKMARK [2][-]{subsection.4.1.2}{Stress Measures}{section.4.1}% 29
+\BOOKMARK [2][-]{subsection.4.1.1}{Kinematics Preliminaries}{section.4.1}% 28
+\BOOKMARK [2][-]{subsection.4.1.2}{Traction and Stress Measures}{section.4.1}% 29
 \BOOKMARK [2][-]{subsection.4.1.3}{Governing Equations}{section.4.1}% 30
 \BOOKMARK [1][-]{section.4.2}{The Finite Element Method in Computational Solid Mechanics}{chapter.4}% 31
-\BOOKMARK [2][-]{subsection.4.2.1}{Weak Form of Governing Equations}{section.4.2}% 32
-\BOOKMARK [2][-]{subsection.4.2.2}{Galerkin Approximation}{section.4.2}% 33
+\BOOKMARK [2][-]{subsection.4.2.1}{Weak Form and Galerkin Approximation}{section.4.2}% 32
+\BOOKMARK [2][-]{subsection.4.2.2}{Solution of the Nonlinear Residual Equations}{section.4.2}% 33
 \BOOKMARK [2][-]{subsection.4.2.3}{Mesh Considerations}{section.4.2}% 34
 \BOOKMARK [2][-]{subsection.4.2.4}{Constitutive Model}{section.4.2}% 35
 \BOOKMARK [2][-]{subsection.4.2.5}{Boundary Conditions}{section.4.2}% 36

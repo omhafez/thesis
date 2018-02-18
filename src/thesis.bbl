@@ -527,6 +527,72 @@ C.~Geuzaine and J.-F. Remacle, ``{Gmsh: A 3-D finite element mesh generator
 U.~Ayachit, {\em The ParaView Guide: A Parallel Visualization Application}.
 \newblock Kitware, 2015.
 
+\bibitem{rashid_2017}
+M.~M. Rashid, ``{Celeris Theory Notes: Finite Element Approximation in
+  Nonlinear Solid Mechanics},'' 2017.
+
+\bibitem{rashid_201}
+M.~M. Rashid, ``{Introduction to Elasticity},'' {\em Lecture Notes}, 2009.
+
+\bibitem{rashid_212}
+Y.~Dafalias, ``{Finite Elements: Application to Linear and Non-Linear
+  Structural Mechanics Problems},'' {\em Lecture Notes}, 2014.
+
+\bibitem{rashid_289}
+M.~M. Rashid, ``{Advanced Topics in Finite Element Methods},'' {\em Lecture
+  Notes}, 2014.
+
+\bibitem{dafalias_205}
+Y.~Dafalias, ``{Continuum Mechanics},'' {\em Lecture Notes}, 2010.
+
+\bibitem{suku_212}
+N.~Sukumar, ``{Finite Element Procedures in Applied Mechanics},'' {\em Lecture
+  Notes}, 2010.
+
+\bibitem{rashid_1991}
+M.~M. Rashid, ``{A Class of Constitutive Models for Rate-Dependent Inelasticity
+  in Metals},'' {\em Proceedings of the 12th Army Symposium on Solid
+  Mechanics}, pp.~521--537, 1991.
+
+\bibitem{rashid_1993}
+M.~M. Rashid, ``{Incremental Kinematics for Finite Element Applications},''
+  {\em International Journal for Numerical Methods in Engineering}, vol.~36,
+  no.~23, pp.~3937--3956, 1993.
+
+\bibitem{rashid_1996}
+M.~M. Rashid and B.~J. Thorne, ``{Incremental Objectivity in Cyclic Shearing
+  Deformations},'' {\em Communications in Numerical Methods in Engineering},
+  vol.~12, no.~12, pp.~863--871, 1996.
+
+\bibitem{chadwick_1999}
+P.~Chadwick, {\em {Continuum Mechanics: Concise Theory and Problems}}.
+\newblock Dover Publications, 1999.
+
+\bibitem{doll_2000}
+S.~Doll, K.~Schweizerhof, R.~Hauptmann, and C.~Freischl\:{a}ger, ``{On
+  Volumetric Locking of Low-Order Solid and Solid-Shell Elements for Finite
+  Elastoviscoplastic Deformations and Selective Reduced Integration},'' {\em
+  Engineering Computations}, vol.~17, no.~7, pp.~874--902, 2000.
+
+\bibitem{sukumar_2006}
+N.~Sukumar and E.~A. Malsch, ``{Recent Advances in the Construction of
+  Polygonal Finite Element Interpolants},'' {\em Archives of Computational
+  Methods in Engineering}, vol.~13, no.~1, pp.~129--163, 2006.
+
+\bibitem{rashid_2006}
+M.~M. Rashid and M.~Selimotic, ``{A Three-Dimensional Finite Element Method
+  with Arbitrary Polyhedral Elements},'' {\em International Journal for
+  Numerical Methods in Engineering}, vol.~67, no.~2, pp.~226--252, 2006.
+
+\bibitem{rashid_2012}
+M.~M. Rashid and A.~Sadri, ``{The Partitioned Element Method in Computational
+  Solid Mechanics},'' {\em Computer Methods in Applied Mechanics and
+  Engineering}, vol.~237-240, pp.~152--165, 2012.
+
+\bibitem{rashid_2015}
+M.~M. Rashid, ``{3D Partitioned Element Method: Shape-Function Formulation},''
+  2015.
+
 \bibitem{holzapfel_2009}
 G.~A. Holzapfel and R.~W. Ogden, {\em Biomechanical Modelling at the Molecular,
   Cellular and Tissue Levels}.
@@ -635,12 +701,6 @@ R.~C.~P. Kerckhoffs, M.~L. Neal, Q.~Gu, J.~B. Bassingthwaighte, J.~H. Omens,
 \bibitem{slideshare}
 C.~Richardson, ``{The Cardiac Cycle}.''
 \newblock \url{https://www.slideshare.net/cr8639/the-cardiac-cycle-13725004}.
-
-\bibitem{doll_2000}
-S.~Doll, K.~Schweizerhof, R.~Hauptmann, and C.~Freischl\:{a}ger, ``{On
-  Volumetric Locking of Low-Order Solid and Solid-Shell Elements for Finite
-  Elastoviscoplastic Deformations and Selective Reduced Integration},'' {\em
-  Engineering Computations}, vol.~17, no.~7, pp.~874--902, 2000.
 
 \bibitem{melodee}
 ``{MELODEE - Modular Expression Language for Ordinary Differential Equation

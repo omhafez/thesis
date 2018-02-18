@@ -1,40 +1,53 @@
 \chapter{Physics-Based Modeling and Simulation}
 \label{chap:4}
 %
+REFERENCES:
+\cite{rashid_2017}
+\cite{rashid_201}
+\cite{rashid_212, rashid_289, dafalias_205, suku_212}
+jaumann rate \cite{rashid_1991}
+incremental kinematics \cite{rashid_1993}
+incremental objectivity \cite{rashid_1996}
+
 An explicit geometric description of the biological tissues of interest may be utilized to model a wide array of physical phenomena via several different numerical approaches. For these purposes, the discussion will be restricted to modeling quasistatic finite-deformation nonlinear solid mechanics behavior via finite element methods. Selected relevant topics in nonlinear solid mechanics and conventional finite element methods are presented, followed by a brief summary of a polyhedral finite element method that is to be explored as an alternative approach in modeling the mechanics of biological tissues.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Nonlinear Solid Mechanics}
 \label{Nonlinear Solid Mechanics}
 
-Pertinent topics of nonlinear solid mechanics shall be discussed herein. Biological tissues can easily experience strains of 30$\%$ or more, so naturally finite deformations of material bodies will be considered. Although dynamics are of critical importance for many biomechanical studies, the formulation will be restricted here to problems in which inertial terms are considered negligible.
+Pertinent topics of nonlinear solid mechanics will be briefly summarized herein. Biological tissues can easily experience strains of 30$\%$ or more, so finite deformation kinematics of material bodies will be considered. Although dynamics are of critical importance for many biomechanical studies, the formulation will be restricted here to problems in which inertial terms are considered negligible.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Preliminaries}
-geometric and material nonlinearities both
-define configurations
-define ``finite deformations'', difference in configurations \\
-define deformation gradient \\
-determinant J \\
+\subsection{Kinematics Preliminaries}
 
-polar decomposition = RU = VR
+The specification of \textit{nonlinear} solid mechanics is due to \textit{geometric nonlinearities} and/or \textit{material nonlinearities}. Contact considerations may also produce nonlinearities, but will not be considered here. Geometric nonlinearities arise due to the assumed \textit{finite} deformations that occur for a body $\mathcal{B}$ of interest. Unlike small deformation solid mechanics, in the case of finite deformations the fixed \textit{reference configuration} $\kappa_0$ and \textit{current configuration} $\kappa_t$ are considered distinct. The reference configuration is typically chosen as the unloaded state of the body, defined at time $t=0$. Material points in the reference configuration are defined by the position vector $\bm{X}$, and locations in the current configuration by $\bm{x}(\bm{X},t)$. The displacement $\bm{u}(\bm{X})$ at a material point is $\bm{u}(\bm{X}) = \bm{x}(\bm{X},t) - \bm{X}$.
 
-rate quanttities, even in quasistatics, as the loading is applied incrementally
-also D, W, L \\
+The fundamental kinematic quantity in nonlinear solid mechanics is the \textit{deformation gradient} $\bm{F} = \frac{\partial \bm{x}}{\partial \bm{X}}$, which maps infinitesimal line segments in the reference configuration $\bm{dX}$ to infinitesimal line segments in the current configuration $\bm{dx}$, namely: $\bm{dx} = \bm{F}\bm{dX}$. Provided the reference configuration and deformation gradient, the current configuration of the deformed body is fully defined. The local volume change at a particular point in $\mathcal{B}$ is defined by the determinant of $\bm{F}$, known as the \textit{Jacobian}: $J = \det{\bm{F}}$.
+
+The mapping from reference configuration to current configuration $\bm{F}$ may be decomposed into a  stretch followed by a pure rotation, or vice versa, in what is known as a \textit{polar decomposition}:
+\begin{equation}
+\bm{F} = \bm{R}\bm{U} = \bm{V}\bm{R}
+\end{equation}
+where $\bm{U}$ and $\bm{V}$ are symmetric tensors, and $\bm{R}$ is an orthonormal tensor.
+
+Several strain measures may be defined in terms of the deformation gradient. The reader is referred to Chadwick~\cite{chadwick_1999} for a discussion of those definitions.
+
+Although we will focus on quasistatics problems, numerical solutions are still obtained incrementally, and thus rate quantities derived from $\bm{F}$ also come in use. The \textit{rate of deformation} (or stretch rate) tensor $\bm{D}$ and \textit{vorticity} tensor $\bm{W}$ are defined as the symmetric and antisymmetric parts of the spatial \textit{velocity gradient} $\bm{L} = \frac{\partial \bm{v}}{\partial \bm{x}}$.
+
+These kinematic quantities will be heavily utilized in developing the governing equations of nonlinear solid mechanics, developing kinematic update strategies to progress the solution, and defining material models and boundary conditions. A more detailed account of them can be found in Chadwick~\cite{chadwick_1999} and Dafalias~\cite{dafalias_205}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Stress Measures}
+\subsection{Traction and Stress Measures}
 
 We define the \textit{Cauchy traction} $\bm{t}$ at a particular location on a surface in the following manner:
 \begin{equation}
 \bm{t} = \lim_{\substack{{da} \rightarrow 0, \\ {\bm{n} fixed}}} \frac{{\bm{df}}}{da}
 \end{equation}
-where $\bm{da} = \bm{n}da$ is a differentially small unit of area in the current configuration, and $\bm{n}$ is the corresponding normal to that current-configuration surface. The term $\bm{df}$ is a differentially small force in the current configuration acting on $\bm{da}$. Thus, the Cauchy traction is defined as the limit at a particular location of a surface of a differential force in the \textit{current configuration} divided by the differential area \textit{current configuration}. Applying a balance of linear momentum on a tetrahedral body yields the following relationship: $\bm{t} = \bm{T}^T\bm{n}$. The quantity $\bm{T}$ is the \textit{Cauchy stress} tensor, which defines the differential force in the \textit{current configuration} divided by the differential area \textit{current configuration} at a particular location in space \textit{for any orientation}. It is the most common measure of stress. The Cauchy stress tensor is symmetric due to conservation of angular momentum arguments, and so the more common relationship between Cauchy traction and Cauchy stress is as follows:
+where $\bm{da} = \bm{n}da$ is a differentially small unit of area in the current configuration, and $\bm{n}$ is the corresponding normal to that current-configuration surface. The term $\bm{df}$ is a differentially small force in the current configuration acting on $\bm{da}$. Thus, the Cauchy traction is defined as the \textit{current configuration} force per \textit{current configuration} area at a given point acting on a given surface. Applying a balance of linear momentum on a tetrahedral body yields the following relationship: $\bm{t} = \bm{T}^T\bm{n}$. The quantity $\bm{T}$ is the \textit{Cauchy stress} tensor, which defines the \textit{current configuration} force per \textit{current configuration} area at a particular location in space \textit{for any orientation}. It is the most common measure of stress. The Cauchy stress tensor is symmetric due to conservation of angular momentum for arbitrary portions of a body of interest, and so the more common relationship between Cauchy traction and Cauchy stress is as follows:
 \begin{equation}
 \bm{t} = \bm{T}\bm{n}
 \end{equation}
-
-Other common measures of stress are the \textit{first Piola-Kirchhoff stress} $\bm{P}$ and \textit{second Piola-Kirchhoff stress} $\bm{S}$. The first P-K stress relates forces in the \textit{current configuration} to areas in the \textit{reference configuration}, and the second P-K stress relates forces in the \textit{reference configuration} to areas in the \textit{reference configuration}. The first P-K stress is not symmetric. If we define the normal in the reference configuration as $\bm{N}$, we may define the \textit{Piola traction} as $\bm{p} = \bm{P}\bm{N}$ in an analogous manner as was done for Cauchy stress. Cauchy and Piola tractions act in the same direction since they are defined in a manner in which forces live in the current configuration. They are related based on static equivalency of forces: $\bm{t}da = \bm{p}dA$, and thus $\bm{t} = \alpha\bm{p}$, where $\alpha = J[\bm{N} \cdot \bm{F}^{-1}\bm{F}^{-T}\bm{N}]^{1/2}$ is the \textit{area ratio}.
+Other common measures of stress are the \textit{first Piola-Kirchhoff stress} $\bm{P}$ and \textit{second Piola-Kirchhoff stress} $\bm{S}$. The first P-K stress relates forces in the \textit{current configuration} to areas in the \textit{reference configuration}, and the second P-K stress relates forces in the \textit{reference configuration} to areas in the \textit{reference configuration}. The first P-K stress is not symmetric. If we define the normal in the reference configuration as $\bm{N}$, we may define the \textit{Piola traction} as $\bm{p} = \bm{P}\bm{N}$ in an analogous manner as was done for Cauchy stress. Cauchy and Piola tractions act in the same direction since they are both defined in a manner in which forces  are in the current configuration. They are related based on static equivalency of forces: $\bm{p}dA = \bm{t}da$, and thus $\bm{p} = \alpha\bm{t}$, where $\alpha = \frac{da}{dA} = J[\bm{N} \cdot \bm{F}^{-1}\bm{F}^{-T}\bm{N}]^{1/2}$ is the \textit{area ratio}.
 
 The first P-K stress, second P-K stress, and Cauchy stress are related to one another in the following manner:
 \begin{align}
@@ -45,23 +58,31 @@ which arise from utilizing the area ratio and deformation gradient to move betwe
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Governing Equations}
-balance of linear momentum
-equations of motion for dynamics
-
-+ constitutive model, relating stress to a displacement, to be discussed further in the next section
-+ boundary conditions
+Balance of linear momentum for the body $\mathcal{B}$ in the \textit{reference configuration} amounts to the following relationship:
+\begin{equation}
+\int_{\partial \kappa_0}\bm{p}dA + \int_{\kappa_0}\rho_0\bm{b}dV = \bm{0}
+\end{equation}
+where $\partial \kappa_0$ is the boundary of the body $\mathcal{B}$ in the reference configuration, $\rho_0$ is the mass per unit reference configuration volume, $\bm{b}(\bm{X})$ is a body force, and inertial terms are deemed negligible. By making use of the relationship $\bm{p} = \bm{P}\bm{N}$ and the divergence and localization theorems, the final governing equations for nonlinear solid mechanics in index notation are:
+\begin{gather}
+P_{ij},_j + \rho_0b_i = 0, \text{\ \ } \forall \text{\ \ } {X_i} \in \kappa_0 \\
+{u_i} = \overline{{u}}_i \text{\ \ on\ \ } \partial_u\kappa_0 \\
+{p_i} = \overline{{p}}_i\text{\ \ on\ \ } \partial_t\kappa_0
+\end{gather}
+where $(),_j = \frac{\partial()}{\partial {{X_j}}}$ are derivatives with respect to the reference-configuration position, $\overline{{u}}_i$ are prescribed displacement boundary conditions on a subset $\partial_u\kappa_0$ of the reference configuration boundary, ${\overline{p}_i}$ are prescribed Piola tractions on a subset $\partial_t\kappa_0$ of the reference configuration boundary, $\partial_u\kappa_0 \text{\ }\bigcup\text{\ } \partial_t\kappa_0 = \partial\kappa_0$, and $\partial_u\kappa_0 \text{\ }\bigcap\text{\ } \partial_t\kappa_0 = \emptyset$. Robin boundary conditions are omitted here for clarity. Balance of linear momentum is enforced in the \textit{reference} configuration for reasons to be explained in the next section. The field equations above for nonlinear solid mechanics become a well-posed elliptic boundary value problem when combined with the definition of the deformation gradient and a constitutive model, and is known as the \textit{strong form} of the problem statement.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Finite Element Method in Computational Solid Mechanics}
 \label{The Finite Element Method in Computational Solid Mechanics}
 
-\subsection{Weak Form of Governing Equations}
+Finite element methods (FEM) are the most popular numerical methods for solving nonlinear solid mechanics problems. Finite element approximations are based on the \textit{weak}, or variational problem statement. The weak form of the problem statement is presented, followed by a brief discussion of Galerkin approximations to the weak form of equilibrium, of which finite element methods are a special case~\cite{rashid_2017}. Some of the major considerations for conventional FEM are discussed, including solution of the the nonlinear residual equations, mesh considerations, constitutive models, and boundary conditions.
+
+\subsection{Weak Form and Galerkin Approximation}
 total lagrangian formulation because integrals performed in reference configuration:
 
 Ultimately, this means that the derivatives of the basis functions used in the Galerkin approximation must be re-computed not only on every solution step, but also on every iteration within each solution step. Even worse, the current configuration is not only ever-changing, but also unknown as the equilibrium iteration proceeds, because it is a function of the (as-yet unknown) incremental displacements for the step. In consequence, the shape-function gradients, which appear in multiple places in the weak form, are actually functions of the solution variables. This in turn implies that any tangent stiffness that might be required will involve evaluation of extremely complicated expressions whose character depends on the details of the shape functions.
 
-\subsection{Galerkin Approximation}
+\subsection{Solution of the Nonlinear Residual Equations}
 
 compact support \\
 partition of unity \\
@@ -78,20 +99,16 @@ perhaps mention of elements and element residual and element contribution \\
 
 tangents
 
-
-
-\subsubsection{Isoparametric Mapping}
-
-\subsubsection{Gauss Quadrature}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Mesh Considerations}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Element Types}
+As detailed in \chapref{3}, the \textit{mesh} is a spatial discretization of the body of interest. Each node has an accompanying interpolating basis function, defined based on the shape functions of the neighboring elements associated with that node. Those shape functions are used to compute volume and facet integrals via an \textit{isoparametric transformation} from the physical space to the parent space, in the following manner:
+\begin{equation}
+\bm{X}(\bm{\xi}) = \sum\limits_{a}\bm{X}_a{N}_a(\bm{\xi})
+\end{equation}
+where $\bm{X}_a$ are spatial coordinates of the element nodes, $N_a$ are the shape functions, and $\bm{\xi}$ is the position vector in the parent element domain. The transformation is isoparametric because the same shape functions are used to interpolate nodal displacements. Refer to Hughes~\cite{} for a definition of the shape functions $N_a$ for the linear and quadratic tetrahedral and hexahedral elements. The order of an element corresponds to the polynomial order with which the displacement and position are interpolated. Because stress and strain involve the spatial derivative of displacement, stress and strain are interpolated at one polynomial degree lower than is displacement. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Mesh Quality}
+Volume and facet integrals are evaluated via numerical quadrature rules on the parent element. For conventional FEM, the quality of the approximating solution depends critically on the ability to map spatial coordinates of an element to its parent space with high fidelity. Thus, the notion of \textit{mesh quality} - which attempts in various ways to measure the distortion of physical elements from their corresponding parent elements - is an important consideration for automated meshing tools if the resultant mesh is to be provided to a conventional FEM code.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Constitutive Model}
@@ -288,11 +305,20 @@ Thus, all terms have been defined in the calculation of the tangent modulus $\pa
 The procedure for implementing a hyperelastic material into an FEM code that only accepts hypoelastic materials has thus been established, and will be used again in \chapref{5} for implementing the mechanical behavior of cardiac tissue.
 
 \subsubsection{Incompressibility}
-need to fix part in chapter 5 that talks about it
 
-whenever there is a large mismatch between the material’s apparent stiffness in deviatoric deformation vs. volumetric deformation, locking will occur unless special measures are taken to prevent it.
+Special measures must be taken to avoid \textit{volumetric locking} for materials with an incompressibility constraint. Volumetric locking occurs when there is a large mismatch between the material's apparent stiffness in deviatoric deformation vs. volumetric deformation~\cite{rashid_2017}. The most common approach to \textit{fully} enforcing incompressibility is a \textit{mixed pressure-displacement} formulation, in which the pressure is treated as an independent variable and interpolated independently from displacement. For displacement-only formulations, the constraint may be enforced in a \textit{nearly incompressible} sense.
 
-If this limiting case is of interest, then a more “exotic” method must be used in which both displacements and the pressure field are independently interpolated. Here we confine attention to displacement-only formulations (useful for nearly incompressible materials), and describe an effective strategy for obviating volumetric locking in this case.
+Enforcement of near-incompressibility on an integration-point level results in the displacement solution being too small, i.e., the mesh becomes artificially too stiff. This volumetric locking phenomenon occurs because modes of deformation (refered to as \textit{hourglass modes} for quad or hex elements) are prevented even though they preserve the volume on an element level.
+
+Thus, the constraint is relaxed by enforcing incompressibility only on an element level. This amounts to modifying the incremental deformation gradient $\hat{\bm{F}}$ at each of the integration points of an element such that the dilatation is replaced by an element-averaged value, while the deviatoric deformation is unmodified. Thus, at each of the integration points, $\hat{\bm{F}}$ is replaced by $\doublehat{\bm{F}}$ in the following manner:
+\begin{align}
+\doublehat{\bm{F}}  &= \left(\frac{A}{\hat{J}}\right)^{1/3}\hat{\bm{F}} \\
+A &= \det\bm{G} \\
+\bm{G} &= \frac{1}{|\overline{\Omega}|} \int_{\overline{\Omega}} \hat{\bm{F}}dv
+\end{align}
+where $\hat{J} = \det\hat{\bm{F}}$, $\overline{\Omega}$ is the element at its beginning-step configuration, and ${|\overline{\Omega}|}$ is its volume.
+
+It should be noted that $\det\doublehat{\bm{F}}$ only approximates the overall volume change of the corresponding element. Nonetheless, the approach has been shown to approximate the exact solution under mesh refinement with sufficient accuracy for hex-8 and quad-4 elements. Refer to Rashid~\cite{rashid_2017} and Doll \textit{et al.}~\cite{doll_2000} for a more detailed description of volumetric locking for incompressible materials, how to address it, and a more detailed commentary on the F-bar method.
 
 \subsection{Boundary Conditions}
 Displacement boundary conditions on $\partial_u\kappa_0$ are enforced on the corresponding nodal displacements belonging to that surface. In the event that the prescribed displacements do not depend on the solution, the corresponding nodal values are no longer considered unknowns. The size of the nonlinear system of residual equations is subsequently reduced to the DOFs of the nodes belonging to the interior of the body and those belonging to $\partial_t\kappa_0$.
@@ -372,6 +398,10 @@ enforcement of fully incompressible materials, for example with a mixed pressure
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section[A Polyhedral Finite Element Method in Computational Solid \\ Mechanics]{\texorpdfstring{A Polyhedral Finite Element Method in \\ Computational Solid Mechanics}{A Polyhedral Finite Element Method in Computational Solid \\ Mechanics}}
 \label{A Polyhedral Finite Element Method in Computational Solid Mechanics}
+
+REFERENCES:
+\cite{sukumar_2006}
+\cite{rashid_2006, rashid_2012, rashid_2015}
 
 look up PEM for the gifted notes
 
