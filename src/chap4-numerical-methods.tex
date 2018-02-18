@@ -20,7 +20,7 @@ Pertinent topics of nonlinear solid mechanics will be briefly summarized herein.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Kinematics Preliminaries}
 
-The specification of \textit{nonlinear} solid mechanics is due to \textit{geometric nonlinearities} and/or \textit{material nonlinearities}. Contact considerations may also produce nonlinearities, but will not be considered here. Geometric nonlinearities arise due to the assumed \textit{finite} deformations that occur for a body $\mathcal{B}$ of interest. Unlike small deformation solid mechanics, in the case of finite deformations the fixed \textit{reference configuration} $\kappa_0$ and \textit{current configuration} $\kappa_t$ are considered distinct. The reference configuration is typically chosen as the unloaded state of the body, defined at time $t=0$. Material points in the reference configuration are defined by the position vector $\bm{X}$, and locations in the current configuration by $\bm{x}(\bm{X},t)$. The displacement $\bm{u}(\bm{X})$ at a material point is $\bm{u}(\bm{X}) = \bm{x}(\bm{X},t) - \bm{X}$.
+The specification of \textit{nonlinear} solid mechanics is due to \textit{geometric nonlinearities} and/or \textit{material nonlinearities}. Contact considerations may also produce nonlinearities, but will not be considered here. Geometric nonlinearities arise due to the assumed \textit{finite} deformations that occur for a body $\mathcal{B}$ of interest. Unlike small deformation solid mechanics, in the case of finite deformations the fixed \textit{reference configuration} $\kappa_0$ and \textit{current configuration} $\kappa_t$ are considered distinct. The reference configuration is typically chosen as the unloaded state of the body, defined at time $t=0$. Material points in the reference configuration are defined by the position vector $\bm{X}$, and locations in the current configuration by $\bm{x}(\bm{X},t)$. The displacement $\bm{u}(\bm{X},t)$ at a material point is $\bm{u}(\bm{X},t) = \bm{x}(\bm{X},t) - \bm{X}$.
 
 The fundamental kinematic quantity in nonlinear solid mechanics is the \textit{deformation gradient} $\bm{F} = \frac{\partial \bm{x}}{\partial \bm{X}}$, which maps infinitesimal line segments in the reference configuration $\bm{dX}$ to infinitesimal line segments in the current configuration $\bm{dx}$, namely: $\bm{dx} = \bm{F}\bm{dX}$. Provided the reference configuration and deformation gradient, the current configuration of the deformed body is fully defined. The local volume change at a particular point in $\mathcal{B}$ is defined by the determinant of $\bm{F}$, known as the \textit{Jacobian}: $J = \det{\bm{F}}$.
 
@@ -64,7 +64,7 @@ Balance of linear momentum for the body $\mathcal{B}$ in the \textit{reference c
 \end{equation}
 where $\partial \kappa_0$ is the boundary of the body $\mathcal{B}$ in the reference configuration, $\rho_0$ is the mass per unit reference configuration volume, $\bm{b}(\bm{X})$ is a body force, and inertial terms are deemed negligible. By making use of the relationship $\bm{p} = \bm{P}\bm{N}$ and the divergence and localization theorems, the final governing equations for nonlinear solid mechanics in index notation are:
 \begin{gather}
-P_{ij},_j + \rho_0b_i = 0, \text{\ \ } \forall \text{\ \ } {X_i} \in \kappa_0 \\
+P_{ij,j} + \rho_0b_i = 0, \text{\ \ } \forall \text{\ \ } \bm{X} \in \kappa_0 \label{eqn:equilibrium} \\
 {u_i} = \overline{{u}}_i \text{\ \ on\ \ } \partial_u\kappa_0 \\
 {p_i} = \overline{{p}}_i\text{\ \ on\ \ } \partial_t\kappa_0
 \end{gather}
@@ -75,29 +75,55 @@ where $(),_j = \frac{\partial()}{\partial {{X_j}}}$ are derivatives with respect
 \section{The Finite Element Method in Computational Solid Mechanics}
 \label{The Finite Element Method in Computational Solid Mechanics}
 
-Finite element methods (FEM) are the most popular numerical methods for solving nonlinear solid mechanics problems. Finite element approximations are based on the \textit{weak}, or variational problem statement. The weak form of the problem statement is presented, followed by a brief discussion of Galerkin approximations to the weak form of equilibrium, of which finite element methods are a special case~\cite{rashid_2017}. Some of the major considerations for conventional FEM are discussed, including solution of the the nonlinear residual equations, mesh considerations, constitutive models, and boundary conditions.
+Finite element methods are the most popular numerical methods for solving nonlinear solid mechanics problems. Finite element approximations are based on the \textit{weak}, or variational problem statement. The weak form of the problem statement is presented, followed by a brief discussion of Galerkin approximations to the weak form of equilibrium, of which finite element methods are a special case~\cite{rashid_2017}. Some of the major considerations for conventional FEM are discussed, including solution of the the nonlinear residual equations, mesh considerations, constitutive models, and boundary conditions.
 
 \subsection{Weak Form and Galerkin Approximation}
-total lagrangian formulation because integrals performed in reference configuration:
 
-Ultimately, this means that the derivatives of the basis functions used in the Galerkin approximation must be re-computed not only on every solution step, but also on every iteration within each solution step. Even worse, the current configuration is not only ever-changing, but also unknown as the equilibrium iteration proceeds, because it is a function of the (as-yet unknown) incremental displacements for the step. In consequence, the shape-function gradients, which appear in multiple places in the weak form, are actually functions of the solution variables. This in turn implies that any tangent stiffness that might be required will involve evaluation of extremely complicated expressions whose character depends on the details of the shape functions.
+The weak form of \eqnref{equilibrium} enforces equilibrium in an average integral sense, in which the equations are dotted with a \textit{test function} $\bm{w}$ and integrated over the body $\mathcal{B}$ in the reference configuration:
+\begin{equation}
+\int_{\kappa_0}{P_{ij,j}}w_idV + \int_{\kappa_0}\rho_0b_iw_idV = 0, \text{\ \ } \forall \text{\ \ } \bm{w} \in \mathcal{V}
+\end{equation}
+where $\mathcal{V} = \lbrace\bm{w} \text{\ }|\text{\ } \bm{w} \in H^1(\kappa_0), \text{\ }\bm{w} = 0 \text{\ on\ } \partial_u\kappa_0\rbrace$.
+
+Define a \textit{trial solution space} $\mathcal{S} = \lbrace\bm{u} \text{\ }|\text{\ } \bm{u} \in H^1(\kappa_0), \text{\ }\bm{u} = \overline{\bm{u}} \text{\ on\ } \partial_u\kappa_0\rbrace$  to which displacements $\bm{u}$ must belong. Utilizing the divergence theorem, the weak form of equilibrium takes the following form:
+
+Find $\bm{u}(\bm{X},t) \in \mathcal{S}$ such that
+\begin{gather}
+\int_{\kappa_0}P_{ij}w_{i,j}dV - \int_{\kappa_0}\rho_0b_iw_idV - \int_{\partial_t\kappa_0}\overline{p}_iw_idA = 0 \text{\ \ } \forall \text{\ \ } \bm{w} \in \mathcal{V}
+\end{gather}
+
+The weak form is solved via Galerkin approximation, provided the following approximations to $\bm{u}$ and $\bm{w}$ via a linear combination of a finite set of \textit{basis functions} $\phi_a$:
+\begin{gather}
+\bm{u}(\bm{X},t) = \sum\limits_{a}\bm{u}_a(t)\phi_a(\bm{X}) \\
+\bm{w}(\bm{X},t) = \sum\limits_{a}\bm{w}_a(t)\phi_a(\bm{X})
+\end{gather}
+where $\bm{u}_a$ and $\bm{w}_a$ are nodal values. The approximation is of the Galerkin variety because the basis functions that approximate $\bm{u}$ and $\bm{w}$ are the same. A finite discretization of $\mathcal{B}$ provides the nodes and elements that approximate the geometry of the body, and help define the basis functions. The nodes $a$ consist of the all those in the discretization that do not lie on $\partial_a\kappa_0$. We assume here and henceforth homogeneous displacement boundary conditions for simplicity. The basis functions are globally continuous functions that exhibit important features in a finite element setting, namely: 1) \textit{compact support}, meaning $\phi_a$ is nonzero only on elements that contain node $a$; 2) the \textit{Kronecker delta} property, meaning $\phi_a(\bm{X}_b) = \delta_{ab}$, where $b$ is another node in the reference configuration; and 3) \textit{partition of unity}, meaning $\sum\limits_a\phi_a(\bm{X}) = 1$ throughout the body.
+
+Utilization of the approximations to $\bm{u}$ and $\bm{w}$, and the fact that equilibrium must hold for any choice of $\bm{w}_a$ as long as $\bm{w} \in \mathcal{V}$, lead to the finite element approximation to the weak form of equilibrium, known as the \textit{residual equations}. The contribution to those equations for over a single element domain $\Omega_e \subseteq \kappa_0$ is:
+\begin{equation}
+\bm{R}^e_a = \int_{\Omega_e}P_{ij}\phi_{a,j}dV - \int_{\Omega_e}\rho_0b_i\phi_adV - \int_{\partial_t\Omega_e} \overline{p}_i\phi_adA
+\end{equation}
+Shape functions and integrals are all performed in the \textit{reference configuration}, making this a \textit{total Lagrange} formulation. Performing all integrals in the reference configuration allows the basis function derivatives to be stored, rather than recomputed for each iteration of each solution step. Element contributions are \textit{assembled} to form the global residual equations. The global residual equations are nonlinear system of equations, solved in steps to ensure equilibrium is enforced throughout the quasistatic loading.
 
 \subsection{Solution of the Nonlinear Residual Equations}
 
-compact support \\
-partition of unity \\
-Kronecker Delta property \\
+The global residual equations form a nonlinear system of equations, for which incremental displacements $\hat{\bm{u}}$ 
 
-mention time steps
-Residual equations
+time stepping 
+
+present the nonlinear residual equations at a particular time step
+
+need to present beginning step, end step, increment, etc.
 
 use an \textit{implicit} approach to solve these equations in that the update procedure involves the unkonwns themselves. This requires the nonlinear solution strategies
 
 applying Newton-Raphson on each time step \\
 
-perhaps mention of elements and element residual and element contribution \\
+perhaps mention of elements and element residual and element contribution
 
 tangents
+
+refer heavily to my finite defs page
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Mesh Considerations}
