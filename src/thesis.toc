@@ -39,35 +39,35 @@
 \contentsline {subsection}{\numberline {4.2.1}Weak Form and Galerkin Approximation}{62}{subsection.4.2.1}
 \contentsline {subsection}{\numberline {4.2.2}Solution of the Nonlinear Residual Equations}{64}{subsection.4.2.2}
 \contentsline {subsection}{\numberline {4.2.3}Mesh Considerations}{65}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Constitutive Update}{66}{subsection.4.2.4}
-\contentsline {subsubsection}{\numberline {4.2.4.1}Incremental Kinematics}{66}{subsubsection.4.2.4.1}
-\contentsline {subsubsection}{\numberline {4.2.4.2}Hyperelastic Materials}{68}{subsubsection.4.2.4.2}
-\contentsline {subsubsection}{\numberline {4.2.4.3}Incompressibility}{74}{subsubsection.4.2.4.3}
-\contentsline {subsection}{\numberline {4.2.5}Boundary Conditions}{75}{subsection.4.2.5}
-\contentsline {subsection}{\numberline {4.2.6}Additional Topics}{79}{subsection.4.2.6}
-\contentsline {section}{\numberline {4.3}A Polyhedral Finite Element Method in Computational Solid \\ Mechanics}{80}{section.4.3}
-\contentsline {chapter}{\numberline {5}Application: Cardiac Mechanics}{82}{chapter.5}
-\contentsline {section}{\numberline {5.1}Introduction}{83}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Anatomy and Function of the Heart}{83}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Related Work}{83}{subsection.5.1.2}
-\contentsline {section}{\numberline {5.2}Demonstration using Conventional Finite Elements}{85}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Methods}{85}{subsection.5.2.1}
-\contentsline {subsubsection}{\numberline {5.2.1.1}Mesh Generation}{85}{subsubsection.5.2.1.1}
-\contentsline {subsubsection}{\numberline {5.2.1.2}Material Model}{86}{subsubsection.5.2.1.2}
-\contentsline {subsubsection}{\numberline {5.2.1.3}Boundary Conditions}{90}{subsubsection.5.2.1.3}
-\contentsline {subsubsection}{\numberline {5.2.1.4}Solver}{92}{subsubsection.5.2.1.4}
-\contentsline {subsection}{\numberline {5.2.2}Results}{93}{subsection.5.2.2}
-\contentsline {section}{\numberline {5.3}Extension to Polyhedral Finite Elements}{94}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Implementation}{94}{subsection.5.3.1}
-\contentsline {subsubsection}{\numberline {5.3.1.1}Material Model}{96}{subsubsection.5.3.1.1}
-\contentsline {subsection}{\numberline {5.3.2}Verification}{100}{subsection.5.3.2}
-\contentsline {chapter}{\numberline {6}Future Work}{108}{chapter.6}
-\contentsline {section}{\numberline {6.1}Short Term}{108}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}A Polyhedral Finite Element Demonstration in Cardiac \\ Mechanics}{108}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}Improvements to Image-Based Meshing Code}{110}{subsection.6.1.2}
-\contentsline {subsection}{\numberline {6.1.3}Improvements to Cardiac Mechanics Code}{113}{subsection.6.1.3}
-\contentsline {section}{\numberline {6.2}Long Term}{115}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Simulation of Clinical Trials}{115}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Applications in Rapid Prototyping and Additive Manufacturing}{116}{subsection.6.2.2}
-\contentsline {chapter}{\numberline {7}Conclusions}{119}{chapter.7}
-\contentsline {chapter}{\hspace {6.5mm}References}{121}{section*.2}
+\contentsline {subsection}{\numberline {4.2.4}Constitutive Update}{67}{subsection.4.2.4}
+\contentsline {subsubsection}{\numberline {4.2.4.1}Incremental Kinematics}{68}{subsubsection.4.2.4.1}
+\contentsline {subsubsection}{\numberline {4.2.4.2}Hyperelastic Materials}{74}{subsubsection.4.2.4.2}
+\contentsline {subsubsection}{\numberline {4.2.4.3}Incompressibility}{80}{subsubsection.4.2.4.3}
+\contentsline {subsection}{\numberline {4.2.5}Boundary Conditions}{81}{subsection.4.2.5}
+\contentsline {subsection}{\numberline {4.2.6}Additional Topics}{85}{subsection.4.2.6}
+\contentsline {section}{\numberline {4.3}A Polyhedral Finite Element Method in Computational Solid \\ Mechanics}{86}{section.4.3}
+\contentsline {chapter}{\numberline {5}Application: Cardiac Mechanics}{87}{chapter.5}
+\contentsline {section}{\numberline {5.1}Introduction}{88}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Anatomy and Function of the Heart}{88}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Related Work}{88}{subsection.5.1.2}
+\contentsline {section}{\numberline {5.2}Demonstration using Conventional Finite Elements}{90}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Methods}{90}{subsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.1.1}Mesh Generation}{90}{subsubsection.5.2.1.1}
+\contentsline {subsubsection}{\numberline {5.2.1.2}Material Model}{91}{subsubsection.5.2.1.2}
+\contentsline {subsubsection}{\numberline {5.2.1.3}Boundary Conditions}{95}{subsubsection.5.2.1.3}
+\contentsline {subsubsection}{\numberline {5.2.1.4}Solver}{97}{subsubsection.5.2.1.4}
+\contentsline {subsection}{\numberline {5.2.2}Results}{98}{subsection.5.2.2}
+\contentsline {section}{\numberline {5.3}Extension to Polyhedral Finite Elements}{99}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Implementation}{99}{subsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.1.1}Material Model}{101}{subsubsection.5.3.1.1}
+\contentsline {subsection}{\numberline {5.3.2}Verification}{105}{subsection.5.3.2}
+\contentsline {chapter}{\numberline {6}Future Work}{113}{chapter.6}
+\contentsline {section}{\numberline {6.1}Short Term}{113}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}A Polyhedral Finite Element Demonstration in Cardiac \\ Mechanics}{113}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Improvements to Image-Based Meshing Code}{115}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Improvements to Cardiac Mechanics Code}{118}{subsection.6.1.3}
+\contentsline {section}{\numberline {6.2}Long Term}{120}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Simulation of Clinical Trials}{120}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Applications in Rapid Prototyping and Additive Manufacturing}{121}{subsection.6.2.2}
+\contentsline {chapter}{\numberline {7}Conclusions}{124}{chapter.7}
+\contentsline {chapter}{\hspace {6.5mm}References}{126}{section*.2}

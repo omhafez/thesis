@@ -531,23 +531,32 @@ U.~Ayachit, {\em The ParaView Guide: A Parallel Visualization Application}.
 M.~M. Rashid, ``{Celeris Theory Notes: Finite Element Approximation in
   Nonlinear Solid Mechanics},'' 2017.
 
-\bibitem{rashid_201}
-M.~M. Rashid, ``{Introduction to Elasticity},'' {\em Lecture Notes}, 2009.
+\bibitem{rashid_289}
+M.~M. Rashid, ``{Advanced Topics in Finite Element Methods},'' {\em Lecture
+  Notes}, 2014.
 
 \bibitem{rashid_212}
 Y.~Dafalias, ``{Finite Elements: Application to Linear and Non-Linear
   Structural Mechanics Problems},'' {\em Lecture Notes}, 2014.
 
-\bibitem{rashid_289}
-M.~M. Rashid, ``{Advanced Topics in Finite Element Methods},'' {\em Lecture
-  Notes}, 2014.
-
-\bibitem{dafalias_205}
-Y.~Dafalias, ``{Continuum Mechanics},'' {\em Lecture Notes}, 2010.
+\bibitem{rashid_201}
+M.~M. Rashid, ``{Introduction to Elasticity},'' {\em Lecture Notes}, 2009.
 
 \bibitem{suku_212}
 N.~Sukumar, ``{Finite Element Procedures in Applied Mechanics},'' {\em Lecture
   Notes}, 2010.
+
+\bibitem{dafalias_205}
+Y.~Dafalias, ``{Continuum Mechanics},'' {\em Lecture Notes}, 2010.
+
+\bibitem{chadwick_1999}
+P.~Chadwick, {\em {Continuum Mechanics: Concise Theory and Problems}}.
+\newblock Dover Publications, 1999.
+
+\bibitem{cubit_2018}
+R.~Morris, ``{CUBIT 14.0 User Documentation},''
+\newblock
+  \url{https://cubit.sandia.gov/public/14.0/help_manual/WebHelp/mesh_generation/mesh_quality_assessment/mesh_quality_assessment.htm}.
 
 \bibitem{rashid_1991}
 M.~M. Rashid, ``{A Class of Constitutive Models for Rate-Dependent Inelasticity
@@ -563,15 +572,6 @@ M.~M. Rashid, ``{Incremental Kinematics for Finite Element Applications},''
 M.~M. Rashid and B.~J. Thorne, ``{Incremental Objectivity in Cyclic Shearing
   Deformations},'' {\em Communications in Numerical Methods in Engineering},
   vol.~12, no.~12, pp.~863--871, 1996.
-
-\bibitem{chadwick_1999}
-P.~Chadwick, {\em {Continuum Mechanics: Concise Theory and Problems}}.
-\newblock Dover Publications, 1999.
-
-\bibitem{cubit_2018}
-R.~Morris, ``{CUBIT 14.0 User Documentation},''
-\newblock
-  \url{https://cubit.sandia.gov/public/14.0/help_manual/WebHelp/mesh_generation/mesh_quality_assessment/mesh_quality_assessment.htm}.
 
 \bibitem{doll_2000}
 S.~Doll, K.~Schweizerhof, R.~Hauptmann, and C.~Freischl\:{a}ger, ``{On
