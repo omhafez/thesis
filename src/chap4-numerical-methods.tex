@@ -143,7 +143,7 @@ Volume and facet integrals are evaluated via numerical quadrature rules on the p
 
 The constitutive update 
 
-The forthcoming conversation will center around the kinematics, update, and subsequent contribution to the global stiffness equations for \textit{hypoelastic} materials of the form $\mathring{\bm{T}} = \bm{C}(\bm{D} - \bm{D}^p)$.
+The forthcoming conversation will center around the kinematics, material update, and subsequent contribution to the global stiffness equations for \textit{hypoelastic} materials of the form $\overset{\circ}{\bm{T}} = \bm{C}\bm{D}$.....
 
 Cauchy stress
 
@@ -389,7 +389,7 @@ It should be noted that $\det\doublehat{\bm{F}}$ only approximates the overall v
 \subsection{Boundary Conditions}
 Displacement boundary conditions on $\partial_u\kappa_0$ are enforced on the corresponding nodal displacements belonging to that surface. In the event that the prescribed displacements do not depend on the solution, the corresponding nodal values are no longer considered unknowns. The size of the nonlinear system of residual equations is subsequently reduced to the DOFs of the nodes belonging to the interior of the body and those belonging to $\partial_t\kappa_0$.
 
-Traction boundary conditions prescribe the Piola traction $\overline{\bm{p}}$ in the residual equations over the patch of facets comprising $\partial_t\kappa_0$. The Piola traction may be directly specified, or alternatively the Piola pressure, Cauchy traction, or Cauchy pressure may be enforced. In the case of the latter three options, the boundary condition must be converted to a Piola traction to fit into the form of \eqnref{}. Enforcing the latter three BCs in a finite deformation setting is nontrivial. Specifically, facet contributions to the residual and global stiffness equations depend on the area ratio $\alpha$ and current configuration normal $\bm{n}$ to be computed, along with their derivatives with respect to incremental nodal displacements.
+Traction boundary conditions prescribe the Piola traction $\overline{\bm{p}}$ in the residual equations over the patch of facets comprising $\partial_t\kappa_0$. The Piola traction may be directly specified, or alternatively the Piola pressure, Cauchy traction, or Cauchy pressure may be enforced. In the case of the latter three options, the boundary condition must be converted to a Piola traction to fit into the form of the total Lagrangian residual equations. Enforcing the latter three BCs in a finite deformation setting is nontrivial. Specifically, facet contributions to the residual and global stiffness equations depend on the area ratio $\alpha$ and current configuration normal $\bm{n}$ to be computed, along with their derivatives with respect to incremental nodal displacements.
 
 Cauchy and Piola \textit{follower loads} may also be considered, in which case the normal and shear tractions ``follow'' the local orientation of the facet in the current configuration. Those BCs are less common and will not be discussed here, however. The remaining discussion revolves around the implementation of Piola tractions, Piola pressures, Cauchy tractions, and Cauchy pressures into a nonlinear finite element code that stores \textit{facet elements} for the enforcement of boundary conditions. The task involves computing $\overline{\bm{p}}$ for the residual and ${\partial \bm{\overline{p}}}/{\partial {\hat {\bm{u}}}}$ for the tangent stiffness.
 
