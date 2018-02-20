@@ -99,49 +99,89 @@ The weak form is solved via Galerkin approximation, provided the following appro
 \end{gather}
 where $\bm{u}_a$ and $\bm{w}_a$ are nodal values. The approximation is of the Galerkin variety because the basis functions that approximate $\bm{u}$ and $\bm{w}$ are the same. A finite discretization of $\mathcal{B}$ provides the nodes and elements that approximate the geometry of the body, and help define the basis functions. The nodes $a$ consist of the all those in the discretization that do not lie on $\partial_a\kappa_0$. We assume here and henceforth homogeneous displacement boundary conditions for simplicity. The basis functions are globally continuous functions that exhibit important features in a finite element setting, namely: 1) \textit{compact support}, meaning $\phi_a$ is nonzero only on elements that contain node $a$; 2) the \textit{Kronecker delta} property, meaning $\phi_a(\bm{X}_b) = \delta_{ab}$, where $b$ is another node in the reference configuration; and 3) \textit{partition of unity}, meaning $\sum\limits_a\phi_a(\bm{X}) = 1$ throughout the body.
 
-Utilization of the approximations to $\bm{u}$ and $\bm{w}$, and the fact that equilibrium must hold for any choice of $\bm{w}_a$ as long as $\bm{w} \in \mathcal{V}$, lead to the finite element approximation to the weak form of equilibrium, known as the \textit{residual equations}. The contribution to those equations for over a single element domain $\Omega_e \subseteq \kappa_0$ is:
+Utilization of the approximations to $\bm{u}$ and $\bm{w}$, and the fact that equilibrium must hold for any choice of $\bm{w}_a$ as long as $\bm{w} \in \mathcal{V}$, lead to the finite element approximation to the weak form of equilibrium, known as the \textit{residual equations}:
 \begin{equation}
-\bm{R}^e_a = \int_{\Omega_e}P_{ij}\phi_{a,j}dV - \int_{\Omega_e}\rho_0b_i\phi_adV - \int_{\partial_t\Omega_e} \overline{p}_i\phi_adA
+\bm{R}_a = \int_{\kappa_0}P_{ij}\phi_{a,j}dV - \int_{\kappa_0}\rho_0b_i\phi_adV - \int_{\partial_t\kappa_0} \overline{p}_i\phi_adA = \bm{0}
+\label{eqn:elresid}
 \end{equation}
-Shape functions and integrals are all performed in the \textit{reference configuration}, making this a \textit{total Lagrange} formulation. Performing all integrals in the reference configuration allows the basis function derivatives to be stored, rather than recomputed for each iteration of each solution step. Element contributions are \textit{assembled} to form the global residual equations. The global residual equations are nonlinear system of equations, solved in steps to ensure equilibrium is enforced throughout the quasistatic loading.
+Shape functions and integrals are all performed in the \textit{reference configuration}, making this a \textit{total Lagrange} formulation. Performing all integrals in the reference configuration allows the basis function derivatives to be stored, rather than recomputed for each iteration of each solution step. The global residual equations are a nonlinear system of equations, solved in steps to ensure equilibrium is enforced throughout the quasistatic loading.
 
 \subsection{Solution of the Nonlinear Residual Equations}
 
-The global residual equations form a nonlinear system of equations, for which incremental displacements $\hat{\bm{u}}$ 
+The global residual equations are solved in incremental steps, progressing the solution from one equilibrium state to the next until the final equilibrium state is reached for the quasistatic problem. Assume equilibrium has been established for time $t_n$ and we seek to find equilibrium for the next time step to time $t_{n+1}$, where $\Delta{t} = t_{n+1} - t_{n}$. The \textit{beginning step} will refer to $t_n$ and the \textit{end step} to $t_{n+1}$. Define the positions $\overline{\bm{x}} = \bm{x}(\bm{X},t_n)$, and for the forthcoming purposes we also refer to ${\bm{x}}$ as $\bm{x}(\bm{X},t_{n+1})$. Define ${\bm{u}}^* = \overline{\bm{x}} - \bm{X}$. Thus, in order to solve for displacements $\bm{u} = \bm{x} - \bm{X}$ at time $t_{n+1}$, we seek to find the incremental nodal displacements $\hat{\bm{u}} = \bm{x} - \overline{\bm{x}}$ such that $\bm{u}$ is updated via $\bm{u} = {\bm{u}}^* + \hat{\bm{u}}$. Thus, when seeking to update from time $t_n$ to $t_{n+1}$, we seek the incremental displacements $\hat{\bm{u}}$ such that the global residual equations are satisfied at time $t_{n+1}$ within a tolerance.
 
-time stepping 
+The most common approach to solving the nonlinear system of equations is via a Newton-Rapshon iterative scheme. The solution of $\bm{R}_a(t_{n+1}) = \bm{0}$ is performed via successive solution of the following \textit{linear} global stiffness equations:
+\begin{equation}
+\frac{\partial R_{ia}}{\partial \hat{u}_{jb}} \bigg|_k \delta\hat{u}_{jb} = -R_{ia}\bigg|_k
+\label{eqn:newtonraphson}
+\end{equation}
+where $k$ is the iteration number, and $\delta\hat{u}_{jb}$ is the correction to the incremental nodal displacement. When applied successfully, the procedure corrects the incremental nodal displacements in a manageable number of iterations (ideally on the order of 5, and hopefully fewer than 20 or fewer in practice) until they satisfy that $\bm{R}_a(t_{n+1}) = \bm{0}$.
 
-present the nonlinear residual equations at a particular time step
-
-need to present beginning step, end step, increment, etc.
-
-use an \textit{implicit} approach to solve these equations in that the update procedure involves the unkonwns themselves. This requires the nonlinear solution strategies
-
-applying Newton-Raphson on each time step \\
-
-perhaps mention of elements and element residual and element contribution
-
-tangents
-
-refer heavily to my finite defs page
+Populating and solving the global stiffness equations requires computing the following two terms: $\frac{\partial R_{ia}}{\partial \hat{u}_{jb}} \big|_k$ and $R_{ia}\big|_k$. The nodal residuals have been defined previously in \eqnref{elresid}. For a constant reference density, and assuming the body force is not a function of displacement, the tangent stiffness is:
+\begin{equation}
+\frac{\partial R_{ia}}{\partial \hat{u}_{jb}} = \int_{\kappa_0}\frac{\partial P_{ik}}{\partial \hat{u}_{jb}}\phi_{a,k}dV - \int_{\partial_t\kappa_0}\frac{\partial \overline{p}_i}{\partial \hat{u}_{jb}}\phi_adA
+\end{equation}
+The manner in which the integrals in these terms are performed is based on the discretization of the body $\mathcal{B}$ into a discrete \textit{mesh} of finite elements. The calculation of $P_{ij}$ and $\partial{P}_{ik}/\partial{\hat{u}_{jb}}$ relies on a careful treatment of the \textit{constitutive update} and corresponding material model. The calculation of $\overline{p}_i$ and $\partial{\overline{p}_i}/\partial{\hat{u}_{jb}}$ corresponds to the choice of traction \textit{boundary conditions}. Each of these three important components to FEM are discussed next.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Mesh Considerations}
 
-As detailed in \chapref{3}, the \textit{mesh} is a spatial discretization of the body of interest. Each node has an accompanying interpolating basis function, defined based on the shape functions of the neighboring elements associated with that node. Those shape functions are used to compute volume and facet integrals via an \textit{isoparametric transformation} from the physical space to the parent space, in the following manner:
+The integrals in the global stiffness equations are performed on an element level and subsequently combined to form the global residual and tangent stiffness. Integrals over a single element domain $\Omega_e \subseteq \kappa_0$ have the same form as those defining $\frac{\partial R_{ia}}{\partial \hat{u}_{jb}} \big|_k$ and $R_{ia}\big|_k$, with the exception that integrals are performed over $\Omega_e$ instead of $\kappa_0$. Thus, for each element, the quantities $\frac{\partial R^e_{ia}}{\partial \hat{u}_{jb}} \big|_k$ and $R^e_{ia}\big|_k$ are of interest.
+
+Via the spatial discretization of $\mathcal{B}$ into \textit{elements}, basis functions are decomposed into element \textit{shape functions} defined on each of the neighboring elements to the node $a$ for which $\phi_a$ is defined. Those shape functions are used to compute volume and facet integrals via an \textit{isoparametric transformation} from the physical space to the parent space, in the following manner:
 \begin{equation}
 \bm{X}(\bm{\xi}) = \sum\limits_{a}\bm{X}_a{N}_a(\bm{\xi})
 \end{equation}
-where $\bm{X}_a$ are spatial coordinates of the element nodes, $N_a$ are the shape functions, and $\bm{\xi}$ is the position vector in the parent element domain. The transformation is isoparametric because the same shape functions are used to interpolate nodal displacements. Refer to Hughes~\cite{} for a definition of the shape functions $N_a$ for the linear and quadratic tetrahedral and hexahedral elements. The order of an element corresponds to the polynomial order with which the displacement and position are interpolated. Because stress and strain involve the spatial derivative of displacement, stress and strain are interpolated at one polynomial degree lower than is displacement. 
+where $\bm{X}_a$ are spatial coordinates of the element nodes, $N_a$ are the shape functions, and $\bm{\xi}$ is the position vector in the parent element domain. The transformation is isoparametric because the same shape functions, and thus basis functions, are used to interpolate nodal displacements. 
 
-Volume and facet integrals are evaluated via numerical quadrature rules on the parent element. For conventional FEM, the quality of the approximating solution depends critically on the ability to map spatial coordinates of an element to its parent space with high fidelity. Thus, the notion of \textit{mesh quality} - which attempts in various ways to measure the distortion of physical elements from their corresponding parent elements - is an important consideration for automated meshing tools if the resultant mesh is to be provided to a conventional FEM code.
+Refer to Hughes~\cite{hughes_2007} for a definition of the shape functions $N_a$ for the linear and quadratic tetrahedral and hexahedral elements. The order of an element corresponds to the polynomial degree of the shape functions, as well as the subsequent order of approximation of the displacement solution. Because stress and strain involve the spatial derivative of displacement, stress and strain are approximated one degree lower than is displacement. 
+
+Volume and facet integrals are evaluated via numerical quadrature rules on the parent element and subsequently \textit{assembled} into the global stiffness equations. For conventional FEM, the quality of the approximating solution depends critically on the ability to map spatial coordinates of an element to its parent space with high fidelity. Thus, the notion of \textit{mesh quality} - which attempts in various ways to measure the distortion of physical elements from their corresponding parent elements - is an important consideration for automated meshing tools if the resultant mesh is to be provided to a conventional FEM code. The reader is referred to the CUBIT User Documentation~\cite{cubit_2018} for a more in-depth description mesh quality metrics.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Constitutive Model}
+\subsection{Constitutive Update}
+
+The constitutive update 
+
+The forthcoming conversation will center around the kinematics, update, and subsequent contribution to the global stiffness equations for \textit{hypoelastic} materials of the form $\mathring{\bm{T}} = \bm{C}(\bm{D} - \bm{D}^p)$.
+
+Cauchy stress
 
 Jaumann rate
 
+introduce incremental objectivity ...
+
 \subsubsection{Incremental Kinematics}
+
+NEED TO DEFINE DEF GRAD AT BEG STEP AND END STEP EARLIER WITH EVERYTHING ELSE
+
+Much in the same way we approximate $\bm{u}$ by a linear combination of basis functions, we make the same approximations for $\bm{u}^*$ and $\hat{\bm{u}}$.
+
+\begin{align}
+u_i = u_{ia}\phi_a, \qquad u^*_i &= u^*_{ia}\phi_a, \qquad \hat{u}_i = \hat{u}_{ia}\phi_a \\
+u_{i,j} = u_{ia}\phi_{a,j}, \qquad u^*_{i,j} &= u^*_{ia}\phi_{a,j}, \qquad \hat{u}_{i,j} = \hat{u}_{ia}\phi_{a,j}
+\end{align}
+
+The deformation gradients of interest are defined as:
+\begin{equation}
+\bf{F} = \frac{\partial \bf{x}}{\partial \bf{X}}, \qquad \bf{\overline{F}} = \frac{\partial \bf{\overline{x}}}{\partial \bf{X}}, \qquad \bf{\hat{F}} = \frac{\partial \bf{x}}{\partial \bf{\overline{x}}}
+\end{equation}
+Thus, $\mathbf{F}$ can be decomposed as
+\begin{equation}
+\bf{F} = \bf{\hat{F}}\bf{\overline{F}}
+\end{equation}
+It can be shown that the deformation gradients can be written in terms of the nodal displacements and shape function gradients in the following form:
+\begin{align}
+F_{ij} &= \delta_{ij} + \left(u^*_{ia} + \hat{u}_{ia} \right) \phi_{a,j} = \delta_{ij} + \left(u^*_{ia} + \hat{u}_{ia} \right) B_{ja} \\
+\overline{F}_{ij} &= \delta_{ij} + u^*_{ia} \phi_{a,j} = \delta_{ij} + u^*_{ia} B_{ja}
+\end{align}
+where $B_{ja}$ are the components of the shape function gradient for node a and element $e$, evaluated at $t = t_{n+1}$, and $\delta_{ij}$ are the components of the Kronecker delta function.
+
+MENTION CALCS FOR RESIDUAL
+
+GO THROUGH NON INCR KINEMATICS CALCS FOR TANGENT
+
+refer heavily to my finite defs page
 
 If only D and W appear as kinematic forcing functions, then the only information needed to advance the material state from an initial to a final state is the values of the material state variables at the initial state, and a description of the motion – via D and W – over the time interval.
 
@@ -159,7 +199,7 @@ provide example of linear hypoelastic material
 
 Hyperelastic material models describe nonlinear elastic behavior for finite deformations, and are commonly utilized to model the mechanical behavior of biological or rubber-like materials. A body comprised of a hyperelastic material that undergoes mechanical deformation is an example of a  \textit{conservative system}, and thus the stress may be written as a function of a \textit{strain energy potential} $W$. Indeed, hyperelastic materials are typically defined by the strain energy, rather than by a particular stress measure.
 
-For hyperelastic materials, the strain energy $W$ is typically defined as a function of the deformation gradient $\bm{F}$ or a related kinematic quantity, from which the stress may be computed via its relationship with $W$. In the context of a constitutive update, in contrast to the hypoelastic case, the only kinematic quantity required to compute the Cauchy stress $\bm{T}$ is the end step deformation gradient $\bm{F}$. For the purposes of the tangent stiffness equations, rather than the tangent modulus ${\partial \tilde{\bm{T}}}/{\partial (\bm{D}\Delta{t})}$, the quantity ${\partial \bm{T}}/{\partial \bm{F}}$ may be computed instead. Together with $\partial \bm{F}/\partial \hat{\bm{u}}$, $\partial \bm{T}/\partial \hat{\bm{u}}$ may be computed, which is ultimately the desired quantity for those equations. In this manner, no forward rotation of the end step stress or tangent modulus is necessary for a hyperelastic material.
+For hyperelastic materials, the strain energy $W$ is typically defined as a function of the deformation gradient $\bm{F}$ or a related kinematic quantity, from which the stress may be computed via its relationship with $W$. In the context of a constitutive update, in contrast to the hypoelastic case, the only kinematic quantity required to compute the Cauchy stress $\bm{T}$ is the end step deformation gradient $\bm{F}$. For the purposes of the global stiffness equations, rather than the tangent modulus ${\partial \tilde{\bm{T}}}/{\partial (\bm{D}\Delta{t})}$, the quantity ${\partial \bm{T}}/{\partial \bm{F}}$ may be computed instead. Together with $\partial \bm{F}/\partial \hat{\bm{u}}$, $\partial \bm{T}/\partial \hat{\bm{u}}$ may be computed, which is ultimately the desired quantity for those equations. In this manner, no forward rotation of the end step stress or tangent modulus is necessary for a hyperelastic material.
 
 A hyperelastic material may still be implemented within the incremental kinematics framework previously discussed, however. This may be desirable if it is preferred that the finite element codebase treat all materials in the same manner, as opposed to performing the constitutive update and subsequent contributions to the residual equations in a fundamentally different way for hyperelastic vs. hypoelastic materials. The process requires storing the deformation gradient as a state variable, and accurately updating it within the constitutive update. The details are henceforth described for an implementation of the Mooney-Rivlin hyperelastic material model within such a framework, as a means of demonstration.
 
@@ -208,7 +248,7 @@ We now redefine ${\bm D}$ as the stretch rate \textit{multiplied by the time ste
 \end{align}
 The Taylor expansion of this relationship around $\bm{D} = \bm{0}$ is then:
 \begin{align}
-\hat{\bm U} &= {\bm I} + {\bm D} + \frac{1}{2}{\bm D}^2 + \frac{1}{6}{\bm D}^3
+\hat{\bm {U}} &= {\bm I} + {\bm D} + \frac{1}{2}{\bm D}^2 + \frac{1}{6}{\bm D}^3
 \end{align}
 We now define $\tilde {\bm F}$ as the deformation gradient at time $t_{n+1}$ prior to applying the rotation increment $\hat{\bm R}$. Specifically,
 \begin{align}
@@ -280,7 +320,7 @@ With $\partial \tilde{\bm F}/\partial \hat{\bm U}$ and $\partial \hat{\bm U}/\pa
 \frac{\partial \tilde{\bm T}}{\partial \tilde{\bm F}} &= \frac{\partial \tilde{\bm T}}{\partial J}\frac{\partial J}{\partial \tilde {\bm F}} + \frac{\partial \tilde{\bm T}}{\partial {\tilde{\bm {B}}}}\frac{\partial {\tilde{\bm {B}}}}{\partial \tilde {\bm F}} \\
 \frac{\partial \hat{T_{ij}}}{\partial \tilde{F}_{kl}} &= \frac{\partial \tilde{T}_{ij}}{\partial J}\frac{\partial J}{\partial \tilde{F}_{kl}} + \frac{\partial \tilde{T}_{ij}}{\partial \tilde{B}_{mn}}\frac{\partial \tilde{B}_{mn}}{\partial \tilde{F}_{kl}}
 \end{align}
-where $J = \det(\tilde{\bm{F}})$ and $\tilde{\bm{B}} = \tilde{\bm{F}}\tilde{\bm{F}}^T$.
+where $J = \det\tilde{\bm{F}}$ and $\tilde{\bm{B}} = \tilde{\bm{F}}\tilde{\bm{F}}^T$.
 
 The corresponding derivatives are then:
 \begin{align}
@@ -326,7 +366,7 @@ And simplifying,
 &\left.\phantom{xxxxxxxx}-\frac{1}{2}\tilde{B}_{ik}\delta_{jl} -\frac{1}{2}\tilde{B}_{il}\delta_{jk} - \frac{2}{3}I_1\delta_{ij}\delta_{kl} + \frac{2}{3}\delta_{ij}\tilde{B}_{lk}\right]
 \end{aligned}
 \end{equation}
-Thus, all terms have been defined in the calculation of the tangent modulus $\partial{\tilde{\bm{T}}}/\partial({\bm{D}\Delta{t}})$. Like the stress and state variables, the tangent modulus is forward-rotated elsewhere in the finite element code prior to contributing to the tangent stiffness equations, in the same manner described previously.
+Thus, all terms have been defined in the calculation of the tangent modulus $\partial{\tilde{\bm{T}}}/\partial({\bm{D}\Delta{t}})$. Like the stress and state variables, the tangent modulus is forward-rotated elsewhere in the finite element code prior to contributing to the global stiffness equations, in the same manner described previously.
 
 The procedure for implementing a hyperelastic material into an FEM code that only accepts hypoelastic materials has thus been established, and will be used again in \chapref{5} for implementing the mechanical behavior of cardiac tissue.
 
@@ -349,9 +389,9 @@ It should be noted that $\det\doublehat{\bm{F}}$ only approximates the overall v
 \subsection{Boundary Conditions}
 Displacement boundary conditions on $\partial_u\kappa_0$ are enforced on the corresponding nodal displacements belonging to that surface. In the event that the prescribed displacements do not depend on the solution, the corresponding nodal values are no longer considered unknowns. The size of the nonlinear system of residual equations is subsequently reduced to the DOFs of the nodes belonging to the interior of the body and those belonging to $\partial_t\kappa_0$.
 
-Traction boundary conditions prescribe the Piola traction $\overline{\bm{p}}$ in the residual equations over the patch of facets comprising $\partial_t\kappa_0$. The Piola traction may be directly specified, or alternatively the Piola pressure, Cauchy traction, or Cauchy pressure may be enforced. In the case of the latter three options, the boundary condition must be converted to a Piola traction to fit into the form of \eqnref{}. Enforcing the latter three BCs in a finite deformation setting is nontrivial. Specifically, facet contributions to the residual and tangent stiffness equations depend on the area ratio $\alpha$ and current configuration normal $\bm{n}$ to be computed, along with their derivatives with respect to incremental nodal displacements.
+Traction boundary conditions prescribe the Piola traction $\overline{\bm{p}}$ in the residual equations over the patch of facets comprising $\partial_t\kappa_0$. The Piola traction may be directly specified, or alternatively the Piola pressure, Cauchy traction, or Cauchy pressure may be enforced. In the case of the latter three options, the boundary condition must be converted to a Piola traction to fit into the form of \eqnref{}. Enforcing the latter three BCs in a finite deformation setting is nontrivial. Specifically, facet contributions to the residual and global stiffness equations depend on the area ratio $\alpha$ and current configuration normal $\bm{n}$ to be computed, along with their derivatives with respect to incremental nodal displacements.
 
-Cauchy and Piola \textit{follower loads} may also be considered, in which case the normal and shear tractions ``follow'' the local orientation of the facet in the current configuration. Those BCs are less common and will not be discussed here, however. The remaining discussion revolves around the implementation of Piola tractions, Piola pressures, Cauchy tractions, and Cauchy pressures into a nonlinear finite element code that stores \textit{facet elements} for the enforcement of boundary conditions. The task involves computing $\overline{\bm{p}}$ for the residual equations and ${\partial \bm{\overline{p}}}/{\partial {\hat {\bm{u}}}}$ for the tangent stiffness equations.
+Cauchy and Piola \textit{follower loads} may also be considered, in which case the normal and shear tractions ``follow'' the local orientation of the facet in the current configuration. Those BCs are less common and will not be discussed here, however. The remaining discussion revolves around the implementation of Piola tractions, Piola pressures, Cauchy tractions, and Cauchy pressures into a nonlinear finite element code that stores \textit{facet elements} for the enforcement of boundary conditions. The task involves computing $\overline{\bm{p}}$ for the residual and ${\partial \bm{\overline{p}}}/{\partial {\hat {\bm{u}}}}$ for the tangent stiffness.
 
 Calculations for the traction boundary conditions all stem from the formation of ${\bm {da}} = \alpha{\bm n}$ in the current configuration. The quantity $\alpha{\bm n}$ is found via the cross product of orthonormal in-plane deformed material line directions in the current configuration: ${\alpha}{\bm n} = {\bm F}{\bm M}_1 \times {\bm F}{\bm M}_2$. For each integration point of a particular facet element, the four boundary conditions mentioned are then enforced based on the following calculations:
 
@@ -377,7 +417,7 @@ Finally, If Piola traction $\bm {\overline{p}}$ is prescribed: $\bm {\overline{p
 
 In order to perform these steps, the deformation gradient $\bm{F}$ and its derivative ${\partial \bm{F}}/{\partial \hat{\bm{u}}}$, and local material line directions $\bm{M}_1$ and $\bm{M}_2$ in the current configuration must be computed for each integration point of each facet element. The remaining discussion is centered around computing those values.
 
-For three-dimensional finite elements, the element residual and tangent stiffness equations for facets involve area integrals in $\mathbb{R}^3$ that depend on $\alpha$, $\bm{n}$, and their derivatives. In order to compute these quantities for a particular facet, the following are required: 1) shape function values $N_a$, 2) the ratio $J_F$ of differential areas between reference configuration and parent space, 3) the reference configuration normal ${\bm {N}}$, and 4) the in-plane shape function gradients ${\bm {g}}_a$. Shape function values $N_a$ can be easily evaluated at the integration points. 
+For three-dimensional finite elements, the element residual and tangent stiffness for facets involve area integrals in $\mathbb{R}^3$ that depend on $\alpha$, $\bm{n}$, and their derivatives. In order to compute these quantities for a particular facet, the following are required: 1) shape function values $N_a$, 2) the ratio $J_F$ of differential areas between reference configuration and parent space, 3) the reference configuration normal ${\bm {N}}$, and 4) the in-plane shape function gradients ${\bm {g}}_a$. Shape function values $N_a$ can be easily evaluated at the integration points. 
 
 To determine these quantities, assume a parametrization $\mathbf{X} \in \Omega^m$ for a particular element $m$ is available in the reference configuration in the physical space. For conventional finite element methods, the parameterization is provided by shape functions defined in the parent space: ${X}_{i} = \sum\limits_{a}{X}_{ia}{N}_a(\xi_i)$, where parameterization variables $\xi_i$ are simply the parent space coordinates in conventional FEM. The cross product of ${\partial{\bm {X}}}/{\partial \xi_1}$ and ${\partial{\bm {X}}}/{\partial \xi_2}$ defines a vector that points normal to the facet in the reference configuration, with magnitude equal to the differential area spanned by ${\partial{\bm {X}}}/{\partial \xi_1}$ and ${\partial{\bm {X}}}/{\partial \xi_2}$. This magnitude and direction are indeed the $J_F$ and ${\bm {N}}$ we desire, respectively.
 
