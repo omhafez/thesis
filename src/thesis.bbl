@@ -584,10 +584,10 @@ N.~Sukumar and E.~A. Malsch, ``{Recent Advances in the Construction of
   Polygonal Finite Element Interpolants},'' {\em Archives of Computational
   Methods in Engineering}, vol.~13, no.~1, pp.~129--163, 2006.
 
-\bibitem{rashid_2006}
-M.~M. Rashid and M.~Selimotic, ``{A Three-Dimensional Finite Element Method
-  with Arbitrary Polyhedral Elements},'' {\em International Journal for
-  Numerical Methods in Engineering}, vol.~67, no.~2, pp.~226--252, 2006.
+\bibitem{manzini_2014}
+G.~Manzini, A.~Russo, and N.~Sukumar, ``{New Perspectives on Polygonal and
+  Polyhedral Finite Element Methods},'' {\em Mathematical Models and Methods in
+  Applied Sciences}, vol.~24, no.~08, pp.~1665--1699, 2014.
 
 \bibitem{rashid_2012}
 M.~M. Rashid and A.~Sadri, ``{The Partitioned Element Method in Computational
@@ -708,8 +708,8 @@ C.~Richardson, ``{The Cardiac Cycle}.''
 \newblock \url{https://www.slideshare.net/cr8639/the-cardiac-cycle-13725004}.
 
 \bibitem{melodee}
-``{MELODEE - Modular Expression Language for Ordinary Differential Equation
-  Editing},''
+R.~Blake, ``{MELODEE - Modular Expression Language for Ordinary Differential
+  Equation Editing},''
 \newblock \url{https://github.com/LLNL/melodee}.
 
 \bibitem{land_2015}
@@ -723,6 +723,10 @@ S.~Land, V.~Gurev, S.~Arens, C.~M. Augustin, L.~Baron, R.~Blake, C.~Bradley,
 V.~Dyadechko and M.~Shashkov, ``{Reconstruction of Multi-Material Interfaces
   from Moment Data},'' {\em Journal of Computational Physics}, vol.~227,
   no.~11, pp.~5361--5384, 2008.
+
+\bibitem{rashid_2019}
+M.~M. Rashid, ``{Approximate 3D Voronoi Partitions with Tolerance-Controlled
+  Minimum Feature Size},'' 2012.
 
 \bibitem{cmake}
 ``{CMake}.''

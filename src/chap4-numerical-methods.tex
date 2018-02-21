@@ -2,7 +2,7 @@
 \label{chap:4}
 %
 
-An explicit geometric description of the biological tissues of interest may be utilized to model a wide array of physical phenomena via several different numerical approaches. For these purposes, the discussion will be restricted to modeling quasistatic finite-deformation nonlinear solid mechanics behavior via finite element methods. Selected relevant topics in nonlinear solid mechanics and conventional finite element methods are presented, followed by a brief summary of a polyhedral finite element method that is to be explored as an alternative approach in modeling the mechanics of biological tissues. Concepts are drawn heavily from Rashid~\cite{rashid_2017, rashid_289, rashid_212, rashid_201}, Sukumar~\cite{suku_212}, and Dafalias~\cite{dafalias_205}.
+Numerical approximation methods may utilize an explicit geometric description of the biological tissues to model a wide array of physical phenomena. For these purposes, the discussion will be restricted to modeling quasistatic finite-deformation nonlinear solid mechanics behavior via finite element methods. Selected relevant topics in nonlinear solid mechanics and conventional finite element methods are presented. Concepts are drawn heavily from Rashid~\cite{rashid_2017, rashid_289, rashid_212, rashid_201}, Sukumar~\cite{suku_212}, and Dafalias~\cite{dafalias_205}. Lastly, a brief summary of a polyhedral finite element method that is to be explored as an alternative approach in modeling the mechanics of biological tissues.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Nonlinear Solid Mechanics}
@@ -13,7 +13,7 @@ Pertinent topics of nonlinear solid mechanics will be briefly summarized herein.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Kinematics Preliminaries}
 
-The specification of \textit{nonlinear} solid mechanics is due to \textit{geometric nonlinearities} and/or \textit{material nonlinearities}. Contact considerations may also produce nonlinearities, but will not be considered here. Geometric nonlinearities arise due to the assumed \textit{finite} deformations that occur for a body $\mathcal{B}$ of interest. Unlike small deformation solid mechanics, in the case of finite deformations the fixed \textit{reference configuration} $\kappa_0$ and \textit{current configuration} $\kappa_t$ are considered distinct. The reference configuration is typically chosen as the unloaded state of the body, defined at time $t=0$. Material points in the reference configuration are defined by the position vector $\bm{X}$, and locations in the current configuration by $\bm{x}(\bm{X},t)$. The displacement $\bm{u}(\bm{X},t)$ at a material point is $\bm{u}(\bm{X},t) = \bm{x}(\bm{X},t) - \bm{X}$.
+The specification of \textit{nonlinear} solid mechanics is due to \textit{geometric nonlinearities} and/or \textit{material nonlinearities}. Contact considerations may also produce nonlinearities, but will not be considered here. Geometric nonlinearities arise due to the assumed \textit{finite} deformations that occur for a body of interest $\mathcal{B}$. Unlike small deformation solid mechanics, in the case of finite deformations the fixed \textit{reference configuration} $\kappa_0$ and \textit{current configuration} $\kappa_t$ are considered distinct. The reference configuration is typically chosen as the unloaded state of the body, defined at time $t=0$. Material points in the reference configuration are defined by the position vector $\bm{X}$, and locations in the current configuration by $\bm{x}(\bm{X},t)$. The displacement $\bm{u}(\bm{X},t)$ at a material point is $\bm{u}(\bm{X},t) = \bm{x}(\bm{X},t) - \bm{X}$.
 
 The fundamental kinematic quantity in nonlinear solid mechanics is the \textit{deformation gradient} $\bm{F} = \frac{\partial \bm{x}}{\partial \bm{X}}$, which maps infinitesimal line segments in the reference configuration $\bm{dX}$ to infinitesimal line segments in the current configuration $\bm{dx}$, namely: $\bm{dx} = \bm{F}\bm{dX}$. Provided the reference configuration and deformation gradient, the current configuration of the deformed body is fully defined. The local volume change at a particular point in $\mathcal{B}$ is defined by the determinant of $\bm{F}$, known as the \textit{Jacobian}: $J = \det{\bm{F}}$.
 
@@ -21,39 +21,38 @@ The mapping from reference configuration to current configuration $\bm{F}$ may b
 \begin{equation}
 \bm{F} = \bm{R}\bm{U} = \bm{V}\bm{R}
 \end{equation}
-where $\bm{U}$ and $\bm{V}$ are symmetric tensors, and $\bm{R}$ is an orthonormal tensor.
+where $\bm{U}$ and $\bm{V}$ are symmetric tensors, and $\bm{R}$ is an orthonormal tensor. Several strain measures may be defined in terms of the deformation gradient. Refer to Chadwick~\cite{chadwick_1999} for a discussion of those definitions.
 
-Several strain measures may be defined in terms of the deformation gradient. The reader is referred to Chadwick~\cite{chadwick_1999} for a discussion of those definitions.
+Although we will focus on quasistatics problems, numerical solutions are still obtained incrementally, and thus rate quantities derived from $\bm{F}$ also come in use. The \textit{rate of deformation} (or stretch rate) tensor $\bm{D}$ and \textit{vorticity} tensor $\bm{W}$ are defined as the symmetric and antisymmetric parts of the spatial \textit{velocity gradient} $\bm{L} = \frac{\partial \bm{v}}{\partial \bm{x}}$. Thus, $\bm{D} = \frac{1}{2}(\bm{L} + \bm{L}^T)$, $\bm{W} = \frac{1}{2}(\bm{L} - \bm{L}^T)$, and $\bm{L} = \bm{D} + \bm{W}$.
 
-Although we will focus on quasistatics problems, numerical solutions are still obtained incrementally, and thus rate quantities derived from $\bm{F}$ also come in use. The \textit{rate of deformation} (or stretch rate) tensor $\bm{D}$ and \textit{vorticity} tensor $\bm{W}$ are defined as the symmetric and antisymmetric parts of the spatial \textit{velocity gradient} $\bm{L} = \frac{\partial \bm{v}}{\partial \bm{x}}$.
-
-These kinematic quantities will be heavily utilized in developing the governing equations of nonlinear solid mechanics, developing kinematic update strategies to progress the solution, and defining material models and boundary conditions. A more detailed account of them can be found in Chadwick~\cite{chadwick_1999} and Dafalias~\cite{dafalias_205}.
+These kinematic quantities will be heavily utilized in developing the governing equations of nonlinear solid mechanics, developing kinematic update strategies to update the solution from one time step to the next, and defining material models and boundary conditions. A more detailed account of continuum kinematics can be found in Chadwick~\cite{chadwick_1999} and Dafalias~\cite{dafalias_205}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Traction and Stress Measures}
 
 We define the \textit{Cauchy traction} $\bm{t}$ at a particular location on a surface in the following manner:
 \begin{equation}
-\bm{t} = \lim_{\substack{{da} \rightarrow 0, \\ {\bm{n} fixed}}} \frac{{\bm{df}}}{da}
+\bm{t} = \lim_{\substack{{da} \rightarrow 0, \\ {\bm{n} \text{\ fixed}}}} \frac{{\bm{df}}}{da}
 \end{equation}
-where $\bm{da} = \bm{n}da$ is a differentially small unit of area in the current configuration, and $\bm{n}$ is the corresponding normal to that current-configuration surface. The term $\bm{df}$ is a differentially small force in the current configuration acting on $\bm{da}$. Thus, the Cauchy traction is defined as the \textit{current configuration} force per \textit{current configuration} area at a given point acting on a given surface. Applying a balance of linear momentum on a tetrahedral body yields the following relationship: $\bm{t} = \bm{T}^T\bm{n}$. The quantity $\bm{T}$ is the \textit{Cauchy stress} tensor, which defines the \textit{current configuration} force per \textit{current configuration} area at a particular location in space \textit{for any orientation}. It is the most common measure of stress. The Cauchy stress tensor is symmetric due to conservation of angular momentum for arbitrary portions of a body of interest, and so the more common relationship between Cauchy traction and Cauchy stress is as follows:
+where $\bm{da} = \bm{n}da$ is a differentially small unit of area in the current configuration, and $\bm{n}$ is the corresponding normal to that current-configuration surface. The term $\bm{df}$ is a differentially small force in the current configuration acting on $\bm{da}$. Thus, the Cauchy traction is defined as the \textit{current configuration force} per \textit{current configuration area} at a given point acting on a given surface. Applying a balance of linear momentum on a tetrahedral body yields the following relationship: $\bm{t} = \bm{T}^T\bm{n}$. The quantity $\bm{T}$ is the \textit{Cauchy stress} tensor, which defines the current configuration force per current configuration area at a particular location in space \textit{for any orientation}. It is the most common measure of stress. The Cauchy stress tensor is symmetric due to conservation of angular momentum for arbitrary portions of a body of interest, and so the more commonly used relationship between Cauchy traction and Cauchy stress is as follows:
 \begin{equation}
 \bm{t} = \bm{T}\bm{n}
 \end{equation}
-Other common measures of stress are the \textit{first Piola-Kirchhoff stress} $\bm{P}$ and \textit{second Piola-Kirchhoff stress} $\bm{S}$. The first P-K stress relates forces in the \textit{current configuration} to areas in the \textit{reference configuration}, and the second P-K stress relates forces in the \textit{reference configuration} to areas in the \textit{reference configuration}. The first P-K stress is not symmetric. If we define the normal in the reference configuration as $\bm{N}$, we may define the \textit{Piola traction} as $\bm{p} = \bm{P}\bm{N}$ in an analogous manner as was done for Cauchy stress. Cauchy and Piola tractions act in the same direction since they are both defined in a manner in which forces  are in the current configuration. They are related based on static equivalency of forces: $\bm{p}dA = \bm{t}da$, and thus $\bm{p} = \alpha\bm{t}$, where $\alpha = \frac{da}{dA} = J[\bm{N} \cdot \bm{F}^{-1}\bm{F}^{-T}\bm{N}]^{1/2}$ is the \textit{area ratio}.
+Other common measures of stress are the \textit{first Piola-Kirchhoff stress} $\bm{P}$ and \textit{second Piola-Kirchhoff stress} $\bm{S}$. The first P-K stress relates forces in the \textit{current configuration} to areas in the \textit{reference configuration}, and the second P-K stress relates forces in the \textit{reference configuration} to areas in the \textit{reference configuration}. The first P-K stress is not symmetric.
+
+If we define the normal in the reference configuration as $\bm{N}$, we may define the \textit{Piola traction} as $\bm{p} = \bm{P}\bm{N}$ in an analogous manner as was done for Cauchy stress. Cauchy and Piola tractions act in the same direction since they are both defined in terms of current configuration forces. They are related based on static equivalency of forces: $\bm{p}dA = \bm{t}da$, and thus $\bm{p} = \alpha\bm{t}$, where $\alpha = \frac{da}{dA} = J\left(\bm{N} \bm{\cdot} \bm{F}^{-1}\bm{F}^{-T}\bm{N}\right)^{1/2}$ is the \textit{area ratio}.
 
 The first P-K stress, second P-K stress, and Cauchy stress are related to one another in the following manner:
-\begin{align}
-\bm{P} &= J\bm{T}\bm{F}^{-T} \\
-\bm{P} &= \bm{F}\bm{S}
-\end{align}
-which arise from utilizing the area ratio and deformation gradient to move between reference and current configurations for the differential force and differential area.
+\begin{equation}
+\bm{P} = J\bm{T}\bm{F}^{-T} = \bm{F}\bm{S}
+\end{equation}
+These relationships arise from utilizing the area ratio and deformation gradient to transform the differential force and differential area between reference and current configurations as needed based on the desired stress measure.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Governing Equations}
 Balance of linear momentum for the body $\mathcal{B}$ in the \textit{reference configuration} amounts to the following relationship:
 \begin{equation}
-\int_{\partial \kappa_0}\bm{p}dA + \int_{\kappa_0}\rho_0\bm{b}dV = \bm{0}
+\int_{\partial \kappa_0}{p_i}dA + \int_{\kappa_0}\rho_0{b}_idV = 0
 \end{equation}
 where $\partial \kappa_0$ is the boundary of the body $\mathcal{B}$ in the reference configuration, $\rho_0$ is the mass per unit reference configuration volume, $\bm{b}(\bm{X})$ is a body force, and inertial terms are deemed negligible. By making use of the relationship $\bm{p} = \bm{P}\bm{N}$ and the divergence and localization theorems, the final governing equations for nonlinear solid mechanics in index notation are:
 \begin{gather}
@@ -61,7 +60,7 @@ P_{ij,j} + \rho_0b_i = 0, \text{\ \ } \forall \text{\ \ } \bm{X} \in \kappa_0 \l
 {u_i} = \overline{{u}}_i \text{\ \ on\ \ } \partial_u\kappa_0 \\
 {p_i} = \overline{{p}}_i\text{\ \ on\ \ } \partial_t\kappa_0
 \end{gather}
-where $(),_j = \frac{\partial()}{\partial {{X_j}}}$ are derivatives with respect to the reference-configuration position, $\overline{{u}}_i$ are prescribed displacement boundary conditions on a subset $\partial_u\kappa_0$ of the reference configuration boundary, ${\overline{p}_i}$ are prescribed Piola tractions on a subset $\partial_t\kappa_0$ of the reference configuration boundary, $\partial_u\kappa_0 \text{\ }\bigcup\text{\ } \partial_t\kappa_0 = \partial\kappa_0$, and $\partial_u\kappa_0 \text{\ }\bigcap\text{\ } \partial_t\kappa_0 = \emptyset$. Robin boundary conditions are omitted here for clarity. Balance of linear momentum is enforced in the \textit{reference} configuration for reasons to be explained in the next section. The field equations above for nonlinear solid mechanics become a well-posed elliptic boundary value problem when combined with the definition of the deformation gradient and a constitutive model, and is known as the \textit{strong form} of the problem statement.
+where $(),_j = \frac{\partial()}{\partial {{X_j}}}$ are derivatives with respect to the reference-configuration position, $\overline{{u}}_i$ are prescribed displacement boundary conditions, ${\overline{p}_i}$ are prescribed Piola tractions, $\partial_u\kappa_0 \text{\ }\bigcup\text{\ } \partial_t\kappa_0 = \partial\kappa_0$, and $\partial_u\kappa_0 \text{\ }\bigcap\text{\ } \partial_t\kappa_0 = \emptyset$. Robin boundary conditions are omitted here for clarity. Balance of linear momentum is enforced in the \textit{reference} configuration for reasons to be explained in the next section. When the field equations above for nonlinear solid mechanics are combined with the definition of the deformation gradient and with a constitutive model, they form a well-posed elliptic boundary value problem. They are known as the \textit{strong form} of the problem statement.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -72,7 +71,7 @@ Finite element methods are the most popular numerical methods for solving nonlin
 
 \subsection{Weak Form and Galerkin Approximation}
 
-The weak form of \eqnref{equilibrium} enforces equilibrium in an average integral sense, in which the equations are dotted with a \textit{test function} $\bm{w}$ and integrated over the body $\mathcal{B}$ in the reference configuration:
+The weak form of \eqnref{equilibrium} enforces equilibrium in an average integral sense, in which the equations are dotted with a \textit{test function} $\bm{w}$ and integrated over the domain of $\mathcal{B}$ in the reference configuration:
 \begin{equation}
 \int_{\kappa_0}{P_{ij,j}}w_idV + \int_{\kappa_0}\rho_0b_iw_idV = 0, \text{\ \ } \forall \text{\ \ } \bm{w} \in \mathcal{V}
 \end{equation}
@@ -85,32 +84,38 @@ Find $\bm{u}(\bm{X},t) \in \mathcal{S}$ such that
 \int_{\kappa_0}P_{ij}w_{i,j}dV - \int_{\kappa_0}\rho_0b_iw_idV - \int_{\partial_t\kappa_0}\overline{p}_iw_idA = 0 \text{\ \ } \forall \text{\ \ } \bm{w} \in \mathcal{V}
 \end{gather}
 
-The weak form is solved via Galerkin approximation, provided the following approximations to $\bm{u}$ and $\bm{w}$ via a linear combination of a finite set of \textit{basis functions} $\phi_a$:
+The weak form is solved by \textit{Galerkin approximation}, provided the following approximations to $\bm{u}$ and $\bm{w}$ via a linear combination of a finite set of \textit{basis functions} $\phi_a$:
 \begin{gather}
 \bm{u}(\bm{X},t) = \sum\limits_{a}\bm{u}_a(t)\phi_a(\bm{X}) \\
-\bm{w}(\bm{X},t) = \sum\limits_{a}\bm{w}_a(t)\phi_a(\bm{X})
+\bm{w}(\bm{X}) = \sum\limits_{a}\bm{w}_a\phi_a(\bm{X})
 \end{gather}
-where $\bm{u}_a$ and $\bm{w}_a$ are nodal values. The approximation is of the Galerkin variety because the basis functions that approximate $\bm{u}$ and $\bm{w}$ are the same. A finite discretization of $\mathcal{B}$ provides the nodes and elements that approximate the geometry of the body, and help define the basis functions. The nodes $a$ consist of the all those in the discretization that do not lie on $\partial_a\kappa_0$. We assume here and henceforth homogeneous displacement boundary conditions for simplicity. The basis functions are globally continuous functions that exhibit important features in a finite element setting, namely: 1) \textit{compact support}, meaning $\phi_a$ is nonzero only on elements that contain node $a$; 2) the \textit{Kronecker delta} property, meaning $\phi_a(\bm{X}_b) = \delta_{ab}$, where $b$ is another node in the reference configuration; and 3) \textit{partition of unity}, meaning $\sum\limits_a\phi_a(\bm{X}) = 1$ throughout the body.
+where $\bm{u}_a$ and $\bm{w}_a$ are nodal values. The approximation is of the Galerkin variety because the basis functions used to approximate $\bm{u}$ and $\bm{w}$ are chosen to be identical. A finite discretization of the geometry of the reference configuration $\kappa_0$ provides the nodes and elements that approximate the geometry of the body, but also serves to define the basis functions. The nodes $a$ consist of those nodes in the discretization that do not lie on $\partial_a\kappa_0$. We assume from here on that the displacement boundary conditions are homogeneous for simplicity.
 
-Utilization of the approximations to $\bm{u}$ and $\bm{w}$, and the fact that equilibrium must hold for any choice of $\bm{w}_a$ as long as $\bm{w} \in \mathcal{V}$, lead to the finite element approximation to the weak form of equilibrium, known as the \textit{residual equations}:
+The basis functions are globally continuous functions that exhibit important features in a finite element setting, namely: 1) \textit{compact support}, meaning $\phi_a$ is nonzero only on elements that contain node $a$; 2) the \textit{Kronecker delta} property, meaning $\phi_a(\bm{X}_b) = \delta_{ab}$, where $b$ is another node in the reference configuration; and 3) \textit{partition of unity}, meaning $\sum\limits_a\phi_a(\bm{X}) = 1$ throughout the body.
+
+Utilization of the approximations to $\bm{u}$ and $\bm{w}$, and the fact that equilibrium must hold for any choice of $\bm{w}_a$ as long as $\bm{w} \in \mathcal{V}$, leads to the finite element approximation to the weak form of equilibrium, known as the \textit{residual equations}:
 \begin{equation}
-R_ia = \int_{\kappa_0}P_{ij}\phi_{a,j}dV - \int_{\kappa_0}\rho_0b_i\phi_adV - \int_{\partial_t\kappa_0} \overline{p}_i\phi_adA = 0
+R_{ia} = \int_{\kappa_0}P_{ij}\phi_{a,j}dV - \int_{\kappa_0}\rho_0b_i\phi_adV - \int_{\partial_t\kappa_0} \overline{p}_i\phi_adA = 0
 \label{eqn:elresid}
 \end{equation}
-Shape functions and integrals are all performed in the \textit{reference configuration}, making this a \textit{total Lagrange} formulation. Performing all integrals in the reference configuration allows the basis function derivatives to be stored, rather than recomputed for each iteration of each solution step. The global residual equations are a nonlinear system of equations, solved in steps to ensure equilibrium is enforced throughout the quasistatic loading.
+Shape functions and integrals are all performed in the \textit{reference configuration}, making this a \textit{total Lagrange} formulation. Performing all integrals in the reference configuration allows the basis function derivatives to be stored, rather than recomputed for each iteration of each solution step. It also simplifies derivatives of integrals over the body because the integral domain does not depend on the solution. The global residual equations are a nonlinear system of equations, solved in steps to ensure equilibrium is enforced throughout the quasistatic loading.
 
 \subsection{Solution of the Nonlinear Residual Equations}
 
-The global residual equations are solved in incremental steps, progressing the solution from one equilibrium state to the next until the final equilibrium state is reached for the quasistatic problem. Assume equilibrium has been established for time $t_n$ and we seek to find equilibrium for the next time step to time $t_{n+1}$, where $\Delta{t} = t_{n+1} - t_{n}$. The \textit{beginning step} will refer to $t_n$ and the \textit{end step} to $t_{n+1}$. Define the positions $\overline{\bm{x}} = \bm{x}(\bm{X},t_n)$, and for the forthcoming purposes we also refer to ${\bm{x}}$ as $\bm{x}(\bm{X},t_{n+1})$. Define ${\bm{u}}^* = \overline{\bm{x}} - \bm{X}$. Thus, in order to solve for displacements $\bm{u} = \bm{x} - \bm{X}$ at time $t_{n+1}$, we seek to find the incremental nodal displacements $\hat{\bm{u}} = \bm{x} - \overline{\bm{x}}$ such that $\bm{u}$ is updated via $\bm{u} = {\bm{u}}^* + \hat{\bm{u}}$. Thus, when seeking to update from time $t_n$ to $t_{n+1}$, we seek the incremental displacements $\hat{\bm{u}}$ such that the global residual equations are satisfied at time $t_{n+1}$ within a tolerance.
+The global residual equations are solved in steps - the solution progresses from one equilibrium state to the next as the applied loading is incrementally applied, until the final equilibrium state is reached for the quasistatic problem. Assuming equilibrium has been established for time $t_n$, we seek to find equilibrium for time $t_{n+1}$ through the time step $\Delta{t} = t_{n+1} - t_{n}$. The \textit{beginning step} will refer to $t_n$ and the \textit{end step} to $t_{n+1}$. Define the positions $\overline{\bm{x}} = \bm{x}(\bm{X},t_n)$, and for the forthcoming purposes we also refer to ${\bm{x}}$ specifically as $\bm{x}(\bm{X},t_{n+1})$. Define ${\bm{u}}^* = \overline{\bm{x}} - \bm{X}$. In order to solve for displacements $\bm{u} = \bm{x} - \bm{X}$ at time $t_{n+1}$, we need the incremental nodal displacements $\hat{\bm{u}} = \bm{x} - \overline{\bm{x}}$ so that $\bm{u}$ can be updated via $\bm{u} = {\bm{u}}^* + \hat{\bm{u}}$. Thus, when seeking to update from time $t_n$ to $t_{n+1}$, we seek the incremental displacements $\hat{\bm{u}}$ such that the global residual equations are satisfied at time $t_{n+1}$, within a specified tolerance.
 
-The most common approach to solving the nonlinear system of equations is via a Newton-Rapshon iterative scheme. The solution of $\bm{R}_a(t_{n+1}) = \bm{0}$ is performed via successive solution of the following \textit{linear} global stiffness equations:
+The most common approach to solving the nonlinear system of equations is via a \textit{Newton-Rapshon} iterative scheme. The solution of $\bm{R}_a(t_{n+1}) = \bm{0}$ is performed via successive solution of the following \textit{linear} global stiffness equations:
 \begin{equation}
-\frac{\partial R_{ia}}{\partial \hat{u}_{jb}} \bigg|_k \delta\hat{u}_{jb} = -R_{ia}\bigg|_k
+\frac{\partial R_{ia}}{\partial \hat{u}_{jb}} \bigg|_{k+1} \delta\hat{u}_{jb} = -R_{ia}\bigg|_{k+1}
 \label{eqn:newtonraphson}
 \end{equation}
-where $k$ is the iteration number, and $\delta\hat{u}_{jb}$ is the correction to the incremental nodal displacement. When applied successfully, the procedure corrects the incremental nodal displacements in a manageable number of iterations (ideally on the order of 5, and hopefully fewer than 20 or fewer in practice) until they satisfy that $\bm{R}_a(t_{n+1}) = \bm{0}$.
+where:
+\begin{equation}
+\delta\hat{\bm{u}} = \hat{\bm{u}}\big|_{k+1} - \text{\ }\hat{\bm{u}}\big|_k
+\end{equation}
+and $k$ is the iteration number. When applied successfully, the procedure iterates and corrects the incremental nodal displacements until they satisfy the residual equations. Provided appropriate time steps and convergence criteria, the scheme should in practice converge to the solution ideally in only a handful of iterations.
 
-Populating and solving the global stiffness equations requires computing the following two terms: $\frac{\partial R_{ia}}{\partial \hat{u}_{jb}} \big|_k$ and $R_{ia}\big|_k$. The nodal residuals have been defined previously in \eqnref{elresid}. For a constant reference density, and assuming the body force is not a function of displacement, the tangent stiffness is:
+Populating and solving the global stiffness equations requires computing the following two terms: $\frac{\partial R_{ia}}{\partial \hat{u}_{jb}} \big|_{k+1}$ and $R_{ia}\big|_{k+1}$. The nodal residuals have been defined previously in \eqnref{elresid}. For a constant reference density, and assuming the body force is not a function of displacement, the tangent stiffness is:
 \begin{equation}
 \frac{\partial R_{ia}}{\partial \hat{u}_{jb}} = \int_{\kappa_0}\frac{\partial P_{ik}}{\partial \hat{u}_{jb}}\phi_{a,k}dV - \int_{\partial_t\kappa_0}\frac{\partial \overline{p}_i}{\partial \hat{u}_{jb}}\phi_adA
 \end{equation}
@@ -125,41 +130,41 @@ Via the spatial discretization of $\mathcal{B}$ into \textit{elements}, basis fu
 \begin{equation}
 \bm{X}(\bm{\xi}) = \sum\limits_{a}\bm{X}_a{N}_a(\bm{\xi})
 \end{equation}
-where $\bm{X}_a$ are spatial coordinates of the element nodes, $N_a$ are the shape functions, and $\bm{\xi}$ is the position vector in the parent element domain. The transformation is isoparametric because the same shape functions, and thus basis functions, are used to interpolate nodal displacements.
+where $\bm{X}_a$ are spatial coordinates of the element nodes, $N_a$ are the shape functions, and $\bm{\xi}$ is the position vector in the parent element domain. The transformation is \textit{isoparametric} because the same shape functions are used to interpolate nodal displacements.
 
 Thus, the element-level residual and tangent stiffness equations take the following form:
-\begin{align}
-R^e_ia = \int_{\Omega_e}P_{ij}N_{a,j}dV - \int_{\Omega_e}\rho_0b_i\phi_adV - \int_{\partial_t\Omega_e} \overline{p}_i\phi_adA = 0 \\
-\frac{\partial R^e_{ia}}{\partial \hat{u}_{jb}} = \int_{\Omega_e}\frac{\partial P_{ik}}{\partial \hat{u}_{jb}}N_{a,k}dV - \int_{\partial_t\Omega_e}\frac{\partial \overline{p}_i}{\partial \hat{u}_{jb}}N_adA
-\end{align}
+\begin{gather}
+R^e_{ia} = \int_{\Omega_e}P_{ij}N_{a,j}dV - \int_{\Omega_e}\rho_0b_iN_adV - \int_{\partial_t\Omega_e} \overline{p}_iN_adA = 0 \label{eqn:elr} \\[0.7em]
+\frac{\partial R^e_{ia}}{\partial \hat{u}_{jb}} = \int_{\Omega_e}\frac{\partial P_{ik}}{\partial \hat{u}_{jb}}N_{a,k}dV - \int_{\partial_t\Omega_e}\frac{\partial \overline{p}_i}{\partial \hat{u}_{jb}}N_adA \label{eqn:elt}
+\end{gather}
 
-Refer to Hughes~\cite{hughes_2007} for a definition of the shape functions $N_a$ for the linear and quadratic tetrahedral and hexahedral elements. The order of an element corresponds to the polynomial degree of the shape functions, as well as the subsequent order of approximation of the displacement solution. Because stress and strain involve the spatial derivative of displacement, stress and strain are approximated one degree lower than is displacement.
+Refer to Hughes~\cite{hughes_2007} for a definition of the shape functions $N_a$ for linear and quadratic tetrahedral and hexahedral elements, where the order of an element corresponds to the polynomial degree of the shape functions.
 
-Volume and facet integrals are evaluated via numerical quadrature rules on the parent element and subsequently \textit{assembled} into the global stiffness equations. Because the shape functions $N_a$ are functions of parent space coordinates $\bm{\xi}$, integrands are computed in the parent space and the corresponding differential element is scaled to correspond to the physical reference configuration. For volume integrals, the differential volume $dv = {d\xi}{d\eta}{d\zeta}$ is scaled by the determinant of the Jacobian of the isoparametric transformation to acquire the desired $dV$ in the physical space. Namely $J_v = \det(\frac{\partial{\bm{X}}}{\partial\bm{\xi}})$ and $dV = J_vdv$. A two-dimensional analog applies for the application of facet integrals, in which we define $da = {d\xi}{d\eta}$, $J_f = \det(\frac{\partial{\bm{X}}}{\partial\bm{\xi}})$ and $dA = J_ada$, where the $\bm{\xi}$ in this case is a two-dimensional parameterization of the particular facet of interest.
+Volume and facet integrals are evaluated via numerical quadrature rules on the parent element and subsequently \textit{assembled} into the global stiffness equations. Because the shape functions $N_a$ are functions of parent space coordinates $\bm{\xi}$, integrands are computed in the parent space and the corresponding differential element is scaled to correspond to the physical reference configuration. For volume integrals, the differential volume $dv = {d\xi}{d\eta}{d\zeta}$ is scaled by the determinant of the Jacobian of the isoparametric transformation to acquire the desired $dV$ in the physical space. Namely $J_v = \det(\frac{\partial{\bm{X}}}{\partial\bm{\xi}})$ and $dV = J_vdv$. A two-dimensional analog applies for the application of facet integrals, in which we define $da = {d\xi}{d\eta}$, $J_f = \det(\frac{\partial{\bm{X}}}{\partial\bm{\xi}})$, and $dA = J_fda$. In this case, $\bm{\xi}$ is a two-dimensional parameterization of the particular facet of interest.
 
 Lastly, performing the volume integral of the stress-divergence term requires computing shape function gradients $N_{a,k} = \frac{\partial N_a}{\partial X_k}$ in the physical space. We may write the derivatives in terms of parent-space derivatives in the following manner:
 \begin{equation}
-\frac{\partial N_a}{\partial \bm{X}} = (\frac{\partial \bm{X}}{\partial \bm{xi}})^{-T} \frac{\partial N_a}{\partial \xi_i}
+\frac{\partial N_a}{\partial \bm{X}} = \left(\frac{\partial \bm{X}}{\partial \bm{\xi}}\right)^{\hspace{-0.3em}-T} \hspace{0.05em} \frac{\partial N_a}{\partial \bm{\xi}}
 \end{equation}
 
-For conventional FEM, the quality of the approximating solution depends critically on the ability to map spatial coordinates of an element to its parent space with high fidelity. Thus, the notion of \textit{mesh quality} - which attempts in various ways to measure the distortion of physical elements from their corresponding parent elements - is an important consideration for automated meshing tools if the resultant mesh is to be provided to a conventional FEM code. The reader is referred to the CUBIT User Documentation~\cite{cubit_2018} for a more in-depth description mesh quality metrics.
+For conventional FEM, the quality of the approximating solution depends critically on the ability to map spatial coordinates of an element to its parent space with high fidelity. Thus, the notion of \textit{mesh quality} is an important consideration for automated meshing tools if the resultant mesh is to be provided to a conventional FEM code. Mesh quality metrics attempt in various ways to measure the distortion of physical elements from their corresponding parent elements. Refer to the CUBIT User Documentation~\cite{cubit_2018} for an in-depth description of mesh quality metrics.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Constitutive Update}
 
-The constitutive update involves updating the \textit{material state} at each integration point of each element in the body $\mathcal{B}$ from time $t_n$ to $t_{n+1}$. That is, provided the motion from $\kappa_n$ to $kappa_{n+1}$, we seek to update all \textit{state variables} based only on their values at $t_n$, independent of choice of reference configuration. This amounts to the following task for each integration point: provided incremental displacements $\hat{\bm{u}} = \bm{u} - \bm{u}^*$ from $t_n$ to $t_{n+1}$, integration point positions $\bm{x}^*$ and $\bm{x}$ defined at times $t_n$ and $t_{n+1}$ respectively, and $P_{ij}$ and any other state variables defined at $t_n$, we seek to determine $P_{ij}$, $\partial{P_ik}/\partial{\hat{u}_{jb}}$, and any other state variables at time $t_{n+1}$. The terms $P_{ij}$ and $\partial{P_ik}/\partial{\hat{u}_{jb}}$ are used to compute element-level volume and facet integrals to ultimately populate the global stiffness equations. State variables may take many forms depending on the material model, such as \textit{plastic strain}, \textit{back stress}, or even the \textit{deformation gradient} itself (to be described later). In conjunction with the stress state, they should fully describe the current state of the material at that particular location.
+The constitutive update involves updating the \textit{material state} from time $t_n$ to $t_{n+1}$ at each integration point of each element in $\mathcal{B}$. Provided the motion from $\kappa_n$ to $\kappa_{n+1}$, we seek to update all \textit{state variables} based \textit{only} on their values at $t_n$, independent of choice of reference configuration. More specifically, provided incremental displacements $\hat{\bm{u}} = \bm{u} - \bm{u}^*$ from $t_n$ to $t_{n+1}$, $P_{ij}$ at $t_n$, and any other state variables defined at $t_n$, we seek to determine $P_{ij}$, $\partial{P_{ik}}/\partial{\hat{u}_{jb}}$, and any other state variables at time $t_{n+1}$. The terms $P_{ij}$ and $\partial{P_{ik}}/\partial{\hat{u}_{jb}}$ are used to compute element-level volume and facet integrals to ultimately populate the global stiffness equations. State variables may take many forms depending on the material model, such as \textit{plastic strain}, \textit{back stress}, or even the \textit{deformation gradient} itself. In conjunction with the stress state, the state variables should fully describe the current state of the material at that particular location.
 
-The following conversation will center around the kinematics, material update, and subsequent contribution to the global stiffness equations for \textit{hypoelastic} materials. Hypoelastic materials are typically defined as a rate form of the Cauchy stress in terms of stretch rate $\bm{D}$: $\overset{\circ}{\bm{T}} =  {\mathbfcal{C}}\bm{D}$. The quantity ${\mathbfcal{C}}$ is an isotropic rank-four \textit{modulus tensor}. The \textit{Jaumann rate} of stress $\overset{\circ}{\bm{T}} = \dot{\bm{T}} + \bm{T}\bm{W} - \bm{W}\bm{T}$ is known as a \textit{co-rotational} or \textit{objective} stress rate because it is invariant with respect to coordinate transformations, particularly rigid body rotations. Among the objective stress rates to choose, the Jaumann rate is chosen because it respects the notion of material state, i.e., it does not dependon any reference configuration, as does teh \textit{Green-Naghdi rate}. See Rashid for a more complete discussion on material state and their relationship to objective stress rates~\cite{rashid_1991}.
+The following conversation will center around the kinematics, material update, and subsequent contribution to the global stiffness equations for \textit{hypoelastic} materials. Hypoelastic materials are typically defined as a rate form of the Cauchy stress in terms of stretch rate $\bm{D}$: $\overset{\circ}{\bm{T}} =  {\mathbfcal{C}}\bm{D}$. The quantity ${\mathbfcal{C}}$ is an isotropic rank-four \textit{modulus tensor}. The \textit{Jaumann rate} of stress $\overset{\circ}{\bm{T}} = \dot{\bm{T}} + \bm{T}\bm{W} - \bm{W}\bm{T}$ is known as a \textit{co-rotational} or \textit{objective} stress rate because it is invariant with respect to coordinate transformations, particularly rigid body rotations. Among the objective stress rates to choose, the Jaumann rate is chosen because it respects the notion of material state, i.e., it does not depend on any reference configuration, as does the \textit{Green-Naghdi rate}. See Rashid for a more complete discussion on material state and their relationship to objective stress rates~\cite{rashid_1991}.
 
 In such an incremental approach, the desired input kinematic quantities are the strain increment $\bm{D}\Delta{t}$ and rotation increment $\hat{\bm{R}}$ the incremental deformation gradient $\hat{\bm{F}}$. Rashid's \textit{strongly objective} incremental kinematics algorithm~\cite{rashid_1993} computes these quantities in a manner that allows accurate updates to the material state in the presence of large increments of stretch and rotation. The algorithm will be summarized herein, as it pertains to the constitutive update to hypoelastic materials. Because the material model is in terms of the Cauchy stress, additional considerations are made to convert relevant quantities to be in terms of the first P-K stress to fit the mold of the residual and tangent stiffness terms. The following discussion will touch upon all of these details. Because material models in biological applications tend to be defined in an incremental sense, strategies for applying this framework to \textit{hyperelastic} materials is covered. Finally, a brief comment on treatment of material incompressibility constraints is discussed.
 
 \subsubsection{Incremental Kinematics}
 
-The faithful treatment of incremental kinematics centers around the assumed deformation history through a time step as the material state is updated from time $t_n$ to $t_{n+1}$. Rashid~\cite{rashid_1993} assumes the the path is separated into two discrete motions: a pure stretching motion at constant stretch rate $\bm{D}$, followed by an instantaneous rotation $\hat{bm{R}}$. This assumed motion proves to generate accurate stress updates in the presence of simultaneously large stretch and rotation increments, which cannot be said of other popular incremental kinematics approaches~\cite{rashid_1996}. Some preliminary kinematic quantities will be defined, followed by an algorithm to compute the approximate polar decomposition of $\hat{\bm{F}}$ to acquire $\bm{D}$ and $\hat{\bm{R}}$, and finally a description of the subsequent steps to apply this assumed deformation path within the context of defining the element contributions to residual and tangent stiffness terms in the global residual equations for a linear hypoelastic material.
+The faithful treatment of incremental kinematics centers around the assumed deformation history through a time step as the material state is updated from time $t_n$ to $t_{n+1}$. Rashid~\cite{rashid_1993} assumes the the path is separated into two discrete motions: a pure stretching motion at constant stretch rate $\bm{D}$, followed by an instantaneous rotation $\hat{bm{R}}$. This assumed motion proves to generate accurate stress updates in the presence of simultaneously large stretch and rotation increments, which cannot be said of other popular incremental kinematics approaches~\cite{rashid_1996}. Some preliminary kinematic quantities will be defined, followed by an algorithm to compute the approximate polar decomposition of $\hat{\bm{F}}$ to acquire $\bm{D}$ and $\hat{\bm{R}}$. Finally, a description of the subsequent steps are detailed to apply this assumed deformation path within the context of defining the element contributions to residual and tangent stiffness terms for a linear hypoelastic material.
 
 \textbf{Kinematics Quantities}
 
-First we define some kinematic quantities that will come in handy. Much in the same way we approximate $\bm{u}$ by a linear combination of shape functions $\bm{phi}_a$, we make the same approximations for $\bm{u}^*$ and $\hat{\bm{u}}$. Because we are concerned with element-level computations here, the discussion will shift gears from basis functions $\phi_a$ to shape functions $N_a$:
+First we define some kinematic quantities that will come in handy. Much in the same way we approximate $\bm{u}$ by a linear combination of shape functions $\bm{phi}_a$, we make the same approximations for $\bm{u}^*$ and $\hat{\bm{u}}$. Since we are concerned with element-level computations here, the discussion will shift gears from basis functions $\phi_a$ to shape functions $N_a$:
 \begin{align}
 u_i = u_{ia}N_a, \qquad u^*_i &= u^*_{ia}N_a, \qquad \hat{u}_i = \hat{u}_{ia}N_a \\
 u_{i,j} = u_{ia}N_{a,j}, \qquad u^*_{i,j} &= u^*_{ia}N_{a,j}, \qquad \hat{u}_{i,j} = \hat{u}_{ia}N_{a,j}
@@ -183,7 +188,7 @@ where $B_{ja} = N_{a,j}$ are the components of the shape function gradient for n
 
 To avoid floating point precision issues, we define $\mathbf{A} = \mathbf{I} - \mathbf{\hat{F}}^{-1}$, where $\mathbf{I}$ is the identity tensor. Once $\mathbf{F}$ and $\mathbf{\overline{F}}$ are formed, $\mathbf{A}$ can be formed as $\mathbf{A} = \mathbf{I} - \mathbf{\overline{F}}\mathbf{F}^{-1}$.
 
-The velocity gradient once again is defined as $\mathbf{L} = \frac{\partial \mathbf{u}}{\partial \mathbf{x}} = \dot{\mathbf{F}}\mathbf{F}^{-1}$. And again, the velocity gradient can be decomposed into symmetric and anti-symmetric parts $\mathbf{D}$ and $\mathbf{W}$, respectively, where $\mathbf{D} = \frac{1}{2}\left(\mathbf{L} + \mathbf{L}^T\right)$ and $\mathbf{W} = \frac{1}{2}\left(\mathbf{L} - \mathbf{L}^T\right)$. In the absence of rotation, $\dot{\mathbf{F}}\mathbf{F}^{-1} = \dot{\mathbf{U}}\mathbf{U}^{-1}$ and $\mathbf{L} = \mathbf{D}$. Combining results yields $\dot{\mathbf{U}}\mathbf{U}^{-1} = \mathbf{D}$. The calculation of the rate-of-stretch tensor involves solving the following ODE:
+As previously mentioned, the velocity gradient is defined as $\mathbf{L} = \frac{\partial \mathbf{u}}{\partial \mathbf{x}} = \dot{\mathbf{F}}\mathbf{F}^{-1} = \bm{D} + \bm{W}$. In the absence of rotation, $\dot{\mathbf{F}}\mathbf{F}^{-1} = \dot{\mathbf{U}}\mathbf{U}^{-1}$ and $\mathbf{L} = \mathbf{D}$. Combining results yields $\dot{\mathbf{U}}\mathbf{U}^{-1} = \mathbf{D}$. The calculation of the rate-of-stretch tensor involves solving the following ODE:
 \begin{align}
 &\dot{{\bf U}} = {\bf D}{\bf U}, \qquad t\in\{t_n, t_{n+1}\} \\
 &{\bf U}\left(t_n\right) = \bf{I}
@@ -193,10 +198,10 @@ The solution of this ODE yields an exponential solution. Imposing the desired ${
 {\bf D}\Delta \approx -\frac{1}{2}(\hat{\bf C}^{-1} - {\bf I})+ \frac{1}{4} (\hat{\bf C}^{-1} - {\bf I})^{2} - \frac{1}{6} (\hat{\bf C}^{-1} - {\bf I})^{3} + \frac{1}{8}(\hat{\bf C}^{-1} - {\bf I})^{4}
 \end{equation}
 The assumption that $\mathbf{\hat{U}}$ is near $\mathbf{I}$ is valid as long as the time steps are chosen that the stretch in each time step is relatively small. As mentioned above, because $\hat{\mathbf{C}}^{-1}$ is close to identity, to avoid floating point precision issues, rather than forming $\hat{\mathbf{C}}^{-1}$ directly from $\hat{\mathbf{F}}^{-1}$, we compute the strain increment as follows:
-\begin{align}
-\hat{\bf C}^{-1} - {\bf I} &= \bf A A^T - A - A^T \\
-{\bf D}\Delta &= -\frac{1}{2}(\hat{\bf C}^{-1} - {\bf I})+ \frac{1}{4} (\hat{\bf C}^{-1} - {\bf I})^{2} - \frac{1}{6} (\hat{\bf C}^{-1} - {\bf I})^{3} + \frac{1}{8}(\hat{\bf C}^{-1} - {\bf I})^{4}
-\end{align}
+\begin{gather}
+\hat{\bf C}^{-1} - {\bf I} = \bf A A^T - A - A^T \\
+{\bf D}\Delta = -\frac{1}{2}(\hat{\bf C}^{-1} - {\bf I})+ \frac{1}{4} (\hat{\bf C}^{-1} - {\bf I})^{2} - \frac{1}{6} (\hat{\bf C}^{-1} - {\bf I})^{3} + \frac{1}{8}(\hat{\bf C}^{-1} - {\bf I})^{4}
+\end{gather}
 
 With the strain increment now formed, what remains is the rotation increment. The calculation of the rotation tensor $\mathbf{R}$ is approximated, but nonetheless as a proper orthogonal tensor. Please refer to the aforementioned Rashid paper for a complete description. The result is shown below:
 \begin{equation}
@@ -214,64 +219,44 @@ For demonstration on how to utilize the kinematics algorithm within a finite ele
 \end{equation}
 Finally, the first P-K stress is computed via $\bm{P} = J\bm{T}\bm{F}^{-T}$.
 
-For the contribution at a particular integration point of an element to the tangent stiffness terms, the quantity $\partial{\bm{P}}/\partial{\hat{\bm{u}}}$ is desired. This term must be computed in a manner \textit{consistent} with the constitutive update algorithm to ensure desirable convergence behavior of the Newton-Raphson scheme. Namely, the derivative should ideally reflect the derivative the end step stress $\bm{P}$ as computed above, with respect to incremental displacements $\hat{\bm{u}}$, as opposed to an analytic computation insensitive to the approximations made for the kinematic input, or an numerically approximated value via finite differences.
+For the contribution at a particular integration point of an element to the tangent stiffness terms, the quantity $\partial{\bm{P}}/\partial{\hat{\bm{u}}}$ is desired. This term must be computed in a manner \textit{consistent} with the constitutive update algorithm to ensure desirable convergence behavior of the Newton-Raphson scheme. Namely, this term should ideally reflect the derivative of the end step stress $\bm{P}$ as computed above, with respect to incremental displacements $\hat{\bm{u}}$, as opposed to an analytic computation insensitive to the approximations made for the kinematic input, or a numerically approximated value via finite differences.
 
 The derivatives are performed in a lengthy but relatively straightforward manner. Using the product rule,
 \begin{equation}
 \frac{\partial {\bf P}}{\partial \hat{{\bf u}}} = \frac{\partial J}{\partial \hat{\bf u}}{\bf T}{\bf F}^{-T} + J\frac{\partial {\bf T}}{\partial \hat{\bf u}}{\bf F}^{-T} + J{\bf T}\frac{\partial {\bf F}}{\partial \hat{\bf u}}^{-T}
 \end{equation}
-The Cauchy stress will already have been provided, and calculating $\mathbf{F}^{-T}$ essentially involves calculating the inverse of the definition of $\mathbf{F}$ above and taking care for how a transpose tensor operates. Thus, the terms of interest are $\frac{\partial J}{\partial \hat{\mathbf{u}}}$, $\frac{\partial \mathbf{T}}{\partial \hat{\mathbf{u}}}$, and $\frac{\partial \mathbf{F}}{\partial \hat{\mathbf{u}}}^{-T}$. Provided in the \texttt{derivations} directory is a file titled \texttt{derivations.pdf}. Although admittedly messy, all necessary derivations to perform these calculations are written out in that document. Provided below are all of the useful intermediate results that were calculated to form the derivative of the first Piola-Kirchoff tensor with respect to incremental nodal displacements.
-\begin{equation}
-\frac{\partial J}{\partial F_{kl}} = JF_{lk}^{{-1}}
-\end{equation}
-\begin{equation}
-\frac{\partial F_{ij}}{\partial \hat{u}_{ka}} = \delta_{ik}\delta_{pa}B_{jp}
-\end{equation}
-\begin{equation}
-\frac{\partial J}{\partial \hat{u}_{ka}} = JF_{pk}^{-1}B_{pa}
-\end{equation}
-\begin{equation}
-\frac{\partial F_{ij}^{-1}}{\partial F_{kl}} = - F_{ik}^{-1}F_{lj}^{-1}
-\end{equation}
-\begin{equation}
-\frac{\partial F_{ij}^{-1}}{\partial \hat{u}_{ka}} = - F_{ik}^{-1}B_{pa}F_{pj}^{-1}
-\end{equation}
-\begin{equation}
-A_{ij} = \hat{u}_{ia}B_{ka}F^{-1}_{kj}
-\end{equation}
-\begin{equation}
-\hat{{\bf C}^{-1}} = {\bf I} - {\bf A} - {\bf A}^T + {\bf A}{\bf A}^T
-\end{equation}
-\begin{equation}
-\frac{\partial A_{ij}}{\partial \hat{u}_{ka}} = \hat{F}^{-1}_{ik}B_{pa}F^{-1}_{pj}
-\end{equation}
-\begin{equation}
+Thus, the terms of interest are $\frac{\partial J}{\partial \hat{\mathbf{u}}}$, $\frac{\partial \mathbf{T}}{\partial \hat{\mathbf{u}}}$, and $\frac{\partial \mathbf{F}}{\partial \hat{\mathbf{u}}}^{-T}$. The requisite terms to compute the derivative of the first P-K tensor with respect to incremental nodal displacements follow in a relatively straightforward manner:
+\begin{gather}
+\frac{\partial J}{\partial F_{kl}} = JF_{lk}^{{-1}} \\
+\frac{\partial F_{ij}}{\partial \hat{u}_{ka}} = \delta_{ik}\delta_{pa}B_{jp} \\
+\frac{\partial J}{\partial \hat{u}_{ka}} = JF_{pk}^{-1}B_{pa} \\
+\frac{\partial F_{ij}^{-1}}{\partial F_{kl}} = - F_{ik}^{-1}F_{lj}^{-1} \\
+\frac{\partial F_{ij}^{-1}}{\partial \hat{u}_{ka}} = - F_{ik}^{-1}B_{pa}F_{pj}^{-1} \\
+A_{ij} = \hat{u}_{ia}B_{ka}F^{-1}_{kj} \\
+\hat{{\bf C}}^{-1} = {\bf I} - {\bf A} - {\bf A}^T + {\bf A}{\bf A}^T \\
+\frac{\partial A_{ij}}{\partial \hat{u}_{ka}} = \hat{F}^{-1}_{ik}B_{pa}F^{-1}_{pj} \\
 \frac{\partial \hat{C}^{-1}_{ij}}{\partial \hat{A}_{kl}} = -\delta_{ik}\delta_{jl} - \delta_{jk}\delta_{il} + \delta_{ik}A_{jl} + A_{il}\delta_{jk}
-\end{equation}
+\end{gather}
 \begin{equation}
 \begin{aligned}
 \frac{\partial ({\bf D}\Delta)}{\partial {\bf A}} = &-\frac{1}{2}\frac{\partial {\hat{\bf C}^{-1}}}{\partial \bf A} + \frac{1}{4}({\hat{\bf C}}^{-1} - {\bf I})\frac{\partial \hat{\bf C}^{-1}}{\partial {\bf A}} + \frac{1}{4}\frac{\partial \hat{\bf C}^{-1}}{\partial {\bf A}}({\hat{\bf C}}^{-1} - {\bf I}) \\
-&-\frac{1}{6} \frac{\partial {\hat{\bf C}^{-1}}}{\partial \bf A} (\hat{\bf C}^{-1} - {\bf I})^{2} - \frac{1}{6}  (\hat{\bf C}^{-1} - {\bf I}) \frac{\partial {\hat{\bf C}^{-1}}}{\partial \bf A} (\hat{\bf C}^{-1} - {\bf I}) - \frac{1}{6}(\hat{\bf C}^{-1} - {\bf I})^{2} \frac{\partial {\hat{\bf C}^{-1}}}{\partial \bf A} 
+&-\frac{1}{6} \frac{\partial {\hat{\bf C}^{-1}}}{\partial \bf A} (\hat{\bf C}^{-1} - {\bf I})^{2} - \frac{1}{6}  (\hat{\bf C}^{-1} - {\bf I}) \frac{\partial {\hat{\bf C}^{-1}}}{\partial \bf A} (\hat{\bf C}^{-1} - {\bf I}) \\
+&- \frac{1}{6}(\hat{\bf C}^{-1} - {\bf I})^{2} \frac{\partial {\hat{\bf C}^{-1}}}{\partial \bf A} 
 \end{aligned}
 \end{equation}
+\begin{gather}
+\frac{\partial (D_{ij}\Delta)}{\partial \hat{u}_{ka}} = \frac{\partial (D_{ij}\Delta)}{\partial A_{mn}}\frac{\partial A_{mn}}{\partial \hat{u}_{ka}} \\
+\frac{\partial \hat{R}_{ij}}{\partial A_{mn}} = \frac{1}{2}(-\delta_{in}\delta_{jm} + \hat{R}_{im}\hat{R}_{nj}) \\
+\frac{\partial \hat{R}_{ij}}{\partial \hat{u}_{ka}} = \frac{1}{2}\left(-\hat{F}_{jk}^{-1}(F_{pi}^{-1}B_{pa}) + \hat{R}_{im}\hat{F}_{mk}^{-1}\hat{R}_{nj}(F_{pn}^{-1}B_{pa})\right) \\
+\frac{\partial \tilde{\bf T}}{\partial \hat{\bf u}} = \frac{\partial \tilde{\bf T}}{\partial ({\bf D}\Delta)}\frac{\partial ({\bf D}\Delta)}{\partial \hat{\bf u}}
+\end{gather}
+Finally, the derivative is forward-rotated by the incremental rotation:
 \begin{equation}
-\frac{\partial (D_{ij}\Delta)}{\partial \hat{u}_{ka}} = \frac{\partial (D_{ij}\Delta)}{\partial A_{mn}}\frac{\partial A_{mn}}{\partial \hat{u}_{ka}}
-\end{equation}
-\begin{equation}
-\frac{\partial \hat{R}_{ij}}{\partial A_{mn}} = \frac{1}{2}(-\delta_{in}\delta_{jm} + \hat{R}_{im}\hat{R}_{nj})
-\end{equation}
-\begin{equation}
-\frac{\partial \hat{R}_{ij}}{\partial \hat{u}_{ka}} = \frac{1}{2}\left(-\hat{F}_{jk}^{-1}(F_{pi}^{-1}B_{pa}) + \hat{R}_{im}\hat{F}_{mk}^{-1}\hat{R}_{nj}(F_{pn}^{-1}B_{pa})\right)
-\end{equation}
-\begin{equation}
-\frac{\partial \hat{\bf T}}{\partial \hat{\bf u}} = \frac{\partial \hat{\bf T}}{\partial ({\bf D}\Delta)}\frac{\partial ({\bf D}\Delta)}{\partial \hat{\bf u}}
-\end{equation}
-\begin{equation}
-\frac{\partial {\bf T}}{\partial \hat{\bf u}} = \frac{\partial \hat{\bf R}}{\partial \hat{\bf u}}{\hat {\bf T}}{\hat{\bf R}}^{T} + {\hat{\bf R}}\frac{\partial \hat{\bf T}}{\partial \hat{\bf u}}\hat{\bf R}^T + \hat{\bf R}\hat{\bf T}\frac{\partial \hat{\bf R}^{T}}{\partial \hat{\bf u}}
+\frac{\partial {\bf T}}{\partial \hat{\bf u}} = \frac{\partial \hat{\bf R}}{\partial \hat{\bf u}}{\tilde {\bf T}}{\hat{\bf R}}^{T} + {\hat{\bf R}}\frac{\partial \tilde{\bf T}}{\partial \hat{\bf u}}\hat{\bf R}^T + \hat{\bf R}\tilde{\bf T}\frac{\partial \hat{\bf R}^{T}}{\partial \hat{\bf u}}
 \end{equation}
 Note ${\partial \hat{R}_{ij}}/{\partial A_{mn}}$ makes use of the assumption that $\hat{\mathbf{U}} \approx \mathbf{I}$.
 
-Thus, the end step first P-K stress and its derivative with respect to incremental nodal displacements have been computed, and via isoparametric mapping and numerical quadrature the integrands in \eqnref{} are computed and used to form the element level residual and tangent stiffness integrals. Those terms are, again, assembled into the residual equations and solved to progress the solution to the next time step.
+Thus, the end step first P-K stress and its derivative with respect to incremental nodal displacements have been computed, and via isoparametric mapping and numerical quadrature the element level residual and tangent stiffness integrals can be populated. Those terms are then assembled into the residual equations and solved to progress the solution to the next time step.
 
 \subsubsection{Hyperelastic Materials}
 
@@ -462,7 +447,7 @@ A &= \det\bm{G} \\
 \end{align}
 where $\hat{J} = \det\hat{\bm{F}}$, $\overline{\Omega}$ is the element at its beginning-step configuration, and ${|\overline{\Omega}|}$ is its volume.
 
-It should be noted that $\det\doublehat{\bm{F}}$ only approximates the overall volume change of the corresponding element. Nonetheless, the approach has been shown to approximate the exact solution under mesh refinement with sufficient accuracy for hex-8 and quad-4 elements. Refer to Rashid~\cite{rashid_2017} and Doll \textit{et al.}~\cite{doll_2000} for a more detailed description of volumetric locking for incompressible materials, how to address it, and a more detailed commentary on the F-bar method.
+It should be noted that $\det\doublehat{\bm{F}}$ only approximates the overall volume change of the corresponding element. Nonetheless, the approach has been shown to approximate the exact solution under mesh refinement with sufficient accuracy for hex-8 and quad-4 elements. Refer to Rashid~\cite{rashid_2017} and Doll \textit{et al.}~\cite{doll_2000} for a more comprehensive description of volumetric locking for incompressible materials, how to address it, and a more detailed commentary on the F-bar method.
 
 \subsection{Boundary Conditions}
 Displacement boundary conditions on $\partial_u\kappa_0$ are enforced on the corresponding nodal displacements belonging to that surface. In the event that the prescribed displacements do not depend on the solution, the corresponding nodal values are no longer considered unknowns. The size of the nonlinear system of residual equations is subsequently reduced to the DOFs of the nodes belonging to the interior of the body and those belonging to $\partial_t\kappa_0$.
@@ -543,16 +528,10 @@ enforcement of fully incompressible materials, for example with a mixed pressure
 \section[A Polyhedral Finite Element Method in Computational Solid \\ Mechanics]{\texorpdfstring{A Polyhedral Finite Element Method in \\ Computational Solid Mechanics}{A Polyhedral Finite Element Method in Computational Solid \\ Mechanics}}
 \label{A Polyhedral Finite Element Method in Computational Solid Mechanics}
 
-REFERENCES:
-\cite{sukumar_2006}
-\cite{rashid_2006, rashid_2012, rashid_2015}
+As discussed in this chapter, conventional finite element methods utilize analytic shape functions that are defined in a parent space, from which a mapping is defined to compute element-level integrations via numerical quadrature rules. This mapping introduces restrictions on the element geometry and topology that for practical purposes limits the choice of element type to a very small subset of choices. For complex geometries seen in biological tissues, the restrictions on element geometry and topology cause serious challenges for the automatic meshing algorithms discussed in \chapref{3}. \textit{Polyhedral finite element methods} attempt to improve upon conventional techniques by defining shape functions and corresponding integration rules for general  \textit{polyhedral} element topologies. Polyhedral FEM approaches exhibit elements that do not need to conform to the topology of a fixed parent element, thus removing debilitating constraints on automatic meshing tools for the purposes of simulation. These methods enjoy much of the same desirable properties of conventional FEM, including high quadrature efficiency straightforward FEM-like boundary condition enforcement.
 
-look up PEM for the gifted notes
-
-refer to other people's dissertations
-
-Polyhedral finite element methods are an emerging class of finite-element-like methods within the general class of Galerkin approximation schemes, in which the individual elements need not conform to the topology of a fixed canonical (or “parent”) element. Polyhedral FEMs exhibit much of the same desirable properties of conventional finite elements, namely: they enjoy high quadrature efficiency, they interpolate the nodal data so that essential BCs are easy to enforce, and they support convenient equation assembly and modular code architecture. The specific implementation of polyhedral FEM in Celeris is known as the “Partitioned Element Method”. The Partitioned Element Method employs a geometric partition of each polyhedral element into quadrature cells. The shape functions are then formulated discretely, on the complex of quadrature cells, via an element-local quadratic optimization problem. Arbitrary polyhedral element shapes (including non-convex) are accommodated without deterioration in local solution accuracy, making the mesh in Figure 9(c) a perfectly adequate discretization for this method. Higher-order shape functions are possible with this approach, although for this demonstration only elements with first order interpolation will be used.
-
-To that end, the simulation resolution need only be refined to the extent that accurate solutions can be provided, rather than being constrained in some way by the number of points and polygons used to the describe the surface of the object.
+The construction of polygonal and polyhedral finite element shape functions, including for concave geometries, are discussed in detail by Sukumar \textit{et al.}~\cite{sukumar_2006} and Manzini \textit{et al.}~\cite{manzini_2014}. Rashid \textit{et al.}~\cite{rashid_2012, rashid_2015} offer a particular flavor of polyhedral FEM methods known as the \textit{Partitioned Element Method (PEM)}, whose implementation offers a robust workflow for CAD-based simulation. An important feature of PEM stems from the realization that the shape functions do not need to defined over the entire element domain, but rather only its values and gradients need be defined at the quadrature points of the element. The Partitioned Element Method explicitly partitions each element into polyhedral \textit{cells}. They are constructed in a tolerance-aware sense that is robust in the presence of geometric pathologies. These subdomains are used to define a discontinuous piece-wise linear shape function in the physical space over each element, along with its corresponding quadrature rule. Shape functions are constructed first on element edges, then on element faces, and finally over the three-dimensional element. Lower-order topes inform the construction of higher-order topes. In each case, a quadratic objective function is minimized in an attempt to minimize jumps in the shape function and its gradients along cell boundaries. The solution of this minimization problem leads to a small linear system to be solved once for each element in a mesh. Quadrature rules are defined based on specifying the integration points at the cell centroids the integration weights as the cell volumes. It has been shown that, provided additional constraints to minimization problem to ensure \textit{quadrature consistency} (the property that a constant stress field exactly satisfies the weak form of equilibrium on a single element), PEM has been shown to converge at the same rate as linear hexahedra~\cite{rashid_2012}. Many of the considerations outlined are non-trivial - the reader is referred to the resources cited for a more rigorous and complete accounting of the method.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The basic concepts of PEM were outlined to motivate the exploration as a user of PEM the viability of polyhedral approaches in modeling the mechanics of biological tissues. As it pertains to the user of PEM codes for performing biomechanical simulations, PEM offers three critical benefits related to meshing. First, the meshing procedure need not adhere to the strict geometric and topological requirements as are needed for conventional FEM. Second, the simulation and geometric resolution are decoupled, namely the simulation resolution need only be refined to the extent that accurate solutions can be provided, rather than being constrained in some way by the number of points and polygons used to the describe the surface of the object. And lastly, automated meshing tools exist for linear PEM elements that produce accurate results, which together with the previous benefit can significantly reduce the number of DOF in a particular problem. This polyhedral approach will be explored along with conventional FEM in modeling cardiac mechanics in the upcoming chapter.
