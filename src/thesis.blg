@@ -47,51 +47,52 @@ Warning--empty year in brew
 Warning--empty journal in rashid_2017
 Warning--empty journal in cubit_2018
 Warning--empty year in cubit_2018
+Warning--empty publisher in hughes_2000
 Warning--empty journal in rashid_2015
 Warning--empty journal in melodee
 Warning--empty year in melodee
 Warning--empty author in 3dprints
 Warning--empty journal in 3dprints
 Warning--empty year in 3dprints
-You've used 152 entries,
+You've used 153 entries,
             1876 wiz_defined-function locations,
-            1220 strings with 29961 characters,
-and the built_in function-call counts, 37881 in all, are:
-= -- 3612
-> -- 1567
+            1222 strings with 30046 characters,
+and the built_in function-call counts, 38025 in all, are:
+= -- 3625
+> -- 1571
 < -- 0
-+ -- 591
-- -- 439
-* -- 2773
-:= -- 5412
-add.period$ -- 175
-call.type$ -- 152
++ -- 593
+- -- 440
+* -- 2779
+:= -- 5432
+add.period$ -- 177
+call.type$ -- 153
 change.case$ -- 136
 chr.to.int$ -- 0
-cite$ -- 195
-duplicate$ -- 1956
-empty$ -- 3620
-format.name$ -- 439
-if$ -- 9309
+cite$ -- 197
+duplicate$ -- 1965
+empty$ -- 3639
+format.name$ -- 440
+if$ -- 9345
 int.to.chr$ -- 0
-int.to.str$ -- 152
-missing$ -- 159
-newline$ -- 496
-num.names$ -- 142
-pop$ -- 469
+int.to.str$ -- 153
+missing$ -- 161
+newline$ -- 500
+num.names$ -- 143
+pop$ -- 476
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 1226
+skip$ -- 1227
 stack$ -- 0
 substring$ -- 2171
-swap$ -- 752
+swap$ -- 753
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 43
-while$ -- 293
-width$ -- 155
-write$ -- 1446
-(There were 43 warnings)
+warning$ -- 44
+while$ -- 294
+width$ -- 156
+write$ -- 1454
+(There were 44 warnings)

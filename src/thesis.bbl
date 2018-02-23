@@ -579,6 +579,11 @@ S.~Doll, K.~Schweizerhof, R.~Hauptmann, and C.~Freischl\:{a}ger, ``{On
   Elastoviscoplastic Deformations and Selective Reduced Integration},'' {\em
   Engineering Computations}, vol.~17, no.~7, pp.~874--902, 2000.
 
+\bibitem{hughes_2000}
+T.~J.~R. Hughes, {\em {Finite Element Method: Linear Static and Dynamic Finite
+  Element Analysis}}.
+\newblock 2000.
+
 \bibitem{sukumar_2006}
 N.~Sukumar and E.~A. Malsch, ``{Recent Advances in the Construction of
   Polygonal Finite Element Interpolants},'' {\em Archives of Computational
