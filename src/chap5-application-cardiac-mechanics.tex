@@ -1,16 +1,16 @@
 \chapter{Application: Cardiac Mechanics}
 \label{chap:5}
 %
-Provided the image-based meshing workflow that has been fully developed in~\chapref{3}, together with the finite element approaches established in~\chapref{4}, the entire image-based modeling and simulation pipeline can now be demonstrated. The application of choice is the mechanical behavior of a beating human heart. Cardiac mechanics is a good testbed for the particular image-based modeling and simulation workflow described because: 1) the application only involves binary image masks, 2) the exact geometry does not grossly affect results since contact modeling is not included, and 3) the use of simulation in this field arguably has the potential to save and improve more lives than any other biomechanics application area.
+Provided the image-based meshing workflow that has been fully developed in~\chapref{3}, together with the finite element approaches established in~\chapref{4}, the entire image-based modeling and simulation pipeline can now be demonstrated. The application of choice is the mechanical behavior of a beating human heart. Cardiac mechanics is a good testbed for the particular image-based modeling and simulation workflow described because: 1) the application only involves binary image masks, 2) the exact geometry does not critically influence results to the same degree as other biomechanics studies such as the contact between two articular surfaces, and 3) the use of simulation in this field arguably has the potential to save and improve more lives than any other biomechanics application area.
 
-This chapter introduces and motivates the task of modeling the human heart. The essential components to computational cardiac mechanics are described for an implementation using conventional finite elements, and simulation results are presented. Finally, the details of implementing the same mechanics into a polyhedral finite element code are discussed, together with a suite of verification tests and results.
+This chapter introduces and motivates the task of modeling the human heart. The essential components of computational cardiac mechanics are described for an implementation using conventional finite elements, and simulation results are presented. Finally, the details of implementing the same mechanics into a polyhedral finite element code are discussed, together with a suite of verification tests and results.
 
 \section{Introduction}
 
-A brief overview of the anatomy and function of the heart will be presented, followed by a survey of approaches found in the literature.
+A brief overview of the anatomy and function of the heart will be presented, followed by a survey of simulations approaches found in the literature.
 
 \subsection{Anatomy and Function of the Heart}
-The heart consists of four chambers: the \textit{left ventricle} (LV), \textit{right ventricle} (RV), \textit{left atrium} (LA), and \textit{right atrium} (RA) (See~\figref{anatomy}). The \textit{septum} is the tissue wall that separates the LV and RV. The thinner-walled atria act as blood reservoirs for the ventricles, which are predominantly responsible for the pumping function. The entire heart is encompassed by a fibrous sac known as the \textit{pericardium}, which resists rapid increases in cardiac size. The tip of the heart is known as the \textit{apex}, and the plane separating the ventricles and atria is known as the \textit{base}. The primary function of the heart is to pump blood throughout the body, delivering nutrients and removing waste from each organ~\cite{holzapfel_2009}. Cyclic pumping of the heart arises from the interaction of its electrical and mechanical function. Namely, the electrical activation of cardiac muscle fibers causes an excitation and contraction of tissue that drives the motion of the organ. Myocardial tissue consists of discrete muscle fiber bundles that exhibit orthotropic material behavior. For a more detailed description of the macro- and microstructural properties of the heart, refer to Holzapfel \textit{et al.}~\cite{holzapfel_2009} and Hunter~\cite{holzapfel_2009}.
+The heart consists of four chambers: the \textit{left ventricle} (LV), \textit{right ventricle} (RV), \textit{left atrium} (LA), and \textit{right atrium} (RA) (See~\figref{anatomy}). The \textit{septum} is the tissue wall that separates the LV and RV. The thinner-walled atria act as blood reservoirs for the ventricles, which are predominantly responsible for the pumping function. The entire heart is enclosed by a fibrous sac known as the \textit{pericardium}, which resists rapid increases in cardiac size. The tip of the heart is known as the \textit{apex}, and the plane separating the ventricles and atria is known as the \textit{base}. The primary function of the heart is to pump blood throughout the body, delivering nutrients and removing waste from each organ~\cite{holzapfel_2009}. Cyclic pumping of the heart arises from the interaction of its electrical and mechanical function. Namely, the electrical activation of cardiac muscle fibers causes an excitation and contraction of tissue that drives the motion of the organ. Myocardial tissue consists of discrete muscle fiber bundles that exhibit orthotropic material behavior. For a more detailed description of the macro- and microstructural properties of the heart, refer to Holzapfel \textit{et al.}~\cite{holzapfel_2009}.
 
 \begin{figure}[htbp!]
 \centering
@@ -39,15 +39,16 @@ In Cardioid, the heart is assumed to undergo quasi-static finite deformations, g
 \begin{equation}
 (F_{ik}S_{kj}),_{j} = 0
 \end{equation}
+where $()_j = \frac{\partial ()}{\partial X_j}$ connotes a derivative with respect to the reference configuration position.
 
-In order to fully define and solve these equations, the following are specified: the mesh, constitutive update, solution-dependent pressure boundary conditions, and the finite element solver. Each consideration will be described in turn.
+In order to fully define and solve these equations, the following are specified: the mesh, constitutive update, solution-dependent pressure boundary conditions, and the finite element solver. Each of these elements will be described in turn.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Mesh Generation}
 \label{Mesh Generation}
 
-A bi-ventricular mesh is generated using the procedures described in~\chapref{2} and \chapref{3}. Namely, an MRI of an \textit{ex vivo} human heart from the CardioVascular Research~\cite{cvgg} is segmented using the software Seg3D. Since the ventricles are most responsible for the pumping action, image segmentation is restricted to those geometric structures. A threshold segmentation is applied, and then used as the initial seed to Seg3D's level set segmentation tool. Additional tools to fill holes and dilate-erode the image mask are utilized before a final sweep of manual paintbrushing is employed. Following careful manual inspection, the final image mask is input to Shabaka to generate a high quality surface of the heart ventricles with a total of 50k points. Tetgen is invoked to produce a tetrahedral mesh that honors the input surface and attempts to produce high quality tetrahedra for the purposes of finite element simulations. A maximum element volume of 2 \textit{mm$^3$} is imposed. Again, quadratic tetrahedral elements are chosen in favor of linear elements to avoid volumetric locking and/or impracticably fine meshes. The surface and volume meshes are shown in \figref{tetmesh} - the final quadratic tetrahedral mesh has 374k elements and 595k nodes.
+A bi-ventricular mesh is generated using the procedures described in~\chapref{2} and \chapref{3}. Namely, an MRI of an \textit{ex vivo} human heart from the CardioVascular Research Grid~\cite{cvgg} is segmented using the software Seg3D. Since the ventricles are primarily responsible for the pumping action, image segmentation is restricted to those geometric structures. A threshold segmentation is applied, and then used as the initial seed to Seg3D's level set segmentation tool. Additional tools to fill holes and dilate-erode the image mask are utilized before a final sweep of manual paintbrushing is employed. Following careful manual inspection, the final image mask is input to Shabaka as discussed in \chapref{3} to generate a high quality surface of the heart ventricles with a total of 50k points. Tetgen is invoked to produce a tetrahedral mesh that honors the input surface and attempts to produce high quality tetrahedra for the purposes of finite element simulations. A maximum element volume of 2 \textit{mm$^3$} is imposed. Again, quadratic tetrahedral elements are chosen in favor of linear elements to avoid volumetric locking and/or a requirement for impracticably fine meshes. The surface and volume meshes are shown in \figref{tetmesh} - the final quadratic tetrahedral mesh has 374k elements and 595k nodes.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -58,19 +59,22 @@ The cardiac tissue is assumed to exhibit an additive stress decomposition, such 
 
 \textbf{Passive Stress}
 
-The passive response of the cardiac tissue is characterized by an incompressible, transversely isotropic constitutive law by Usyk~\textit{et al.}~\cite{usyk_2002}. The strain energy density functional is given by:
+The passive response of the cardiac tissue is characterized by an incompressible, transversely isotropic constitutive law by Usyk~\textit{et al.}~\cite{usyk_2002}. The strain energy density function is given by:
 \begin{gather}
 W(\bm{C}) = \frac{C}{2}\left(e^Q -1\right) \\
-Q = b_{ff} E^2_{ff} + b_{ss} E^2_{ss} + b_{nn} E^2_{nn} + b_{fs}\left(E^2_{fs} + E^2_{sf}\right) + b_{fn}\left(E^2_{fn} + E^2_{nf}\right) + b_{ns}\left(E^2_{ns} + E^2_{sn}\right)
+\begin{aligned}
+Q =\text{\ } &b_{ff} \left(\bm{f}\bm{\cdot}\bm{E}\bm{f}\right)^2 + b_{ss} \left(\bm{s}\bm{\cdot}\bm{E}\bm{s}\right)^2 + b_{nn} \left(\bm{n}\bm{\cdot}\bm{E}\bm{n}\right)^2 + b_{fs}\left[\left(\bm{f}\bm{\cdot}\bm{E}\bm{s}\right)^2 + \left(\bm{s}\bm{\cdot}\bm{E}\bm{f}\right)^2\right] +\\
+& b_{fn}\left[\left(\bm{f}\bm{\cdot}\bm{E}\bm{n}\right)^2 + \left(\bm{n}\bm{\cdot}\bm{E}\bm{f}\right)^2\right] + b_{ns}\left[\left(\bm{n}\bm{\cdot}\bm{E}\bm{s}\right)^2 + \left(\bm{s}\bm{\cdot}\bm{E}\bm{n}\right)^2\right]
+\end{aligned}
 \label{eqn:usyk}
 \end{gather}
-where $\bm{E} = \frac{1}{2}(\bm{C} - \bm{I})$ is the Green-Lagrange strain tensor expressed in a local orthonormal coordinate system with axes parallel to the local fiber, sheet, and sheet-normal $(f,s,n)$ directions, and $C$, $b_{ff}$, $b_{ss}$, $b_{nn}$, $b_{fs}$, $b_{fn}$, and $b_{ns}$ are material parameters.
+where $\bm{E} = \frac{1}{2}(\bm{C} - \bm{I})$ is the Green-Lagrange strain tensor, $\bm{f}$, $\bm{s}$, and $\bm{n}$ are unit \textit{fiber}, \textit{sheet}, and \textit{sheet-normal} directions, and $C$, $b_{ff}$, $b_{ss}$, $b_{nn}$, $b_{fs}$, $b_{fn}$, and $b_{ns}$ are material parameters.
 
-Incompressibility is fully enforced by solving for pressure unknowns as Lagrange multipliers in addition to nodal unknowns. In order to use the constitutive law in a fully incompressible context, the deviatoric and volumetric portions of the strain energy are separated as is done by Weiss~\textit{et al.}~\cite{weiss_1996}. Rather than defining the passive stress as simply $\bm{S}_p = \frac{\partial W}{\partial \bm{E}}$, the passive stress becomes:
+Incompressibility is fully enforced by solving for pressure unknowns as Lagrange multipliers, in addition to the nodal unknowns. In order to use the constitutive law in a fully incompressible context, the deviatoric and volumetric portions of the strain energy are separated, as is done by Weiss~\textit{et al.}~\cite{weiss_1996}. Rather than defining the passive stress as simply $\bm{S}_p = \frac{\partial W}{\partial \bm{E}}$, the passive stress becomes:
 \begin{equation}
-\bm{S}_p= 2\frac{\partial{\tilde{W}(\tilde{\bm{C}})}}{\partial{\bm{C}}} - pJ\bm{C}^{-1}
+\bm{S}_p= 2\frac{\partial{{W}(\tilde{\bm{C}})}}{\partial{\bm{C}}} - pJ\bm{C}^{-1}
 \end{equation}
-where $\tilde{W}(\tilde{\bm{C}})$ is the deviatoric component of the strain energy functional, $J = \text{det}(\bm{F})$, and $\tilde{\bm{C}} = J^{-2/3}\bm{C}$. More details regarding the enforcement of incompressibility can be found in Gurev \textit{et al.}~\cite{gurev_2015} and Weiss~\textit{et al.}~\cite{weiss_1996}.
+where ${W}(\tilde{\bm{C}})$ is the deviatoric component of the strain energy function, $J = \text{det}(\bm{F})$, and $\tilde{\bm{C}} = J^{-2/3}\bm{C}$. More details regarding the enforcement of incompressibility can be found in Gurev \textit{et al.}~\cite{gurev_2015} and Weiss~\textit{et al.}~\cite{weiss_1996}.
 
 \textbf{Active Stress}
 
@@ -79,14 +83,16 @@ The active stress is defined as :
 \bm{S}_a = \sigma_a \bm{f} \bm{f}^{T}
 \label{eqn:active}
 \end{equation}
-where $\bm{f}$ is the muscle fiber direction and ${\sigma_a}$ is the scalar active tension induced in the fiber direction. The vector $\bm{f}$ here may refer to the fiber orientation either in the reference configuration or the current configuration - within Cardioid it refers to the direction in the reference configuration.
+where $\bm{f}$ is the unit muscle fiber direction and ${\sigma_a}$ is the scalar active tension induced in the fiber direction, defined in the reference configuration. A more appropriate and intuitive definition of the active stress would relate Cauchy stress to an active tension and fiber orientation in the \textit{current configuration}, but unfortunately to date that is not how active stress models are typically formulated.
+
+The vector $\bm{f}$ here may refer to the fiber orientation either in the reference configuration or the current configuration - within Cardioid it refers to the direction in the reference configuration.
 
 The model by Lumens \textit{et al.}~\cite{lumens_2009} is used to determine the active tension $\sigma_a$ in the following manner:
 \begin{align}
 \frac{d\bm{w}}{dt} = \bm{q}(\bm{w}; t_a, \lambda) \\
 \sigma_a \equiv \sigma_a(\bm{w}; t_a, \lambda)
 \end{align}
-The scalar active tension depends on the state variables $\bm{w}$ of the muscle cells, the time $t_a$ at which the muscle cells electrically activate, and the muscle fiber stretch $\lambda$ in the direction of $\bm{f}$. Specifically, the fiber stretch is defined as $\lambda = (\bm{f}\bm{C}\bm{f}^T)^{1/2}$. The state variables are updated using a forward Euler scheme within the constitutive update. Further details on the state variables $\bm{w}$ and the way in which they are updated via $\bm{q}$ can be found in the work by Lumens~\textit{et al.}~\cite{lumens_2009}.
+The scalar active tension depends on the state variables $\bm{w}$ of the muscle cells, the time $t_a$ at which the muscle cells electrically activate, and the muscle fiber stretch $\lambda$ in the direction of $\bm{f}$. Specifically, the fiber stretch is defined as $\lambda = (\bm{f}\bm{C}\bm{f}^T)^{1/2}$. The state variables are updated using a forward Euler scheme within the constitutive update. Further details on the state variables $\bm{w}$ and their evolution function $\bm{q}$ can be found in the work by Lumens~\textit{et al.}~\cite{lumens_2009}.
 
 The activation time $t_a$ at each integration point is gathered from the results of the electrophysiology portion of the Cardioid code~\cite{richards_2013}. Specifically, an electrostatics problem is solved numerically for time-varying voltages, and the activation time is determined based on when the voltage at each location passes a certain threshold. A one-way coupling is thus imposed, in which the mechanics code depends on the electrophysiology results, but not vice versa. A fixed beat duration $t_b$ is assumed, such that the myofilament model excites and contracts for the $n$th beat at time $(n-1)t_b + t_a$. Activation times are stored in the mechanics code as a field variable within the bi-ventricular mesh (see \figref{supp1}).
 
@@ -124,7 +130,7 @@ The gradients of these solutions inform the construction of orthotropic fiber or
 \subsubsection{Boundary Conditions}
 \label{Boundary Conditions}
 
-Fluid flow and fluid-structure interaction are not yet implemented in the Cardioid code, so ventricular volume constraints are imposed to mimic the effect of blood flow. The volumes of the ventricle cavities are calculated based on a lumped circulatory model by Kerckhoffs \textit{et al.}~\cite{kerckhoffs_2006}, which are in turn used to determine the time-varying, solution-dependent pressure boundary conditions.
+Fluid flow and fluid-structure interaction are not yet implemented in the Cardioid code, so ventricular volume constraints are imposed to mimic the effect of blood flow. The time-varying volumes of the ventricle cavities are calculated based on a lumped circulatory model by Kerckhoffs \textit{et al.}~\cite{kerckhoffs_2006}, which are in turn used to determine the time-varying, solution-dependent pressure boundary conditions.
 
 A system of coupled ODEs describing the time evolution of the left ventricle volume $V_{LV}$ and the right ventricle volume $V_{RV}$ for the circulatory model can be written in the form:
 \begin{align}
@@ -153,7 +159,7 @@ The quadratic tetrahedral mesh described previously is used with the material mo
 
 Because Cardioid uses an implicit mechanics approach, a linear system must be solved for each time step for incremental nodal unknowns. In the interest of solving problems with very fine discretizations, Gurev \textit{et al.} avoid direct solvers of the linear system due to their poor scalability. Instead, they employ a Krylov subspace iterative solver, which is more suitable for large scalable problems. The existence of active contraction creates saddle-points in the linear system that are addressed with a novel preconditioner. The details of the iterative solver may be found in Gurev \textit{et al.}~\cite{gurev_2015}.
 
-The simulation was performed on the \textit{Surface} computing platform at Lawrence Livermore National Laboratory. The Moab schedule manager was used to submit the job, which was run on 50 nodes with 16 cores per node, for a total of 800 processes. With an assumed beat duration of 1000 $ms$ for a healthy human heart (i.e., 60 beats per minute), the simulation was run to a time of 5100 ms with a $\Delta t = 1$ $ms$ time increment. The simulation completed roughly one heartbeat per 24 hours of wall clock time. As mentioned, the first 100 ms are used to linearly apply the initial pressures for the simulation. The first beat is discarded to allow the simulation to reach a dynamic steady state, and thus four full beats of a healthy human heart are extracted from the results.
+The simulation was performed on the \textit{Surface} computing platform at Lawrence Livermore National Laboratory. The Moab schedule manager was used to submit the job, which was run on 50 nodes with 16 cores per node, for a total of 800 processes. With an assumed beat duration of 1000 $ms$ for a healthy human heart (i.e., 60 beats per minute), the simulation was run to a time of 5100 ms with a $\Delta = 1$ $ms$ time increment. The simulation completed roughly one heartbeat per 24 hours of wall clock time. As mentioned, the first 100 ms are used to linearly apply the initial pressures for the simulation. The first beat is discarded to allow the simulation to reach a dynamic steady state, and thus four full beats of a healthy human heart are extracted from the results.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -162,7 +168,7 @@ The simulation was performed on the \textit{Surface} computing platform at Lawre
 
 Simulation results are shown in \figref{pv} and~\figref{snaps}. \figref{pv1} is known as a \textit{P-V loop} of the left ventricle, and \figref{pv2} is a time history plot of the pressures in the left and right ventricles. \figref{pv1} demonstrates the four stages of the cardiac cycle: 1) \textit{isovolumetric contraction} from label a to b, 2) \textit{ventricular ejection} of blood from label b to c, 3) \textit{isovolumetric relaxation} from label c to d, and 4) \textit{ventricular filling} from label d to a~\cite{slideshare}. Isovolumetric contraction and ventricular ejection comprise what is known as \textit{systole}, during which the ventricles are contracting. Isovolumetric relaxation and ventricular filling are known as \textit{diastole}, during which the ventricles are relaxing. The labels in \figref{pv1} correspond to the panels in~\figref{snaps}, which show the fiber stretch $\lambda$ plotted on deformed meshes at different points in the cardiac cycle. During a cycle, fiber stretch ranges from 0.6 to 1.4, certainly justifying the finite deformation approach. The results closely match those in Gurev~\textit{et al.}~\cite{gurev_2015}, in which a different heart geometry and electrophysiology were used. The full video of four heartbeats played at one quarter speed may be viewed at \href{http://youtu.be/RtQKEjdR4MU}{{\url{http://youtu.be/RtQKEjdR4MU}}}.
 
-In the process of performing simulations, the workflow for: generating the mesh, generating fiber orientations, running the electrophysiology code to produce activation times, running the mechanics code, and post-processing results was improved, simplified, and automated via Python scripts. A robust workflow for performing bi-ventricular cardiac mechanics simulations has thus been demonstrated. It will directly facilitate the current Cardioid research project involving machine learning, which requires a robust and timely generation of simulation results for large numbers of patient imaging data. Additional validation of the results, quantitiative metrics for solution quality, and sensitivity studies of the simulation parameters are still necessary before the tools may be used directly for clinical use.
+In the process of performing simulations, the workflow for: generating the mesh, generating fiber orientations, running the electrophysiology code to produce activation times, running the mechanics code, and post-processing results was improved, simplified, and automated via Python scripts. A robust workflow for performing bi-ventricular cardiac mechanics simulations has thus been demonstrated. It will directly facilitate the current Cardioid research project involving machine learning, which requires a robust and timely generation of simulation results for large numbers of patient imaging data. Additional validation of the results, quantitiative metrics for solution quality, and sensitivity studies of the simulation parameters are still necessary before the tools may be used directly in a clinical setting.
 
 \begin{figure}[htbp]
 \centering
@@ -211,65 +217,79 @@ The same surface mesh used to produce the quadratic tetrahedral mesh for Cardioi
 The remaining consideration to perform cardiac simulations using polyhedral FEM is the implementation of the constitutive update.
 
 \subsubsection{Material Model}
-The Usyk material model is implemented within the Celeris framework. Rather than full incompressibility via a mixed pressure-displacement formulation, \textit{near-incompressibility} is enforced via a penalty term in the strain energy for volumetric material response, together with an \textit{F-bar method}. Regarding the penalty term, the strain energy is defined in the following manner, as is done by Usyk \textit{et al.}~\cite{usyk_2002}:
+The Usyk material model has been implemented within the Celeris framework. Rather than full incompressibility via a mixed pressure-displacement formulation, \textit{near-incompressibility} is enforced via a penalty term in the strain energy for volumetric material response, together with an \textit{F-bar method}. Regarding the penalty term, the strain energy is defined in the following manner, as is done by Usyk \textit{et al.}~\cite{usyk_2002}:
 \begin{equation}
 W = \frac{C}{2}\left(e^Q -1\right) + C_{compr} (J \cdot \ln J - J + 1) \\
 \end{equation}
-The parameter $C_{compr}$ is defined such that the volumetric response of the material is significantly stiffer than the deviatoric response. It was found that a value of $C_{compr} \geq 200  C$ gives good results (compared to simulations enforcing full incompressibility) without significantly making the system poorly conditioned. Near-incompressibility is then enforced by an F-bar method, in which the deformation gradient is modified such that the dilatation $\det(\bm{F})$ at each integration point is replaced by an element-averaged value, as explained in \chapref{4}.
+The parameter $C_{compr}$ is defined such that the volumetric response of the material is significantly stiffer than the deviatoric response. It was found that a value of $C_{compr} \geq 200  C$ gives good results (compared to simulations enforcing full incompressibility) without significantly making the system poorly conditioned. Volumetric locking is then mitigated by an F-bar method, in which the deformation gradient is modified such that the dilatation $\det(\bm{F})$ at each integration point is replaced by an element-averaged value, as explained in \chapref{4}.
 
 \textbf{Passive stress}
 
-The material model framework in Celeris currently accepts material definitions in \textit{incremental form}. The incremental material model receives as input: the beginning step Cauchy stress $\overline{\bm{T}}$, beginning step state variables $\overline{\bm{s}}$, strain rate $\bm{D}$, and material properties and other field parameters. Following the constitutive update, the model produces as output: the end step unrotated Cauchy stress $\tilde{\bm{T}}$, end step unrotated state variables $\tilde{\bm{s}}$, and end step tangent modulus ${\partial \tilde{\bm{T}}}/{\partial (\bm{D}\Delta{t})}$. However, hyperelastic materials are generally defined as functions of the deformation gradient $\bm{F}$, not of the strain rate $\bm{D}$. As is done in \chapref{4} for the Mooney-Rivlin material, it is assumed that $\hat{\bm{U}} = \text{exp}(\bm{D}\Delta{t})$, which is approximated using its Taylor expansion.
+The material model framework in Celeris currently accepts material definitions in \textit{incremental form}. The incremental material model receives as input: the beginning step Cauchy stress $\overline{\bm{T}}$, beginning step state variables $\overline{\bm{s}}$, deformation rate $\bm{D}$, and material properties and other field parameters. Following the constitutive update, the model produces as output: the end step unrotated Cauchy stress $\tilde{\bm{T}}$, end step unrotated state variables $\tilde{\bm{s}}$, and end step tangent modulus ${\partial \tilde{\bm{T}}}/{\partial (\bm{D}\Delta)}$. However, hyperelastic materials are generally defined as functions of the deformation gradient $\bm{F}$, not of the strain rate $\bm{D}$. As is done in \chapref{4} for the Mooney-Rivlin material, it is assumed that $\hat{\bm{U}} = \text{exp}(\bm{D}\Delta)$, which is approximated using its Taylor expansion.
 
 The beginning step deformation gradient $\overline{\bm{F}}$ is stored as a state variable to accommodate the incremental material form. Thus, the state variables $\bm{s}$ are comprised of $\overline{\bm{F}}$ and the active tension model state variables $\bm{w}$. Material parameters were previously defined in \eqnref{usyk}. The field parameters at each integration point are the fiber transformation matrix $\bm{Q}$ and activation time $t_a$. Both quantities are computed using Cardioid \textit{a priori} and are imported into Celeris at the integration points. It is important to distinguish between the \textit{transformation matrix} $\bm{Q}$ from the global to local fiber coordinate frames, and the \textit{rotation increment} $\hat{\bm{R}}$ that comprises the rotation portion of the incremental deformation gradient $\hat{\bm{F}}$. Lastly, the material model admits the beat duration $t_b$ and the beginning and end step times $t_n$ and $t_{n+1}$, which are used for the calculation of active stress.
 
-Because of the assumed additive stress decomposition $\tilde{\bm{T}} = \tilde{\bm{T}}_p + \tilde{\bm{T}}_a$, the passive and active stress are computed independently and then added together at the end of the constitutive update. The passive material update proceeds as follows: 1) the end step unrotated deformation gradient is calculated as $\tilde{\bm{F}} = \hat{\bm{U}}\bm{F}$, 2) the deformation gradient $\tilde{\bm{F}}$ is transformed into the local fiber coordinate system as $\tilde{\bm{F}}'$, 3) the end step unrotated Cauchy stress in the local fiber coordinate system $\tilde{\bm{T}}'$ is computed based on $\tilde{\bm{F}}'$, and finally 4) the stress is transformed back into the global coordinate frame as the desired quantity $\tilde{\bm{T}}$. The ``prime'' here corresponds to the tensor of interest being expressed as a matrix in the local fiber coordinate frame. The computations proceed in the following manner:
-\clearpage
-\begin{equation}
-\hat{\bm{U}} = \bm{I} + \bm{D}\Delta{t} + \frac{1}{2}(\bm{D}\Delta{t})^2 + \frac{1}{6}(\bm{D}\Delta{t})^3
-\end{equation}
+Because of the assumed additive stress decomposition $\tilde{\bm{T}} = \tilde{\bm{T}}_p + \tilde{\bm{T}}_a$, the passive and active stress are computed independently and then added together at the end of the constitutive update. The passive material update proceeds by first calculating the end step unrotated deformation gradient via $\tilde{\bm{F}} = \hat{\bm{U}}\overline{\bm{F}}$, and then by computing the end step unrotated Cauchy stress $\tilde{\bm{T}}$ based on $\tilde{\bm{F}}$:
+\begin{gather}
+\hat{\bm{U}} = \bm{I} + \bm{D}\Delta + \frac{1}{2}(\bm{D}\Delta)^2 + \frac{1}{6}(\bm{D}\Delta)^3
+\end{gather}
 \begin{align}
-\tilde{\bm{F}} &= \hat{\bm{U}}\bm{F} \\
-\tilde{\bm{F}}' &= \bm{Q}^T\tilde{\bm{F}}\bm{Q} \\
-\bm{C}' &= \tilde{\bm{F}}'^T \tilde{\bm{F}}' \\
-\bm{E}' &= \frac{1}{2}(\bm{C}' - \bm{I}) \\
-J  &= \det{\tilde{\bm{F}}'}
+\tilde{\bm{F}} &= \hat{\bm{U}}\overline{\bm{F}} \\
+\bm{C} &= \tilde{\bm{F}}^T \tilde{\bm{F}} \\
+\bm{E} &= \frac{1}{2}(\bm{C} - \bm{I}) \\
+J  &= \det{\tilde{\bm{F}}}
 \end{align}
 \begin{equation}
 \begin{aligned}
-Q' &= b_{ff} E'^2_{ff} + b_{ss} E'^2_{ss} + b_{nn} E'^2_{nn} + \\
-&\text{\ \ \ }b_{fs}\left(E'^2_{fs} + E'^2_{sf}\right) + b_{fn}\left(E'^2_{fn} + E'^2_{nf}\right) + b_{ns}\left(E'^2_{ns} + E'^2_{sn}\right)
+Q =\text{\ } &b_{ff}\left(f_aE_{ab}f_b\right)^2  + b_{ss}\left(s_aE_{ab}s_b\right)^2 + b_{nn}\left(n_aE_{ab}n_b\right)^2 +\\
+& b_{fs}\left[\left(f_aE_{ab}s_b\right)^2 + \left(s_aE_{ab}f_b\right)^2\right] +\\
+& b_{fn}\left[\left(f_aE_{ab}n_b\right)^2 + \left(n_aE_{ab}f_b\right)^2\right] +\\
+& b_{ns}\left[\left(n_aE_{ab}s_b\right)^2 + \left(s_aE_{ab}n_b\right)^2\right]
 \end{aligned}
 \end{equation}
-\begin{align}
-N_{pq} &= 2 \left[\begin{array} {ccc} b_{ff} & b_{fs} & b_{fn} \\ b_{fs} & b_{ss} & b_{sn} \\ b_{fn} & b_{sn} & b_{nn} \end{array} \right] \\
-\frac{\partial Q'}{\partial \bm{E}'} &= \bm{N} \circ \bm{E}' \\
-\tilde{\bm{T}}' &= \frac{C}{2J}e^{Q'}\tilde{\bm{F}}'\frac{\partial{Q'}}{\partial{\bm{E}'}}\tilde{\bm{F}}'^T + (C_{comp}\text{ln}J)\bm{I} \\
-\tilde{\bm{T}}_p &= \bm{Q} \tilde{\bm{T}}' \bm{Q}^T
-\end{align}
-Note the Cauchy stress is computed from the strain energy by making use of the relationship $\bm{T} = J^{-1}\bm{F}\frac{\partial\bm{W}}{\partial \bm{E}} \bm{F}^T$. The \textit{Hadamard} or \textit{entrywise product} is employed in defining ${\partial Q'}/{\partial \bm{E}'}$, namely $\frac{\partial Q'}{\partial E'_{pq}} = N_{pq}E'_{pq}$ with no implied sum on the indices. The sequence of calculations result in the desired end step unrotated passive Cauchy stress $\tilde{\bm{T}}_p$.
-
-The tangent modulus of the passive portion of stress ${\partial \tilde{\bm{T}}_p}/{\partial (\bm{D}\Delta{t})}$ is computed via successive use of the chain rule of differentiation:
 \begin{equation}
-\frac{\partial \tilde{\bm{T}}_p}{\partial (\bm{D}\Delta{t})} = \frac{\partial \tilde{\bm{T}}_p}{\partial \tilde{\bm{T}'}}\frac{\partial \tilde{\bm{T}'}}{\partial \tilde{\bm{F}'}}\frac{\partial \tilde{\bm{F}'}}{\partial \tilde{\bm{F}}}\frac{\partial \tilde{\bm{F}}}{\partial \hat{\bm{U}}}\frac{\partial \hat{\bm{U}}}{\partial (\bm{D}\Delta{t})}
+\begin{aligned}
+\frac{\partial Q}{\partial E_{pq}} = \text{\ } &2b_{ff}f_pf_q\left(f_aE_{ab}f_b\right) + 2b_{ss}s_ps_q\left(s_aE_{ab}s_b\right) + 2b_{nn}n_pn_q\left(n_aE_{ab}n_b\right) +\\
+& b_{fs}\left(f_ps_q + s_pf_q\right)\left(f_aE_{ab}s_b + s_aE_{ab}f_b\right) +\\
+& b_{fn}\left(f_pn_q + n_pf_q\right)\left(f_aE_{ab}n_b + n_aE_{ab}f_b\right) +\\
+& b_{ns}\left(n_ps_q + s_pn_q\right)\left(n_aE_{ab}s_b + s_aE_{ab}n_b\right)
+\end{aligned}
+\end{equation}
+
+Finally,
+\begin{equation}
+\tilde{\bm{T}}_p = \frac{C}{2J}e^{Q}\tilde{\bm{F}}\frac{\partial{Q}}{\partial{\bm{E}}}\tilde{\bm{F}}^T + (C_{comp}\text{ln}J)\bm{I}
+\end{equation}
+Note the Cauchy stress is computed from the strain energy by making use of the relationship $\tilde{\bm{T}}_p = J^{-1}\tilde{\bm{F}}\frac{\partial\bm{W}}{\partial \bm{E}} \tilde{\bm{F}}^T$. 
+
+The tangent modulus of the passive portion of stress ${\partial \tilde{\bm{T}}_p}/{\partial (\bm{D}\Delta)}$ is computed via successive use of the chain rule of differentiation:
+\begin{equation}
+\frac{\partial \tilde{\bm{T}}_p}{\partial (\bm{D}\Delta)} = \frac{\partial \tilde{\bm{T}}_p}{\partial \tilde{\bm{F}}}\frac{\partial \tilde{\bm{F}}}{\partial \hat{\bm{U}}}\frac{\partial \hat{\bm{U}}}{\partial (\bm{D}\Delta)}
 \label{eqn:tanmod}
 \end{equation}
 
-Each of the terms are defined below:
-\begin{align}
-\frac{\partial (\tilde{T}_p)_{ij}}{\partial \tilde{T}'_{mn}} &= \frac{1}{2}\left[Q'_{im}Q'_{jn} + Q'_{in}Q'_{jm}\right] \\
-A_{pq} &\equiv \frac{\partial Q'}{\partial E'_{pq}} \\
-Z_{pqkl} &\equiv \frac{1}{2}N_{pq}\left[F_{kq}\delta_{pl} + F_{kp}\delta_{ql}\right] \text{ (no sum)}
-\end{align}
+First, we define some intermediate terms:
+\begin{equation}
+A_{pq} \equiv \frac{\partial Q}{\partial E_{pq}}
+\end{equation}
 \begin{equation}
 \begin{aligned}
-\frac{\partial \tilde{T}'_{ij}}{\partial \tilde{F}'_{kl}} &= \frac{C}{2J}e^{Q'} \Bigg[-\tilde{F}'^{-1}_{lk}A_{pq}\tilde{F}'_{ip}\tilde{F}'_{jq} + \frac{1}{2}(A_{ln}\tilde{F}'_{kn} + A_{ml}\tilde{F}'_{km})A_{pq}\tilde{F}'_{ip}\tilde{F}'_{jq} + \\
-&\text{\ \ \ }Z_{pqkl}\tilde{F}'_{ip}\tilde{F}'_{jq} + \delta_{ik}A_{pl}\tilde{F}'_{jp} + \delta_{jk}A_{lq}\tilde{F}'_{iq}\Bigg] + C_{comp}\delta_{ij}\tilde{F}'^{-1}_{lk}
+Z_{pqkl} = \frac{\partial A_{pq}}{\partial F_{kl}} = \text{\ } &2b_{ff}f_pf_qf_lF_{ka}f_a + 2b_{ss}s_ps_qs_lF_{ka}s_a + 2b_{nn}n_pn_qn_lF_{ka}n_a +\\
+& b_{fs}\left(f_ps_q + s_pf_q\right)\left(f_lF_{ka}s_a + s_lF_{ka}f_a\right) +\\
+& b_{fn}\left(f_pn_q + n_pf_q\right)\left(f_lF_{ka}n_a + n_lF_{ka}f_a\right) +\\
+& b_{ns}\left(n_ps_q + s_pn_q\right)\left(n_lF_{ka}s_a + s_lF_{ka}n_a\right)
+\end{aligned}
+\end{equation}
+
+The three derivatives on the right-hand side of \eqnref{tanmod} may then be computed as follows to produce the desired tangent modulus:
+\begin{equation}
+\begin{aligned}
+\frac{\partial \tilde{T}_{ij}}{\partial \tilde{F}_{kl}} &= \frac{C}{2J}e^{Q} \Bigg[-\tilde{F}^{-1}_{lk}A_{pq}\tilde{F}_{ip}\tilde{F}_{jq} + \frac{1}{2}(A_{ln}\tilde{F}_{kn} + A_{ml}\tilde{F}_{km})A_{pq}\tilde{F}_{ip}\tilde{F}_{jq} + \\
+&\text{\ \ \ }Z_{pqkl}\tilde{F}_{ip}\tilde{F}_{jq} + \delta_{ik}A_{pl}\tilde{F}_{jp} + \delta_{jk}A_{lq}\tilde{F}_{iq}\Bigg] + C_{comp}\delta_{ij}\tilde{F}^{-1}_{lk}
 \end{aligned}
 \end{equation}
 \begin{align}
-\frac{\partial \tilde{F}'_{ij}}{\partial \tilde{F}_{mn}} &= Q'_{mi}Q'_{nj} \\
-\frac{\partial \tilde{F}_{ij}}{\partial \hat{U}_{kl}} &= \frac{1}{2}\left[\delta_{ik}\overline{F}_{lj} + \delta_{il}\overline{F}_{kj}\right]
+\frac{\partial \tilde{F}_{ij}}{\partial \hat{U}_{kl}} = \frac{1}{2}\left(\delta_{ik}\overline{F}_{lj} + \delta_{il}\overline{F}_{kj}\right)
 \end{align}
 \begin{equation}
 \begin{aligned}
@@ -278,19 +298,17 @@ Z_{pqkl} &\equiv \frac{1}{2}N_{pq}\left[F_{kq}\delta_{pl} + F_{kp}\delta_{ql}\ri
 \end{aligned}
 \end{equation}
 
-Again, the derivatives are then combined to produce the tangent modulus defined in \eqnref{tanmod}.
-
 The passive material model has been implemented, and the computed stress and corresponding tangent modulus have been thoroughly verified against finite difference approximations for accurate and quickly converging solutions.
 
 \textbf{Active stress}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The Fortran code to compute the active stress $\tilde{\bm{T}}_a$ and corresponding tangent modulus ${\partial \tilde{\bm{T}}_a}/{\partial (\bm{D}\Delta{t})}$ is generated using the Cardioid tool \textit{Melodee}~\cite{melodee}, a new language for expressing systems of ODEs that generates optimized code for various languages and platforms. Melodee has been tested and verified to generate a working Fortran subroutine for the Lumens active stress model.
+The Fortran code to compute the active stress $\tilde{\bm{T}}_a$ and corresponding tangent modulus ${\partial \tilde{\bm{T}}_a}/{\partial (\bm{D}\Delta)}$ is generated using the Cardioid tool \textit{Melodee}~\cite{melodee}, a new language for expressing systems of ODEs that generates optimized code for various languages and platforms. Melodee has been tested and verified to generate a working Fortran subroutine for the Lumens active stress model.
 
 Finally, the passive and active stress, along with their tangent moduli, are combined in the following manner:
 \begin{align}
 \tilde{\bm{T}} &= \tilde{\bm{T}}_p + \tilde{\bm{T}}_a \\
-\frac{\partial \tilde{\bm{T}}}{\partial (\bm{D}\Delta{t})} &= \frac{\partial \tilde{\bm{T}}_p}{\partial (\bm{D}\Delta{t})}+ \frac{\partial \tilde{\bm{T}}_a}{\partial (\bm{D}\Delta{t})}
+\frac{\partial \tilde{\bm{T}}}{\partial (\bm{D}\Delta)} &= \frac{\partial \tilde{\bm{T}}_p}{\partial (\bm{D}\Delta)}+ \frac{\partial \tilde{\bm{T}}_a}{\partial (\bm{D}\Delta)}
 \end{align}
 Following the constitutive update routine, the end step Cauchy stress and tangent modulus are forward rotated as discussed in \chapref{4}. Additionally, the state variable $\bm{F}$ is forward rotated simply via $\bm{F} =\hat{\bm{R}}\tilde{\bm{F}}$.
 
@@ -345,7 +363,7 @@ For the cantilever beam problems Gurev P2, Gurev P3, Gurev P4, and Land P1, a 39
 
 For the single ventricle problems Land P2 and Land P3, quadratic tetrahedral elements are used in Cardioid and linear hexahedral elements are used in Imitor. An adequate number of degrees of freedom were used to achieve converged results. A polyhedral mesh was generated for the problems but has not yet been tested, pending some fixes in the Celeris infrastructure unrelated to the scope of this project. The results for the single ventricle problems are satisfactorily close between Imitor and Cardioid, despite the difference in element choice and enforcement of incompressibility, which is promising since the material model implementation is nearly identical between Imitor and Celeris.
 
-Interestingly, Imitor's results appear to be slightly too stiff in bending, but slightly too compliant for volumetric deformations. The over-stiffness in bending is evidenced in Gurev P2, Land P1, and Land P2, whereas the over-compliance in volumetric deformation is evidenced in Gurev P4 and Land P3. More investigation would be required to attribute this difference to the enforcement near-incompressibility rather than a fully incompressible material. Overall though, the difference in results is small enough to provide confidence that the material model has been implemented correctly in Imitor and in Celeris.
+Interestingly, Imitor's results appear to be slightly too stiff in bending, but slightly too compliant for volumetric deformations. The over-stiffness in bending is evidenced in Gurev P2, Land P1, and Land P2, whereas the over-compliance in volumetric deformation is evidenced in Gurev P4 and Land P3. More investigation would be required to attribute this difference to the enforcement of near-incompressibility rather than a fully incompressible material. Overall though, the difference in results is small enough to provide confidence that the material model has been implemented correctly in Imitor and in Celeris.
 
 A comparison of the number of degrees of freedom for the three codes in the bending problem Land P1 is provided (\figref{land1-3}). It was not expected to be useful because the meshes are already quite coarse, and automated linear hex meshing for a simple cantilever beam geometry is easily achievable. It is expected that for the single ventricle problems Land P2 and Land P3, accurate results can be achieved using Celeris with a noticeable reduction in the number of DOF, which would complete \figref{land2-3} and \figref{land3.2-3}.
 
