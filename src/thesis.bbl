@@ -1,8 +1,8 @@
 \begin{thebibliography}{100}
 
 \bibitem{colquitt_2011}
-R.~B. Colquitt, D.~A. Colquhoun, and R.~H. Thiele, ``{In silico modelling of
-  physiologic systems},'' {\em Best Practice \& Research Clinical
+R.~B. Colquitt, D.~A. Colquhoun, and R.~H. Thiele, ``{In Silico Modelling of
+  Physiologic Systems},'' {\em Best Practice \& Research Clinical
   Anaesthesiology}, vol.~25, no.~4, pp.~499--510, 2011.
 
 \bibitem{min_2015}
@@ -14,18 +14,18 @@ J.~K. Min, C.~A. Taylor, S.~Achenbach, B.~K. Koo, J.~Leipsic, B.~L.
 \bibitem{updegrove_2016}
 A.~Updegrove, N.~M. Wilson, J.~Merkow, H.~Lan, A.~L. Marsden, and S.~C.
   Shadden, ``{SimVascular: An Open Source Pipeline for Cardiovascular
-  Simulation},'' {\em Annals of Biomedical Engineering}, vol.~45, pp.~525--541,
-  Aug 2016.
+  Simulation},'' {\em Annals of Biomedical Engineering}, vol.~45, no.~3,
+  pp.~525--541, 2016.
 
 \bibitem{weickenmeier_2016}
-J.~Weickenmeier, P.~Saez, C.~A.~M. Butler, P.~G. Young, A.~Goriely, and
-  E.~Kuhl, ``{Bulging Brains},'' {\em Journal of Elasticity}, vol.~129,
-  no.~1-2, pp.~197--212, 2016.
+J.~Weickenmeier, P.~Saez, C.~A. Butler, P.~G. Young, A.~Goriely, and E.~Kuhl,
+  ``{Bulging Brains},'' {\em Journal of Elasticity}, vol.~129, no.~1-2,
+  pp.~197--212, 2016.
 
 \bibitem{behnia_2008}
-S.~Behnia, A.~Jafari, F.~Ghalichi, and A.~Bonabi, ``{Finite-element simulation
-  of ultrasound brain surgery: effects of frequency, focal pressure, and
-  scanning path in bone-heating reduction},'' {\em Open Physics}, vol.~6, Jan
+S.~Behnia, A.~Jafari, F.~Ghalichi, and A.~Bonabi, ``{Finite-Element Simulation
+  of Ultrasound Brain Surgery: Effects of Frequency, Focal Pressure, and
+  Scanning Path in Bone-Heating Reduction},'' {\em Open Physics}, vol.~6, Jan
   2008.
 
 \bibitem{erdemir_2015}
@@ -34,10 +34,9 @@ A.~Erdemir, ``{Open Knee: Open Source Modeling and Simulation in Knee
   2015.
 
 \bibitem{donahue_2002}
-T.~L.~H. Donahue, M.~L. Hull, M.~M. Rashid, and C.~R. Jacobs, ``{A Finite
-  Element Model of the Human Knee Joint for the Study of Tibio-Femoral
-  Contact},'' {\em Journal of Biomechanical Engineering}, vol.~124, no.~3,
-  p.~273, 2002.
+T.~L. Donahue, M.~L. Hull, M.~M. Rashid, and C.~R. Jacobs, ``{A Finite Element
+  Model of the Human Knee Joint for the Study of Tibio-Femoral Contact},'' {\em
+  Journal of Biomechanical Engineering}, vol.~124, no.~3, p.~273, 2002.
 
 \bibitem{anderson_2008}
 A.~E. Anderson, B.~J. Ellis, S.~A. Maas, C.~L. Peters, and J.~A. Weiss,
@@ -46,21 +45,21 @@ A.~E. Anderson, B.~J. Ellis, S.~A. Maas, C.~L. Peters, and J.~A. Weiss,
   no.~5, 2008.
 
 \bibitem{el'sheikh_2003}
-H.~El'Sheikh, B.~Macdonald, and M.~Hashmi, ``{Finite element simulation of the
-  hip joint during stumbling: a comparison between static and dynamic
-  loading},'' {\em Journal of Materials Processing Technology}, vol.~143-144,
+H.~El'Sheikh, B.~MacDonald, and M.~Hashmi, ``{Finite Element Simulation of the
+  Hip Joint During Stumbling: A Comparison Between Static and Dynamic
+  Loading},'' {\em Journal of Materials Processing Technology}, vol.~143-144,
   pp.~249--255, 2003.
 
 \bibitem{malandrino_2014}
 A.~Malandrino, D.~Lacroix, C.~Hellmich, K.~Ito, S.~Ferguson, and J.~Noailly,
-  ``{The role of endplate poromechanical properties on the nutrient
-  availability in the intervertebral disc},'' {\em Osteoarthritis and
+  ``{The Role of Endplate Poromechanical Properties on the Nutrient
+  Availability in the Intervertebral Disc},'' {\em Osteoarthritis and
   Cartilage}, vol.~22, no.~7, pp.~1053--1060, 2014.
 
 \bibitem{dumas_2005}
-R.~Dumas, V.~Lafage, Y.~Lafon, J.-P. Steib, D.~Mitton, and W.~Skalli, ``{Finite
-  element simulation of spinal deformities correction byin situcontouring
-  technique},'' {\em Computer Methods in Biomechanics and Biomedical
+R.~Dumas, V.~Lafage, Y.~Lafon, J.~Steib, D.~Mitton, and W.~Skalli, ``{Finite
+  Element Simulation of Spinal Deformities Correction by In Situ Contouring
+  Technique},'' {\em Computer Methods in Biomechanics and Biomedical
   Engineering}, vol.~8, no.~5, pp.~331--337, 2005.
 
 \bibitem{shi_2008}
@@ -75,38 +74,38 @@ L.~O. Schwen, M.~Krauss, C.~Niederalt, F.~Gremse, F.~Kiessling, A.~Schenk,
   2014.
 
 \bibitem{eloot_2002}
-S.~Eloot, D.~D. Wachter, I.~V. Tricht, and P.~Verdonck, ``{Computational Flow
+S.~Eloot, D.~de~Wachter, I.~van Tricht, and P.~Verdonck, ``{Computational Flow
   Modeling in Hollow-Fiber Dialyzers},'' {\em Artificial Organs}, vol.~26,
   no.~7, pp.~590--599, 2002.
 
 \bibitem{snedeker_2005}
 J.~Snedeker, M.~Barbezat, P.~Niederer, F.~Schmidlin, and M.~Farshad, ``{Strain
-  energy density as a rupture criterion for the kidney: impact tests on porcine
-  organs, finite element simulation, and a baseline comparison between human
-  and porcine tissues},'' {\em Journal of Biomechanics}, vol.~38, no.~5,
+  Energy Density as a Rupture Criterion for the Kidney: Impact Tests on Porcine
+  Organs, Finite Element Simulation, and a Baseline Comparison Between Human
+  and Porcine Tissues},'' {\em Journal of Biomechanics}, vol.~38, no.~5,
   pp.~993--1001, 2005.
 
 \bibitem{idrus_2017}
-A.~A. Idrus, ``{DePuy Synthes rolls out 3D-printed facial implants from
-  Materialise},'' {\em FierceBiotech}.
+A.~Al~Idrus, ``{DePuy Synthes Rolls Out 3D-Printed Facial Implants from
+  Materialise},'' {\em FierceBiotech}, Sep 2017.
 \newblock
   \url{https://www.fiercebiotech.com/medtech/depuy-synthes-rolls-out-3d-printed-facial-implants-from-materialise}.
 
 \bibitem{narra_2014}
 N.~Narra, J.~Val\'a{\v{s}}ek, M.~Hannula, P.~Marci\'an, G.~K. S\'andor,
-  J.~Hyttinen, and J.~Wolff, ``{Finite element analysis of customized
-  reconstruction plates for mandibular continuity defect therapy},'' {\em
+  J.~Hyttinen, and J.~Wolff, ``{Finite Element Analysis of Customized
+  Reconstruction Plates for Mandibular Continuity Defect Therapy},'' {\em
   Journal of Biomechanics}, vol.~47, no.~1, pp.~264--268, 2014.
 
 \bibitem{frisardi_2011}
 G.~Frisardi, G.~Chessa, S.~Barone, A.~Paoli, A.~Razionale, and F.~Frisardi,
-  ``{Integration of 3D anatomical data obtained by CT imaging and 3D optical
-  scanning for computer aided implant surgery},'' {\em BMC Medical Imaging},
+  ``{Integration of 3D Anatomical Data Obtained by CT Imaging and 3D Optical
+  Scanning for Computer Aided Implant Surgery},'' {\em BMC Medical Imaging},
   vol.~11, no.~1, 2011.
 
 \bibitem{geng_2001}
-J.-P. Geng, K.~B. Tan, and G.-R. Liu, ``{Application of finite element analysis
-  in implant dentistry: A review of the literature},'' {\em The Journal of
+J.~Geng, K.~B. Tan, and G.~Liu, ``{Application of Finite Element Analysis in
+  Implant Dentistry: A Review of the Literature},'' {\em The Journal of
   Prosthetic Dentistry}, vol.~85, no.~6, pp.~585--598, 2001.
 
 \bibitem{committee}
@@ -120,7 +119,7 @@ T.~Morrison, L.~Angelone, M.~Myers, J.~Soneson, Q.~Wang, J.~Weaver,
   P.~Hariharan, {ASME V\&V40}, M.~Dharia, and M.~Reiterer, ``{{FDA Seminar on
   V\&V for Computational Modeling of Medical Devices}},'' Aug 2017.
 \newblock \url
-  {"https://figshare.com/articles/FDA_Seminar_on_Computational_Modeling_for_Medical_Devices/5018783"}.
+  {https://figshare.com/articles/FDA_Seminar_on_Computational_Modeling_for_Medical_Devices/5018783}.
 
 \bibitem{fda1_2016}
 {U.S. Food and Drug Administration}, ``{Reporting of Computational Modeling
@@ -136,110 +135,110 @@ P.~Pathmanathan, R.~A. Gray, V.~J. Romero, and T.~M. Morrison, ``{Applicability
   Jul 2017.
 
 \bibitem{larobina_murino_2014}
-M.~Larobina and L.~Murino, ``{Medical image file formats},'' {\em {Journal of
+M.~Larobina and L.~Murino, ``{Medical Image File Formats},'' {\em {Journal of
   Digital Imaging}}, vol.~27, pp.~200--206, Apr 2014.
 
 \bibitem{NMR}
-``{Nuclear magnetic resonance},'' {\em Wikipedia}.
+``{Nuclear Magnetic Resonance},'' {\em Wikipedia}.
 \newblock \url{https://en.wikipedia.org/wiki/Nuclear_magnetic_resonance}.
 
 \bibitem{waldman_campbell}
-S.~D. Waldman and R.~S. D. S.~D. Campbell, {\em {Imaging of pain: expert
-  consult}}.
+S.~D. Waldman and R.~S. Campbell, {\em {Imaging of Pain}}.
 \newblock {Elsevier Health Sciences}, 2010.
 
 \bibitem{jacobs_2007}
-M.~A. Jacobs, T.~S. Ibrahim, and R.~Ouwerkerk, ``{MR Imaging: Brief overview
-  and emerging applications},'' {\em RadioGraphics}, vol.~27, no.~4,
+M.~A. Jacobs, T.~S. Ibrahim, and R.~Ouwerkerk, ``{MR Imaging: Brief Overview
+  and Emerging Applications},'' {\em RadioGraphics}, vol.~27, no.~4,
   pp.~1213--1229, 2007.
 
 \bibitem{hendrick_1994}
-R.~E. Hendrick, ``{The AAPM/RSNA physics tutorial for residents. Basic physics
-  of MR imaging: an introduction},'' {\em RadioGraphics}, vol.~14, no.~4,
+R.~E. Hendrick, ``{The AAPM/RSNA Physics Tutorial for Residents. Basic Physics
+  of MR Imaging: An Introduction},'' {\em RadioGraphics}, vol.~14, no.~4,
   pp.~829--846, 1994.
 
 \bibitem{nishimura_2010}
-D.~G. Nishimura, {\em {Principles of magnetic resonance imaging}}.
+D.~G. Nishimura, {\em {Principles of Magnetic Resonance Imaging}}.
 \newblock Stanford University, 2010.
 
 \bibitem{brown_semelka_2003}
-M.~A. Brown and R.~C. Semelka, {\em {MRI: basic principles and applications}}.
+M.~A. Brown and R.~C. Semelka, {\em {MRI: Basic Principles and Applications}}.
 \newblock Wiley-Liss, 2003.
 
 \bibitem{webb_2003}
-A.~G. Webb, {\em {Introduction to biomedical Imaging}}.
-\newblock John Wiley \& Sons, Incorporated, 2003.
+A.~G. Webb, {\em {Introduction to Biomedical Imaging}}.
+\newblock John Wiley \& Sons, Inc., 2003.
 
 \bibitem{imaios}
-``{MRI image formation - objectives},'' {\em IMAIOS}.
+``{MRI Image Formation - Objectives},'' {\em IMAIOS}.
 \newblock
   \url{https://www.imaios.com/en/e-Courses/e-MRI/The-Physics-behind-it-all}.
 
 \bibitem{beek_hoffman_2008}
-E.~J.~V. Beek and E.~A. Hoffman, ``{Functional imaging: CT and MRI},'' {\em
+E.~J. van Beek and E.~A. Hoffman, ``{Functional Imaging: CT and MRI},'' {\em
   Clinics in Chest Medicine}, vol.~29, no.~1, pp.~195--216, 2008.
 
 \bibitem{pomeranz_2007}
-S.~J. Pomeranz and R.~Taranto, ``{Imaging on trial: MRI versus CT},'' {\em
-  Imaging technologies}, Jan 2007.
+S.~J. Pomeranz and R.~Taranto, ``{Imaging on Trial: MRI Versus CT},'' {\em
+  Imaging Technologies}, Jan 2007.
 
 \bibitem{mahesh_2002}
-M.~Mahesh, ``{The AAPM/RSNA physics tutorial for residents},'' {\em
-  RadioGraphics}, vol.~22, no.~4, pp.~949--962, 2002.
+M.~Mahesh, ``{The AAPM/RSNA Physics Tutorial for Residents. Search for
+  Isotropic Resolution in CT from Conventional Through Multiple-Row
+  Detector},'' {\em RadioGraphics}, vol.~22, no.~4, pp.~949--962, 2002.
 
 \bibitem{goldman_2007}
-L.~W. Goldman, ``{Principles of CT and CT technology},'' {\em Journal of
+L.~W. Goldman, ``{Principles of CT and CT Technology},'' {\em Journal of
   Nuclear Medicine Technology}, vol.~35, pp.~115--128, Jan 2007.
 
 \bibitem{chetih_2015}
-N.~Chetih and Z.~Messali, ``{Tomographic image reconstruction using filtered
-  back projection (FBP) and algebraic reconstruction technique (ART)},'' {\em
+N.~Chetih and Z.~Messali, ``{Tomographic Image Reconstruction Using Filtered
+  Back Projection (FBP) and Algebraic Reconstruction Technique (ART)},'' {\em
   2015 3rd International Conference on Control, Engineering \& Information
   Technology (CEIT)}, 2015.
 
 \bibitem{valocik_2005}
-G.~Valocik, O.~Kamp, and C.~Visser, ``{Three-dimensional echocardiography in
-  mitral valve disease},'' {\em European Journal of Echocardiography}, vol.~6,
+G.~Valocik, O.~Kamp, and C.~Visser, ``{Three-Dimensional Echocardiography in
+  Mitral Valve Disease},'' {\em European Journal of Echocardiography}, vol.~6,
   no.~6, pp.~443--454, 2005.
 
 \bibitem{bruining_2000}
-N.~Bruining, C.~Lanc\'ee, J.~R. Roelandt, and N.~Bom, ``{Three-dimensional
-  echocardiography paves the way toward virtual reality},'' {\em Ultrasound in
+N.~Bruining, C.~Lanc\'ee, J.~R. Roelandt, and N.~Bom, ``{Three-Dimensional
+  Echocardiography Paves the Way Toward Virtual Reality},'' {\em Ultrasound in
   Medicine \& Biology}, vol.~26, no.~7, pp.~1065--1074, 2000.
 
 \bibitem{o'donnell_westin_2011}
-L.~J. O'Donnell and C.-F. Westin, ``{An introduction to diffusion tensor image
-  analysis},'' {\em Neurosurgery Clinics of North America}, vol.~22, no.~2,
+L.~J. O'Donnell and C.~Westin, ``{An Introduction to Diffusion Tensor Image
+  Analysis},'' {\em Neurosurgery Clinics of North America}, vol.~22, no.~2,
   pp.~185--196, 2011.
 
 \bibitem{alexander_lee_lazar_field_2007}
-A.~L. Alexander, J.~E. Lee, M.~Lazar, and A.~S. Field, ``{Diffusion tensor
-  imaging of the brain},'' {\em Neurotherapeutics}, vol.~4, no.~3,
+A.~L. Alexander, J.~E. Lee, M.~Lazar, and A.~S. Field, ``{Diffusion Tensor
+  Imaging of the Brain},'' {\em Neurotherapeutics}, vol.~4, no.~3,
   pp.~316--329, 2007.
 
 \bibitem{zaleska_2014}
-U.~Zaleska-Dorobisz, K.~Kaczorowski, A.~Pawlu/'{s}, A.~Puchalska, and
-  M.~Inglot, ``{Ultrasound elastography - review of techniques and its clinical
-  applications},'' {\em Advances in Clinical and Experimental Medicine},
+U.~Zaleska-Dorobisz, K.~Kaczorowski, A.~Pawlu\'{s}, A.~Puchalska, and
+  M.~Inglot, ``{Ultrasound Elastography - Review of Techniques and Its Clinical
+  Applications},'' {\em Advances in Clinical and Experimental Medicine},
   vol.~23, pp.~645--655, 2014.
 
 \bibitem{glaser_manduca_ehman_2012}
-K.~J. Glaser, A.~Manduca, and R.~L. Ehman, ``{Review of MR elastography
-  applications and recent developments},'' {\em Journal of Magnetic Resonance
+K.~J. Glaser, A.~Manduca, and R.~L. Ehman, ``{Review of MR Elastography
+  Applications and Recent Developments},'' {\em Journal of Magnetic Resonance
   Imaging}, vol.~36, no.~4, pp.~757--774, 2012.
 
 \bibitem{knowles_2016}
-N.~K. Knowles, J.~M. Reeves, and L.~M. Ferreira, ``{Quantitative computed
-  tomography (QCT) derived bone mineral density (BMD) in finite element
-  studies: a review of the literature},'' {\em Journal of Experimental
+N.~K. Knowles, J.~M. Reeves, and L.~M. Ferreira, ``{Quantitative Computed
+  Tomography (QCT) Derived Bone Mineral Density (BMD) in Finite Element
+  Studies: A Review of the Literature},'' {\em Journal of Experimental
   Orthopaedics}, vol.~3, no.~1, 2016.
 
 \bibitem{suetens_2017}
-P.~Suetens, {\em {Fundamentals of medical imaging}}.
+P.~Suetens, {\em {Fundamentals of Medical Imaging}}.
 \newblock Cambridge University Press, 2017.
 
 \bibitem{MATLAB}
-MATLAB, {\em version 9.2.0 (R2017a)}.
+{\em MATLAB, Version 9.2.0 (R2017a)}.
 \newblock Natick, Massachusetts: The MathWorks Inc., 2017.
 
 \bibitem{nrrd}
@@ -255,35 +254,34 @@ MATLAB, {\em version 9.2.0 (R2017a)}.
 \newblock \url{https://analyzedirect.com/}.
 
 \bibitem{Seg3D}
-CIBC, 2016.
-\newblock Seg3D: Volumetric Image Segmentation and Visualization. Scientific
-  Computing and Imaging Institute (SCI), Download from:
-  \url{http://www.seg3d.org}.
+CIBC, ``{Seg3D: Volumetric Image Segmentation and Visualization. Scientific
+  Computing and Imaging Institute (SCI)},'' 2016.
+\newblock \url{http://www.seg3d.org}.
 
 \bibitem{pham_2000}
-D.~L. Pham, C.~Xu, and J.~L. Prince, ``{Current methods in medical image
-  segmentation},'' {\em Annual Review of Biomedical Engineering}, vol.~2,
+D.~L. Pham, C.~Xu, and J.~L. Prince, ``{Current Methods in Medical Image
+  Segmentation},'' {\em Annual Review of Biomedical Engineering}, vol.~2,
   no.~1, pp.~315--337, 2000.
 
 \bibitem{cvgg}
-``{The CardioVascular Research Grid},''
+``{CardioVascular Research Grid},''
 \newblock \url{http://cvrgrid.org/}.
 
 \bibitem{malladi_1995}
-R.~Malladi, J.~Sethian, and B.~Vemuri, ``{Shape modeling with front
-  propagation: a level set approach},'' {\em IEEE Transactions on Pattern
+R.~Malladi, J.~Sethian, and B.~Vemuri, ``{Shape Modeling with Front
+  Propagation: A Level Set Approach},'' {\em IEEE Transactions on Pattern
   Analysis and Machine Intelligence}, vol.~17, no.~2, pp.~158--175, 1995.
 
 \bibitem{sethian_1996}
-J.~A. Sethian, ``{A fast marching level set method for monotonically advancing
-  fronts},'' {\em Proceedings of the National Academy of Sciences}, vol.~93,
+J.~A. Sethian, ``{A Fast Marching Level Set Method for Monotonically Advancing
+  Fronts},'' {\em Proceedings of the National Academy of Sciences}, vol.~93,
   no.~4, pp.~1591--1595, 1996.
 
 \bibitem{litjens_2017}
-G.~Litjens, T.~Kooi, B.~E. Bejnordi, A.~A.~A. Setio, F.~Ciompi, M.~Ghafoorian,
-  J.~A. V.~D. Laak, B.~V. Ginneken, and C.~I. S\`{a}nchez, ``{A survey on deep
-  learning in medical image analysis},'' {\em Medical Image Analysis}, vol.~42,
-  pp.~60--88, 2017.
+G.~Litjens, T.~Kooi, B.~E. Bejnordi, A.~A. Setio, F.~Ciompi, M.~Ghafoorian,
+  J.~A. van~der Laak, B.~van Ginneken, and C.~I. S\`{a}nchez, ``{A Survey on
+  Deep Learning in Medical Image Analysis},'' {\em Medical Image Analysis},
+  vol.~42, pp.~60--88, 2017.
 
 \bibitem{lorensen_1987}
 W.~E. Lorensen and H.~E. Cline, ``{Marching Cubes: A High Resolution 3D Surface
@@ -298,8 +296,8 @@ P.~Young, T.~Beresford-West, S.~Coward, B.~Notarberardino, B.~Walker, and
   Sciences}, vol.~366, no.~1878, pp.~3155--3173, 2008.
 
 \bibitem{egst}
-G.~Taubin, ``{Geometric Signal Processing on Polygonal Meshes},'' in {\em
-  Eurographics 2000 - STARs}, Eurographics Association, 2000.
+G.~Taubin, ``{Geometric Signal Processing on Polygonal Meshes},'' {\em
+  Eurographics 2000 - STARs}, 2000.
 
 \bibitem{meyer_2008}
 M.~Meyer, R.~Whitaker, R.~Kirby, C.~Ledergerber, and H.~Pfister,
@@ -318,13 +316,13 @@ Q.~Fang and D.~A. Boas, ``{Tetrahedral Mesh Generation from Volumetric Binary
   Imaging: From Nano to Macro}, 2009.
 
 \bibitem{boissonnat_2009}
-J.-D. Boissonnat, J.-P. Pons, and M.~Yvinec, ``{From Segmented Images to Good
-  Quality Meshes Using Delaunay Refinement},'' {\em Emerging Trends in Visual
-  Computing Lecture Notes in Computer Science}, pp.~13--37, 2009.
+J.~Boissonnat, J.~Pons, and M.~Yvinec, ``{From Segmented Images to Good Quality
+  Meshes Using Delaunay Refinement},'' {\em Emerging Trends in Visual Computing
+  Lecture Notes in Computer Science}, pp.~13--37, 2009.
 
 \bibitem{zhao_2016}
-J.-X. Zhao, T.~Coupez, E.~Decenci\`{e}re, D.~Jeulin, D.~C\`{a}rdenas-Pe\~{n}a,
-  and L.~Silva, ``{Direct Multiphase Mesh Generation from 3D Images Using
+J.~Zhao, T.~Coupez, E.~Decenci\`{e}re, D.~Jeulin, D.~C\`{a}rdenas-Pe\~{n}a, and
+  L.~Silva, ``{Direct Multiphase Mesh Generation from 3D Images Using
   Anisotropic Mesh Adaptation and a Redistancing Equation},'' {\em Computer
   Methods in Applied Mechanics and Engineering}, vol.~309, pp.~288--306, 2016.
 
@@ -338,19 +336,19 @@ G.~Taubin, ``{Curve and Surface Smoothing Without Shrinkage},'' {\em
   Proceedings of IEEE International Conference on Computer Vision}, 1995.
 
 \bibitem{labsik_2002}
-U.~Labsik, K.~Hormann, M.~Meister, and G.~Günther, ``{Hierarchical
+U.~Labsik, K.~Hormann, M.~Meister, and G.~G\"{u}nther, ``{Hierarchical
   Iso-Surface Extraction},'' {\em Journal of Computing and Information Science
   in Engineering}, vol.~2, no.~4, p.~323, 2002.
 
 \bibitem{kobbelt_2001}
-L.~P. Kobbelt, M.~Botsch, U.~Schwanecke, and H.-P. Seidel, ``{Feature sensitive
-  surface extraction from volume data},'' {\em Proceedings of the 28th annual
-  conference on Computer graphics and interactive techniques - SIGGRAPH 01},
+L.~P. Kobbelt, M.~Botsch, U.~Schwanecke, and H.~Seidel, ``{Feature Sensitive
+  Surface Extraction from Volume Data},'' {\em Proceedings of the 28th Annual
+  Conference on Computer Graphics and Interactive Techniques - SIGGRAPH 01},
   2001.
 
 \bibitem{lempitsky_2010}
-V.~Lempitsky, ``{Surface extraction from binary volumes with higher-order
-  smoothness},'' {\em 2010 IEEE Computer Society Conference on Computer Vision
+V.~Lempitsky, ``{Surface Extraction from Binary Bolumes with Higher-Order
+  Smoothness},'' {\em 2010 IEEE Computer Society Conference on Computer Vision
   and Pattern Recognition}, 2010.
 
 \bibitem{rowan}
@@ -363,7 +361,7 @@ S.~G. Johnson, ``{The NLopt Nonlinear Optimization Package},''
 
 \bibitem{amenta_2001}
 N.~Amenta, S.~Choi, and R.~K. Kolluri, ``{The Power Crust},'' {\em Proceedings
-  of the sixth ACM symposium on Solid modeling and applications - SMA 01},
+  of the Sixth ACM Symposium on Solid modeling and Applications - SMA 01},
   2001.
 
 \bibitem{kazhdan_2008}
@@ -377,8 +375,7 @@ M.~Kazhdan and H.~Hoppe, ``{Screened Poisson Surface Reconstruction},'' {\em
 \bibitem{berger}
 M.~Berger, A.~Tagliasacchi, L.~M. Seversky, P.~Alliez, J.~A. Levine, A.~Sharf,
   and C.~T. Silva, ``{State of the Art in Surface Reconstruction from Point
-  Clouds},'' in {\em Eurographics 2014 - State of the Art Reports} (S.~Lefebvre
-  and M.~Spagnuolo, eds.), The Eurographics Association, 2014.
+  Clouds},'' {\em Eurographics 2014 - State of the Art Reports}, 2014.
 
 \bibitem{aurenhammer_1991}
 F.~Aurenhammer, ``{Voronoi Diagrams - A Survey of a Fundamental Geometric Data
@@ -390,12 +387,12 @@ C.~B. Barber, D.~P. Dobkin, and H.~Huhdanpaa, ``{The Quickhull Algorithm for
   pp.~469--483, Jan 1996.
 
 \bibitem{valette_2004}
-S.~Valette and J.-M. Chassery, ``{Approximated Centroidal Voronoi Diagrams for
+S.~Valette and J.~Chassery, ``{Approximated Centroidal Voronoi Diagrams for
   Uniform Polygonal Mesh Coarsening},'' {\em Computer Graphics Forum}, vol.~23,
   no.~3, pp.~381--389, 2004.
 
 \bibitem{valette_2008}
-S.~Valette, J.-M. Chassery, and R.~Prost, ``{Generic Remeshing of 3D Triangular
+S.~Valette, J.~Chassery, and R.~Prost, ``{Generic Remeshing of 3D Triangular
   Meshes with Metric-Dependent Discrete Voronoi Diagrams},'' {\em IEEE
   Transactions on Visualization and Computer Graphics}, vol.~14, no.~2,
   pp.~369--381, 2008.
@@ -415,12 +412,12 @@ T.~Blacker, ``{Automated Conformal Hexahedral Meshing Constraints, Challenges
   pp.~201--210, 2001.
 
 \bibitem{tautges_2001}
-T.~J. Tautges, ``{The generation of hexahedral meshes for assembly geometry:
-  survey and progress},'' {\em International Journal for Numerical Methods in
+T.~J. Tautges, ``{The Generation of Hexahedral Meshes for Assembly Geometry:
+  Survey and Progress},'' {\em International Journal for Numerical Methods in
   Engineering}, vol.~50, no.~12, pp.~2617--2642, 2001.
 
 \bibitem{baudouin_2014}
-T.~Baudouin, J.-F. Remacle, E.~Marchandise, F.~Henrotte, and C.~Geuzaine, ``{A
+T.~Baudouin, J.~Remacle, E.~Marchandise, F.~Henrotte, and C.~Geuzaine, ``{A
   Frontal Approach to Hex-Dominant Mesh Generation},'' {\em Advanced Modeling
   and Simulation in Engineering Sciences}, vol.~1, no.~1, 2014.
 
@@ -430,13 +427,13 @@ X.~Gao, W.~Jakob, M.~Tarini, and D.~Panozzo, ``{Robust Hex-Dominant Mesh
   Transactions on Graphics}, vol.~36, no.~4, pp.~1--13, 2017.
 
 \bibitem{lobos_2015}
-C.~Lobos and E.~Gonz\'{a}lez, ``{Mixed-element Octree: A Meshing Technique
+C.~Lobos and E.~Gonz\'{a}lez, ``{Mixed-Element Octree: A Meshing Technique
   Toward Fast and Real-Time Simulations in Biomedical Applications},'' {\em
   International Journal for Numerical Methods in Biomedical Engineering},
   vol.~31, no.~12, 2015.
 
 \bibitem{lohner_1997}
-R.~L\:{o}hner, ``{Automatic Unstructured Grid Generators},'' {\em Finite
+R.~L\"{o}hner, ``{Automatic Unstructured Grid Generators},'' {\em Finite
   Elements in Analysis and Design}, vol.~25, no.~1-2, pp.~111--134, 1997.
 
 \bibitem{jin_1993}
@@ -445,7 +442,7 @@ H.~Jin and R.~I. Tanner, ``{Generation of Unstructured Tetrahedral Meshes by
   Methods in Engineering}, vol.~36, no.~11, pp.~1805--1823, 1993.
 
 \bibitem{lohner_1988}
-R.~L\:{o}hner and P.~Parikh, ``{Generation of Three-Dimensional Unstructured
+R.~L\"{o}hner and P.~Parikh, ``{Generation of Three-Dimensional Unstructured
   Grids by the Advancing-Front Method},'' {\em International Journal for
   Numerical Methods in Fluids}, vol.~8, no.~10, pp.~1135--1149, 1988.
 
@@ -454,18 +451,19 @@ H.~Si, ``{TetGen, a Delaunay-Based Quality Tetrahedral Mesh Generator},'' {\em
   ACM Transactions on Mathematical Software}, vol.~41, pp.~1--36, Apr 2015.
 
 \bibitem{hughes_2007}
-T.~J.~R. Hughes, {\em {The Finite Element Method: Linear Static and Dynamic
-  Finite Element Analysis}}.
+T.~J. Hughes, {\em {The Finite Element Method: Linear Static and Dynamic Finite
+  Element Analysis}}.
 \newblock Dover publication, Inc, 2007.
 
 \bibitem{wang_2004}
 E.~Wang, T.~Nelson, and R.~Rauch, ``{Back to Elements - Tetrahedra vs.
-  Hexahedra},'' 2004.
+  Hexahedra},'' {\em Proceedings of the 2004 International ANSYS Conference},
+  2004.
 
 \bibitem{benzley_1995}
 S.~E. Benzley, E.~Perry, K.~Merkley, B.~Clark, and G.~Sjaardama, ``{A
   Comparison of All Hexagonal and All Tetrahedral Finite Element Meshes for
-  Elastic and Elasto-Plastic Analysis},'' in {\em In Proceedings, 4th
+  Elastic and Elasto-Plastic Analysis},'' {\em Proceedings of the 4th
   International Meshing Roundtable}, pp.~179--191, 1995.
 
 \bibitem{maas_2016}
@@ -476,7 +474,7 @@ S.~A. Maas, B.~J. Ellis, D.~S. Rawlins, and J.~A. Weiss, ``{Finite Element
 
 \bibitem{garimella_2014}
 R.~V. Garimella, J.~Kim, and M.~Berndt, ``{Polyhedral Mesh Generation and
-  Optimization for Non-manifold Domains},'' {\em Proceedings of the 22nd
+  Optimization for Non-Manifold Domains},'' {\em Proceedings of the 22nd
   International Meshing Roundtable}, pp.~313--330, 2014.
 
 \bibitem{lee_2015}
@@ -509,15 +507,13 @@ O.~Hafez and M.~Rashid, ``{Shabaka: Image-Based Mesh Generation},'' {\em
 
 \bibitem{meshlab}
 P.~Cignoni, M.~Callieri, M.~Corsini, M.~Dellepiane, F.~Ganovelli, and
-  G.~Ranzuglia, ``{MeshLab: an Open-Source Mesh Processing Tool},'' in {\em
-  Eurographics Italian Chapter Conference} (V.~Scarano, R.~D. Chiara, and
-  U.~Erra, eds.), The Eurographics Association, 2008.
+  G.~Ranzuglia, ``{MeshLab: an Open-Source Mesh Processing Tool},'' {\em
+  Eurographics Italian Chapter Conference}, 2008.
 
 \bibitem{geuzaine_2009}
-C.~Geuzaine and J.-F. Remacle, ``{Gmsh: A 3-D finite element mesh generator
-  with built-in pre- and post-processing facilities},'' {\em International
-  Journal for Numerical Methods in Engineering}, vol.~79, pp.~1309--1331, Oct
-  2009.
+C.~Geuzaine and J.~Remacle, ``{Gmsh: A 3-D Finite Element Mesh Generator with
+  Built-In Pre- and Post-Processing Facilities},'' {\em International Journal
+  for Numerical Methods in Engineering}, vol.~79, pp.~1309--1331, Oct 2009.
 
 \bibitem{brew}
 ``{Homebrew: The Missing Package Manager for MacOS},''
@@ -532,22 +528,25 @@ M.~M. Rashid, ``{Celeris Theory Notes: Finite Element Approximation in
   Nonlinear Solid Mechanics},'' 2017.
 
 \bibitem{rashid_289}
-M.~M. Rashid, ``{Advanced Topics in Finite Element Methods},'' {\em Lecture
-  Notes}, 2014.
+M.~M. Rashid, {\em {Advanced Topics in Finite Element Methods}}.
+\newblock Lecture Notes, 2014.
 
 \bibitem{rashid_212}
-Y.~Dafalias, ``{Finite Elements: Application to Linear and Non-Linear
-  Structural Mechanics Problems},'' {\em Lecture Notes}, 2014.
+Y.~Dafalias, {\em {Finite Elements: Application to Linear and Non-Linear
+  Structural Mechanics Problems}}.
+\newblock Lecture Notes, 2014.
 
 \bibitem{rashid_201}
-M.~M. Rashid, ``{Introduction to Elasticity},'' {\em Lecture Notes}, 2009.
+M.~M. Rashid, {\em {Introduction to Elasticity}}.
+\newblock Lecture Notes, 2009.
 
 \bibitem{suku_212}
-N.~Sukumar, ``{Finite Element Procedures in Applied Mechanics},'' {\em Lecture
-  Notes}, 2010.
+N.~Sukumar, {\em {Finite Element Procedures in Applied Mechanics}}.
+\newblock Lecture Notes, 2010.
 
 \bibitem{dafalias_205}
-Y.~Dafalias, ``{Continuum Mechanics},'' {\em Lecture Notes}, 2010.
+Y.~Dafalias, {\em {Continuum Mechanics}}.
+\newblock Lecture Notes, 2010.
 
 \bibitem{chadwick_1999}
 P.~Chadwick, {\em {Continuum Mechanics: Concise Theory and Problems}}.
@@ -574,15 +573,15 @@ M.~M. Rashid and B.~J. Thorne, ``{Incremental Objectivity in Cyclic Shearing
   vol.~12, no.~12, pp.~863--871, 1996.
 
 \bibitem{doll_2000}
-S.~Doll, K.~Schweizerhof, R.~Hauptmann, and C.~Freischl\:{a}ger, ``{On
+S.~Doll, K.~Schweizerhof, R.~Hauptmann, and C.~Freischl\"{a}ger, ``{On
   Volumetric Locking of Low-Order Solid and Solid-Shell Elements for Finite
   Elastoviscoplastic Deformations and Selective Reduced Integration},'' {\em
   Engineering Computations}, vol.~17, no.~7, pp.~874--902, 2000.
 
 \bibitem{hughes_2000}
-T.~J.~R. Hughes, {\em {Finite Element Method: Linear Static and Dynamic Finite
+T.~J. Hughes, {\em {Finite Element Method: Linear Static and Dynamic Finite
   Element Analysis}}.
-\newblock 2000.
+\newblock Dover Publications, 2000.
 
 \bibitem{sukumar_2006}
 N.~Sukumar and E.~A. Malsch, ``{Recent Advances in the Construction of
@@ -638,7 +637,7 @@ C.~M. Augustin, A.~Neic, M.~Liebmann, A.~J. Prassl, S.~A. Niederer, G.~Haase,
 \bibitem{guccione_2005}
 J.~C. Walker, M.~B. Ratcliffe, P.~Zhang, A.~W. Wallace, B.~Fata, E.~W. Hsu,
   D.~Saloner, and J.~M. Guccione, ``{MRI-Based Finite-Element Analysis of Left
-  Ventricular Aneurysm},'' {\em American Journal of Physiology-Heart and
+  Ventricular Aneurysm},'' {\em American Journal of Physiology - Heart and
   Circulatory Physiology}, vol.~289, no.~2, 2005.
 
 \bibitem{sack_2016}
@@ -648,30 +647,31 @@ K.~L. Sack, N.~H. Davies, J.~M. Guccione, and T.~Franz, ``{Personalised
   Failure Reviews}, vol.~21, pp.~815--826, Jan 2016.
 
 \bibitem{mcculloch_2000}
-F.~J. Vetter and A.~D. Mcculloch, ``{Three-Dimensional Stress and Strain in
+F.~J. Vetter and A.~D. McCulloch, ``{Three-Dimensional Stress and Strain in
   Passive Rabbit Left Ventricle: A Model Study},'' {\em Annals of Biomedical
   Engineering}, vol.~28, no.~7, pp.~781--792, 2000.
 
 \bibitem{gurev_2015}
-V.~Gurev, P.~Pathmanathan, J.-L. Fattebert, H.-F. Wen, J.~Magerlein, R.~A.
-  Gray, D.~F. Richards, and J.~J. Rice, ``{A High-Resolution Computational
-  Model of the Deforming Human Heart},'' {\em Biomechanics and Modeling in
+V.~Gurev, P.~Pathmanathan, J.~Fattebert, H.~Wen, J.~Magerlein, R.~A. Gray,
+  D.~F. Richards, and J.~J. Rice, ``{A High-Resolution Computational Model of
+  the Deforming Human Heart},'' {\em Biomechanics and Modeling in
   Mechanobiology}, vol.~14, pp.~829--849, Aug 2015.
 
 \bibitem{trayanova_2011}
 N.~A. Trayanova, J.~Constantino, and V.~Gurev, ``{Electromechanical Models of
-  the Ventricles},'' {\em American Journal of Physiology-Heart and Circulatory
-  Physiology}, vol.~301, no.~2, 2011.
+  the Ventricles},'' {\em American Journal of Physiology - Heart and
+  Circulatory Physiology}, vol.~301, no.~2, 2011.
 
 \bibitem{richards_2013}
-D.~F. Richards, J.~N. Glosli, E.~W. Draeger, A.~A. Mirin, B.~Chan, J.-L.
-  Fattebert, W.~D. Krauss, T.~Oppelstrup, C.~J. Butler, J.~A. Gunnels, and
-  et~al., ``{Towards Real-Time Simulation of Cardiac Electrophysiology in a
-  Human Heart at High Resolution},'' {\em Computer Methods in Biomechanics and
-  Biomedical Engineering}, vol.~16, no.~7, pp.~802--805, 2013.
+D.~F. Richards, J.~N. Glosli, E.~W. Draeger, A.~A. Mirin, B.~Chan,
+  J.~Fattebert, W.~D. Krauss, T.~Oppelstrup, C.~J. Butler, J.~A. Gunnels,
+  V.~Gurev, C.~Kim, J.~Magerlein, M.~Reumann, H.~Wen, and J.~J. Rice,
+  ``{Towards Real-Time Simulation of Cardiac Electrophysiology in a Human Heart
+  at High Resolution},'' {\em Computer Methods in Biomechanics and Biomedical
+  Engineering}, vol.~16, no.~7, pp.~802--805, 2013.
 
 \bibitem{usyk_2002}
-T.~P. Usyk, I.~J. Legrice, and A.~D. Mcculloch, ``{Computational Model of
+T.~P. Usyk, I.~J. Legrice, and A.~D. McCulloch, ``{Computational Model of
   Three-Dimensional Cardiac Electromechanics},'' {\em Computing and
   Visualization in Science}, vol.~4, no.~4, pp.~249--257, 2002.
 
@@ -694,18 +694,18 @@ J.~D. Bayer, R.~C. Blake, G.~Plank, and N.~A. Trayanova, ``{A Novel Rule-Based
   pp.~2243--2254, 2012.
 
 \bibitem{mfem-library}
-``{MFEM}: Modular finite element methods.'' \url{http://mfem.org}.
+``{{MFEM}: Modular Finite Element Methods}.'' \url{http://mfem.org}.
 
 \bibitem{kerckhoffs_2006}
-R.~C.~P. Kerckhoffs, M.~L. Neal, Q.~Gu, J.~B. Bassingthwaighte, J.~H. Omens,
-  and A.~D. Mcculloch, ``{Coupling of a 3D Finite Element Model of Cardiac
+R.~C. Kerckhoffs, M.~L. Neal, Q.~Gu, J.~B. Bassingthwaighte, J.~H. Omens, and
+  A.~D. McCulloch, ``{Coupling of a 3D Finite Element Model of Cardiac
   Ventricular Mechanics to Lumped Systems Models of the Systemic and Pulmonic
   Circulation},'' {\em Annals of Biomedical Engineering}, vol.~35, pp.~1--18,
   Aug 2006.
 
 \bibitem{oomph}
-``{Oomph-lib}: Object-oriented, open-source finite-element library for the
-  simulation of multi-physics problems.''
+``{{Oomph-lib}: Object-Oriented, Open-Source Finite-Element Library for the
+  Simulation of Multi-Physics Problems}.''
   \url{http://oomph-lib.maths.man.ac.uk/}.
 
 \bibitem{slideshare}
@@ -714,15 +714,19 @@ C.~Richardson, ``{The Cardiac Cycle}.''
 
 \bibitem{melodee}
 R.~Blake, ``{MELODEE - Modular Expression Language for Ordinary Differential
-  Equation Editing},''
+  Equation Editing},'' {\em GitHub}.
 \newblock \url{https://github.com/LLNL/melodee}.
 
 \bibitem{land_2015}
 S.~Land, V.~Gurev, S.~Arens, C.~M. Augustin, L.~Baron, R.~Blake, C.~Bradley,
-  S.~Castro, A.~Crozier, M.~Favino, and et~al., ``{Verification of Cardiac
-  Mechanics Software: Benchmark Problems and Solutions for Testing Active and
-  Passive Material Behaviour},'' {\em Proceedings of the Royal Society A:
-  Mathematical, Physical and Engineering Science}, vol.~471, Aug 2015.
+  S.~Castro, A.~Crozier, M.~Favino, T.~E. Fastl, T.~Fritz, H.~Gao, A.~Gizzi,
+  B.~E. Griffith, D.~E. Hurtado, R.~Krause, X.~Luo, M.~P. Nash, S.~Pezzuto,
+  G.~Plank, S.~Rossi, D.~Ruprecht, G.~Seemann, N.~P. Smith, J.~Sundnes, J.~J.
+  Rice, N.~Trayanova, D.~Wang, Z.~J. Wang, and S.~A. Niederer, ``{Verification
+  of Cardiac Mechanics Software: Benchmark Problems and Solutions for Testing
+  Active and Passive Material Behaviour},'' {\em Proceedings of the Royal
+  Society A: Mathematical, Physical and Engineering Science}, vol.~471, Aug
+  2015.
 
 \bibitem{dyadechko_2008}
 V.~Dyadechko and M.~Shashkov, ``{Reconstruction of Multi-Material Interfaces
@@ -737,8 +741,14 @@ M.~M. Rashid, ``{Approximate 3D Voronoi Partitions with Tolerance-Controlled
 ``{CMake}.''
 \newblock \url{https://cmake.org/}.
 
+\bibitem{gounley_2017}
+J.~Gounley, M.~Vardhan, and A.~Randles, ``{A Computational Framework to Assess
+  the Influence of Changes in Vascular Geometry on Blood Flow},'' {\em
+  Proceedings of the Platform for Advanced Scientific Computing Conference on -
+  PASC 17}, 2017.
+
 \bibitem{yang_2012}
-F.~Yang, Y.-M. Zhu, I.~E. Magnin, J.-H. Luo, P.~Croisille, and P.~B. Kingsley,
+F.~Yang, Y.~Zhu, I.~E. Magnin, J.~Luo, P.~Croisille, and P.~B. Kingsley,
   ``{Feature-Based Interpolation of Diffusion Tensor Fields and Application to
   Human Cardiac DT-MRI},'' {\em Medical Image Analysis}, vol.~16, no.~2,
   pp.~459--481, 2012.
@@ -749,14 +759,14 @@ L.~Zhukov and A.~Barr, ``{Heart-Muscle Fiber Reconstruction from Diffusion
   Frequency Control}, 2003.
 
 \bibitem{korte_2019}
-V.~Gurev, J.~Korte, O.~Hafez, J.-L. Fattebert, D.~F. Richards, and J.~J. Rice,
-  ``{Papillary Muscles Contraction does not Change Ventricular Wall
+V.~Gurev, J.~Korte, O.~Hafez, J.~Fattebert, D.~F. Richards, and J.~J. Rice,
+  ``{Papillary Muscles Contraction Does Not Change Ventricular Wall
   Mechanics},'' {\em 2015 Computing in Cardiology Conference (CinC)}, 2015.
 
 \bibitem{NAP13395}
-N.~R. Council, {\em {Assessing the Reliability of Complex Models: Mathematical
-  and Statistical Foundations of Verification, Validation, and Uncertainty
-  Quantification}}.
+{National Research Council}, {\em {Assessing the Reliability of Complex Models:
+  Mathematical and Statistical Foundations of Verification, Validation, and
+  Uncertainty Quantification}}.
 \newblock Washington, DC: The National Academies Press, 2012.
 
 \bibitem{fda3_2016}
@@ -767,7 +777,7 @@ N.~R. Council, {\em {Assessing the Reliability of Complex Models: Mathematical
   \url{https://www.fda.gov/downloads/MedicalDevices/DeviceRegulationandGuidance/GuidanceDocuments/UCM381813.pdf}.
 
 \bibitem{3dprints}
-``{3D Printing Technology: FDM vs. SLA vs. SLS},''
+``{3D Printing Technology: FDM vs. SLA vs. SLS},'' {\em Formlabs}.
 \newblock
   \url{https://formlabs.com/blog/fdm-vs-sla-vs-sls-how-to-choose-the-right-3d-printing-technology/}.
 

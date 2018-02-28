@@ -10,7 +10,6 @@ A level-1 auxiliary file: chap5-application-cardiac-mechanics.aux
 A level-1 auxiliary file: chap6-future-work.aux
 A level-1 auxiliary file: chap7-conclusions.aux
 Database file #1: references.bib
-Warning--empty year in idrus_2017
 Warning--empty author in committee
 Warning--empty journal in committee
 Warning--empty year in committee
@@ -19,6 +18,7 @@ Warning--empty author in NMR
 Warning--empty year in NMR
 Warning--empty author in imaios
 Warning--empty year in imaios
+Warning--empty author and editor in MATLAB
 Warning--empty author in nrrd
 Warning--empty journal in nrrd
 Warning--empty year in nrrd
@@ -39,7 +39,6 @@ Warning--empty year in ply
 Warning--empty author in vtk
 Warning--empty journal in vtk
 Warning--empty year in vtk
-Warning--empty booktitle in wang_2004
 Warning--empty year in shab
 Warning--empty author in brew
 Warning--empty journal in brew
@@ -47,52 +46,49 @@ Warning--empty year in brew
 Warning--empty journal in rashid_2017
 Warning--empty journal in cubit_2018
 Warning--empty year in cubit_2018
-Warning--empty publisher in hughes_2000
 Warning--empty journal in rashid_2015
-Warning--empty journal in melodee
 Warning--empty year in melodee
 Warning--empty author in 3dprints
-Warning--empty journal in 3dprints
 Warning--empty year in 3dprints
-You've used 153 entries,
+You've used 154 entries,
             1876 wiz_defined-function locations,
-            1222 strings with 30046 characters,
-and the built_in function-call counts, 38025 in all, are:
-= -- 3625
-> -- 1571
+            1225 strings with 30631 characters,
+and the built_in function-call counts, 38369 in all, are:
+= -- 3649
+> -- 1635
 < -- 0
-+ -- 593
-- -- 440
-* -- 2779
-:= -- 5432
-add.period$ -- 177
-call.type$ -- 153
-change.case$ -- 136
++ -- 616
+- -- 462
+* -- 2812
+:= -- 5507
+add.period$ -- 185
+call.type$ -- 154
+change.case$ -- 133
 chr.to.int$ -- 0
-cite$ -- 197
-duplicate$ -- 1965
-empty$ -- 3639
-format.name$ -- 440
-if$ -- 9345
+cite$ -- 194
+duplicate$ -- 1956
+empty$ -- 3640
+format.name$ -- 462
+if$ -- 9423
 int.to.chr$ -- 0
-int.to.str$ -- 153
-missing$ -- 161
-newline$ -- 500
-num.names$ -- 143
-pop$ -- 476
+int.to.str$ -- 154
+missing$ -- 166
+newline$ -- 508
+num.names$ -- 139
+pop$ -- 466
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 1227
+skip$ -- 1225
 stack$ -- 0
-substring$ -- 2171
-swap$ -- 753
+substring$ -- 2167
+swap$ -- 757
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 44
-while$ -- 294
-width$ -- 156
-write$ -- 1454
-(There were 44 warnings)
+warning$ -- 40
+while$ -- 291
+width$ -- 157
+write$ -- 1470
+(There were 40 warnings)

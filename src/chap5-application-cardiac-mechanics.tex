@@ -35,7 +35,7 @@ Gurev \textit{et al.}~\cite{gurev_2015} performed mechanical simulations on a qu
 \subsection{Methods}
 \label{Methods}
 
-In Cardioid, the heart is assumed to undergo quasi-static finite deformations, gravitational body forces are assumed negligible, and the stress measure of interest is the second Piola-Kirchoff stress $\bm{S}$. Thus, balance of linear momentum reduces to the following equation:
+In Cardioid, the heart is assumed to undergo quasi-static finite deformations, gravitational body forces are assumed negligible, and the stress measure of interest is the second Piola-Kirchhoff stress $\bm{S}$. Thus, balance of linear momentum reduces to the following equation:
 \begin{equation}
 (F_{ik}S_{kj}),_{j} = 0
 \end{equation}
@@ -108,7 +108,7 @@ The activation time $t_a$ at each integration point is gathered from the results
 		\includegraphics[scale=0.11]{media/4-cardioid/4-tagged.png}
 \label{fig:supp3}}
 %
-\caption{Mechanics modeling considerations: (a) electrical activation times, (b) muscle fiber orientations, and c) surface tagging and prescription of corresponding boundary conditions.}
+\caption{Mechanics modeling considerations: (a) electrical activation times, (b) muscle fiber orientations, and c) surface tagging and prescription of corresponding boundary conditions}
 \label{fig:supp}
 \end{sidewaysfigure}
 
@@ -168,7 +168,7 @@ The simulation was performed on the \textit{Surface} computing platform at Lawre
 
 Simulation results are shown in \figref{pv} and~\figref{snaps}. \figref{pv1} is known as a \textit{P-V loop} of the left ventricle, and \figref{pv2} is a time history plot of the pressures in the left and right ventricles. \figref{pv1} demonstrates the four stages of the cardiac cycle: 1) \textit{isovolumetric contraction} from label a to b, 2) \textit{ventricular ejection} of blood from label b to c, 3) \textit{isovolumetric relaxation} from label c to d, and 4) \textit{ventricular filling} from label d to a~\cite{slideshare}. Isovolumetric contraction and ventricular ejection comprise what is known as \textit{systole}, during which the ventricles are contracting. Isovolumetric relaxation and ventricular filling are known as \textit{diastole}, during which the ventricles are relaxing. The labels in \figref{pv1} correspond to the panels in~\figref{snaps}, which show the fiber stretch $\lambda$ plotted on deformed meshes at different points in the cardiac cycle. During a cycle, fiber stretch ranges from 0.6 to 1.4, certainly justifying the finite deformation approach. The results closely match those in Gurev~\textit{et al.}~\cite{gurev_2015}, in which a different heart geometry and electrophysiology were used. The full video of four heartbeats played at one quarter speed may be viewed at \href{http://youtu.be/RtQKEjdR4MU}{{\url{http://youtu.be/RtQKEjdR4MU}}}.
 
-In the process of performing simulations, the workflow for: generating the mesh, generating fiber orientations, running the electrophysiology code to produce activation times, running the mechanics code, and post-processing results was improved, simplified, and automated via Python scripts. A robust workflow for performing bi-ventricular cardiac mechanics simulations has thus been demonstrated. It will directly facilitate the current Cardioid research project involving machine learning, which requires a robust and timely generation of simulation results for large numbers of patient imaging data. Additional validation of the results, quantitiative metrics for solution quality, and sensitivity studies of the simulation parameters are still necessary before the tools may be used directly in a clinical setting.
+In the process of performing simulations, the workflow for: generating the mesh, generating fiber orientations, running the electrophysiology code to produce activation times, running the mechanics code, and post-processing results was improved, simplified, and automated via Python scripts. A robust workflow for performing bi-ventricular cardiac mechanics simulations has thus been demonstrated. It will directly facilitate the current Cardioid research project involving machine learning, which requires a robust and timely generation of simulation results for large numbers of patient imaging data. Additional validation of the results, quantitative metrics for solution quality, and sensitivity studies of the simulation parameters are still necessary before the tools may be used directly in a clinical setting.
 
 \begin{figure}[htbp]
 \centering
@@ -179,7 +179,7 @@ In the process of performing simulations, the workflow for: generating the mesh,
 		\includegraphics[scale=0.51]{media/4-cardioid/5-pv/pressure_volume-2.pdf}
 \label{fig:pv2}}		
 %
-\caption{Results from Cardioid simulation: (a) P-V loop of left ventricle, (b) pressure time history in left and right ventricles. \vspace{5mm}}
+\caption{Results from Cardioid simulation: (a) P-V loop of left ventricle, (b) pressure time history in left and right ventricles \vspace{5mm}}
 \label{fig:pv}
 \end{figure}
 
@@ -449,7 +449,7 @@ Up to this point, the mechanics implemented in Imitor and Celeris have been veri
 		\includegraphics[scale=0.46]{media/5-verif/6-land3/land3-2.pdf}
 \label{fig:land3-2}}	
 %
-\caption{Results for Land P3 verification problem: (a) Deformed position of middle of the ventricle wall, with (b) details at the inflection point (top right) and the apical region (bottom right).}
+\caption{Results for Land P3 verification problem: (a) Deformed position of middle of the ventricle wall, with (b) details at the inflection point (top right) and the apical region (bottom right)}
 \label{fig:land3}
 \end{figure}
 
