@@ -7,10 +7,10 @@ This chapter introduces and motivates the task of modeling the human heart. The 
 
 \section{Introduction}
 
-A brief overview of the anatomy and function of the heart will be presented, followed by a survey of simulations approaches found in the literature.
+A brief overview of the anatomy and function of the heart will be presented, followed by a survey of simulation approaches found in the literature.
 
 \subsection{Anatomy and Function of the Heart}
-The heart consists of four chambers: the \textit{left ventricle} (LV), \textit{right ventricle} (RV), \textit{left atrium} (LA), and \textit{right atrium} (RA) (See~\figref{anatomy}). The \textit{septum} is the tissue wall that separates the LV and RV. The thinner-walled atria act as blood reservoirs for the ventricles, which are predominantly responsible for the pumping function. The entire heart is enclosed by a fibrous sac known as the \textit{pericardium}, which resists rapid increases in cardiac size. The tip of the heart is known as the \textit{apex}, and the plane separating the ventricles and atria is known as the \textit{base}. The primary function of the heart is to pump blood throughout the body, delivering nutrients and removing waste from each organ~\cite{holzapfel_2009}. Cyclic pumping of the heart arises from the interaction of its electrical and mechanical function. Namely, the electrical activation of cardiac muscle fibers causes an excitation and contraction of tissue that drives the motion of the organ. Myocardial tissue consists of discrete muscle fiber bundles that exhibit orthotropic material behavior. For a more detailed description of the macro- and microstructural properties of the heart, refer to Holzapfel \textit{et al.}~\cite{holzapfel_2009}.
+The heart consists of four chambers: the \textit{left ventricle} (LV), \textit{right ventricle} (RV), \textit{left atrium} (LA), and \textit{right atrium} (RA) (See~\figref{anatomy}). The \textit{septum} is the tissue wall that separates the LV and RV. The thinner-walled atria act as blood reservoirs for the ventricles, which are predominantly responsible for the pumping function. The inner chambers of the heart are known as the \textit{endocardium}, and the outer wall is known as the \textit{epicardium}. The tip of the heart is known as the \textit{apex}, and the plane separating the ventricles and atria is known as the \textit{base}. The primary function of the heart is to pump blood throughout the body, delivering nutrients and removing waste from each organ~\cite{holzapfel_2009}. Cyclic pumping of the heart arises from the interaction of its electrical and mechanical function. Namely, the electrical activation of cardiac muscle fibers causes an excitation and contraction of tissue that drives the motion of the organ. Myocardial tissue consists of discrete muscle fiber bundles that exhibit orthotropic material behavior. For a more detailed description of the macro- and microstructural properties of the heart, refer to Holzapfel \textit{et al.}~\cite{holzapfel_2009}.
 
 \begin{figure}[htbp!]
 \centering
@@ -22,13 +22,13 @@ The heart consists of four chambers: the \textit{left ventricle} (LV), \textit{r
 \subsection{Related Work}
 Cardiovascular disease is the leading cause of death and disability, accounting for about 40$\%$ of all human mortality~\cite{genet_2015}. Heart failure is one of the most common, costly, and deadly medical conditions, affecting more than 25 million people worldwide~\cite{mann_2015}. Better understanding the nuanced electrical and mechanical behavior of normal and pathological hearts is an important step to improve treatment for heart disease. The complexity of the mechanisms of interest, time and cost savings offered by simulation, and the high sensitivity to various patient-specific parameters make \textit{in silico} modeling an important tool in addressing the problem.
 
-Indeed, cardiac mechanics is one of the most mature fields in computational biomechanics. Several well-known groups have advanced the field using a variety of approaches with respect to the geometry and meshing. \textit{The Living Heart Project}~\cite{genet_2015, baillargeon_2014} has arguably gained the most traction in advancing the understanding of whole-heart cardiac mechanics through simulation, albeit using linear tetrahedra for an artificial heart geometry that was not generated from medical imaging. Augustin \textit{et al.}~\cite{augustin_2016} also used linear tetrahedral finite elements, meshed from considerably smoothed surfaces originating from MRI data. Several research groups still only model simplified geometries of the left ventricle~\cite{guccione_2005, sack_2016}, in conjunction even with cubic Hermite finite elements~\cite{mcculloch_2000}. Generally speaking, though, most modern approaches generate either bi-ventricular models (i.e., left and right ventricles) or whole heart models that include the atria and potentially other geometric structures.
+Indeed, cardiac mechanics is one of the most mature fields in computational biomechanics. Several well-known groups have advanced the field using a variety of approaches with respect to geometry and meshing. \textit{The Living Heart Project}~\cite{genet_2015, baillargeon_2014} has arguably gained the most traction in advancing the understanding of whole-heart cardiac mechanics through simulation, albeit using linear tetrahedra for an artificial heart geometry that was not generated from medical imaging. Augustin \textit{et al.}~\cite{augustin_2016} also used linear tetrahedral finite elements, meshed from considerably smoothed surfaces originating from MRI data. Several research groups still only model simplified geometries of the left ventricle~\cite{guccione_2005, sack_2016}, in conjunction even with cubic Hermite finite elements~\cite{mcculloch_2000}. Generally speaking, though, most modern approaches generate either bi-ventricular models (i.e., left and right ventricles) or whole heart models that include the atria and potentially other geometric structures.
 
 Gurev \textit{et al.}~\cite{gurev_2015} performed mechanical simulations on a quadratic hex-dominant mixed element mesh of the human heart ventricles, whose work forms the basis for the cardiac mechanics simulations detailed in this chapter. The review article by Trayanova \textit{et al.}~\cite{trayanova_2011} provides an excellent summary of the various components involved in ventricular electromechanical modeling, many of which are discussed here.
 
 \section[Demonstration using Conventional Finite Elements]{Demonstration using Conventional Finite \\ Elements}
 
-\textit{Cardioid} is a highly efficient and scalable code at Lawrence Livermore National Laboratory that utilizes high performance computing for modeling the electromechanics of cardiac arrhythmia~\cite{richards_2013, gurev_2015}. The key features of the code will be highlighted, as is relevant to image-based cardiac mechanics modeling, and as a demonstration tool for image-based modeling and simulation pipeline using conventional finite element methods.
+\textit{Cardioid} is a highly efficient and scalable code at Lawrence Livermore National Laboratory that utilizes high performance computing for modeling the electromechanics of cardiac arrhythmia~\cite{richards_2013, gurev_2015}. The key features of the code will be highlighted, as is relevant to image-based cardiac mechanics modeling. It will be used to demonstrate the image-based modeling and simulation pipeline using conventional finite element methods.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -41,7 +41,7 @@ In Cardioid, the heart is assumed to undergo quasi-static finite deformations, g
 \end{equation}
 where $()_j = \frac{\partial ()}{\partial X_j}$ connotes a derivative with respect to the reference configuration position.
 
-In order to fully define and solve these equations, the following are specified: the mesh, constitutive update, solution-dependent pressure boundary conditions, and the finite element solver. Each of these elements will be described in turn.
+In order to fully define and solve these equations, the following must be specified: the mesh, the constitutive update, the solution-dependent pressure boundary conditions, and the finite element solver. Each of these elements will be described in turn.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -59,7 +59,7 @@ The cardiac tissue is assumed to exhibit an additive stress decomposition, such 
 
 \textbf{Passive Stress}
 
-The passive response of the cardiac tissue is characterized by an incompressible, transversely isotropic constitutive law by Usyk~\textit{et al.}~\cite{usyk_2002}. The strain energy density function is given by:
+The passive response of the cardiac tissue is characterized by an incompressible, orthotropic constitutive law by Usyk~\textit{et al.}~\cite{usyk_2002}. The strain energy density function is given by:
 \begin{gather}
 W(\bm{C}) = \frac{C}{2}\left(e^Q -1\right) \\
 \begin{aligned}
@@ -83,18 +83,16 @@ The active stress is defined as :
 \bm{S}_a = \sigma_a \bm{f} \bm{f}^{T}
 \label{eqn:active}
 \end{equation}
-where $\bm{f}$ is the unit muscle fiber direction and ${\sigma_a}$ is the scalar active tension induced in the fiber direction, defined in the reference configuration. A more appropriate and intuitive definition of the active stress would relate Cauchy stress to an active tension and fiber orientation in the \textit{current configuration}, but unfortunately to date that is not how active stress models are typically formulated.
-
-The vector $\bm{f}$ here may refer to the fiber orientation either in the reference configuration or the current configuration - within Cardioid it refers to the direction in the reference configuration.
+where $\bm{f}$ is the unit muscle fiber direction in the reference configuration and ${\sigma_a}$ is the scalar active tension induced in the fiber direction. A more appropriate and intuitive definition of the active stress would relate Cauchy stress to an active tension and fiber orientation in the \textit{current configuration}, but unfortunately to date that is not how active stress models are typically formulated.
 
 The model by Lumens \textit{et al.}~\cite{lumens_2009} is used to determine the active tension $\sigma_a$ in the following manner:
 \begin{align}
-\frac{d\bm{w}}{dt} = \bm{q}(\bm{w}; t_a, \lambda) \\
-\sigma_a \equiv \sigma_a(\bm{w}; t_a, \lambda)
+\sigma_a \equiv \sigma_a(\bm{w}; t_a, \lambda) \\
+\frac{d\bm{w}}{dt} = \bm{q}(\bm{w}; t_a, \lambda)
 \end{align}
 The scalar active tension depends on the state variables $\bm{w}$ of the muscle cells, the time $t_a$ at which the muscle cells electrically activate, and the muscle fiber stretch $\lambda$ in the direction of $\bm{f}$. Specifically, the fiber stretch is defined as $\lambda = (\bm{f}\bm{C}\bm{f}^T)^{1/2}$. The state variables are updated using a forward Euler scheme within the constitutive update. Further details on the state variables $\bm{w}$ and their evolution function $\bm{q}$ can be found in the work by Lumens~\textit{et al.}~\cite{lumens_2009}.
 
-The activation time $t_a$ at each integration point is gathered from the results of the electrophysiology portion of the Cardioid code~\cite{richards_2013}. Specifically, an electrostatics problem is solved numerically for time-varying voltages, and the activation time is determined based on when the voltage at each location passes a certain threshold. A one-way coupling is thus imposed, in which the mechanics code depends on the electrophysiology results, but not vice versa. A fixed beat duration $t_b$ is assumed, such that the myofilament model excites and contracts for the $n$th beat at time $(n-1)t_b + t_a$. Activation times are stored in the mechanics code as a field variable within the bi-ventricular mesh (see \figref{supp1}).
+The activation time $t_a$ at each integration point is gathered from the results of the electrophysiology portion of the Cardioid code~\cite{richards_2013}. Specifically, an electrostatics problem is solved numerically for time-varying voltages, and the activation time is determined based on when the voltage at each location passes a certain threshold. A one-way coupling is thus imposed, in which the mechanics code depends on the electrophysiology results, but not vice versa. A fixed beat duration $t_b$ is assumed, such that the myofilament model excites and contracts during the $n$th beat at time $(n-1)t_b + t_a$. Activation times are stored in the mechanics code as a field variable within the bi-ventricular mesh (see \figref{supp1}).
 
 \begin{sidewaysfigure}[htbp!]
 \centering
@@ -119,26 +117,26 @@ Both the passive and active portions of the constitutive model depend on the mus
 \begin{figure}[ht]
 \centering
 		\includegraphics[scale=0.3]{media/bayer.png}
-\caption{Boundary conditions and resulting scalar solutions to Laplace's equation in Bayer \textit{et al.}~\cite{bayer_2012}. The gradients of the solutions are used to construct the rule-based fiber orientations}
+\caption{Boundary conditions and resulting scalar solutions to Laplace's equation in Bayer \textit{et al.}~\cite{bayer_2012}. The gradients of the solutions are used to construct the rule-based fiber orientations.}
 \label{fig:bayer}
 \end{figure}
 
-The gradients of these solutions inform the construction of orthotropic fiber orientations at each solution point. Fiber orientations are then interpolated at the junctions between the LV, RV, and septum to ensure that the fiber direction changes smoothly and continuously throughout the entire myocardium. The details by which the gradients are used to construct the fiber orientations and by which orientations are interpolated are explained in Bayer~\textit{et al.}~\cite{bayer_2012}. The Laplace solves are performed using the highly parallelized finite element code \textit{MFEM}~\cite{mfem-library} on the same input quadratic tetrahedral mesh to be used for the mechanics simulation. The algorithm performs robustly for various geometries and compares well with fiber orientations generated directly from DTMRI data. The computed fiber orientations for the mesh of interest are shown in \figref{supp2}.
+The gradients of these solutions inform the construction of orthotropic fiber orientations at each solution point. Fiber orientations are then interpolated at the junctions between the LV, RV, and septum to ensure that the fiber direction changes smoothly and continuously throughout the entire myocardium. The details by which the gradients are used to construct the fiber orientations, and by which orientations are interpolated, are explained in Bayer~\textit{et al.}~\cite{bayer_2012}. The Laplace equation is solved using the highly parallelized finite element code \textit{MFEM}~\cite{mfem-library} on the same input quadratic tetrahedral mesh to be used for the mechanics simulation. The algorithm performs robustly for various geometries and compares well with fiber orientations generated directly from DTMRI data. The computed fiber orientations for the mesh of interest are shown in \figref{supp2}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Boundary Conditions}
 \label{Boundary Conditions}
 
-Fluid flow and fluid-structure interaction are not yet implemented in the Cardioid code, so ventricular volume constraints are imposed to mimic the effect of blood flow. The time-varying volumes of the ventricle cavities are calculated based on a lumped circulatory model by Kerckhoffs \textit{et al.}~\cite{kerckhoffs_2006}, which are in turn used to determine the time-varying, solution-dependent pressure boundary conditions.
+Fluid flow and fluid-structure interaction are not yet implemented in the Cardioid code, so ventricular volume constraints are imposed to mimic the effect of blood flow. The time-varying volumes of the ventricle cavities are calculated based on a lumped circulatory model by Kerckhoffs \textit{et al.}~\cite{kerckhoffs_2006}, which are then used to determine the time-varying, solution-dependent pressure boundary conditions.
 
-A system of coupled ODEs describing the time evolution of the left ventricle volume $V_{LV}$ and the right ventricle volume $V_{RV}$ for the circulatory model can be written in the form:
+A system of coupled ODEs describing the time evolution of the left ventricle volume $V_{LV}$ and the right ventricle volume $V_{RV}$ for the circulatory model can be written in the following form:
 \begin{align}
 \frac{d\bm{w}_{c}}{dt} = \bm{q}_c(\bm{w}_c, p_{LV}, p_{RV}; t) \\
 \frac{dV_{LV}}{dt} = g_{LV}(p_{LV}, \bm{w}_c; t) \\
 \frac{dV_{RV}}{dt} = g_{RV}(p_{RV}, \bm{w}_c; t)
 \end{align}
-where $\bm{w}_c$ is the vector of state variables for the circulatory model, $p_{LV}$ and $p_{RV}$ are the pressures inside the left and right ventricles, and ${dV_{LV}}/{dt}$ and ${dV_{RV}}/{dt}$ represent the change in blood volume in each of the ventricles. The right hand side functions $\bm{q}_c$, $g_{LV}$, and $g_{RV}$ are described in detail in Kerckhoffs~\textit{et al.}~\cite{kerckhoffs_2006}. This paradigm assumes both that the blood is an incompressible fluid, and that the pressure is spatially uniform within each ventricle. For each time step, the ventricular volumes are calculated from the circulatory model and imposed as constraints on the finite element mesh to determine the corresponding ventricular pressures. The details by which the pressures are computed from the volume constraint are detailed in Gurev~\textit{et al.}~\cite{gurev_2015}. The lumped circulatory model is shown in~\figref{bcs}.
+where $\bm{w}_c$ is the vector of state variables for the circulatory model, $p_{LV}$ and $p_{RV}$ are the pressures inside the left and right ventricles, respectively, and ${dV_{LV}}/{dt}$ and ${dV_{RV}}/{dt}$ represent the change in blood volume in each of the ventricles. The right hand side functions $\bm{q}_c$, $g_{LV}$, and $g_{RV}$ are described in detail in Kerckhoffs~\textit{et al.}~\cite{kerckhoffs_2006}. This paradigm assumes both that the blood is an incompressible fluid, and that the pressure is spatially uniform within each ventricle. For each time step, the ventricular volumes are calculated from the circulatory model and imposed as constraints on the finite element mesh to determine the corresponding ventricular pressures. The details by which the pressures are computed from the volume constraint are detailed in Gurev~\textit{et al.}~\cite{gurev_2015}. The lumped circulatory model is shown in~\figref{bcs}.
 \begin{figure}[ht]
 \centering
 		\includegraphics[scale=0.3]{media/bcs.png}
@@ -157,16 +155,16 @@ Displacement boundary conditions are enforced such that the base of the heart is
 
 The quadratic tetrahedral mesh described previously is used with the material model and boundary conditions to perform conventional finite element simulations in Cardioid. Cardioid employs a modified version of the freely available finite element library \textit{oomph-lib}~\cite{oomph}.
 
-Because Cardioid uses an implicit mechanics approach, a linear system must be solved for each time step for incremental nodal unknowns. In the interest of solving problems with very fine discretizations, Gurev \textit{et al.} avoid direct solvers of the linear system due to their poor scalability. Instead, they employ a Krylov subspace iterative solver, which is more suitable for large scalable problems. The existence of active contraction creates saddle-points in the linear system that are addressed with a novel preconditioner. The details of the iterative solver may be found in Gurev \textit{et al.}~\cite{gurev_2015}.
+Because Cardioid uses an implicit quasistatic mechanics approach, a linear system must be solved for each time step for incremental nodal unknowns. In the interest of solving problems with very fine discretizations, Gurev \textit{et al.} avoid direct solvers of the linear system due to their poor scalability. Instead, they employ a Krylov subspace iterative solver, which is more suitable for large scalable problems. The existence of active contraction creates saddle-points in the linear system that are addressed with a novel preconditioner. The details of the iterative solver may be found in Gurev \textit{et al.}~\cite{gurev_2015}.
 
-The simulation was performed on the \textit{Surface} computing platform at Lawrence Livermore National Laboratory. The Moab schedule manager was used to submit the job, which was run on 50 nodes with 16 cores per node, for a total of 800 processes. With an assumed beat duration of 1000 $ms$ for a healthy human heart (i.e., 60 beats per minute), the simulation was run to a time of 5100 ms with a $\Delta = 1$ $ms$ time increment. The simulation completed roughly one heartbeat per 24 hours of wall clock time. As mentioned, the first 100 ms are used to linearly apply the initial pressures for the simulation. The first beat is discarded to allow the simulation to reach a dynamic steady state, and thus four full beats of a healthy human heart are extracted from the results.
+The simulation was performed on the \textit{Surface} computing platform at Lawrence Livermore National Laboratory. The Moab schedule manager was used to submit the job, which was run on 50 nodes with 16 cores per node, for a total of 800 processes. With an assumed beat duration of 1000 $ms$ for a healthy human heart (i.e., 60 beats per minute), the simulation was run to a time of 5100 ms with a $\Delta = 1$ $ms$ time increment. The simulation completed roughly one heartbeat per 24 hours of wall clock time. As mentioned, the first 100 ms are used to linearly apply the initial pressures for the simulation, and is discarded. The first beat is also discarded to allow the simulation to reach a dynamic steady state, and thus four full beats of a healthy human heart are extracted from the results.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Results}
 \label{Results}
 
-Simulation results are shown in \figref{pv} and~\figref{snaps}. \figref{pv1} is known as a \textit{P-V loop} of the left ventricle, and \figref{pv2} is a time history plot of the pressures in the left and right ventricles. \figref{pv1} demonstrates the four stages of the cardiac cycle: 1) \textit{isovolumetric contraction} from label a to b, 2) \textit{ventricular ejection} of blood from label b to c, 3) \textit{isovolumetric relaxation} from label c to d, and 4) \textit{ventricular filling} from label d to a~\cite{slideshare}. Isovolumetric contraction and ventricular ejection comprise what is known as \textit{systole}, during which the ventricles are contracting. Isovolumetric relaxation and ventricular filling are known as \textit{diastole}, during which the ventricles are relaxing. The labels in \figref{pv1} correspond to the panels in~\figref{snaps}, which show the fiber stretch $\lambda$ plotted on deformed meshes at different points in the cardiac cycle. During a cycle, fiber stretch ranges from 0.6 to 1.4, certainly justifying the finite deformation approach. The results closely match those in Gurev~\textit{et al.}~\cite{gurev_2015}, in which a different heart geometry and electrophysiology were used. The full video of four heartbeats played at one quarter speed may be viewed at \href{http://youtu.be/RtQKEjdR4MU}{{\url{http://youtu.be/RtQKEjdR4MU}}}.
+Simulation results are shown in \figref{pv} and~\figref{snaps}. \figref{pv1} is known as a \textit{P-V loop} of the left ventricle, and \figref{pv2} is a time history plot of the pressures in the left and right ventricles. \figref{pv1} demonstrates the four stages of the cardiac cycle: 1) \textit{isovolumetric contraction} from label a to b, 2) \textit{ventricular ejection} of blood from label b to c, 3) \textit{isovolumetric relaxation} from label c to d, and 4) \textit{ventricular filling} from label d to a~\cite{slideshare}. Isovolumetric contraction and ventricular ejection comprise what is known as \textit{systole}, during which the ventricles are contracting. Isovolumetric relaxation and ventricular filling are known as \textit{diastole}, during which the ventricles are relaxing. The labels in \figref{pv1} correspond to the panels in~\figref{snaps}, which show the fiber stretch $\lambda$ plotted on deformed meshes at different points in the cardiac cycle. During a cycle, fiber stretch ranges from 0.6 to 1.4, certainly justifying the finite deformation approach. The results closely match those in Gurev~\textit{et al.}~\cite{gurev_2015}, in which a different heart geometry and electrophysiology were used. The full video of four heartbeats may be viewed at \href{http://youtu.be/RtQKEjdR4MU}{{\url{http://youtu.be/RtQKEjdR4MU}}}.
 
 In the process of performing simulations, the workflow for: generating the mesh, generating fiber orientations, running the electrophysiology code to produce activation times, running the mechanics code, and post-processing results was improved, simplified, and automated via Python scripts. A robust workflow for performing bi-ventricular cardiac mechanics simulations has thus been demonstrated. It will directly facilitate the current Cardioid research project involving machine learning, which requires a robust and timely generation of simulation results for large numbers of patient imaging data. Additional validation of the results, quantitative metrics for solution quality, and sensitivity studies of the simulation parameters are still necessary before the tools may be used directly in a clinical setting.
 
@@ -188,6 +186,7 @@ In the process of performing simulations, the workflow for: generating the mesh,
 \subfigure[]{%
 		\includegraphics[scale=0.08]{media/4-cardioid/6-vid/a.png}
 \label{fig:snaps1}}		
+\hfill
 \subfigure[]{%
 		\includegraphics[scale=0.08]{media/4-cardioid/6-vid/b.png}
 \label{fig:snaps2}}
@@ -195,6 +194,7 @@ In the process of performing simulations, the workflow for: generating the mesh,
 \subfigure[]{%
 		\includegraphics[scale=0.08]{media/4-cardioid/6-vid/c.png}
 \label{fig:snapsf3}}		
+\hfill
 \subfigure[]{%
 		\includegraphics[scale=0.08]{media/4-cardioid/6-vid/d.png}
 \label{fig:snaps4}}		
@@ -212,7 +212,7 @@ Efforts have been made to implement the mechanics described in this chapter into
 
 \subsection{Implementation}
 
-The same surface mesh used to produce the quadratic tetrahedral mesh for Cardioid is used to produce the polyhedral mesh in Celeris, shown in \figref{cel}. As mentioned in \chapref{3}, a significant reduction in the number of degrees of freedom is exhibited in comparison to the quadratic tet mesh used for Cardioid. The fiber orientations, activation times, and surface tags are generated using Cardioid and subsequently read into Celeris for use. The Dirichlet boundary conditions applied in Cardioid are applied in Celeris using the same surface tags shown in \figref{supp3}. For simplicity, the ventricular pressure time histories from the Cardioid simulation are used directly for the imposition of ventricular boundary conditions in Celeris, rather than imposing volume constraints as described previously. The Cauchy pressure time histories $p_{LV}(t)$ and $p_{RV}(t)$ are sufficient in demonstrating an image-based polyhedral FEM workflow. Of course, in the future the volume constraint would be implemented as well so that the Celeris mechanics code is completely independent of the Cardioid mechanics results. 
+The same surface mesh used to produce the quadratic tetrahedral mesh for Cardioid is used to produce the polyhedral mesh in Celeris, shown in \figref{cel}. As mentioned in \chapref{3}, a significant reduction in the number of degrees of freedom is exhibited in comparison to the quadratic tet mesh used for Cardioid. The fiber orientations, activation times, and surface tags are generated using Cardioid and subsequently read into Celeris for use. The Dirichlet boundary conditions applied in Cardioid are applied in Celeris using the same surface tags shown in \figref{supp3}. The ventricular pressure time histories from the Cardioid simulation are used directly for the imposition of ventricular boundary conditions in Celeris, since the Cauchy pressure time histories $p_{LV}(t)$ and $p_{RV}(t)$ are sufficient in demonstrating an image-based polyhedral FEM workflow. Future efforts to implement the volume constraint will be important to render the Celeris mechanics code completely independent of the Cardioid mechanics results. 
 
 The remaining consideration to perform cardiac simulations using polyhedral FEM is the implementation of the constitutive update.
 
@@ -221,24 +221,21 @@ The Usyk material model has been implemented within the Celeris framework. Rathe
 \begin{equation}
 W = \frac{C}{2}\left(e^Q -1\right) + C_{compr} (J \cdot \ln J - J + 1) \\
 \end{equation}
-The parameter $C_{compr}$ is defined such that the volumetric response of the material is significantly stiffer than the deviatoric response. It was found that a value of $C_{compr} \geq 200  C$ gives good results (compared to simulations enforcing full incompressibility) without significantly making the system poorly conditioned. Volumetric locking is then mitigated by an F-bar method, in which the deformation gradient is modified such that the dilatation $\det(\bm{F})$ at each integration point is replaced by an element-averaged value, as explained in \chapref{4}.
+The parameter $C_{compr}$ is defined such that the volumetric response of the material is significantly stiffer than the deviatoric response. It was found that a value of \mbox{$C_{compr} \geq 200  C$} gives good results (compared to simulations enforcing full incompressibility) without significantly making the system poorly conditioned. Volumetric locking is then mitigated by an F-bar method, in which the deformation gradient is modified such that the dilatation $\det\bm{F}$ at each integration point is replaced by an element-averaged value, as explained in \chapref{4}.
 
 \textbf{Passive stress}
 
-The material model framework in Celeris currently accepts material definitions in \textit{incremental form}. The incremental material model receives as input: the beginning step Cauchy stress $\overline{\bm{T}}$, beginning step state variables $\overline{\bm{s}}$, deformation rate $\bm{D}$, and material properties and other field parameters. Following the constitutive update, the model produces as output: the end step unrotated Cauchy stress $\tilde{\bm{T}}$, end step unrotated state variables $\tilde{\bm{s}}$, and end step tangent modulus ${\partial \tilde{\bm{T}}}/{\partial (\bm{D}\Delta)}$. However, hyperelastic materials are generally defined as functions of the deformation gradient $\bm{F}$, not of the strain rate $\bm{D}$. As is done in \chapref{4} for the Mooney-Rivlin material, it is assumed that $\hat{\bm{U}} = \text{exp}(\bm{D}\Delta)$, which is approximated using its Taylor expansion.
+The material model framework in Celeris currently accepts material definitions in incremental form. The incremental material model receives as input: the beginning step Cauchy stress $\overline{\bm{T}}$, beginning step state variables, stretch rate $\bm{D}$, and material properties and other field parameters. Following the constitutive update, the model produces as output: the end step unrotated Cauchy stress $\tilde{\bm{T}}$, end step unrotated state variables, and end step tangent modulus ${\partial \tilde{\bm{T}}}/{\partial (\bm{D}\Delta)}$. Special considerations are made to implement hyperelastic materials within this framework. The implementation of the Usyk material follows the same pattern as in \chapref{4} for the Mooney-Rivlin material.
 
-The beginning step deformation gradient $\overline{\bm{F}}$ is stored as a state variable to accommodate the incremental material form. Thus, the state variables $\bm{s}$ are comprised of $\overline{\bm{F}}$ and the active tension model state variables $\bm{w}$. Material parameters were previously defined in \eqnref{usyk}. The field parameters at each integration point are the fiber transformation matrix $\bm{Q}$ and activation time $t_a$. Both quantities are computed using Cardioid \textit{a priori} and are imported into Celeris at the integration points. It is important to distinguish between the \textit{transformation matrix} $\bm{Q}$ from the global to local fiber coordinate frames, and the \textit{rotation increment} $\hat{\bm{R}}$ that comprises the rotation portion of the incremental deformation gradient $\hat{\bm{F}}$. Lastly, the material model admits the beat duration $t_b$ and the beginning and end step times $t_n$ and $t_{n+1}$, which are used for the calculation of active stress.
+The beginning step deformation gradient $\overline{\bm{F}}$ is stored as a state variable to accommodate the incremental material form. Thus, the state variables are comprised of $\overline{\bm{F}}$ and the active tension model state variables $\bm{w}$. Material parameters were previously defined in \eqnref{usyk}. The field parameters at each integration point are the fiber orientations $\bm{f}$, $\bm{s}$, and $\bm{n}$ and the activation time $t_a$. Both quantities are computed using Cardioid \textit{a priori} and are imported into Celeris at the integration points. Lastly, the material model admits the beat duration $t_b$ and the beginning and end step times $t_n$ and $t_{n+1}$, which are used for the calculation of active stress.
 
-Because of the assumed additive stress decomposition $\tilde{\bm{T}} = \tilde{\bm{T}}_p + \tilde{\bm{T}}_a$, the passive and active stress are computed independently and then added together at the end of the constitutive update. The passive material update proceeds by first calculating the end step unrotated deformation gradient via $\tilde{\bm{F}} = \hat{\bm{U}}\overline{\bm{F}}$, and then by computing the end step unrotated Cauchy stress $\tilde{\bm{T}}$ based on $\tilde{\bm{F}}$:
+Because of the assumed additive stress decomposition $\tilde{\bm{T}} = \tilde{\bm{T}}_p + \tilde{\bm{T}}_a$, the passive and active stress are computed independently and then added together at the end of the constitutive update. The passive material update proceeds by first calculating the end step unrotated deformation gradient via $\tilde{\bm{F}} = \hat{\bm{U}}\overline{\bm{F}}$, and then by computing the end step unrotated Cauchy stress $\tilde{\bm{T}}$ based on $\tilde{\bm{F}}$. As discussed in \chapref{4}, the calculation does not actually require the beginning step Cauchy stress $\overline{\bm{T}}$. The relevant calculations follow:
 \begin{gather}
-\hat{\bm{U}} = \bm{I} + \bm{D}\Delta + \frac{1}{2}(\bm{D}\Delta)^2 + \frac{1}{6}(\bm{D}\Delta)^3
+\hat{\bm{U}} = \bm{I} + \bm{D}\Delta + \frac{1}{2}(\bm{D}\Delta)^2 + \frac{1}{6}(\bm{D}\Delta)^3 \\
+\tilde{\bm{F}} = \hat{\bm{U}}\overline{\bm{F}} \\
+\bm{E} = \frac{1}{2}(\tilde{\bm{F}}^T \tilde{\bm{F}} - \bm{I}) \\
+J  = \det{\tilde{\bm{F}}}
 \end{gather}
-\begin{align}
-\tilde{\bm{F}} &= \hat{\bm{U}}\overline{\bm{F}} \\
-\bm{C} &= \tilde{\bm{F}}^T \tilde{\bm{F}} \\
-\bm{E} &= \frac{1}{2}(\bm{C} - \bm{I}) \\
-J  &= \det{\tilde{\bm{F}}}
-\end{align}
 \begin{equation}
 \begin{aligned}
 Q =\text{\ } &b_{ff}\left(f_aE_{ab}f_b\right)^2  + b_{ss}\left(s_aE_{ab}s_b\right)^2 + b_{nn}\left(n_aE_{ab}n_b\right)^2 +\\
@@ -310,7 +307,7 @@ Finally, the passive and active stress, along with their tangent moduli, are com
 \tilde{\bm{T}} &= \tilde{\bm{T}}_p + \tilde{\bm{T}}_a \\
 \frac{\partial \tilde{\bm{T}}}{\partial (\bm{D}\Delta)} &= \frac{\partial \tilde{\bm{T}}_p}{\partial (\bm{D}\Delta)}+ \frac{\partial \tilde{\bm{T}}_a}{\partial (\bm{D}\Delta)}
 \end{align}
-Following the constitutive update routine, the end step Cauchy stress and tangent modulus are forward rotated as discussed in \chapref{4}. Additionally, the state variable $\bm{F}$ is forward rotated simply via $\bm{F} =\hat{\bm{R}}\tilde{\bm{F}}$.
+Following the constitutive update routine, the end step Cauchy stress and tangent modulus are forward rotated as discussed in \chapref{4}. Additionally, the deformation gradient is forward rotated simply via $\bm{F} =\hat{\bm{R}}\tilde{\bm{F}}$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -343,12 +340,14 @@ All components required to perform a complete cardiac simulation have been imple
 \subfigure[]{%
 		\includegraphics[scale=0.18]{media/5-verif/5-land2/land2-1.png}
 \label{fig:ventricles1}}		
+\hfill
 \subfigure[]{%
 		\includegraphics[scale=0.18]{media/5-verif/5-land2/land2-2.png}
 \label{fig:ventricles2}}		
 \subfigure[]{%
 		\includegraphics[scale=0.18]{media/5-verif/6-land3/land3-1.png}
 \label{fig:ventricles3}}		
+\hfill
 \subfigure[]{%
 		\includegraphics[scale=0.16]{media/5-verif/6-land3/land3-2.png}
 \label{fig:ventricles4}}		
@@ -357,25 +356,25 @@ All components required to perform a complete cardiac simulation have been imple
 \label{fig:ventricles}
 \end{figure}
 
-Figures \ref*{fig:gurev2}-\ref*{fig:land3.2} show the results for the six verification problems, mimicking the format used in the papers from which they came. The results presented compare Cardioid, Celeris, and an in-house conventional finite element code \textit{Imitor}. The implementation considerations are nearly identical for Imitor and Celeris, which allows us to distinguish between differences related to the finite element formulation and differences related to how incompressibility was enforced.
+Figures \ref*{fig:gurev2}-\ref*{fig:land3.2} show the results for the six verification problems, mimicking the format used in the papers from which they came. The results presented compare Cardioid, Celeris, and another conventional finite element code \textit{Imitor}. The implementation considerations are nearly identical for Imitor and Celeris, which allows us to distinguish between differences related to the finite element formulation and differences related to how incompressibility was enforced.
 
 For the cantilever beam problems Gurev P2, Gurev P3, Gurev P4, and Land P1, a 39 $\times$ 4 $\times$ 4 hex mesh is used. In the case of Cardioid and Imitor, linear hexahedral elements are employed. For the case of Celeris, linear cuboidal PEM elements are used. Thus, the element shapes are the same, but the element formulations differ. The polyhedral code Celeris performs very well in bending, torsion, and active contraction - the deformed meshes nearly identically match for all three codes.
 
-For the single ventricle problems Land P2 and Land P3, quadratic tetrahedral elements are used in Cardioid and linear hexahedral elements are used in Imitor. An adequate number of degrees of freedom were used to achieve converged results. A polyhedral mesh was generated for the problems but has not yet been tested, pending some fixes in the Celeris infrastructure unrelated to the scope of this project. The results for the single ventricle problems are satisfactorily close between Imitor and Cardioid, despite the difference in element choice and enforcement of incompressibility, which is promising since the material model implementation is nearly identical between Imitor and Celeris.
+For the single ventricle problems Land P2 and Land P3, quadratic tetrahedral elements are used in Cardioid and linear hexahedral elements are used in Imitor. An adequate number of degrees of freedom were ensured to achieve converged results for the two codes. A polyhedral mesh was generated for the problems but has not yet been tested, pending some fixes in the Celeris infrastructure unrelated to the scope of this project. The results for the single ventricle problems are satisfactorily close between Imitor and Cardioid, despite the difference in element choice and enforcement of incompressibility, which is promising since the material model implementation is very similar for Imitor and Celeris.
 
-Interestingly, Imitor's results appear to be slightly too stiff in bending, but slightly too compliant for volumetric deformations. The over-stiffness in bending is evidenced in Gurev P2, Land P1, and Land P2, whereas the over-compliance in volumetric deformation is evidenced in Gurev P4 and Land P3. More investigation would be required to attribute this difference to the enforcement of near-incompressibility rather than a fully incompressible material. Overall though, the difference in results is small enough to provide confidence that the material model has been implemented correctly in Imitor and in Celeris.
+Interestingly, Imitor's results appear to be slightly too stiff in bending, but slightly too compliant for volumetric deformations. The over-stiffness in bending is evidenced in Gurev P2, Land P1, and Land P2, whereas the over-compliance in volumetric deformation is evidenced in Gurev P4 and Land P3. More investigation would be required to attribute this difference to the enforcement of near-incompressibility. Overall though, the difference in results is small enough to provide confidence that the material model has been implemented correctly in Imitor and in Celeris.
 
-A comparison of the number of degrees of freedom for the three codes in the bending problem Land P1 is provided (\figref{land1-3}). It was not expected to be useful because the meshes are already quite coarse, and automated linear hex meshing for a simple cantilever beam geometry is easily achievable. It is expected that for the single ventricle problems Land P2 and Land P3, accurate results can be achieved using Celeris with a noticeable reduction in the number of DOF, which would complete \figref{land2-3} and \figref{land3.2-3}.
+A comparison of the number of degrees of freedom for the three codes in the bending problem Land P1 is provided (\figref{land1-3}). It was not expected to be useful because the meshes are already quite coarse, and automated linear hex meshing for a simple cantilever beam geometry is easily achievable. It is expected that for the single ventricle problems Land P2 and Land P3, accurate results can be achieved using Celeris with a noticeable reduction in the number of DOF, which would complete the plots in \figref{land2-3} and \figref{land3.2-3}.
 
 Up to this point, the mechanics implemented in Imitor and Celeris have been verified, and cuboidal polyhedral elements are performing well for the cantilever beam problems. Completing the verification process would involve running Land P2 and Land P3 in Celeris with general polyhedral elements, as well as potentially running the cantilever beam problems again in Celeris with non-cuboidal polyhedral elements. Once the fixes in Celeris are made, the suite of verification problems can be completed, after which point the code would be ready to perform the same cardiac simulations presented using Cardioid.
 
 \begin{figure}[ht]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/1-gurev2/gurev2-1.pdf}
+		\includegraphics[scale=0.45]{media/5-verif/1-gurev2/gurev2-1.pdf}
 \label{fig:gurev2-1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/1-gurev2/gurev2-2.pdf}
+		\includegraphics[scale=0.45]{media/5-verif/1-gurev2/gurev2-2.pdf}
 \label{fig:gurev2-2}}		
 %
 \caption{Results for Gurev P2 verification problem: (a) Displacement magnitude along diagonal axis, with (b) details for the free end of the beam}
@@ -385,10 +384,10 @@ Up to this point, the mechanics implemented in Imitor and Celeris have been veri
 \begin{figure}[ht!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/2-gurev3/gurev3-1.pdf}
+		\includegraphics[scale=0.45]{media/5-verif/2-gurev3/gurev3-1.pdf}
 \label{fig:gurev3-1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/2-gurev3/gurev3-2.pdf}
+		\includegraphics[scale=0.45]{media/5-verif/2-gurev3/gurev3-2.pdf}
 \label{fig:gure3-2}}		
 %
 \caption{Results for Gurev P3 verification problem: (a) Displacement magnitude along diagonal axis, with (b) details for the fixed end of the beam. The results for Imitor and Celeris are indistinguishable in these plots.}
@@ -398,10 +397,10 @@ Up to this point, the mechanics implemented in Imitor and Celeris have been veri
 \begin{figure}[ht!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/3-gurev4/gurev4-1.pdf}
+		\includegraphics[scale=0.45]{media/5-verif/3-gurev4/gurev4-1.pdf}
 \label{fig:gurev4-1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/3-gurev4/gurev4-2.pdf}
+		\includegraphics[scale=0.45]{media/5-verif/3-gurev4/gurev4-2.pdf}
 \label{fig:gurev4-2}}		
 %
 \caption{Results for Gurev P4 verification problem: (a) Displacement magnitude along diagonal axis, with (b) details for the free end of the beam. The results for Imitor and Celeris are indistinguishable in these plots.}
@@ -411,13 +410,13 @@ Up to this point, the mechanics implemented in Imitor and Celeris have been veri
 \begin{figure}[ht!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/4-land1/land1-1.pdf}
+		\includegraphics[scale=0.45]{media/5-verif/4-land1/land1-1.pdf}
 \label{fig:land1-1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/4-land1/land1-2.pdf}
+		\includegraphics[scale=0.45]{media/5-verif/4-land1/land1-2.pdf}
 \label{fig:land1-2}}	
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/4-land1/land1-3.pdf}
+		\includegraphics[scale=0.45]{media/5-verif/4-land1/land1-3.pdf}
 \label{fig:land1-3}}			
 %
 \caption{Results for Land P1 verification problem: (a) Deformed position of midline, with (b) details for the free end of the beam. Panel (c) shows the deformed position of the point $\bm{X} = (10, 0.5, 1)$ for each of the simulation codes.}
@@ -427,42 +426,42 @@ Up to this point, the mechanics implemented in Imitor and Celeris have been veri
 \begin{figure}[ht!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/5-land2/land2-1.pdf}
+		\includegraphics[scale=0.45]{media/5-verif/5-land2/land2-1.pdf}
 \label{fig:land2-1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/5-land2/land2-2.pdf}
+		\includegraphics[scale=0.45]{media/5-verif/5-land2/land2-2.pdf}
 \label{fig:land2-2}}	
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/5-land2/land2-3.pdf}
+		\includegraphics[scale=0.45]{media/5-verif/5-land2/land2-3.pdf}
 \label{fig:land2-3}}			
 %
-\caption{Results for Land P2 verification problem: (a) Deformed position of middle of the ventricle wall, with (b) details at the inflection point (top right) and the apical region (bottom right). Panel (c) shows the deformed position of the apex at the endo- and epicardium for each of the simulation codes.}
+\caption{Results for Land P2 verification problem: (a) Deformed position of middle of the ventricle wall, with (b) details at the inflection point (top) and the apical region (bottom). Panel (c) shows the deformed position of the apex at the endo- and epicardium for each of the simulation codes.}
 \label{fig:land2}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/6-land3/land3-1.pdf}
+		\includegraphics[scale=0.45]{media/5-verif/6-land3/land3-1.pdf}
 \label{fig:land3-1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/6-land3/land3-2.pdf}
+		\includegraphics[scale=0.45]{media/5-verif/6-land3/land3-2.pdf}
 \label{fig:land3-2}}	
 %
-\caption{Results for Land P3 verification problem: (a) Deformed position of middle of the ventricle wall, with (b) details at the inflection point (top right) and the apical region (bottom right)}
+\caption{Results for Land P3 verification problem: (a) Deformed position of middle of the ventricle wall, with (b) details at the inflection point (top) and the apical region (bottom)}
 \label{fig:land3}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/6-land3/land3-3.pdf}
+		\includegraphics[scale=0.45]{media/5-verif/6-land3/land3-3.pdf}
 \label{fig:land3.2-1}}		
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/6-land3/land3-4.pdf}		
+		\includegraphics[scale=0.45]{media/5-verif/6-land3/land3-4.pdf}		
 \label{fig:land3.2-2}}	
 \subfigure[]{%
-		\includegraphics[scale=0.46]{media/5-verif/6-land3/land3-5.pdf}
+		\includegraphics[scale=0.45]{media/5-verif/6-land3/land3-5.pdf}
 \label{fig:land3.2-3}}			
 	
 %
