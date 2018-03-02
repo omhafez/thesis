@@ -52,43 +52,43 @@ Warning--empty author in 3dprints
 Warning--empty year in 3dprints
 You've used 154 entries,
             1876 wiz_defined-function locations,
-            1225 strings with 30631 characters,
-and the built_in function-call counts, 38369 in all, are:
-= -- 3649
+            1239 strings with 30787 characters,
+and the built_in function-call counts, 41754 in all, are:
+= -- 4116
 > -- 1635
 < -- 0
 + -- 616
 - -- 462
-* -- 2812
-:= -- 5507
+* -- 2976
+:= -- 5812
 add.period$ -- 185
 call.type$ -- 154
 change.case$ -- 133
 chr.to.int$ -- 0
 cite$ -- 194
-duplicate$ -- 1956
-empty$ -- 3640
+duplicate$ -- 2154
+empty$ -- 3898
 format.name$ -- 462
-if$ -- 9423
+if$ -- 10374
 int.to.chr$ -- 0
 int.to.str$ -- 154
 missing$ -- 166
 newline$ -- 508
 num.names$ -- 139
-pop$ -- 466
+pop$ -- 448
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 1225
+skip$ -- 1496
 stack$ -- 0
-substring$ -- 2167
-swap$ -- 757
+substring$ -- 2681
+swap$ -- 939
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 40
-while$ -- 291
+while$ -- 341
 width$ -- 157
-write$ -- 1470
+write$ -- 1513
 (There were 40 warnings)
