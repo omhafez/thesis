@@ -70,4 +70,4 @@
 \contentsline {subsection}{\numberline {6.2.1}Simulation of Clinical Trials}{119}{subsection.6.2.1}
 \contentsline {subsection}{\numberline {6.2.2}Applications in Rapid Prototyping and Additive Manufacturing}{120}{subsection.6.2.2}
 \contentsline {chapter}{\numberline {7}Conclusions}{123}{chapter.7}
-\contentsline {chapter}{\hspace {6.5mm}References}{125}{section*.2}
+\contentsline {chapter}{\hspace {6.5mm}References}{127}{section*.2}
