@@ -37,7 +37,7 @@ Due to the prevalence of hydrogen in biological tissues - most notably in water 
 
 If the net magnetization is perturbed from pointing in the same direction of a magnetic field $B\bm{e}_z$, the new magnetization $\bm{M}$ \textit{precesses} about the $z$ axis. The \textit{precessional frequency} or \textit{Larmor frequency} $\omega$ is defined by the relationship:
 \begin{equation}
-\omega = \gamma B
+\omega = \gamma B,
 \end{equation}
 where the constant $\gamma$ is the \textit{gyromagnetic ratio}, which is 42.6 MHz/T for hydrogen. In MR imaging, the net magnetization is tipped away from the direction of $B_0$ by applying a radio-frequency (RF) pulse that oscillates exactly at the Larmor frequency. The precessing transverse magnetization produces a changing magnetic field, which induces an electric current and is recorded by the receiver coil~(see~\figref{mr2}).
 
@@ -59,12 +59,12 @@ where the constant $\gamma$ is the \textit{gyromagnetic ratio}, which is 42.6 MH
 
 In order for the receiver coil to distinguish between different locations in the object, \textit{spatial localization} of the MR signal is achieved by applying linear magnetic field gradients in each of the three spatial directions. Namely, the new spatially varying magnetic field $B(\bm{x})\bm{e}_z$ (still pointing in $z$ direction), following the imposition of magnetic gradients, becomes:
 \begin{equation}
-B(\bm{x}) = B_0 + \bm{G}(t) \cdot \bm{x}
+B(\bm{x}) = B_0 + \bm{G}(t) \bm{\cdot} \bm{x}.
 \label{eqn:gradient}
 \end{equation}
 Multiplying \eqnref{gradient} by $\gamma$ yields:
 \begin{equation}
-\omega(\bm{x}) = \omega_0 + \gamma\bm{G}(t) \cdot \bm{x}
+\omega(\bm{x}) = \omega_0 + \gamma\bm{G}(t) \bm{\cdot} \bm{x}.
 \label{eqn:freq}
 \end{equation}
 Thus, each RF signal oscillates at the appropriate frequency to excite and record information for each unique voxel in the image.
@@ -93,8 +93,8 @@ Finally, the magnetic gradient $G_x$ alters the resonant frequency along the $x$
 
 MRI signal intensity at a particular voxel typically depends on the proton density of the tissue (via the strength of the net magnetization $M_0$) and two \textit{relaxation times} T1 and T2 corresponding to the exponential decay of the perturbed net magnetization back to its original state following an RF pulse. Following a typical $90^{\circ}$ RF pulse (which maximizes the transverse magnetization $M_{xy}$), the relaxation times are defined by the following relationships:
 \begin{align}
-M(t) &= M_0(1 - e^{(-t/T1)}) \\
-M_{xy}(t) &= M_{xy}e^{(-t/T2)}
+M(t) &= M_0(1 - e^{(-t/T1)}), \\
+M_{xy}(t) &= M_{xy}e^{(-t/T2)}.
 \end{align}
 The \textit{T1 recovery time} (also known as the \textit{spin-lattice} or \textit{longitudinal recovery time}) corresponds to the recovery of the longitudinal magnetization $M_0$. This reorientation is caused by the transfer of energy from the excited magnetic dipoles to the surrounding lattice of molecules. The \textit{T2 recovery time}  (also known as the \textit{transverse} or \textit{spin-spin recovery time}) corresponds to neighboring precessing magnetic dipoles \textit{dephasing}. Dephasing occurs because as the transverse magnetization decays, slightly different magnetic environments exist for neighboring hydrogen nuclei in different regions of a particular voxel.
 
@@ -111,7 +111,7 @@ In CT, an x-ray beam source is emitted along the plane of a finite thickness cro
 
 Attenuation measures the amount by which x-ray radiation is reduced in passing through a material. For an inhomogeneous material, the attenuation along a particular ray line is expressed in the following relationship:
 \begin{equation}
-I= I_0e^{-\int\limits_{0}^{L}f(x,y) ds}
+I= I_0e^{-\int\limits_{0}^{L}f(x,y) ds},
 \label{eqn:init}
 \end{equation}
 where $I_0$ is the x-ray intensity emitted in front of the object, $I$ is the x-ray intensity received behind the object, $f(x,y)$ is the linear attenuation coefficient for the material at location $(x,y)$, $L$ is the length over which the beam travels through the material, and $ds$ is the length of a differential cut along the ray. The variable $s$ is defined as the distance along the ray in terms $x$ and $y$. In first generation CT machines, for a particular slice, the x-ray tube and detector were rigidly translated together across the subject as x-ray beams were emitted and recorded~(see~\figref{ct1}).
@@ -136,7 +136,7 @@ The x-ray beam path is referred to as a \textit{ray}. The set of rays and measur
 
 \textit{Image reconstruction} is the process of deriving the average attenuation coefficient values $f$ for each voxel in a slice from the attenuation measurements made by the x-ray detector. Attenuation increases with the density and atomic number of the tissues in the voxel. Rearranging~\eqnref{init} yields:
 \begin{equation}
-p(\xi, \theta) = -\ln(I/I_0) = \int\limits_{0}^{L}f(x,y) ds
+p(\xi, \theta) = -\ln(I/I_0) = \int\limits_{0}^{L}f(x,y) ds.
 \end{equation}
 The function $p(\xi,\theta)$ is known as the \textit{Radon transform} of the attenuation function $f(x,y)$. The angle $\theta$ corresponds to the angle of rotation of the view, and $\xi$ corresponds to the position along the measured x-ray projection~(see~\figref{ct3}).
 
@@ -188,8 +188,8 @@ The image is additionally processed to remove noise and artifacts, as well as to
 
 Following resampling and processing, image segmentation is performed to identify the tissues and objects of interest. If the domain of the image is given by $\Omega$, the segmentation problem is to determine the sets of voxels $S_k \subset \Omega$, such that:
 \begin{align}
-\Omega &= \bigcup \limits_{k=1}^{K} S_k \\
-S_k \cap S_j &= \emptyset, \text{\ \ } k \neq j
+\Omega &= \bigcup \limits_{k=1}^{K} S_k, \\
+S_k \cap S_j &= \emptyset, \text{\ \ } k \neq j,
 \end{align}
 where $K$ is the total number of distinct tissues and/or regions within the image. Often, the value of K is assumed to be known based on prior knowledge of the anatomy being considered~\cite{pham_2000}. Each voxel in the image is assigned a tag corresponding to the region to which it belongs, resulting in what is known as an \textit{image mask}. The image and resulting and image mask are shown in~\figref{seg} for an \textit{ex vivo} MRI of a human heart from the CardioVascular Research Grid~\cite{cvgg}. An enormous number of image segmentation techniques exist in the literature; a few popular techniques are mentioned here.
 
@@ -210,8 +210,8 @@ where $K$ is the total number of distinct tissues and/or regions within the imag
 
 \textit{Deformable models} use parametric surfaces that deform under the influence of artificial internal and external forces relating to characteristics of the image. A seed surface is initiated by the user, followed by an iterative process in which the surface deforms to the shape of the interface in the image. Internal forces aim to keep the surface smooth during deformation, and external forces drive the surface toward the desired shape. A particularly well known and effective set of approaches are \textit{level set methods}. In these approaches, a level set surface $\phi$ begins as a signed distance function $d(\bm{x})$ from the seed surface and evolves toward the desired surface with a speed whose normal component is $F$. The \textit{level set equation} is an advection equation that has the following form:
 \begin{align}
-\frac{\partial \phi}{\partial t} + F \left| \nabla \phi \right| = 0 \\
-\phi(t=0) = d(\bm{x})
+\frac{\partial \phi}{\partial t} + F \left| \nabla \phi \right| = 0, \\
+\phi(t=0) = d(\bm{x}).
 \end{align}
 The front speed $F(\bm{x})$ depends on the gradient of image intensity and the curvature of the surface. This advection equation is solved using ordered upwind methods, most notably the \textit{fast marching method}~\cite{malladi_1995, sethian_1996}. The converged solution is the resultant surface for which $d = 0$. Being an implicit function, it must still be converted to an explicitly defined image mask, in the same way that edge detection methods rely on region-based methods.
 

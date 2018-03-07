@@ -19,7 +19,7 @@ The fundamental kinematic quantity in nonlinear solid mechanics is the \textit{d
 
 The mapping from reference configuration to current configuration $\bm{F}$ may be decomposed into a  stretch followed by a pure rotation, or vice versa, in what is known as a \textit{polar decomposition}:
 \begin{equation}
-\bm{F} = \bm{R}\bm{U} = \bm{V}\bm{R}
+\bm{F} = \bm{R}\bm{U} = \bm{V}\bm{R},
 \end{equation}
 where $\bm{U}$ and $\bm{V}$ are symmetric positive definite tensors, and $\bm{R}$ is a proper orthogonal tensor. Several strain measures may be defined in terms of the deformation gradient. Refer to Chadwick~\cite{chadwick_1999} for a discussion of those definitions.
 
@@ -32,7 +32,7 @@ These kinematic quantities will be heavily utilized in developing the governing 
 
 We define the \textit{Cauchy traction} $\bm{t}$ at a particular location on a surface in the following manner:
 \begin{equation}
-\bm{t} = \lim_{\substack{{da} \rightarrow 0, \\ {\bm{n} \text{\ fixed}}}} \frac{{\bm{df}}}{da}
+\bm{t} = \lim_{\substack{{da} \rightarrow 0, \\ {\bm{n} \text{\ fixed}}}} \frac{{\bm{df}}}{da},
 \end{equation}
 where $\bm{da} = \bm{n}da$ is an infinitesimal unit of area in the current configuration, and $\bm{n}$ is the corresponding normal to that current-configuration surface. The term $\bm{df}$ is an infinitesimal contact force in the current configuration acting on $\bm{da}$. Thus, the Cauchy traction is defined as the \textit{current configuration force} per \textit{current configuration area} at a given point, acting on a given surface. Applying a balance of linear momentum on an infinitesimal tetrahedral body yields the following relationship: $\bm{t} = \bm{T}^T\bm{n}$. The quantity $\bm{T}$ is the \textit{Cauchy stress} tensor, which defines the current configuration force per current configuration area at a particular location in space \textit{for any surface orientation}. It is the most common measure of stress. The Cauchy stress tensor is symmetric due to conservation of angular momentum for arbitrary portions of a body of interest, and so the more commonly used relationship between Cauchy traction and Cauchy stress is $\bm{t} = \bm{T}\bm{n}$.
 
@@ -42,7 +42,7 @@ If we define the surface normal in the reference configuration as $\bm{N}$, we m
 
 The Cauchy stress, first P-K stress, and second P-K stress are related to one another in the following manner:
 \begin{equation}
-\bm{P} = J\bm{T}\bm{F}^{-T} = \bm{F}\bm{S}
+\bm{P} = J\bm{T}\bm{F}^{-T} = \bm{F}\bm{S}.
 \end{equation}
 These relationships arise from utilizing the area ratio and deformation gradient to transform the differential force and differential area between reference and current configurations as needed based on the desired stress measure.
 
@@ -50,13 +50,13 @@ These relationships arise from utilizing the area ratio and deformation gradient
 \subsection{Governing Equations}
 Balance of linear momentum for the body $\mathcal{B}$ in the \textit{reference configuration} amounts to the following relationship:
 \begin{equation}
-\int_{\partial \kappa_0}{p_i}dA + \int_{\kappa_0}\rho_0{b}_idV = 0
+\int_{\partial \kappa_0}{p_i}dA + \int_{\kappa_0}\rho_0{b}_idV = 0,
 \end{equation}
 where $\partial \kappa_0$ is the boundary of the body $\mathcal{B}$ in the reference configuration, $\rho_0$ is the mass per unit reference configuration volume, $\bm{b}(\bm{X})$ is a body force (typically gravity), and inertial terms are deemed negligible. By making use of the relationship $\bm{p} = \bm{P}\bm{N}$ and the divergence and localization theorems, the final governing equations for nonlinear solid mechanics in index notation are:
 \begin{gather}
-P_{ij,j} + \rho_0b_i = 0, \text{\ \ } \forall \text{\ \ } \bm{X} \in \kappa_0 \label{eqn:equilibrium} \\
-{u_i} = \overline{{u}}_i \text{\ \ on\ \ } \partial_u\kappa_0 \\
-{p_i} = \overline{{p}}_i\text{\ \ on\ \ } \partial_t\kappa_0
+P_{ij,j} + \rho_0b_i = 0, \text{\ \ } \forall \text{\ \ } \bm{X} \in \kappa_0, \label{eqn:equilibrium} \\
+{u_i} = \overline{{u}}_i \text{\ \ on\ \ } \partial_u\kappa_0, \\
+{p_i} = \overline{{p}}_i\text{\ \ on\ \ } \partial_t\kappa_0,
 \end{gather}
 where $(),_j = \frac{\partial()}{\partial {{X_j}}}$ are derivatives with respect to the reference-configuration position, $\overline{{u}}_i$ are prescribed displacement boundary conditions, ${\overline{p}_i}$ are prescribed Piola tractions, $\partial_u\kappa_0 \text{\ }\bigcup\text{\ } \partial_t\kappa_0 = \partial\kappa_0$, and $\partial_u\kappa_0 \text{\ }\bigcap\text{\ } \partial_t\kappa_0 = \emptyset$. Robin boundary conditions are omitted here for clarity. Balance of linear momentum is enforced in the \textit{reference} configuration for reasons to be explained in the next section. When the field equations above for nonlinear solid mechanics are combined with the definition of the deformation gradient and with a material model, they form a well-posed elliptic boundary value problem. They constitute what is known as the \textit{strong form} of the problem statement.
 
@@ -71,7 +71,7 @@ Finite element methods are the most popular numerical methods for approximating 
 
 The weak form of \eqnref{equilibrium} enforces equilibrium in an average integral sense, in which the equations are dotted with a \textit{test function} $\bm{w}$ and integrated over the domain of $\mathcal{B}$ in the reference configuration:
 \begin{equation}
-\int_{\kappa_0}{P_{ij,j}}w_idV + \int_{\kappa_0}\rho_0b_iw_idV = 0, \text{\ \ } \forall \text{\ \ } \bm{w} \in \mathcal{V}
+\int_{\kappa_0}{P_{ij,j}}w_idV + \int_{\kappa_0}\rho_0b_iw_idV = 0, \text{\ \ } \forall \text{\ \ } \bm{w} \in \mathcal{V},
 \end{equation}
 where $\mathcal{V} = \lbrace\bm{w} \text{\ }|\text{\ } \bm{w} \in H^1(\kappa_0), \text{\ }\bm{w} = 0 \text{\ \ on\ } \partial_u\kappa_0\rbrace$.
 
@@ -79,13 +79,13 @@ Define a \textit{trial solution space} $\mathcal{S} = \lbrace\bm{u} \text{\ }|\t
 
 Find $\bm{u}(\bm{X},t) \in \mathcal{S}$ such that
 \begin{gather}
-\int_{\kappa_0}P_{ij}w_{i,j}dV - \int_{\kappa_0}\rho_0b_iw_idV - \int_{\partial_t\kappa_0}\overline{p}_iw_idA = 0 \text{\ \ } \forall \text{\ \ } \bm{w} \in \mathcal{V}
+\int_{\kappa_0}P_{ij}w_{i,j}dV - \int_{\kappa_0}\rho_0b_iw_idV - \int_{\partial_t\kappa_0}\overline{p}_iw_idA = 0 \text{\ \ } \forall \text{\ \ } \bm{w} \in \mathcal{V}.
 \end{gather}
 
 The weak form is solved by \textit{Galerkin approximation}, which involves approximating $\bm{u}$ and $\bm{w}$ with linear combinations of a finite set of \textit{basis functions} $\phi_a$:
 \begin{gather}
-\bm{u}(\bm{X},t) = \sum\limits_{a}\bm{u}_a(t)\phi_a(\bm{X}) \\
-\bm{w}(\bm{X}) = \sum\limits_{a}\bm{w}_a\phi_a(\bm{X})
+\bm{u}(\bm{X},t) = \sum\limits_{a}\bm{u}_a(t)\phi_a(\bm{X}), \\
+\bm{w}(\bm{X}) = \sum\limits_{a}\bm{w}_a\phi_a(\bm{X}),
 \end{gather}
 where $\bm{u}_a$ and $\bm{w}_a$ are nodal values. The approximation is of the Galerkin variety because the basis functions used to approximate $\bm{u}$ and $\bm{w}$ are chosen to be identical. A finite discretization of the geometry of the reference configuration $\kappa_0$ provides the nodes and elements that approximate the geometry of the body, but also serves to define the basis functions. The nodes $a$ consist of those nodes in the discretization that do not lie on $\partial_u\kappa_0$. We assume from here on that the displacement boundary conditions are homogeneous, for simplicity.
 
@@ -93,7 +93,7 @@ The basis functions are globally continuous functions that exhibit important fea
 
 Utilization of the approximations to $\bm{u}$ and $\bm{w}$, and the fact that equilibrium must hold for any choice of $\bm{w}_a$ as long as $\bm{w} \in \mathcal{V}$, leads to the finite element approximation to the weak form of equilibrium, known as the \textit{residual equations}:
 \begin{equation}
-R_{ia} = \int_{\kappa_0}P_{ij}\phi_{a,j}dV - \int_{\kappa_0}\rho_0b_i\phi_adV - \int_{\partial_t\kappa_0} \overline{p}_i\phi_adA = 0
+R_{ia} = \int_{\kappa_0}P_{ij}\phi_{a,j}dV - \int_{\kappa_0}\rho_0b_i\phi_adV - \int_{\partial_t\kappa_0} \overline{p}_i\phi_adA = 0.
 \label{eqn:elresid}
 \end{equation}
 Shape functions and integrals are all performed in the \textit{reference configuration}, making this a \textit{total Lagrangian} formulation. Performing all integrals in the reference configuration allows the basis function derivatives to be stored, rather than recomputed for each iteration of each solution step. It also simplifies derivatives of integrals over the body because the integral domain does not depend on the solution. The global residual equations are a nonlinear system of equations, solved in steps to ensure equilibrium is enforced throughout the quasistatic loading.
@@ -104,18 +104,18 @@ The solution to the global residual equations is advanced from one equilibrium s
 
 The most common approach to solving the nonlinear system of equations is via a \textit{Newton-Raphson} iterative scheme. The solution of $\bm{R}_a(t_{n+1}) = \bm{0}$ is performed via successive solution of the following \textit{linearized global residual equations}:
 \begin{equation}
-\frac{\partial R_{ia}}{\partial \hat{u}_{jb}} \bigg|_{k+1} \delta\hat{u}_{jb} = -R_{ia}\bigg|_{k+1}
+\frac{\partial R_{ia}}{\partial \hat{u}_{jb}} \bigg|_{k+1} \delta\hat{u}_{jb} = -R_{ia}\bigg|_{k+1},
 \label{eqn:newtonraphson}
 \end{equation}
 where:
 \begin{equation}
-\delta\hat{\bm{u}} = \hat{\bm{u}}\big|_{k+1} - \text{\ }\hat{\bm{u}}\big|_k
+\delta\hat{\bm{u}} = \hat{\bm{u}}\big|_{k+1} - \text{\ }\hat{\bm{u}}\big|_k,
 \end{equation}
 and $k$ is the iteration number. When applied successfully, the procedure iterates and corrects the incremental nodal displacements until they satisfy the residual equations. Provided appropriate time steps and convergence criteria, the scheme should in practice converge to the solution ideally in only a handful of iterations.
 
 Populating and solving the linearized residual equations requires computing the following two terms: $\frac{\partial R_{ia}}{\partial \hat{u}_{jb}} \big|_{k+1}$ and $R_{ia}\big|_{k+1}$. The nodal residuals have been defined previously in \eqnref{elresid}. For a constant reference density, and assuming the body force is not a function of displacement, the tangent stiffness is:
 \begin{equation}
-\frac{\partial R_{ia}}{\partial \hat{u}_{jb}} = \int_{\kappa_0}\frac{\partial P_{ik}}{\partial \hat{u}_{jb}}\phi_{a,k}dV - \int_{\partial_t\kappa_0}\frac{\partial \overline{p}_i}{\partial \hat{u}_{jb}}\phi_adA
+\frac{\partial R_{ia}}{\partial \hat{u}_{jb}} = \int_{\kappa_0}\frac{\partial P_{ik}}{\partial \hat{u}_{jb}}\phi_{a,k}dV - \int_{\partial_t\kappa_0}\frac{\partial \overline{p}_i}{\partial \hat{u}_{jb}}\phi_adA.
 \end{equation}
 Note, because the integrals are performed in the reference configuration, the derivatives are moved past the integral signs and applied directly to the integrands. The manner in which the integrals in these terms are performed is based on the discretization of the body $\mathcal{B}$ into a discrete \textit{mesh} of finite elements. The calculation of $P_{ij}$ and $\partial{P}_{ik}/\partial{\hat{u}_{jb}}$ relies on a careful treatment of the \textit{constitutive update} and corresponding material model. The calculation of $\overline{p}_i$ and $\partial{\overline{p}_i}/\partial{\hat{u}_{jb}}$ corresponds to the choice of traction \textit{boundary conditions}. Each of these three important components to FEM are discussed next.
 
@@ -126,14 +126,14 @@ The integrals in the linearized residual equations are performed on an element l
 
 Via the spatial discretization of $\mathcal{B}$ into elements, basis functions are decomposed into element \textit{shape functions} defined on each of the neighboring elements to the node $a$ for which $\phi_a$ is defined. Those shape functions are used to compute volume and facet integrals via an \textit{isoparametric transformation} from the physical space to a \textit{parent space}, in the following manner:
 \begin{equation}
-\bm{X}(\bm{\xi}) = \sum\limits_{a}\bm{X}_a{N}_a(\bm{\xi})
+\bm{X}(\bm{\xi}) = \sum\limits_{a}\bm{X}_a{N}_a(\bm{\xi}),
 \end{equation}
 where $\bm{X}_a$ are spatial coordinates of the element nodes, $N_a$ are the shape functions, and $\bm{\xi}$ is the position vector in the parent element domain. The transformation is \textit{isoparametric} because the same shape functions are used to interpolate nodal displacements.
 
 Thus, the element-level residual and tangent stiffness equations take the following form:
 \begin{gather}
-R^e_{ia} = \int_{\Omega_e}P_{ij}N_{a,j}dV - \int_{\Omega_e}\rho_0b_iN_adV - \int_{\partial_t\Omega_e} \overline{p}_iN_adA = 0 \label{eqn:elr} \\[0.7em]
-\frac{\partial R^e_{ia}}{\partial \hat{u}_{jb}} = \int_{\Omega_e}\frac{\partial P_{ik}}{\partial \hat{u}_{jb}}N_{a,k}dV - \int_{\partial_t\Omega_e}\frac{\partial \overline{p}_i}{\partial \hat{u}_{jb}}N_adA \label{eqn:elt}
+R^e_{ia} = \int_{\Omega_e}P_{ij}N_{a,j}dV - \int_{\Omega_e}\rho_0b_iN_adV - \int_{\partial_t\Omega_e} \overline{p}_iN_adA = 0, \label{eqn:elr} \\[0.7em]
+\frac{\partial R^e_{ia}}{\partial \hat{u}_{jb}} = \int_{\Omega_e}\frac{\partial P_{ik}}{\partial \hat{u}_{jb}}N_{a,k}dV - \int_{\partial_t\Omega_e}\frac{\partial \overline{p}_i}{\partial \hat{u}_{jb}}N_adA. \label{eqn:elt}
 \end{gather}
 
 The \textit{order} of an element corresponds to the polynomial degree of its corresponding shape functions. Refer to Hughes~\cite{hughes_2000} for a definition of the shape functions $N_a$ for linear and quadratic tetrahedral and hexahedral elements. 
@@ -142,9 +142,8 @@ Volume and facet integrals are evaluated via numerical quadrature rules on the p
 
 Lastly, performing the volume integral of the stress-divergence term requires computing shape function gradients $N_{a,k} = \frac{\partial N_a}{\partial X_k}$ in the physical space. We may write the derivatives in terms of parent-space derivatives in the following manner:
 \begin{equation}
-\frac{\partial N_a}{\partial \bm{X}} = \left(\frac{\partial \bm{X}}{\partial \bm{\xi}}\right)^{\hspace{-0.3em}-T} \hspace{0.05em} \frac{\partial N_a}{\partial \bm{\xi}}
+\frac{\partial N_a}{\partial \bm{X}} = \left(\frac{\partial \bm{X}}{\partial \bm{\xi}}\right)^{\hspace{-0.3em}-T} \hspace{0.05em} \frac{\partial N_a}{\partial \bm{\xi}}.
 \end{equation}
-
 For conventional FEM, the quality of the approximating solution depends critically on the ability to map spatial coordinates of an element to its parent space with high fidelity. Thus, the notion of \textit{mesh quality} is an important consideration for automated meshing tools if the resultant mesh is to be provided to a conventional FEM code. Mesh quality metrics attempt in various ways to measure the distortion of physical elements from their corresponding parent elements. Refer to the CUBIT User Documentation~\cite{cubit_2018} for an in-depth description of mesh quality metrics.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -154,7 +153,7 @@ The constitutive update involves updating the \textit{material state} from time 
 
 The following discussion will center around the kinematics, material update, and subsequent contribution to the linearized residual equations for \textit{hypoelastic} materials. Hypoelastic materials are typically defined as a rate form of the Cauchy stress in terms of stretch rate $\bm{D}$:
 \begin{equation}
-\overset{\circ}{\bm{T}} =  {\mathbfcal{C}}\bm{D}
+\overset{\circ}{\bm{T}} =  {\mathbfcal{C}}\bm{D}.
 \end{equation}
 The quantity ${\mathbfcal{C}}$ is an isotropic rank-four \textit{modulus tensor}. The \textit{Jaumann rate} of stress $\overset{\circ}{\bm{T}} = \dot{\bm{T}} + \bm{T}\bm{W} - \bm{W}\bm{T}$ is known as a \textit{co-rotational} or \textit{objective} stress rate because it behaves as $\bm{Q}\overset{\circ}{\bm{T}}\bm{Q}^T$ under a superposed rigid rotation $\bm{Q}$. Among the various objective stress rates, the Jaumann rate is chosen because it respects the notion of material state, i.e., it does not depend on any reference configuration. See Rashid for a more complete discussion on material state and its relationship to objective stress rates~\cite{rashid_1991}.
 
@@ -169,43 +168,43 @@ A faithful treatment of incremental kinematics depends critically on the assumed
 Given the incremental displacements $\hat{\bm{u}}$, we seek to compute the quantities $\bm{D}$ and $\hat{\bm{R}}$. Much in the same way we approximate $\bm{u}$ by a linear combination of shape functions $\phi_a$, we make the same approximations for $\bm{u}^*$ and $\hat{\bm{u}}$. Since we are concerned with element-level computations here, the definitions will shift from using basis functions $\phi_a$ to using shape functions $N_a$:
 \begin{align}
 u_i = u_{ia}N_a, \qquad u^*_i &= u^*_{ia}N_a, \qquad \hat{u}_i = \hat{u}_{ia}N_a \\
-u_{i,j} = u_{ia}N_{a,j}, \qquad u^*_{i,j} &= u^*_{ia}N_{a,j}, \qquad \hat{u}_{i,j} = \hat{u}_{ia}N_{a,j}
+u_{i,j} = u_{ia}N_{a,j}, \qquad u^*_{i,j} &= u^*_{ia}N_{a,j}, \qquad \hat{u}_{i,j} = \hat{u}_{ia}N_{a,j}.
 \end{align}
 Note, the nodal values are only functions of time, and not of reference configuration position. Because this is a total Lagrangian approach, the quantities $N_a$ and $N_{a,j}$ do not depend on the solution and need only be computed once for each integration point for the entire simulation.
 
 The corresponding deformation gradients of interest are then defined as:
 \begin{equation}
-\bm{F} = \frac{\partial \bm{x}}{\partial \bm{X}}, \qquad \overline{\bm{F}} = \frac{\partial \overline{\bm{x}}}{\partial \bm{X}}, \qquad \hat{\bm{F}} = \frac{\partial \bm{x}}{\partial \overline{\bm{x}}}
+\bm{F} = \frac{\partial \bm{x}}{\partial \bm{X}}, \qquad \overline{\bm{F}} = \frac{\partial \overline{\bm{x}}}{\partial \bm{X}}, \qquad \hat{\bm{F}} = \frac{\partial \bm{x}}{\partial \overline{\bm{x}}}.
 \end{equation}
 Thus, $\bm{F}$ can be decomposed as:
 \begin{equation}
-\bm{F} = \hat{\bm{F}}\overline{\bm{F}}
+\bm{F} = \hat{\bm{F}}\overline{\bm{F}}.
 \end{equation}
 It can be shown that the deformation gradients can be written in terms of the nodal displacements and shape function gradients in the following form:
 \begin{align}
-F_{ij} &= \delta_{ij} + \left(u^*_{ia} + \hat{u}_{ia} \right) N_{a,j} = \delta_{ij} + \left(u^*_{ia} + \hat{u}_{ia} \right) B_{ja} \\
-\overline{F}_{ij} &= \delta_{ij} + u^*_{ia} N_{a,j} = \delta_{ij} + u^*_{ia} B_{ja}
+F_{ij} &= \delta_{ij} + \left(u^*_{ia} + \hat{u}_{ia} \right) N_{a,j} = \delta_{ij} + \left(u^*_{ia} + \hat{u}_{ia} \right) B_{ja}, \\
+\overline{F}_{ij} &= \delta_{ij} + u^*_{ia} N_{a,j} = \delta_{ij} + u^*_{ia} B_{ja},
 \end{align}
 where $B_{ja} = N_{a,j}$ are the components of the shape function gradient for node a and element $e$, evaluated at $t_{n+1}$, and $\delta_{ij}$ are the components of the Kronecker delta.
 
 As previously mentioned, the velocity gradient is defined as $\bm{L} = \frac{\partial \bm{u}}{\partial \bm{x}} = \dot{\bm{F}}\bm{F}^{-1} = \bm{D} + \bm{W}$. In the absence of rotation, $\dot{\bm{F}}\bm{F}^{-1} = \dot{\bm{U}}\bm{U}^{-1}$ and $\bm{L} = \bm{D}$. Combining results yields $\dot{\bm{U}}\bm{U}^{-1} = \bm{D}$. Assuming a constant rate of stretch, the calculation of the rate-of-stretch tensor involves solving the following ODE:
 \begin{align}
-&\dot{{\bm{U}}} = {\bm{D}}{\bm{U}}, \qquad t\in (t_n, t_{n+1}) \\
-&{\bm{U}}\left(t_n\right) = \bm{I}
+&\dot{{\bm{U}}} = {\bm{D}}{\bm{U}}, \qquad t\in (t_n, t_{n+1}), \\
+&{\bm{U}}\left(t_n\right) = \bm{I}.
 \end{align}
 Solving the ODE and imposing the desired ${\bm{U}}(t_{n+1}) = \hat{\bm{U}}$ yields $\hat{\bm{U}} = \text{exp}(\bm{D}\Delta)$. Performing a Taylor expansion about $\hat{\bm{U}} = \bm{I}$ and making use of the right Cauchy-Green deformation tensor $\hat{\bm{C}} = \hat{\bm{U}}^2$ yields the following result: 
 \begin{equation}
-{\bm{D}}\Delta \approx -\frac{1}{2}(\hat{\bm C}^{-1} - {\bm{I}})+ \frac{1}{4} (\hat{\bm{C}}^{-1} - {\bm{I}})^{2} - \frac{1}{6} (\hat{\bm{C}}^{-1} - {\bm{I}})^{3}
+{\bm{D}}\Delta \approx -\frac{1}{2}(\hat{\bm C}^{-1} - {\bm{I}})+ \frac{1}{4} (\hat{\bm{C}}^{-1} - {\bm{I}})^{2} - \frac{1}{6} (\hat{\bm{C}}^{-1} - {\bm{I}})^{3}.
 \end{equation}
 
 The assumption that $\hat{\bm{U}}$ is near $\bm{I}$ is valid as long as the time steps are chosen so that the stretch in each time step is relatively small. Because $\hat{\bm{C}}^{-1}$ is close to identity, we define it in terms of $\bm{A} = \bm{I} - \hat{\bm{F}}^{-1} = \bm{I} - \overline{\bm{F}}\bm{F}^{-1}$ to avoid floating point precision issues. The strain increment is then computed as follows:
 \begin{gather}
-\hat{\bm C}^{-1} - {\bm I} = \bm{A} \bm{A}^T - \bm{A} - \bm{A}^T \\
-{\bm D}\Delta = -\frac{1}{2}(\hat{\bm C}^{-1} - {\bm I})+ \frac{1}{4} (\hat{\bm C}^{-1} - {\bm I})^{2} - \frac{1}{6} (\hat{\bm C}^{-1} - {\bm I})^{3}
+\hat{\bm C}^{-1} - {\bm I} = \bm{A} \bm{A}^T - \bm{A} - \bm{A}^T, \\
+{\bm D}\Delta = -\frac{1}{2}(\hat{\bm C}^{-1} - {\bm I})+ \frac{1}{4} (\hat{\bm C}^{-1} - {\bm I})^{2} - \frac{1}{6} (\hat{\bm C}^{-1} - {\bm I})^{3}.
 \end{gather}
 With the strain increment now formed, what remains is the rotation increment. The calculation of the incremental rotation $\hat{\bm{R}}$ is approximated in the following manner:
 \begin{equation}
-\hat{R}_{ij} = \delta_{ij}\cos\theta + \frac{1 - \cos \theta}{4Q}\alpha_i\alpha_j - \frac{\sin\theta}{2\sqrt{Q}}\varepsilon_{ijk}\alpha_{k}
+\hat{R}_{ij} = \delta_{ij}\cos\theta + \frac{1 - \cos \theta}{4Q}\alpha_i\alpha_j - \frac{\sin\theta}{2\sqrt{Q}}\varepsilon_{ijk}\alpha_{k},
 \end{equation}
 where $\theta$ is the rotation angle, $\boldsymbol{\alpha}$ is an intermediate quantity, $\boldsymbol{\varepsilon}$ is the alternator symbol, and $Q  =\frac{1}{4}\bm{\alpha} \bm{\cdot} \bm{\alpha}$. Special care is observed when $Q$ is close to zero. Refer to Rashid~\cite{rashid_1993} for a complete description of how the rotation increment is formed. Importantly, this approximation retains proper orthogonality of $\hat{\bm{R}}$.
 
@@ -217,45 +216,45 @@ The quantities $\bm{D}$ and $\hat{\bm{R}}$ are used in conjunction with the mate
 
 For a demonstration on how to utilize the kinematics algorithm within a finite element framework, we will address the linear hypoelastic material defined by $\overset{\circ}{\bm{T}} = \bm{\mathcal{C}}\bm{D}$. Provided $\bm{D}$, we seek to integrate the stress rate in order to update the beginning step stress $\overline{\bm{T}}$. Note that the constitutive update subroutine itself is executed completely independently of $\hat{\bm{R}}$; the rotation occurs \textit{after} the update. In the absence of rotation, i.e., $\bm{W} = \bm{0}$, the Jaumann rate reduces to the time rate and the material model simplifies to $\dot{\bm{T}} = \mathbfcal{C}\bm{D}$. Provided the beginning step Cauchy stress $\overline{\bm{T}}$, the end step unrotated stress is computed via $\tilde{\bm{T}} = \overline{\bm{T}} + \mathbfcal{C}\bm{D}\Delta$. The subroutine must also provide the \textit{tangent modulus} $\partial\tilde{\bm{T}}/\partial({\bm{D}\Delta}$), which for the case of a linear hypoelastic material is simply $\mathbfcal{C}$. For the purposes of such an incremental framework, the term $\mathbfcal{C}\bm{D}\Delta$ may be viewed as an incremental stress $\hat{\bm{T}}$. The stress is then forward rotated by $\hat{\bm{R}}$:
 \begin{equation}
-\bm{T} = \hat{\bm{R}}\tilde{\bm{T}}\hat{\bm{R}}^T
+\bm{T} = \hat{\bm{R}}\tilde{\bm{T}}\hat{\bm{R}}^T.
 \end{equation}
 Finally, the first P-K stress is computed via $\bm{P} = J\bm{T}\bm{F}^{-T}$.
 
 For the contribution at a particular integration point of an element to the tangent stiffness terms, the quantity $\partial{\bm{P}}/\partial{\hat{\bm{u}}}$ is desired. This term must be computed in a manner \textit{consistent} with the constitutive update algorithm to ensure desirable convergence behavior of the Newton-Raphson scheme. Namely, this term should ideally reflect the derivative of the end step stress $\bm{P}$ \textit{as it is computed} with respect to incremental displacements $\hat{\bm{u}}$, as opposed to an analytic computation insensitive to the approximations made for the kinematic input, or a numerically approximated value via finite differences.
 
-The derivatives are performed in a lengthy but relatively straightforward manner. Using the product rule,
+The derivatives are performed in a lengthy but relatively straightforward manner. Using the product rule:
 \begin{equation}
-\frac{\partial {\bm P}}{\partial \hat{{\bm u}}} = \frac{\partial J}{\partial \hat{\bm u}}{\bm T}{\bm F}^{-T} + J\frac{\partial {\bm T}}{\partial \hat{\bm u}}{\bm F}^{-T} + J{\bm T}\frac{\partial {\bm F}}{\partial \hat{\bm u}}^{-T}
+\frac{\partial {\bm P}}{\partial \hat{{\bm u}}} = \frac{\partial J}{\partial \hat{\bm u}}{\bm T}{\bm F}^{-T} + J\frac{\partial {\bm T}}{\partial \hat{\bm u}}{\bm F}^{-T} + J{\bm T}\frac{\partial {\bm F}}{\partial \hat{\bm u}}^{-T}.
 \end{equation}
-
 Thus, the terms of interest are ${\partial J}/{\partial \hat{\bm{u}}}$, ${\partial \bm{T}}/{\partial \hat{\bm{u}}}$, and ${\partial \bm{F}^{-T}}/{\partial \hat{\bm{u}}}$. The requisite terms to compute the derivative of the first P-K tensor with respect to incremental nodal displacements follow:
 \begin{gather}
-\frac{\partial J}{\partial F_{kl}} = JF_{lk}^{{-1}} \\
-\frac{\partial F_{ij}}{\partial \hat{u}_{ka}} = \delta_{ik}\delta_{pa}B_{jp} \\
-\frac{\partial J}{\partial \hat{u}_{ka}} = JF_{pk}^{-1}B_{pa} \\
-\frac{\partial F_{ij}^{-1}}{\partial F_{kl}} = - F_{ik}^{-1}F_{lj}^{-1} \\
-\frac{\partial F_{ij}^{-1}}{\partial \hat{u}_{ka}} = - F_{ik}^{-1}B_{pa}F_{pj}^{-1} \\
-A_{ij} = \hat{u}_{ia}B_{ka}F^{-1}_{kj} \\
-\hat{{\bm C}}^{-1} = {\bm I} - {\bm A} - {\bm A}^T + {\bm A}{\bm A}^T \\
-\frac{\partial A_{ij}}{\partial \hat{u}_{ka}} = \hat{F}^{-1}_{ik}B_{pa}F^{-1}_{pj} \\
-\frac{\partial \hat{C}^{-1}_{ij}}{\partial \hat{A}_{kl}} = -\delta_{ik}\delta_{jl} - \delta_{jk}\delta_{il} + \delta_{ik}A_{jl} + A_{il}\delta_{jk}
+\frac{\partial J}{\partial F_{kl}} = JF_{lk}^{{-1}}, \\
+\frac{\partial F_{ij}}{\partial \hat{u}_{ka}} = \delta_{ik}\delta_{pa}B_{jp}, \\
+\frac{\partial J}{\partial \hat{u}_{ka}} = JF_{pk}^{-1}B_{pa}, \\
+\frac{\partial F_{ij}^{-1}}{\partial F_{kl}} = - F_{ik}^{-1}F_{lj}^{-1}, \\
+\frac{\partial F_{ij}^{-1}}{\partial \hat{u}_{ka}} = - F_{ik}^{-1}B_{pa}F_{pj}^{-1}, \\
+A_{ij} = \hat{u}_{ia}B_{ka}F^{-1}_{kj}, \\
+\hat{{\bm C}}^{-1} = {\bm I} - {\bm A} - {\bm A}^T + {\bm A}{\bm A}^T, \\
+\frac{\partial A_{ij}}{\partial \hat{u}_{ka}} = \hat{F}^{-1}_{ik}B_{pa}F^{-1}_{pj}, \\
+\frac{\partial \hat{C}^{-1}_{ij}}{\partial \hat{A}_{kl}} = -\delta_{ik}\delta_{jl} - \delta_{jk}\delta_{il} + \delta_{ik}A_{jl} + A_{il}\delta_{jk},
 \end{gather}
+\vspace{-15mm}
 \begin{equation}
 \begin{aligned}
 \frac{\partial ({\bm D}\Delta)}{\partial {\bm A}} = &-\frac{1}{2}\frac{\partial {\hat{\bm C}^{-1}}}{\partial \bm A} + \frac{1}{4}({\hat{\bm C}}^{-1} - {\bm I})\frac{\partial \hat{\bm C}^{-1}}{\partial {\bm A}} + \frac{1}{4}\frac{\partial \hat{\bm C}^{-1}}{\partial {\bm A}}({\hat{\bm C}}^{-1} - {\bm I}) \\
 &-\frac{1}{6} \frac{\partial {\hat{\bm C}^{-1}}}{\partial \bm A} (\hat{\bm C}^{-1} - {\bm I})^{2} - \frac{1}{6}  (\hat{\bm C}^{-1} - {\bm I}) \frac{\partial {\hat{\bm C}^{-1}}}{\partial \bm A} (\hat{\bm C}^{-1} - {\bm I}) \\
-&- \frac{1}{6}(\hat{\bm C}^{-1} - {\bm I})^{2} \frac{\partial {\hat{\bm C}^{-1}}}{\partial \bm A} 
+&- \frac{1}{6}(\hat{\bm C}^{-1} - {\bm I})^{2} \frac{\partial {\hat{\bm C}^{-1}}}{\partial \bm A},
 \end{aligned}
 \end{equation}
 \begin{gather}
-\frac{\partial (D_{ij}\Delta)}{\partial \hat{u}_{ka}} = \frac{\partial (D_{ij}\Delta)}{\partial A_{mn}}\frac{\partial A_{mn}}{\partial \hat{u}_{ka}} \\
-\frac{\partial \hat{R}_{ij}}{\partial A_{mn}} = \frac{1}{2}(-\delta_{in}\delta_{jm} + \hat{R}_{im}\hat{R}_{nj}) \\
-\frac{\partial \hat{R}_{ij}}{\partial \hat{u}_{ka}} = \frac{1}{2}\left(-\hat{F}_{jk}^{-1}(F_{pi}^{-1}B_{pa}) + \hat{R}_{im}\hat{F}_{mk}^{-1}\hat{R}_{nj}(F_{pn}^{-1}B_{pa})\right) \\
-\frac{\partial \tilde{\bm T}}{\partial \hat{\bm u}} = \frac{\partial \tilde{\bm T}}{\partial ({\bm D}\Delta)}\frac{\partial ({\bm D}\Delta)}{\partial \hat{\bm u}}
+\frac{\partial (D_{ij}\Delta)}{\partial \hat{u}_{ka}} = \frac{\partial (D_{ij}\Delta)}{\partial A_{mn}}\frac{\partial A_{mn}}{\partial \hat{u}_{ka}}, \\
+\frac{\partial \hat{R}_{ij}}{\partial A_{mn}} = \frac{1}{2}(-\delta_{in}\delta_{jm} + \hat{R}_{im}\hat{R}_{nj}), \\
+\frac{\partial \hat{R}_{ij}}{\partial \hat{u}_{ka}} = \frac{1}{2}\left(-\hat{F}_{jk}^{-1}(F_{pi}^{-1}B_{pa}) + \hat{R}_{im}\hat{F}_{mk}^{-1}\hat{R}_{nj}(F_{pn}^{-1}B_{pa})\right), \\
+\frac{\partial \tilde{\bm T}}{\partial \hat{\bm u}} = \frac{\partial \tilde{\bm T}}{\partial ({\bm D}\Delta)}\frac{\partial ({\bm D}\Delta)}{\partial \hat{\bm u}}.
 \end{gather}
 Finally, the derivative is forward-rotated by the incremental rotation:
 \begin{equation}
-\frac{\partial {\bm T}}{\partial \hat{\bm u}} = \frac{\partial \hat{\bm R}}{\partial \hat{\bm u}}{\tilde {\bm T}}{\hat{\bm R}}^{T} + {\hat{\bm R}}\frac{\partial \tilde{\bm T}}{\partial \hat{\bm u}}\hat{\bm R}^T + \hat{\bm R}\tilde{\bm T}\frac{\partial \hat{\bm R}^{T}}{\partial \hat{\bm u}}
+\frac{\partial {\bm T}}{\partial \hat{\bm u}} = \frac{\partial \hat{\bm R}}{\partial \hat{\bm u}}{\tilde {\bm T}}{\hat{\bm R}}^{T} + {\hat{\bm R}}\frac{\partial \tilde{\bm T}}{\partial \hat{\bm u}}\hat{\bm R}^T + \hat{\bm R}\tilde{\bm T}\frac{\partial \hat{\bm R}^{T}}{\partial \hat{\bm u}}.
 \end{equation}
 Note the calculation of ${\partial \hat{R}_{ij}}/{\partial A_{mn}}$ makes use of the assumption that $\hat{\bm{U}} \approx \bm{I}$.
 
@@ -273,26 +272,26 @@ A hyperelastic material may still be implemented within the incremental kinemati
 
 A compressible Mooney-Rivlin material is defined by the following relationship:
 \begin{align}
-W = C_1(\overline{I}_1 - 3) + C_2(\overline{I}_2 - 3) + D_1(J - 1)^2
+W = C_1(\overline{I}_1 - 3) + C_2(\overline{I}_2 - 3) + D_1(J - 1)^2,
 \end{align}
 where $W$ is the strain energy density, $C_1$ and $C_2$ are constants related to distortional response, and $D_1$ is a constant related to volumetric response. The deformation quantities are $\overline{I}_1 = J^{-2/3}I_1$ and $\overline{I}_2 = J^{-4/3}I_2$, where $I_1$ and $I_2$ are the first and second invariants of $\bm{B} = {\bm F}{\bm F}^T$. Specifically, $I_1 = \lambda_1^2 + \lambda_2^2 + \lambda_3^2$ and $I_2 = \lambda_1^2\lambda_2^2 + \lambda_2^2\lambda_3^2 + \lambda_1^2\lambda_3^2 = \frac{1}{2}[(\text{tr}{\bm B})^2 - \text{tr}({\bm B}^2)]$, where $\lambda_i$ are the eigenvalues of the deformation gradient ${\bm F}$.
 
 The relationship between Cauchy stress ${\bm T}$ and strain energy density $W$ is as follows:
 \begin{align}
-{\bm T} = \frac{1}{J}\frac{\partial W}{\partial {\bm F}}{\bm F}^{T}
+{\bm T} = \frac{1}{J}\frac{\partial W}{\partial {\bm F}}{\bm F}^{T}.
 \end{align}
 Using this relationship, one may obtain a direct expression for the Cauchy stress ${\bm T}$ in terms of the deformation gradient:
 \begin{align}
-{\bm T} = \frac{2}{J}\left[\frac{1}{J^{2/3}}(C_1 + \overline{I}_1{C_2}){\bm B} - \frac{1}{J^{4/3}}C_2{\bm B}^2\right] + \left[2D_1(J-1) - \frac{2}{3J}(C_1\overline{I}_1 + 2C_2\overline{I}_2)\right]{\bm I}
+{\bm T} = \frac{2}{J}\left[\frac{1}{J^{2/3}}(C_1 + \overline{I}_1{C_2}){\bm B} - \frac{1}{J^{4/3}}C_2{\bm B}^2\right] + \left[2D_1(J-1) - \frac{2}{3J}(C_1\overline{I}_1 + 2C_2\overline{I}_2)\right]{\bm I},
 \end{align}
 which can be written in index notation as:
 \begin{align}
-T_{ij} = \frac{2}{J}\left[\frac{1}{J^{2/3}}(C_1 + \overline{I}_{1}C_2)B_{ij} - \frac{1}{J^{4/3}}C_2B_{ik}B_{kj}\right] + \left[2D_1(J-1) - \frac{2}{3J}(C_1\overline{I}_{1} + 2C_2\overline{I}_{2})\right]\delta_{ij}
+T_{ij} = \frac{2}{J}\left[\frac{1}{J^{2/3}}(C_1 + \overline{I}_{1}C_2)B_{ij} - \frac{1}{J^{4/3}}C_2B_{ik}B_{kj}\right] + \left[2D_1(J-1) - \frac{2}{3J}(C_1\overline{I}_{1} + 2C_2\overline{I}_{2})\right]\delta_{ij}.
 \end{align}
 Using the relationships $\overline{I}_{1} = J^{-2/3}I_1$ and $\overline{I}_{2} = J^{-4/3}I_2$ and reorganizing, the relationship that will be used moving forward is as follows:
 \begin{align}
 \label{eqn:stress}
-T_{ij} = 2C_1J^{-5/3}\left[B_{ij} - \frac{1}{3}I_1\delta_{ij}\right] + 2C_2J^{-7/3}\left[I_1B_{ij} - B_{im}B_{mj} - \frac{2}{3}I_2\delta_{ij}\right] + 2D_1(J-1)\delta_{ij}
+T_{ij} = 2C_1J^{-5/3}\left[B_{ij} - \frac{1}{3}I_1\delta_{ij}\right] + 2C_2J^{-7/3}\left[I_1B_{ij} - B_{im}B_{mj} - \frac{2}{3}I_2\delta_{ij}\right] + 2D_1(J-1)\delta_{ij}.
 \end{align}
 In the limit of small strains, this reduces to a linear elastic material if the bulk modulus $K = 2D_1$ and the shear modulus $\mu = 2(C_1 + C_2)$.
 
@@ -300,39 +299,38 @@ In the limit of small strains, this reduces to a linear elastic material if the 
 
 Much in the same way as is done in the hypoelastic case, we define the following:
 \begin{align}
-\hat{\bm {U}} &= {\bm I} + {\bm D} + \frac{1}{2}{\bm D}^2 + \frac{1}{6}{\bm D}^3
+\hat{\bm {U}} &= {\bm I} + {\bm D} + \frac{1}{2}{\bm D}^2 + \frac{1}{6}{\bm D}^3,
 \end{align}
 where we have redefined ${\bm D}\leftarrow{\bm D}\Delta$ for convenience.
 
 We now define $\tilde {\bm F}$ as the deformation gradient at time $t_{n+1}$ prior to applying the rotation increment $\hat{\bm R}$. Specifically,
 \begin{align}
-\tilde {\bm F} = \hat{\bm U}\overline{\bm F} \\
-{\bm F} = \hat{\bm R}\tilde {\bm F}
+\tilde {\bm F} = \hat{\bm U}\overline{\bm F}, \\
+{\bm F} = \hat{\bm R}\tilde {\bm F}.
 \end{align}
-
 When calculating stresses for the new time step, rather than feed ${\bm F}$ into the constitutive update to calculate ${\bm T}$, we feed $\bm{D}$ to calculate $\tilde{\bm{T}}$ as is done for hypoelastic materials. This requires $\overline {\bm F}$ to be stored as a state variable, which is accordingly updated at the beginning of the constitutive routine via $\tilde {\bm F} = \hat{\bm U}\overline{\bm F} $. The quantity $\tilde{\bm{F}}$ is used to compute $\tilde{\bm T}$ via \eqnref{stress}. Note that $\tilde{\bm{T}}$ is computed based only on $\tilde{\bm{F}}$. It is not computed by incrementing $\overline{\bm{T}}$ as is done for hypoelasticity. Finally, outside of the constitutive update subroutine, the end step unrotated Cauchy stress and deformation gradient are forward rotated in the following manner:
 \begin{gather}
-{\bm T} = \hat{\bm R}\tilde{\bm T}\hat{\bm R}^T \\
-\bm{F} = \hat{\bm{R}}\tilde{\bm{F}}
+{\bm T} = \hat{\bm R}\tilde{\bm T}\hat{\bm R}^T, \\
+\bm{F} = \hat{\bm{R}}\tilde{\bm{F}}.
 \end{gather}
 
 \textbf{Tangent Modulus}
 
 When stepping from time $t_n$ to $t_{n+1}$, we seek the derivative $\partial{\tilde{\bm T}}/\partial {\bm D}$, where ${\bm D}$ retains its redefinition as stretch rate \textit{multiplied by the time step}. Successive use of chain rule will be used to compute $\partial \tilde{\bm{T}}/\partial{\bm{D}}$ as follows:
 \begin{equation}
-\frac{\partial \tilde{\bm T}}{\partial \bm D} = \frac{\partial \tilde{\bm T}}{\partial \tilde{\bm F}}\frac{\partial \tilde{\bm F}}{\partial {\hat {\bm U}}}\frac{\partial \hat{\bm U}}{\partial {\bm D}} 
+\frac{\partial \tilde{\bm T}}{\partial \bm D} = \frac{\partial \tilde{\bm T}}{\partial \tilde{\bm F}}\frac{\partial \tilde{\bm F}}{\partial {\hat {\bm U}}}\frac{\partial \hat{\bm U}}{\partial {\bm D}}.
 \label{eq:tanmod}
 \end{equation}
 The following tensor derivatives will be used repeatedly in what follows:
 \begin{align}
-\text{if } {\bm A} \neq {\bm A}^T\text{,}\ \ \ &\frac{\partial A_{ij}}{\partial A_{kl}} = \delta_{ik}{\delta_{jl}} \\
-\text{if } {\bm A} = {\bm A}^T\text{,}\ \ \ &\frac{\partial A_{ij}}{\partial A_{kl}} = \frac{1}{2}(\delta_{ik}{\delta_{jl}} + \delta_{il}{\delta_{jk}})
+\text{if } {\bm A} \neq {\bm A}^T\text{,}\ \ \ &\frac{\partial A_{ij}}{\partial A_{kl}} = \delta_{ik}{\delta_{jl}}, \\
+\text{if } {\bm A} = {\bm A}^T\text{,}\ \ \ &\frac{\partial A_{ij}}{\partial A_{kl}} = \frac{1}{2}(\delta_{ik}{\delta_{jl}} + \delta_{il}{\delta_{jk}}).
 \end{align}
 Importantly, these derivatives are not the same for symmetric and nonsymmetric tensors.
 
 The Taylor expansion definition of $\hat{\bm U}$ from the previous section is repeated here in index notation:
 \begin{align}
-\hat{U}_{ij} &= \delta_{ij} + D_{ij} + \frac{1}{2}D_{im}D_{mj} + \frac{1}{6}D_{im}D_{mn}D_{nj}
+\hat{U}_{ij} &= \delta_{ij} + D_{ij} + \frac{1}{2}D_{im}D_{mj} + \frac{1}{6}D_{im}D_{mn}D_{nj}.
 \end{align}
 The derivative $\partial \hat{\bm U}/{\partial {\bm D}}$ is then:
 \begin{equation}
@@ -340,60 +338,60 @@ The derivative $\partial \hat{\bm U}/{\partial {\bm D}}$ is then:
 \frac{\partial \hat{U}_{ij}}{\partial D_{kl}} = &\frac{1}{2}\left[\delta_{ik}\delta_{jl} + \frac{1}{2}\delta_{ik}\delta_{ml}D_{mj} + \frac{1}{2}D_{im}\delta_{mk}\delta_{jl}\  + \right.\\
 &\ \left.\ \ \frac{1}{6}\delta_{ik}\delta_{ml}D_{mn}D_{nj} + \frac{1}{6}D_{im}\delta_{mk}\delta_{nl}D_{nj} + \frac{1}{6}D_{im}D_{mn}\delta_{nk}\delta_{jl}\right] + \\
 &\frac{1}{2}\left[\delta_{il}\delta_{jk} + \frac{1}{2}\delta_{il}\delta_{mk}D_{mj} + \frac{1}{2}D_{im}\delta_{ml}\delta_{jk}\  + \right.\\
-&\ \left.\ \ \frac{1}{6}\delta_{il}\delta_{mk}D_{mn}D_{nj} + \frac{1}{6}D_{im}\delta_{ml}\delta_{nk}D_{nj} + \frac{1}{6}D_{im}D_{mn}\delta_{nl}\delta_{jk}\right]
+&\ \left.\ \ \frac{1}{6}\delta_{il}\delta_{mk}D_{mn}D_{nj} + \frac{1}{6}D_{im}\delta_{ml}\delta_{nk}D_{nj} + \frac{1}{6}D_{im}D_{mn}\delta_{nl}\delta_{jk}\right].
 \end{split}
 \end{equation}
 Further simplifying,
 \begin{align}
 \frac{\partial \hat{U}_{ij}}{\partial D_{kl}} = &\frac{1}{2}\left[\delta_{ik}\delta_{jl} + \frac{1}{2}\delta_{ik}D_{lj} + \frac{1}{2}D_{ik}\delta_{jl} + \frac{1}{6}\delta_{ik}D_{ln}D_{nj} + \frac{1}{6}D_{ik}D_{lj} + \frac{1}{6}D_{im}D_{mk}\delta_{jl}\right] + \\
-&\frac{1}{2}\left[\delta_{il}\delta_{jk} + \frac{1}{2}\delta_{il}D_{kj} + \frac{1}{2}D_{il}\delta_{jk} + \frac{1}{6}\delta_{il}D_{kn}D_{nj} + \frac{1}{6}D_{il}D_{kj} + \frac{1}{6}D_{im}D_{ml}\delta_{jk}\right]
+&\frac{1}{2}\left[\delta_{il}\delta_{jk} + \frac{1}{2}\delta_{il}D_{kj} + \frac{1}{2}D_{il}\delta_{jk} + \frac{1}{6}\delta_{il}D_{kn}D_{nj} + \frac{1}{6}D_{il}D_{kj} + \frac{1}{6}D_{im}D_{ml}\delta_{jk}\right].
 \end{align}
 
-Now, repeating the definition for $\tilde {\bm F}$ in index notation,
+Now, repeating the definition for $\tilde {\bm F}$ in index notation:
 \begin{align}
-\tilde{F}_{ij} = \hat{U}_{im}\overline{F}_{mj}
+\tilde{F}_{ij} = \hat{U}_{im}\overline{F}_{mj}.
 \end{align}
 The derivative ${\partial \tilde{\bm F}}/{\partial \hat{\bm U}}$ is:
 \begin{align}
-\frac{\partial \tilde{F}_{ij}}{\partial \hat{U}_{kl}} = \frac{1}{2}\left(\delta_{ik}\delta_{ml}\overline{F}_{mj} + \delta_{il}\delta_{mk}\overline{F}_{mj}\right)
+\frac{\partial \tilde{F}_{ij}}{\partial \hat{U}_{kl}} = \frac{1}{2}\left(\delta_{ik}\delta_{ml}\overline{F}_{mj} + \delta_{il}\delta_{mk}\overline{F}_{mj}\right),
 \end{align}
 and simplifying:
 \begin{align}
-\frac{\partial \tilde{F}_{ij}}{\partial \hat{U}_{kl}} &= \frac{1}{2}\left(\delta_{ik}\overline{F}_{lj} + \delta_{il}\overline{F}_{kj}\right)
+\frac{\partial \tilde{F}_{ij}}{\partial \hat{U}_{kl}} &= \frac{1}{2}\left(\delta_{ik}\overline{F}_{lj} + \delta_{il}\overline{F}_{kj}\right).
 \end{align}
 
 With $\partial \tilde{\bm F}/\partial \hat{\bm U}$ and $\partial \hat{\bm U}/\partial {\bm D}$ specified, $\partial \tilde{\bm T}/\partial \tilde {\bm F}$ remains in order to compute the tangent modulus $\partial \tilde{\bm T}/\partial {\bm D}$. We may write the derivative as follows:
 \begin{align}
-\frac{\partial \tilde{\bm T}}{\partial \tilde{\bm F}} &= \frac{\partial \tilde{\bm T}}{\partial J}\frac{\partial J}{\partial \tilde {\bm F}} + \frac{\partial \tilde{\bm T}}{\partial {\tilde{\bm {B}}}}\frac{\partial {\tilde{\bm {B}}}}{\partial \tilde {\bm F}}
+\frac{\partial \tilde{\bm T}}{\partial \tilde{\bm F}} &= \frac{\partial \tilde{\bm T}}{\partial J}\frac{\partial J}{\partial \tilde {\bm F}} + \frac{\partial \tilde{\bm T}}{\partial {\tilde{\bm {B}}}}\frac{\partial {\tilde{\bm {B}}}}{\partial \tilde {\bm F}},
 \end{align}
 where $J = \det\tilde{\bm{F}}$ and $\tilde{\bm{B}} = \tilde{\bm{F}}\tilde{\bm{F}}^T$.
 
 The corresponding intermediate terms are then:
 \begin{align}
-\frac{\partial J}{\partial {\tilde{F}}_{kl}} &= {J}{\tilde{F}}^{-1}_{lk} \\
+\frac{\partial J}{\partial {\tilde{F}}_{kl}} &= {J}{\tilde{F}}^{-1}_{lk}, \\
 \frac{\partial \tilde{B}_{ij}}{\partial {\tilde{F}}_{kl}} &= \delta_{ik}\delta_{ml}{\tilde{F}}_{jm} + {\tilde{F}}_{im}\delta_{jk}\delta_{ml} \\
- &=  \delta_{ik}{\tilde{F}}_{jl} + {\tilde{F}}_{il}\delta_{jk}
+ &=  \delta_{ik}{\tilde{F}}_{jl} + {\tilde{F}}_{il}\delta_{jk}.
 \end{align}
 The relationship for the updated Cauchy stress is repeated here:
 \begin{equation}
 \begin{aligned}
 T_{ij} = &\ 2C_1J^{-5/3}\left[\tilde{B}_{ij} - \frac{1}{3}I_1\delta_{ij}\right] + \\ 
 &\ 2C_2J^{-7/3}\left[I_1\tilde{B}_{ij} - \tilde{B}_{im}\tilde{B}_{mj} - \frac{2}{3}I_2\delta_{ij}\right] + \\
-&\ 2D_1(J-1)\delta_{ij}
+&\ 2D_1(J-1)\delta_{ij}.
 \end{aligned}
 \end{equation}
 Then,
 \begin{equation}
 \begin{aligned}
 \frac{\partial \tilde{T}_{ij}}{\partial J} = &\frac{-10}{3}C_1J^{-8/3}\left[\tilde{B}_{ij} - \frac{1}{3}I_1\delta_{ij}\right] + \\
-&\ \frac{-14}{3}C_2J^{-10/3}\left[I_1\tilde{B}_{ij} - \tilde{B}_{im}\tilde{B}_{mj} - \frac{2}{3}I_2\delta_{ij}\right] + \\ &\ 2D_1\delta_{ij}
+&\ \frac{-14}{3}C_2J^{-10/3}\left[I_1\tilde{B}_{ij} - \tilde{B}_{im}\tilde{B}_{mj} - \frac{2}{3}I_2\delta_{ij}\right] + \\ &\ 2D_1\delta_{ij}.
 \end{aligned}
 \end{equation}
 
 To calculate the derivative $\partial \tilde{\bm T}/\partial {\tilde{\bm {B}}}$, the following relationships are needed:
 \begin{align}
-\frac{\partial I_1}{\partial \tilde{B}_{kl}} &= \delta_{lk}  \\
-\frac{\partial I_2}{\partial \tilde{B}_{kl}} &= I_1\delta_{kl} - \tilde{B}_{lk}
+\frac{\partial I_1}{\partial \tilde{B}_{kl}} &= \delta_{lk},  \\
+\frac{\partial I_2}{\partial \tilde{B}_{kl}} &= I_1\delta_{kl} - \tilde{B}_{lk}.
 \end{align}
 Finally,
 \begin{equation}
@@ -401,7 +399,7 @@ Finally,
 \frac{\partial \tilde{T}_{ij}}{\partial \tilde{B}_{kl}} = &\ 2C_1J^{-5/3}\left[\frac{1}{2}\left(\delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk}\right) - \frac{1}{3}\delta_{ij}\delta_{kl}\right] + \\
 &\ 2C_2J^{-7/3}\left[\delta_{kl}\tilde{B}_{ij} + \frac{1}{2}I_1\left(\delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk}\right) -\frac{1}{2}\left(\delta_{ik}\delta_{ml} + \delta_{ik}\delta_{ml}\right)\tilde{B}_{mj} \right. + \\
 &\phantom{xxxxxxxx}-\frac{1}{2}\tilde{B}_{im}\left(\delta_{mk}\delta_{jl} +\delta_{ml}\delta_{jk}\right) 
-\left.- \frac{2}{3}I_1\delta_{ij}\delta_{kl} + \frac{2}{3}\delta_{ij}\tilde{B}_{lk}\right]
+\left.- \frac{2}{3}I_1\delta_{ij}\delta_{kl} + \frac{2}{3}\delta_{ij}\tilde{B}_{lk}\right].
 \end{aligned}
 \end{equation}
 And simplifying,
@@ -409,7 +407,7 @@ And simplifying,
 \begin{aligned}
 \frac{\partial \tilde{T}_{ij}}{\partial \tilde{B}_{kl}} = &\ 2C_1J^{-5/3}\left[\frac{1}{2}\delta_{ik}\delta_{jl} + \frac{1}{2}\delta_{il}\delta_{jk} - \frac{1}{3}\delta_{ij}\delta_{kl}\right] + \\
 &\ 2C_2J^{-7/3}\left[\delta_{kl}\tilde{B}_{ij} + \frac{1}{2}I_1\delta_{ik}\delta_{jl} + \frac{1}{2}I_1\delta_{il}\delta_{jk} -\frac{1}{2}\delta_{ik}\tilde{B}_{lj} -\frac{1}{2}\delta_{il}\tilde{B}_{kj} \right. + \\
-&\left.\phantom{xxxxxxxx}-\frac{1}{2}\tilde{B}_{ik}\delta_{jl} -\frac{1}{2}\tilde{B}_{il}\delta_{jk} - \frac{2}{3}I_1\delta_{ij}\delta_{kl} + \frac{2}{3}\delta_{ij}\tilde{B}_{lk}\right]
+&\left.\phantom{xxxxxxxx}-\frac{1}{2}\tilde{B}_{ik}\delta_{jl} -\frac{1}{2}\tilde{B}_{il}\delta_{jk} - \frac{2}{3}I_1\delta_{ij}\delta_{kl} + \frac{2}{3}\delta_{ij}\tilde{B}_{lk}\right].
 \end{aligned}
 \end{equation}
 Thus, all terms have been defined in the calculation of the tangent modulus $\partial{\tilde{\bm{T}}}/\partial{\bm{D}}$. Like the stress and state variables, the tangent modulus is forward-rotated elsewhere in the finite element code prior to contributing to the linearized global residual equations, in the same manner described previously.
@@ -424,8 +422,8 @@ Enforcement of near-incompressibility on an integration-point level results in t
 
 Thus, the constraint is relaxed by enforcing incompressibility only on an element level. This amounts to modifying the incremental deformation gradient $\hat{\bm{F}}$ at each of the integration points of an element such that the dilatation is replaced by an element-averaged value, while the deviatoric deformation is unmodified. Thus, at each of the integration points, $\hat{\bm{F}}$ is replaced by $\doublehat{\bm{F}}$ in the following manner:
 \begin{align}
-\doublehat{\bm{F}}  &= \left(\frac{\det\bm{G}}{\hat{J}}\right)^{1/3}\hat{\bm{F}} \\
-\bm{G} &= \frac{1}{|\overline{\Omega}|} \int_{\overline{\Omega}} \hat{\bm{F}}dv
+\doublehat{\bm{F}}  &= \left(\frac{\det\bm{G}}{\hat{J}}\right)^{1/3}\hat{\bm{F}}, \\
+\bm{G} &= \frac{1}{|\overline{\Omega}|} \int_{\overline{\Omega}} \hat{\bm{F}}dv,
 \end{align}
 where $\hat{J} = \det\hat{\bm{F}}$, $\overline{\Omega}$ is the element at its beginning-step configuration, and ${|\overline{\Omega}|}$ is its volume.
 
@@ -442,20 +440,20 @@ Calculations for the traction boundary conditions all stem from the formation of
 
 If Cauchy pressure $\overline{p}_c$ is prescribed, then $\bm {\overline{p}} = {-\overline{p}_c}\alpha{\bm n}$ and $\frac{\partial \overline{\bm{p}}}{\partial \hat {\bm{u}}} = {-\overline{p}_c}\frac{\partial (\alpha {\bm n})}{\partial {\hat {\bm{u}}}}$, where:
 \begin{align}
-\alpha{\bm n} &= {\bm F}{\bm M}_1 \times {\bm F}{\bm M}_2 \\
-\frac{\partial (\alpha{\bm n})}{\partial {\hat {\bm{u}}}} &= (\frac{\partial {\bm F}}{\partial {\hat {\bm{u}}}}{\bm M}_1 \times {\bm F}{\bm M}_2) + ({\bm F}{\bm M}_1 \times \frac{\partial {\bm F}}{\partial {\hat {\bm{u}}}}{\bm M}_2)
+\alpha{\bm n} &= {\bm F}{\bm M}_1 \times {\bm F}{\bm M}_2, \\
+\frac{\partial (\alpha{\bm n})}{\partial {\hat {\bm{u}}}} &= (\frac{\partial {\bm F}}{\partial {\hat {\bm{u}}}}{\bm M}_1 \times {\bm F}{\bm M}_2) + ({\bm F}{\bm M}_1 \times \frac{\partial {\bm F}}{\partial {\hat {\bm{u}}}}{\bm M}_2).
 \end{align}
 If Cauchy traction $\overline{\bm{t}}$ is prescribed, then $\overline{\bm{p}} = \alpha{\overline{\bm{t}}}$ and $\frac{\partial \overline{\bm{p}}}{\partial {\hat {\bm{u}}}} = \frac{\partial \alpha}{\partial {\hat {\bm{u}}}}{\overline{\bm{t}}}$, where:
 \begin{align}
-{\alpha \bm n}, \ \frac{\partial (\alpha {\bm n})}{\partial {\hat {\bm{u}}}} &\text{ computed as before} \nonumber \\
-\alpha &= [\alpha {\bm n} \bm{\cdot} \alpha {\bm n}]^{1/2} \\
- \frac{\partial{\alpha}}{\partial {\hat {\bm{u}}}} &= \frac{1}{\alpha}\frac{\partial({\alpha {\bm n}})}{\partial {\hat {\bm{u}}}} \bm{\cdot} ({\alpha \bm n})
+{\alpha \bm n}, \ \frac{\partial (\alpha {\bm n})}{\partial {\hat {\bm{u}}}} &\text{ computed as before}, \nonumber \\
+\alpha &= [\alpha {\bm n} \bm{\cdot} \alpha {\bm n}]^{1/2}, \\
+ \frac{\partial{\alpha}}{\partial {\hat {\bm{u}}}} &= \frac{1}{\alpha}\frac{\partial({\alpha {\bm n}})}{\partial {\hat {\bm{u}}}} \bm{\cdot} ({\alpha \bm n}).
 \end{align}
 If Piola pressure $\overline{p}_p$ is prescribed, then $\overline{\bm{p}} = {-\overline{p}_p}{\bm n}$ and $\frac{\partial \overline{\bm{p}}}{\partial {\hat {\bm{u}}}} = {-\overline{p}_p}\frac{\partial {\bm n}}{\partial {\hat {\bm{u}}}}$, where:
 \begin{align}
-{\alpha \bm n}, \ &\frac{\partial (\alpha {\bm n})}{\partial {\hat {\bm{u}}}}, \ \alpha, \ \frac{\partial \alpha}{\partial {\hat {\bm{u}}}} \text{ computed as before} \nonumber \\
-{\bm n} &= \frac{1}{\alpha}(\alpha {\bm n}) \\
-\frac{\partial {\bm n}}{\partial {\hat {\bm{u}}}} &= -\frac{1}{\alpha^2}(\alpha {\bm n}) + \frac{1}{\alpha}\frac{\partial (\alpha{\bm n})}{\partial {\hat {\bm{u}}}}
+{\alpha \bm n}, \ &\frac{\partial (\alpha {\bm n})}{\partial {\hat {\bm{u}}}}, \ \alpha, \ \frac{\partial \alpha}{\partial {\hat {\bm{u}}}} \text{ computed as before}, \nonumber \\
+{\bm n} &= \frac{1}{\alpha}(\alpha {\bm n}), \\
+\frac{\partial {\bm n}}{\partial {\hat {\bm{u}}}} &= -\frac{1}{\alpha^2}(\alpha {\bm n}) + \frac{1}{\alpha}\frac{\partial (\alpha{\bm n})}{\partial {\hat {\bm{u}}}}.
 \end{align}
 
 Finally, If Piola traction $\overline{\bm{p}}$ is prescribed: $\overline{\bm{p}}$ is explicitly defined and $\frac{\partial \overline{\bm{p}}}{\partial {\hat {\bm{u}}}} = {\bm 0}$.
@@ -473,27 +471,27 @@ If we define ${\bm {M}}$ as the 3$\times$2 matrix whose columns are ${\bm {M}}_1
 \frac{\partial N_a}{\partial {\bm \xi}} &= {\bm g}_a \bm{\cdot} \frac{\partial {\bm X}}{\partial {\bm \xi}} \\
 &= {\bm M}{\bm h}_a \bm{\cdot} \frac{\partial {\bm X}}{\partial {\bm \xi}} \\
 &= (\frac{\partial {\bm X}}{\partial {\bm \xi}}^T{\bm M}){\bm h}_a \\
-&= {\bm H}{\bm h}_a
+&= {\bm H}{\bm h}_a.
 \end{align}
 The matrix ${\bm H} = \frac{\partial {\bm X}}{\partial {\bm \xi}}^T{\bm M}$ maps in-plane shape function gradients $h_{ia}$ acting in directions ${\bm M}_i$ into shape function gradients in directions of the parameterized variables ${\xi_j}$. The components $h_{ia}$ are then found from ${\bm h}_a = {\bm H}^{-1}\frac{\partial N_a}{\partial {\bm \xi}}$. Finally, ${\bm g}_a$ is formed using the relation ${\bm g}_a = {h_{1a}}{\bm M}_1 + {h_{2a}}{\bm M}_2$.
 
 The previous discussion simplifies to a concise set of calculations that are performed at each integration point of a facet:
 \begin{align}
-\frac{\partial X_{i}}{\partial \xi_j} &= \sum_a X_{i}\frac{\partial N_a}{\partial \xi_j}, \text{\ \ \ \ }i=1,3, \text{\ \ }j = 1,2 \\
-{\bm{dA}} &= \frac{\partial{\bm{X}}}{\partial \xi_1} \times \frac{\partial {\bm {X}}}{\partial \xi_2} \\
-J_f &= | {\bm {dA}}| \\
-{\bm N} &= \frac{1}{J_f}{\bm {dA}} \\
-\text{Determine } p &\text{ such that } N_p = \min_i{|N_i|} \\
-{\bm M}_1 &=\frac{ ({\bm I} - {\bm N}\otimes{\bm N}){\bm e}_p}{|({\bm I} - {\bm N}\otimes{\bm N}){\bm e}_p|} \\
-{\bm M}_2 &= {\bm N} \times {\bm M}_1 \\
-H_{ij} &= \frac{\partial {\bm X}}{\partial \xi_i} \bm{\cdot} {\bm M}_j, \text{\ \ \ \ }i=1,\text{2}, \text{\ \ }j = 1,\text{2} \\
-{\bm h}_a &= {\bm H}^{-1} \frac{\partial N_a}{\partial {\bm \xi}} \\
-{\bm g}_a &= h_{1a}{\bm M}_1 + h_{2a}{\bm M}_2
+\frac{\partial X_{i}}{\partial \xi_j} &= \sum_a X_{i}\frac{\partial N_a}{\partial \xi_j}, \text{\ \ \ \ }i=1,3, \text{\ \ }j = 1,2, \\
+{\bm{dA}} &= \frac{\partial{\bm{X}}}{\partial \xi_1} \times \frac{\partial {\bm {X}}}{\partial \xi_2}, \\
+J_f &= | {\bm {dA}}|, \\
+{\bm N} &= \frac{1}{J_f}{\bm {dA}}, \\
+\text{Determine } p &\text{ such that } N_p = \min_i{|N_i|}, \\
+{\bm M}_1 &=\frac{ ({\bm I} - {\bm N}\otimes{\bm N}){\bm e}_p}{|({\bm I} - {\bm N}\otimes{\bm N}){\bm e}_p|}, \\
+{\bm M}_2 &= {\bm N} \times {\bm M}_1, \\
+H_{ij} &= \frac{\partial {\bm X}}{\partial \xi_i} \bm{\cdot} {\bm M}_j, \text{\ \ \ \ }i=1,\text{2}, \text{\ \ }j = 1,\text{2}, \\
+{\bm h}_a &= {\bm H}^{-1} \frac{\partial N_a}{\partial {\bm \xi}}, \\
+{\bm g}_a &= h_{1a}{\bm M}_1 + h_{2a}{\bm M}_2.
 \end{align}
 Finally,
 \begin{align}
-F_{ij} &= \delta_{ij} + \sum_a{u_{ia}g_{ja}} \\
-\frac{\partial F_{ij}}{\partial \hat{u}_{kb}} &= \delta_{ik}g_{jb}
+F_{ij} &= \delta_{ij} + \sum_a{u_{ia}g_{ja}}, \\
+\frac{\partial F_{ij}}{\partial \hat{u}_{kb}} &= \delta_{ik}g_{jb}.
 \end{align}
 
 Thus, $\bm{F}$, ${\partial \bm{F}}/{\partial \hat{\bm{u}}}$, $\bm{M}_1$, and $\bm{M}_2$ have all been defined and can be used to compute the various boundary conditions described previously.

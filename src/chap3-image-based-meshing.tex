@@ -149,55 +149,46 @@ The open surface $\mathcal{S}$ that approximates the interface takes an assumed 
 
 Define the following moments of volume for $\Omega_p$:
 \begin{alignat}{5}
-&{} &&V^p = \int_{\Omega_p}dv &&{} \\
-I_{x\phantom{z}}^p &= \int_{\Omega_p}xdv, &&I_{y\phantom{z}}^p = \int_{\Omega_p}ydv, &&I_{z\phantom{z}}^p = \int_{\Omega_p}zdv \\
-I^p_{xy} &= \int_{\Omega_p}xydv, &&I^p_{xz} = \int_{\Omega_p}xzdv, &&I^p_{yz} = \int_{\Omega_p}yzdv \\
-I^p_{xx} &= \int_{\Omega_p}(y^2 + z^2)dv, \text{\ \ \ \ \ \ }&&I^p_{yy} = \int_{\Omega_p}(x^2 + z^2)dv, \text{\ \ \ \ \ \ }&&I^p_{zz} = \int_{\Omega_p}(x^2 + y^2)dv
+&{} &&V^p = \int_{\Omega_p}dv, &&{} \\
+I_{x\phantom{z}}^p &= \int_{\Omega_p}xdv, &&I_{y\phantom{z}}^p = \int_{\Omega_p}ydv, &&I_{z\phantom{z}}^p = \int_{\Omega_p}zdv, \\
+I^p_{xy} &= \int_{\Omega_p}xydv, &&I^p_{xz} = \int_{\Omega_p}xzdv, &&I^p_{yz} = \int_{\Omega_p}yzdv, \\
+I^p_{xx} &= \int_{\Omega_p}(y^2 + z^2)dv, \text{\ \ \ \ \ \ }&&I^p_{yy} = \int_{\Omega_p}(x^2 + z^2)dv, \text{\ \ \ \ \ \ }&&I^p_{zz} = \int_{\Omega_p}(x^2 + y^2)dv.
 \end{alignat}
 
-The zeroth, first, and second moments of volume of $\Omega$ are defined in the same manner, with integrals performed over the domain of $\Omega$ instead.
-%\begin{alignat}{5}
-%&{} &&V = \int_{\Omega}dv &&{} \\
-%I_{x\phantom{z}} &= \int_{\Omega}xdv, &&I_{y\phantom{z}} = \int_{\Omega}ydv, &&I_{z\phantom{z}} = \int_{\Omega}zdv \\
-%I_{xy} &= \int_{\Omega}xydv, &&I_{xz} = \int_{\Omega}xzdv, &&I_{yz} = \int_{\Omega}yzdv \\
-%I_{xx} &= \int_{\Omega}(y^2 + z^2)dv, \text{\ \ \ \ \ \ }&&I_{yy} = \int_{\Omega}(x^2 + z^2)dv, \text{\ \ \ \ \ \ }&&I_{zz} = \int_{\Omega}(x^2 + y^2)dv
-%\end{alignat}
-%For the purposes of computing an error functional, define the following quantities:
-%\begin{alignat}{3}
-%f^p &= V^p, \text{\ \ \ \ \ }&&f(d,\psi,\theta) = V \\
-%\bm{g}^p &= \left[\begin{array} {ccc} {I_x^p} \\ {I_y^p} \\ {I_z^p} \end{array} \right], \text{\ \ \ \ \ }&&\bm{g}(d,\psi,\theta) = \left[\begin{array} {ccc} {I_x} \\ {I_y} \\ {I_z} \end{array} \right] \\
-%\bm{h}^p &= \left[\begin{array} {ccc} {I_{xx}^p} & {-I_{xy}^p} & {-I_{xz}^p}\\ {-I_{xy}^p} & {I_{yy}^p} & {-I_{yz}^p} \\ -{I_{xz}^p} & {-I_{yz}^p} & {I_{zz}^p} \end{array} \right],\text{\ \ \ \ \ \ \ }&&\bm{h}(d,\psi,\theta) = \left[\begin{array} {ccc} {I_{xx}} & {-I_{xy}} & {-I_{xz}}\\ {-I_{xy}} & {I_{yy}} & {-I_{yz}} \\ -{I_{xz}} & {-I_{yz}} & {I_{zz}} \end{array} \right]
-%\end{alignat}
+The zeroth, first, and second moments of volume of $\Omega$ are defined in the same manner, with integrals performed over the domain of $\Omega$ instead. For the purposes of computing an error functional, define the following quantities:
+\begin{alignat}{3}
+f^p &= V^p, \text{\ \ \ \ \ }&&f(d,\psi,\theta) = V, \\
+\bm{g}^p &= \left[\begin{array} {ccc} {I_x^p} \\ {I_y^p} \\ {I_z^p} \end{array} \right], \text{\ \ \ \ \ }&&\bm{g}(d,\psi,\theta) = \left[\begin{array} {ccc} {I_x} \\ {I_y} \\ {I_z} \end{array} \right], \\
+\bm{h}^p &= \left[\begin{array} {ccc} {I_{xx}^p} & {-I_{xy}^p} & {-I_{xz}^p}\\ {-I_{xy}^p} & {I_{yy}^p} & {-I_{yz}^p} \\ -{I_{xz}^p} & {-I_{yz}^p} & {I_{zz}^p} \end{array} \right],\text{\ \ \ \ \ \ \ }&&\bm{h}(d,\psi,\theta) = \left[\begin{array} {ccc} {I_{xx}} & {-I_{xy}} & {-I_{xz}}\\ {-I_{xy}} & {I_{yy}} & {-I_{yz}} \\ -{I_{xz}} & {-I_{yz}} & {I_{zz}} \end{array} \right].
+\end{alignat}
 
 Define the relative errors as:
 \begin{align}
-e_0(d,\psi,\theta) &=  \sqrt{\frac{(f - f^p)^2}{(f^p)^2}} \\
-e_1(d,\psi,\theta) &=  \sqrt{\frac{(g_i - g_i^p)(g_i - g_i^p)}{g_j^{p}g_j^{p}}} \\
-e_2(d,\psi,\theta) &=  \sqrt{\frac{(h_{ij} - h_{ij}^p)(h_{ij} - h_{ij}^p)}{h_{kl}^{p}h_{kl}^{p}}}
+e_0(d,\psi,\theta) &=  \sqrt{\frac{(f - f^p)^2}{(f^p)^2}}, \\
+e_1(d,\psi,\theta) &=  \sqrt{\frac{(g_i - g_i^p)(g_i - g_i^p)}{g_j^{p}g_j^{p}}}, \\
+e_2(d,\psi,\theta) &=  \sqrt{\frac{(h_{ij} - h_{ij}^p)(h_{ij} - h_{ij}^p)}{h_{kl}^{p}h_{kl}^{p}}}.
 \end{align}
 Finally, we define the relative error functional as follows:
 \begin{align}
-\mathcal{F}(d,\psi,\theta) = \beta_0e_0 + \beta_1e_1 + \beta_2e_2
+\mathcal{F}(d,\psi,\theta) = \beta_0e_0 + \beta_1e_1 + \beta_2e_2,
 \end{align}
 where $e_0$, $e_1$, and $e_2$ are relative errors between the zeroth, first, and second order moments of volume of $\Omega_p$ and $\Omega$, respectively. They are functions of the interface parameters $d$, $\psi$, and $\theta$, where $\psi$ and $\theta$ are the yaw and pitch angles defining the plane. The values $\beta_0$, $\beta_1$, and $\beta_2$ are weighting coefficients, where $\beta_2 = 1 - \beta_0 - \beta_1$, and $\beta_i \in [0, 1]$. We seek the solution to the following unconstrained minimization problem: $\displaystyle \min_{d, \psi, \theta} \mathcal{F}(d,\psi,\theta)$, which can be solved by a variety of well-established techniques.
 
 The moments of volume of $\Omega_p$ are computed based on a straightforward use of voxel dimensions and the parallel axis theorem. The moments of $\Omega$, on the other hand, are computed based on an intricate dependence on $d$, $\psi$, and $\theta$:
 \begin{align}
-p &= \sqrt{R^2 - d^2} \\
-V^* &= 2\pi\left[-\frac{1}{2}dp^2 + \frac{1}{3}R^3 - \frac{1}{3}(R^2 - p^2)^{3/2} \right] \\
-I^*_{x'x'} &= \frac{\pi}{30}\left[-15dp^4 + \sqrt{R^2-p^2}\left(12p^4 - 4p^2R^2 - 8R^4\right) + 8R^5 \right] \\
-\begin{split}
-I^*_{y'y'} &= \frac{\pi}{480}\Big[-160d^3p^2 + 128R^5 - \sqrt{R^2-p^2}\left(128R^4 - 96p^2R^2 - 32p^4\right) - 120dp^4 \Big]
-\end{split}
+p &= \sqrt{R^2 - d^2}, \\
+V^* &= 2\pi\left[-\frac{1}{2}dp^2 + \frac{1}{3}R^3 - \frac{1}{3}(R^2 - p^2)^{3/2} \right], \\
+I^*_{x'x'} &= \frac{\pi}{30}\left[-15dp^4 + \sqrt{R^2-p^2}\left(12p^4 - 4p^2R^2 - 8R^4\right) + 8R^5 \right], \\
+I^*_{y'y'} &= \frac{\pi}{480}\left[-160d^3p^2 + 128R^5 - \sqrt{R^2-p^2}\left(128R^4 - 96p^2R^2 - 32p^4\right) - 120dp^4 \right],
 \end{align}
-\begin{align}
+\begin{align} 
 V &=  \begin{cases}
       V^*, & \text{if}\ d \geq 0 \\
       V^* + \frac{4\pi}{3}\left(R^2-p^2\right)^{3/2}, & \text{otherwise}
-    \end{cases} \\
-I_{x'} &= \frac{\pi}{4}\left[2p^2(R^2-d^2) - p^4 \right]\\
-I_{y'} &= I_{z'} = 0 \\
-I_{x'y'} &= I_{x'z'} = I_{y'z'} = 0 \\
+    \end{cases}\\
+I_{x'} &= \frac{\pi}{4}\left[2p^2(R^2-d^2) - p^4 \right],\\
+I_{y'} &= I_{z'} = 0, \\
+I_{x'y'} &= I_{x'z'} = I_{y'z'} = 0, \\
 I_{x'x'} &=  \begin{cases}
       I^*_{x'x'}, & \text{if}\ d \geq 0 \\
        I^*_{x'x'} + \frac{4\pi}{15}(R^2-p^2)^{3/2}(3p^2+2R^2), & \text{otherwise}
@@ -206,20 +197,24 @@ I_{y'y'} &=  \begin{cases}
      I^*_{y'y'}, & \text{if}\ d \geq 0 \\
      I^*_{y'y'} + \frac{2\pi}{15}(R^2-p^2)^{3/2}(p^2+4R^2), & \text{otherwise}
     \end{cases} \\
-I_{z'z'} &= I_{y'y'}
+I_{z'z'} &= I_{y'y'}.
 \end{align}
 Unsurprisingly, certain moments of volume exhibit symmetries in regard to the $y'$ and $z'$ axes. Note that additional terms may exist if $d$ is negative.
 
 The geometric quantities are computed in the transformed coordinate frame and then transformed back to the original desired coordinate frame. This transformation is different for the zeroth, first, and second moments due to the different tensor rank for each of these quantities. Once the moments of $\Omega$ have been transformed to the original coordinate frame, they can be compared to those of $\Omega_p$. The first and second moments are transformed in the following manner (no transformation is required for the zeroth moment of volume):
-\begin{align}
-\bm{R} &= \left[\begin{array} {ccc} {\cos\psi\cos\theta} & {-\sin\psi} & {\cos\psi\sin\theta}\\ {\sin\psi\cos\theta} & {\cos\psi} & {\sin\psi\sin\theta} \\
-{-\sin\theta} & {0} & {\cos\theta}\end{array} \right] \\
-\left[\begin{array} {ccc} {I_x} \\ {I_y} \\ {I_z} \end{array} \right] &= \bm{R} \left[\begin{array} {ccc} {I_{x'}} \\ {I_{y'}} \\ {I_{z'}} \end{array} \right]\\
-\bm{I}' &= \left[\begin{array} {ccc} {I_{x'x'}} & {-I_{x'y'}} & {-I_{x'z'}}\\ {-I_{x'y'}} & {I_{y'y'}} & {-I_{y'z'}} \\ -{I_{x'z'}} & {-I_{y'z'}} & {I_{z'z'}} \end{array} \right] \\
-\bm{I} &= \left[\begin{array} {ccc} {I_{xx}} & {-I_{xy}} & {-I_{xz}}\\ {-I_{xy}} & {I_{yy}} & {-I_{yz}} \\ -{I_{xz}} & {-I_{yz}} & {I_{zz}} \end{array} \right] = \bm{R}\bm{I}'\mathbf{R}^T
-\end{align}
+\begin{gather}
+\bm{R} = \left[\begin{array} {ccc} {\cos\psi\cos\theta} & {-\sin\psi} & {\cos\psi\sin\theta}\\ {\sin\psi\cos\theta} & {\cos\psi} & {\sin\psi\sin\theta}, \\
+{-\sin\theta} & {0} & {\cos\theta}\end{array} \right], \\
+\left[\begin{array} {ccc} {I_x} \\ {I_y} \\ {I_z} \end{array} \right] = \bm{R} \left[\begin{array} {ccc} {I_{x'}} \\ {I_{y'}} \\ {I_{z'}} \end{array} \right],
+\end{gather}
+\begin{gather}
+\bm{I}' = \left[\begin{array} {ccc} {I_{x'x'}} & {-I_{x'y'}} & {-I_{x'z'}}\\ {-I_{x'y'}} & {I_{y'y'}} & {-I_{y'z'}} \\ -{I_{x'z'}} & {-I_{y'z'}} & {I_{z'z'}} \end{array} \right], \\
+\bm{I} = \left[\begin{array} {ccc} {I_{xx}} & {-I_{xy}} & {-I_{xz}}\\ {-I_{xy}} & {I_{yy}} & {-I_{yz}} \\ -{I_{xz}} & {-I_{yz}} & {I_{zz}} \end{array} \right] = \bm{R}\bm{I}'\mathbf{R}^T.
+\end{gather}
 
-With all relevant quantities defined, the \textit{subplex search method}~\cite{rowan} is used to minimize the error functional using an implementation in the package \textit{NLopt}~\cite{nlo}. The method is a \textit{derivative-free} method that is well suited for optimizing objective functions that are noisy or discontinuous. It was selected as the optimization approach due to the existence of square roots in the objective function, and the fact that robustness to a variety of inputs was the highest priority in developing the algorithm. A convergence tolerance $\varepsilon$ is defined such that on successive iterations, $\left| \mathcal{F}_{k+1} - \mathcal{F}_{k}\right| < \varepsilon$, where $k$ is the iteration number. For the specific examples and algorithm parameters to be discussed later in this chapter, convergence is achieved for each interface approximation after typically hundreds of iterations. This large value may be due to the admittedly tight tolerance value for $\varepsilon$ of $10^{-14}$, to nonlinearities or saddle points in the error functional not yet fully understood, or to inefficiencies in the nonlinear optimization tool used. However, because the point cloud generation step generates good results, and the entire process usually completes in less than one minute of wall clock time on a personal computer even for complex geometries, the convergence rate was not further explored as a means for improving the algorithm.
+With all relevant quantities defined, the \textit{subplex search method}~\cite{rowan} is used to minimize the error functional using an implementation in the package \textit{NLopt}~\cite{nlo}. The method is a \textit{derivative-free} method that is well suited for optimizing objective functions that are noisy or discontinuous. It was selected as the optimization approach due to the existence of square roots in the objective function, and the fact that robustness to a variety of inputs was the highest priority in developing the algorithm. A convergence tolerance $\varepsilon$ is defined such that on successive iterations, $\left| \mathcal{F}_{k+1} - \mathcal{F}_{k}\right| < \varepsilon$, where $k$ is the iteration number.
+
+For the specific examples and algorithm parameters to be discussed later in this chapter, convergence is achieved for each interface approximation after typically hundreds of iterations. This large value may be due to the admittedly tight tolerance value for $\varepsilon$ of $10^{-14}$, to nonlinearities or saddle points in the error functional not yet fully understood, or to inefficiencies in the nonlinear optimization tool used. However, because the point cloud generation step generates good results, and the entire process usually completes in less than one minute of wall clock time on a personal computer even for complex geometries, the convergence rate was not further explored as a means for improving the algorithm.
 
 Finally, the solution is only accepted if the error functional is below a specified value $\overline{\mathcal{F}}$, i.e., $\Omega$ approximates $\Omega_p$ to a satisfactory degree. Specifically, we require that once convergence has been satisfied, the criterion $\mathcal{F} < \overline{\mathcal{F}}$ must also be met for the point and normal to be retained. In this way, outlier points for which the error minimization performs poorly are discarded. This typically occurs in regions of high curvature, where a plane does not approximate such an interface well. The point cloud is dense enough that simply discarding these points does not cause any discernible amount of under-sampling of the surface.
 
@@ -279,11 +274,11 @@ Many other surface reconstruction approaches exist, including those making use o
 
 The proposed surface reconstruction technique relies on constructing a \textit{Voronoi diagram}, which for our purposes is a nearest neighbor partitioning of $\mathbb{R}^3$ based on a set of input \textit{Voronoi sites}. The desired output from a Voronoi partition is a mesh - namely, a set of points, edges, facets, and cells (and their connectivities) that discretize space. Define a half-space $D(\bm{p},\bm{q})$ comprising all points $\bm{x}$ as close, or closer, to site $\bm{p}$ than to site $\bm{q}$:
 \begin{equation}
-D(\bm{p},\bm{q}) = \{\bm{x} \mid d(\bm{p},\bm{x}) \leq d(\bm{q},\bm{x})\}
+D(\bm{p},\bm{q}) = \{\bm{x} \mid d(\bm{p},\bm{x}) \leq d(\bm{q},\bm{x})\},
 \end{equation}
 where a distance function $d$ must be defined. Although there are instances of more exotic distance functions leading to modified Voronoi approaches, the distance function for standard Voronoi diagrams is simply the Euclidean distance. The \textit{Voronoi cell} $V(\bm{p})$ associated with site $\bm{p}$ is the intersection of all half-spaces involving site $\bm{p}$ and all other sites $\bm{q}$ belong to the set $\mathcal{P}$:
 \begin{equation}
-V(\bm{p}) = \bigcap \limits_{\bm{q} \in \mathcal{P}, \bm{q} \neq \bm{p}} D(\bm{p},\bm{q})
+V(\bm{p}) = \bigcap \limits_{\bm{q} \in \mathcal{P}, \bm{q} \neq \bm{p}} D(\bm{p},\bm{q}).
 \end{equation}
 A number of important properties exist for Voronoi partitions and their dual \textit{Delaunay tessellations}. For these purposes, though, the most important property is that the surface extracted from a set of Voronoi cells connected by shared facets is watertight and manifold. Several important considerations must be made in constructing a Voronoi partition, including degenerate and near-degenerate cases, the data schema and order of construction of the connected polytopes, and the
 performance of the algorithm. Refer to Aurenhammer~\cite{aurenhammer_1991} for a detailed survey of the mathematical and algorithmic approaches to Voronoi diagrams.
@@ -324,10 +319,6 @@ The artifact is addressed as follows: ``bad edges'' are identified as those edge
 \label{fig:cross1}
 \end{sidewaysfigure}
 
-For the vast majority of bad edge networks, the collapse technique results in a smoother surface that remains closed and manifold. For regions of high-curvature, there is a small set of cases in which the clean-up step may cause the surface to become non-manifold. The topology of particular networks of bad edges that cause this phenomenon are identified based on heuristics. These networks are not collapsed to preserve the manifold property. The current approach thus does not capture regions of high curvature well during the point cloud generation step, and furthermore is unable to alleviate the issue of ``cross-talk'' facets in regions of high curvature. Fortunately, these remaining artifacts are small enough that the ensuing decimation step removes them.
-
-Handling regions of curvature or even sharp corners and edges can certainly be done, though. The technique would involve including additional templates in the interface approximation step that would allow more than two Voronoi sites to be generated for each sampling window. For example, three Voronoi sites can be used to produce an edge, and four sites can be used to produce a corner. This would significantly improve the point cloud approximation of the underlying surface, perhaps to a degree that the collapsing technique described would remove all cross-talk facets with no concern of losing manifoldness.
-
 \begin{sidewaysfigure}[htbp!]
 \centering
 \subfigure[]{%
@@ -346,6 +337,10 @@ Handling regions of curvature or even sharp corners and edges can certainly be d
 \caption{Clean-up of undesirable ``cross-talk'' facets for surface of \textit{ex vivo} human heart: (a) initial surface following Voronoi-based surface reconstruction, (b) identification of ``cross-talk'' facets, (c) identification of edges to be collapsed, (d) final cleaned surface}
 \label{fig:cross2}
 \end{sidewaysfigure}
+
+For the vast majority of bad edge networks, the collapse technique results in a smoother surface that remains closed and manifold. For regions of high-curvature, there is a small set of cases in which the clean-up step may cause the surface to become non-manifold. The topology of particular networks of bad edges that cause this phenomenon are identified based on heuristics. These networks are not collapsed to preserve the manifold property. The current approach thus does not capture regions of high curvature well during the point cloud generation step, and furthermore is unable to alleviate the issue of ``cross-talk'' facets in regions of high curvature. Fortunately, these remaining artifacts are small enough that the ensuing decimation step removes them.
+
+Handling regions of curvature or even sharp corners and edges can certainly be done, though. The technique would involve including additional templates in the interface approximation step that would allow more than two Voronoi sites to be generated for each sampling window. For example, three Voronoi sites can be used to produce an edge, and four sites can be used to produce a corner. This would significantly improve the point cloud approximation of the underlying surface, perhaps to a degree that the collapsing technique described would remove all cross-talk facets with no concern of losing manifoldness.
 
 \subsubsection{Surface Decimation}
 
@@ -486,26 +481,26 @@ Hex-dominant polyhedral meshing ``sculpts'' a background hex mesh with the input
 \begin{figure}[htbp!]
 \centering
 \subfigure[]{%
-		\includegraphics[scale=0.125]{media/3-celeris/zoom/zoom1.png}
+		\includegraphics[scale=0.13]{media/3-celeris/zoom/zoom1.png}
 \label{fig:zoom1}}		
 \hfill
 \subfigure[]{%
-		\includegraphics[scale=0.125]{media/3-celeris/zoom/zoom2.png}
+		\includegraphics[scale=0.13]{media/3-celeris/zoom/zoom2.png}
 \label{fig:zoom2}}		
 \hfill
 \subfigure[]{%
-		\includegraphics[scale=0.125]{media/3-celeris/zoom/zoom3.png}
+		\includegraphics[scale=0.13]{media/3-celeris/zoom/zoom3.png}
 \label{fig:zoom3}}		
 \subfigure[]{%
-		\includegraphics[scale=0.125]{media/3-celeris/zoom/zoom4.png}
+		\includegraphics[scale=0.13]{media/3-celeris/zoom/zoom4.png}
 \label{fig:zoom4}}	
 \hfill
 \subfigure[]{%
-		\includegraphics[scale=0.125]{media/3-celeris/zoom/zoom5.png}
+		\includegraphics[scale=0.13]{media/3-celeris/zoom/zoom5.png}
 \label{fig:zoom5}}		
 \hfill
 \subfigure[]{%
-		\includegraphics[scale=0.125]{media/3-celeris/zoom/zoom6.png}
+		\includegraphics[scale=0.13]{media/3-celeris/zoom/zoom6.png}
 \label{fig:zoom6}}	
 \caption{Three example arbitrary polyhedral elements presented at different angles}
 \label{fig:zoom}
@@ -515,9 +510,9 @@ As it pertains to image-based modeling and simulation, the greatest benefit that
 
 For the same bi-ventricular surface mesh of the \textit{ex vivo} human heart example generated by the algorithm described in the previous section, volume meshes are compared between linear polyhedral elements and quadratic tetrahedral elements. Linear polyhedral elements are chosen for comparison because they behave and perform like linear hexahedra, and thus are sufficient for generating accurate solutions. The same surface mesh with desired resolution of 50k points and desired maximum element volume of 2 $mm^3$ is supplied to: the sculpt routine in Celeris; the Delaunay tetrahedralization routine in Tetgen; and the advancing front routine in Simpleware. ~\figref{compdof} shows that for this example, the polyhedral approach reduces the system size by a factor of 2 or more. The reduction in system size stems first from the fact that the polyhedral elements are lower order compared to the tetrahedral elements (87$\%$ of the 2.5 million DOF in the Simpleware mesh correspond to midside nodes), and second from not requiring an unnecessarily large number of surface \textit{nodes} to accommodate the large number of surface \textit{points}. It should be emphasized that even at this surface resolution, a noticeable degree of geometric features is sacrificed. The greater the importance of geometric fidelity, the greater the value the polyhedral approach offers in reducing the system size.
 
-\begin{figure}[ht!]
+\begin{figure}[htbp!]
 \centering
-		\includegraphics[scale=0.2]{media/comparison.png}
+		\includegraphics[scale=0.27]{media/comparison.png}
 %\subfigure[]{%
 %		\includegraphics[scale=0.15]{media/3-celeris/8-celeris.png}
 %\label{fig:comp-1}}		
@@ -549,9 +544,9 @@ File formats for volume meshes follow the same paradigm as for point clouds and 
 
 \section{Shabaka: A Free Image-Based Meshing Tool}
 
-The image-based meshing steps described in this chapter are assembled to form a novel image-based meshing tool \textit{Shabaka}~\cite{shab}, available on GitHub at~\href{http://github.com/omhafez/shabaka}{{\url{http://github.com/omhafez/shabaka}}}. A screenshot of the repository on GitHub is shown in~\figref{github}.
+The image-based meshing steps described in this chapter are assembled to form a novel image-based meshing tool \textit{Shabaka}~\cite{shab}, available on GitHub at \href{http://github.com/omhafez/shabaka}{{\url{http://github.com/omhafez/shabaka}}}. A screenshot of the repository on GitHub is shown in~\figref{github}.
 
-\begin{figure}[ht!]
+\begin{figure}[htbp!]
 \centering
 \vspace{2.5mm}
 \includegraphics[width=1.0\textwidth]{media/2-shabaka/2-surf/7-shabaka.png}

@@ -37,7 +37,7 @@ Gurev \textit{et al.}~\cite{gurev_2015} performed mechanical simulations on a qu
 
 In Cardioid, the heart is assumed to undergo quasi-static finite deformations, gravitational body forces are assumed negligible, and the stress measure of interest is the second Piola-Kirchhoff stress $\bm{S}$. Thus, balance of linear momentum reduces to the following equation:
 \begin{equation}
-(F_{ik}S_{kj}),_{j} = 0
+(F_{ik}S_{kj}),_{j} = 0,
 \end{equation}
 where $()_j = \frac{\partial ()}{\partial X_j}$ connotes a derivative with respect to the reference configuration position.
 
@@ -61,10 +61,10 @@ The cardiac tissue is assumed to exhibit an additive stress decomposition, such 
 
 The passive response of the cardiac tissue is characterized by an incompressible, orthotropic constitutive law by Usyk~\textit{et al.}~\cite{usyk_2002}. The strain energy density function is given by:
 \begin{gather}
-W(\bm{C}) = \frac{C}{2}\left(e^Q -1\right) \\
+W(\bm{C}) = \frac{C}{2}\left(e^Q -1\right), \\
 \begin{aligned}
 Q =\text{\ } &b_{ff} \left(\bm{f}\bm{\cdot}\bm{E}\bm{f}\right)^2 + b_{ss} \left(\bm{s}\bm{\cdot}\bm{E}\bm{s}\right)^2 + b_{nn} \left(\bm{n}\bm{\cdot}\bm{E}\bm{n}\right)^2 + b_{fs}\left[\left(\bm{f}\bm{\cdot}\bm{E}\bm{s}\right)^2 + \left(\bm{s}\bm{\cdot}\bm{E}\bm{f}\right)^2\right] +\\
-& b_{fn}\left[\left(\bm{f}\bm{\cdot}\bm{E}\bm{n}\right)^2 + \left(\bm{n}\bm{\cdot}\bm{E}\bm{f}\right)^2\right] + b_{ns}\left[\left(\bm{n}\bm{\cdot}\bm{E}\bm{s}\right)^2 + \left(\bm{s}\bm{\cdot}\bm{E}\bm{n}\right)^2\right]
+& b_{fn}\left[\left(\bm{f}\bm{\cdot}\bm{E}\bm{n}\right)^2 + \left(\bm{n}\bm{\cdot}\bm{E}\bm{f}\right)^2\right] + b_{ns}\left[\left(\bm{n}\bm{\cdot}\bm{E}\bm{s}\right)^2 + \left(\bm{s}\bm{\cdot}\bm{E}\bm{n}\right)^2\right].
 \end{aligned}
 \label{eqn:usyk}
 \end{gather}
@@ -72,23 +72,23 @@ where $\bm{E} = \frac{1}{2}(\bm{C} - \bm{I})$ is the Green-Lagrange strain tenso
 
 Incompressibility is fully enforced by solving for pressure unknowns as Lagrange multipliers, in addition to the nodal unknowns. In order to use the constitutive law in a fully incompressible context, the deviatoric and volumetric portions of the strain energy are separated, as is done by Weiss~\textit{et al.}~\cite{weiss_1996}. Rather than defining the passive stress as simply $\bm{S}_p = \frac{\partial W}{\partial \bm{E}}$, the passive stress becomes:
 \begin{equation}
-\bm{S}_p= 2\frac{\partial{{W}(\tilde{\bm{C}})}}{\partial{\bm{C}}} - pJ\bm{C}^{-1}
+\bm{S}_p= 2\frac{\partial{{W}(\tilde{\bm{C}})}}{\partial{\bm{C}}} - pJ\bm{C}^{-1},
 \end{equation}
 where ${W}(\tilde{\bm{C}})$ is the deviatoric component of the strain energy function, $J = \text{det}(\bm{F})$, and $\tilde{\bm{C}} = J^{-2/3}\bm{C}$. More details regarding the enforcement of incompressibility can be found in Gurev \textit{et al.}~\cite{gurev_2015} and Weiss~\textit{et al.}~\cite{weiss_1996}.
 
 \textbf{Active Stress}
 
-The active stress is defined as :
+The active stress is defined as:
 \begin{equation}
-\bm{S}_a = \sigma_a \bm{f} \bm{f}^{T}
+\bm{S}_a = \sigma_a \bm{f} \bm{f}^{T},
 \label{eqn:active}
 \end{equation}
 where $\bm{f}$ is the unit muscle fiber direction in the reference configuration and ${\sigma_a}$ is the scalar active tension induced in the fiber direction. A more appropriate and intuitive definition of the active stress would relate Cauchy stress to an active tension and fiber orientation in the \textit{current configuration}, but unfortunately to date that is not how active stress models are typically formulated.
 
 The model by Lumens \textit{et al.}~\cite{lumens_2009} is used to determine the active tension $\sigma_a$ in the following manner:
 \begin{align}
-\sigma_a \equiv \sigma_a(\bm{w}; t_a, \lambda) \\
-\frac{d\bm{w}}{dt} = \bm{q}(\bm{w}; t_a, \lambda)
+\sigma_a \equiv \sigma_a(\bm{w}; t_a, \lambda), \\
+\frac{d\bm{w}}{dt} = \bm{q}(\bm{w}; t_a, \lambda).
 \end{align}
 The scalar active tension depends on the state variables $\bm{w}$ of the muscle cells, the time $t_a$ at which the muscle cells electrically activate, and the muscle fiber stretch $\lambda$ in the direction of $\bm{f}$. Specifically, the fiber stretch is defined as $\lambda = (\bm{f}\bm{C}\bm{f}^T)^{1/2}$. The state variables are updated using a forward Euler scheme within the constitutive update. Further details on the state variables $\bm{w}$ and their evolution function $\bm{q}$ can be found in the work by Lumens~\textit{et al.}~\cite{lumens_2009}.
 
@@ -132,9 +132,9 @@ Fluid flow and fluid-structure interaction are not yet implemented in the Cardio
 
 A system of coupled ODEs describing the time evolution of the left ventricle volume $V_{LV}$ and the right ventricle volume $V_{RV}$ for the circulatory model can be written in the following form:
 \begin{align}
-\frac{d\bm{w}_{c}}{dt} = \bm{q}_c(\bm{w}_c, p_{LV}, p_{RV}; t) \\
-\frac{dV_{LV}}{dt} = g_{LV}(p_{LV}, \bm{w}_c; t) \\
-\frac{dV_{RV}}{dt} = g_{RV}(p_{RV}, \bm{w}_c; t)
+\frac{d\bm{w}_{c}}{dt} = \bm{q}_c(\bm{w}_c, p_{LV}, p_{RV}; t), \\
+\frac{dV_{LV}}{dt} = g_{LV}(p_{LV}, \bm{w}_c; t), \\
+\frac{dV_{RV}}{dt} = g_{RV}(p_{RV}, \bm{w}_c; t),
 \end{align}
 where $\bm{w}_c$ is the vector of state variables for the circulatory model, $p_{LV}$ and $p_{RV}$ are the pressures inside the left and right ventricles, respectively, and ${dV_{LV}}/{dt}$ and ${dV_{RV}}/{dt}$ represent the change in blood volume in each of the ventricles. The right-hand side functions $\bm{q}_c$, $g_{LV}$, and $g_{RV}$ are described in detail in Kerckhoffs~\textit{et al.}~\cite{kerckhoffs_2006}. This paradigm assumes both that the blood is an incompressible fluid, and that the pressure is spatially uniform within each ventricle. For each time step, the ventricular volumes are calculated from the circulatory model and imposed as constraints on the finite element mesh to determine the corresponding ventricular pressures. The details by which the pressures are computed from the volume constraint are detailed in Gurev~\textit{et al.}~\cite{gurev_2015}. The lumped circulatory model is shown in~\figref{bcs}.
 \begin{figure}[ht]
@@ -219,10 +219,10 @@ The remaining consideration to perform cardiac simulations using polyhedral FEM 
 \subsubsection{Material Model}
 The Usyk material model has been implemented within the Celeris framework. Rather than full incompressibility via a mixed pressure-displacement formulation, \textit{near-incompressibility} is enforced via a penalty term in the strain energy for volumetric material response, together with an \textit{F-bar method}. Regarding the penalty term, the strain energy is defined in the following manner, as is done by Usyk \textit{et al.}~\cite{usyk_2002}:
 \begin{equation}
-W = \frac{C}{2}\left(e^Q -1\right) + C_{compr} (J \cdot \ln J - J + 1) \\
+W = \frac{C}{2}\left(e^Q -1\right) + C_{compr} (J \cdot \ln J - J + 1). \\
 \end{equation}
 The parameter $C_{compr}$ is defined such that the volumetric response of the material is significantly stiffer than the deviatoric response. It was found that a value of \mbox{$C_{compr} \geq 200  C$} gives good results (compared to simulations enforcing full incompressibility) without significantly making the system poorly conditioned. Volumetric locking is then mitigated by an F-bar method, in which the deformation gradient is modified such that the dilatation $\det\bm{F}$ at each integration point is replaced by an element-averaged value, as explained in \chapref{4}.
-
+\vfil \break
 \textbf{Passive stress}
 
 The material model framework in Celeris currently accepts material definitions in incremental form. The incremental material model receives as input: the beginning step Cauchy stress $\overline{\bm{T}}$, beginning step state variables, stretch rate $\bm{D}$, and material properties and other field parameters. Following the constitutive update, the model produces as output: the end step unrotated Cauchy stress $\tilde{\bm{T}}$, end step unrotated state variables, and end step tangent modulus ${\partial \tilde{\bm{T}}}/{\partial (\bm{D}\Delta)}$. Special considerations are made to implement hyperelastic materials within this framework. The implementation of the Usyk material follows the same pattern as in \chapref{4} for the Mooney-Rivlin material.
@@ -231,17 +231,20 @@ The beginning step deformation gradient $\overline{\bm{F}}$ is stored as a state
 
 Because of the assumed additive stress decomposition $\tilde{\bm{T}} = \tilde{\bm{T}}_p + \tilde{\bm{T}}_a$, the passive and active stress are computed independently and then added together at the end of the constitutive update. The passive material update proceeds by first calculating the end step unrotated deformation gradient via $\tilde{\bm{F}} = \hat{\bm{U}}\overline{\bm{F}}$, and then by computing the end step unrotated Cauchy stress $\tilde{\bm{T}}$ based on $\tilde{\bm{F}}$. As discussed in \chapref{4}, the calculation does not actually require the beginning step Cauchy stress $\overline{\bm{T}}$. The relevant calculations follow:
 \begin{gather}
-\hat{\bm{U}} = \bm{I} + \bm{D}\Delta + \frac{1}{2}(\bm{D}\Delta)^2 + \frac{1}{6}(\bm{D}\Delta)^3 \\
-\tilde{\bm{F}} = \hat{\bm{U}}\overline{\bm{F}} \\
-\bm{E} = \frac{1}{2}(\tilde{\bm{F}}^T \tilde{\bm{F}} - \bm{I}) \\
-J  = \det{\tilde{\bm{F}}}
+\hat{\bm{U}} = \bm{I} + \bm{D}\Delta + \frac{1}{2}(\bm{D}\Delta)^2 + \frac{1}{6}(\bm{D}\Delta)^3, \\
+\tilde{\bm{F}} = \hat{\bm{U}}\overline{\bm{F}},
 \end{gather}
+\begin{gather}
+\bm{E} = \frac{1}{2}(\tilde{\bm{F}}^T \tilde{\bm{F}} - \bm{I}), \\
+J  = \det{\tilde{\bm{F}}},
+\end{gather}
+\vspace{-5mm}
 \begin{equation}
 \begin{aligned}
 Q =\text{\ } &b_{ff}\left(f_aE_{ab}f_b\right)^2  + b_{ss}\left(s_aE_{ab}s_b\right)^2 + b_{nn}\left(n_aE_{ab}n_b\right)^2 +\\
 & b_{fs}\left[\left(f_aE_{ab}s_b\right)^2 + \left(s_aE_{ab}f_b\right)^2\right] +\\
 & b_{fn}\left[\left(f_aE_{ab}n_b\right)^2 + \left(n_aE_{ab}f_b\right)^2\right] +\\
-& b_{ns}\left[\left(n_aE_{ab}s_b\right)^2 + \left(s_aE_{ab}n_b\right)^2\right]
+& b_{ns}\left[\left(n_aE_{ab}s_b\right)^2 + \left(s_aE_{ab}n_b\right)^2\right],
 \end{aligned}
 \end{equation}
 \begin{equation}
@@ -249,32 +252,33 @@ Q =\text{\ } &b_{ff}\left(f_aE_{ab}f_b\right)^2  + b_{ss}\left(s_aE_{ab}s_b\righ
 \frac{\partial Q}{\partial E_{pq}} = \text{\ } &2b_{ff}f_pf_q\left(f_aE_{ab}f_b\right) + 2b_{ss}s_ps_q\left(s_aE_{ab}s_b\right) + 2b_{nn}n_pn_q\left(n_aE_{ab}n_b\right) +\\
 & b_{fs}\left(f_ps_q + s_pf_q\right)\left(f_aE_{ab}s_b + s_aE_{ab}f_b\right) +\\
 & b_{fn}\left(f_pn_q + n_pf_q\right)\left(f_aE_{ab}n_b + n_aE_{ab}f_b\right) +\\
-& b_{ns}\left(n_ps_q + s_pn_q\right)\left(n_aE_{ab}s_b + s_aE_{ab}n_b\right)
+& b_{ns}\left(n_ps_q + s_pn_q\right)\left(n_aE_{ab}s_b + s_aE_{ab}n_b\right).
 \end{aligned}
 \end{equation}
 
 Finally,
 \begin{equation}
-\tilde{\bm{T}}_p = \frac{C}{2J}e^{Q}\tilde{\bm{F}}\frac{\partial{Q}}{\partial{\bm{E}}}\tilde{\bm{F}}^T + (C_{comp}\text{ln}J)\bm{I}
+\tilde{\bm{T}}_p = \frac{C}{2J}e^{Q}\tilde{\bm{F}}\frac{\partial{Q}}{\partial{\bm{E}}}\tilde{\bm{F}}^T + (C_{comp}\text{ln}J)\bm{I}.
 \end{equation}
+
 Note the Cauchy stress is computed from the strain energy by making use of the relationship $\tilde{\bm{T}}_p = J^{-1}\tilde{\bm{F}}\frac{\partial\bm{W}}{\partial \bm{E}} \tilde{\bm{F}}^T$. 
 
 The tangent modulus of the passive portion of stress ${\partial \tilde{\bm{T}}_p}/{\partial (\bm{D}\Delta)}$ is computed via successive use of the chain rule of differentiation:
 \begin{equation}
-\frac{\partial \tilde{\bm{T}}_p}{\partial (\bm{D}\Delta)} = \frac{\partial \tilde{\bm{T}}_p}{\partial \tilde{\bm{F}}}\frac{\partial \tilde{\bm{F}}}{\partial \hat{\bm{U}}}\frac{\partial \hat{\bm{U}}}{\partial (\bm{D}\Delta)}
+\frac{\partial \tilde{\bm{T}}_p}{\partial (\bm{D}\Delta)} = \frac{\partial \tilde{\bm{T}}_p}{\partial \tilde{\bm{F}}}\frac{\partial \tilde{\bm{F}}}{\partial \hat{\bm{U}}}\frac{\partial \hat{\bm{U}}}{\partial (\bm{D}\Delta)}.
 \label{eqn:tanmod}
 \end{equation}
 
 First, we define some intermediate terms:
 \begin{equation}
-A_{pq} \equiv \frac{\partial Q}{\partial E_{pq}}
+A_{pq} \equiv \frac{\partial Q}{\partial E_{pq}},
 \end{equation}
 \begin{equation}
 \begin{aligned}
 Z_{pqkl} = \frac{\partial A_{pq}}{\partial F_{kl}} = \text{\ } &2b_{ff}f_pf_qf_lF_{ka}f_a + 2b_{ss}s_ps_qs_lF_{ka}s_a + 2b_{nn}n_pn_qn_lF_{ka}n_a +\\
 & b_{fs}\left(f_ps_q + s_pf_q\right)\left(f_lF_{ka}s_a + s_lF_{ka}f_a\right) +\\
 & b_{fn}\left(f_pn_q + n_pf_q\right)\left(f_lF_{ka}n_a + n_lF_{ka}f_a\right) +\\
-& b_{ns}\left(n_ps_q + s_pn_q\right)\left(n_lF_{ka}s_a + s_lF_{ka}n_a\right)
+& b_{ns}\left(n_ps_q + s_pn_q\right)\left(n_lF_{ka}s_a + s_lF_{ka}n_a\right).
 \end{aligned}
 \end{equation}
 
@@ -282,16 +286,18 @@ The three derivatives on the right-hand side of \eqnref{tanmod} may then be comp
 \begin{equation}
 \begin{aligned}
 \frac{\partial \tilde{T}_{ij}}{\partial \tilde{F}_{kl}} &= \frac{C}{2J}e^{Q} \Bigg[-\tilde{F}^{-1}_{lk}A_{pq}\tilde{F}_{ip}\tilde{F}_{jq} + \frac{1}{2}(A_{ln}\tilde{F}_{kn} + A_{ml}\tilde{F}_{km})A_{pq}\tilde{F}_{ip}\tilde{F}_{jq} + \\
-&\text{\ \ \ }Z_{pqkl}\tilde{F}_{ip}\tilde{F}_{jq} + \delta_{ik}A_{pl}\tilde{F}_{jp} + \delta_{jk}A_{lq}\tilde{F}_{iq}\Bigg] + C_{comp}\delta_{ij}\tilde{F}^{-1}_{lk}
+&\text{\ \ \ }Z_{pqkl}\tilde{F}_{ip}\tilde{F}_{jq} + \delta_{ik}A_{pl}\tilde{F}_{jp} + \delta_{jk}A_{lq}\tilde{F}_{iq}\Bigg] + C_{comp}\delta_{ij}\tilde{F}^{-1}_{lk},
 \end{aligned}
 \end{equation}
+\vspace{-5mm}
 \begin{align}
-\frac{\partial \tilde{F}_{ij}}{\partial \hat{U}_{kl}} = \frac{1}{2}\left(\delta_{ik}\overline{F}_{lj} + \delta_{il}\overline{F}_{kj}\right)
+\frac{\partial \tilde{F}_{ij}}{\partial \hat{U}_{kl}} = \frac{1}{2}\left(\delta_{ik}\overline{F}_{lj} + \delta_{il}\overline{F}_{kj}\right),
 \end{align}
+\vspace{-5mm}
 \begin{equation}
 \begin{aligned}
 \frac{\partial \hat{U}_{ij}}{\partial D_{kl}} = &\frac{1}{2}\left[\delta_{ik}\delta_{jl} + \frac{1}{2}\delta_{ik}D_{lj} + \frac{1}{2}D_{ik}\delta_{jl} + \frac{1}{6}\delta_{ik}D_{ln}D_{nj} + \frac{1}{6}D_{ik}D_{lj} + \frac{1}{6}D_{im}D_{mk}\delta_{jl}\right] + \\
-&\frac{1}{2}\left[\delta_{il}\delta_{jk} + \frac{1}{2}\delta_{il}D_{kj} + \frac{1}{2}D_{il}\delta_{jk} + \frac{1}{6}\delta_{il}D_{kn}D_{nj} + \frac{1}{6}D_{il}D_{kj} + \frac{1}{6}D_{im}D_{ml}\delta_{jk}\right]
+&\frac{1}{2}\left[\delta_{il}\delta_{jk} + \frac{1}{2}\delta_{il}D_{kj} + \frac{1}{2}D_{il}\delta_{jk} + \frac{1}{6}\delta_{il}D_{kn}D_{nj} + \frac{1}{6}D_{il}D_{kj} + \frac{1}{6}D_{im}D_{ml}\delta_{jk}\right].
 \end{aligned}
 \end{equation}
 
@@ -304,8 +310,8 @@ The Fortran code to compute the active stress $\tilde{\bm{T}}_a$ and correspondi
 
 Finally, the passive and active stress, along with their tangent moduli, are combined in the following manner:
 \begin{align}
-\tilde{\bm{T}} &= \tilde{\bm{T}}_p + \tilde{\bm{T}}_a \\
-\frac{\partial \tilde{\bm{T}}}{\partial (\bm{D}\Delta)} &= \frac{\partial \tilde{\bm{T}}_p}{\partial (\bm{D}\Delta)}+ \frac{\partial \tilde{\bm{T}}_a}{\partial (\bm{D}\Delta)}
+\tilde{\bm{T}} &= \tilde{\bm{T}}_p + \tilde{\bm{T}}_a, \\
+\frac{\partial \tilde{\bm{T}}}{\partial (\bm{D}\Delta)} &= \frac{\partial \tilde{\bm{T}}_p}{\partial (\bm{D}\Delta)}+ \frac{\partial \tilde{\bm{T}}_a}{\partial (\bm{D}\Delta)}.
 \end{align}
 Following the constitutive update routine, the end step Cauchy stress and tangent modulus are forward rotated as discussed in \chapref{4}. Additionally, the deformation gradient is forward rotated simply via $\bm{F} =\hat{\bm{R}}\tilde{\bm{F}}$.
 
@@ -364,10 +370,10 @@ For the single ventricle problems Land P2 and Land P3, quadratic tetrahedral ele
 
 Interestingly, Imitor's results appear to be slightly too stiff in bending, but slightly too compliant for volumetric deformations. The over-stiffness in bending is evidenced in Gurev P2, Land P1, and Land P2, whereas the over-compliance in volumetric deformation is evidenced in Gurev P4 and Land P3. More investigation would be required to attribute this difference to the enforcement of near-incompressibility. Overall though, the difference in results is small enough to provide confidence that the material model has been implemented correctly in Imitor and in Celeris.
 
-A comparison of the number of degrees of freedom for the three codes in the bending problem Land P1 is provided (\figref{land1-3}). It was not expected to be useful because the meshes are already quite coarse, and automated linear hex meshing for a simple cantilever beam geometry is easily achievable. It is expected that for the single ventricle problems Land P2 and Land P3, accurate results can be achieved using Celeris with a noticeable reduction in the number of DOF, which would complete the plots in \figref{land2-3} and \figref{land3.2-3}.
+A comparison of the number of degrees of freedom for the three codes in the bending problem Land P1 is provided (\figref{land1-3}). The meshes in that problem are already quite coarse, though, and automated linear hex meshing for a simple cantilever beam geometry is easily achievable. Thus, unsurprisingly, the number of DOF for conventional FEM and polyhedral FEM are comparable. It is expected that for the single ventricle problems Land P2 and Land P3, accurate results can be achieved using Celeris with a noticeable reduction in the number of DOF, which would complete the plots in \figref{land2-3} and \figref{land3.2-3}.
 
 Up to this point, the mechanics implemented in Imitor and Celeris have been verified, and cuboidal polyhedral elements are performing well for the cantilever beam problems. Completing the verification process would involve running Land P2 and Land P3 in Celeris with general polyhedral elements, as well as potentially running the cantilever beam problems again in Celeris with non-cuboidal polyhedral elements. Once the fixes in Celeris are made, the suite of verification problems can be completed, after which point the code would be ready to perform the same cardiac simulations presented using Cardioid.
-
+\vspace{18mm}
 \begin{figure}[ht]
 \centering
 \subfigure[]{%
@@ -380,7 +386,7 @@ Up to this point, the mechanics implemented in Imitor and Celeris have been veri
 \caption{Results for Gurev P2 verification problem: (a) Displacement magnitude along diagonal axis, with (b) details for the free end of the beam}
 \label{fig:gurev2}
 \end{figure}
-
+\vspace{18mm}
 \begin{figure}[ht!]
 \centering
 \subfigure[]{%
@@ -393,7 +399,6 @@ Up to this point, the mechanics implemented in Imitor and Celeris have been veri
 \caption{Results for Gurev P3 verification problem: (a) Displacement magnitude along diagonal axis, with (b) details for the fixed end of the beam. The results for Imitor and Celeris are indistinguishable in these plots.}
 \label{fig:gurev3}
 \end{figure}
-
 \begin{figure}[ht!]
 \centering
 \subfigure[]{%
@@ -406,7 +411,7 @@ Up to this point, the mechanics implemented in Imitor and Celeris have been veri
 \caption{Results for Gurev P4 verification problem: (a) Displacement magnitude along diagonal axis, with (b) details for the free end of the beam. The results for Imitor and Celeris are indistinguishable in these plots.}
 \label{fig:gurev4}
 \end{figure}
-
+\vfil
 \begin{figure}[ht!]
 \centering
 \subfigure[]{%
@@ -438,7 +443,7 @@ Up to this point, the mechanics implemented in Imitor and Celeris have been veri
 \caption{Results for Land P2 verification problem: (a) Deformed position of middle of the ventricle wall, with (b) details at the inflection point (top) and the apical region (bottom). Panel (c) shows the deformed position of the apex at the endo- and epicardium for each of the simulation codes.}
 \label{fig:land2}
 \end{figure}
-
+\vfil
 \begin{figure}[ht!]
 \centering
 \subfigure[]{%
